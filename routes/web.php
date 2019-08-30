@@ -18,20 +18,33 @@ Route::group(['middleware' => ['auth']], function(){
 
     Route::group(['middleware' => 'root', 'prefix' => 'root', 'namespace' => 'Root'], function(){
 
-        Route::get('/', 'HomeController@index')->name('home.root');
+        Route::get('/', 'HomeController@index')->name('root');
 
+        //ACADEMIAS
+        Route::get('/academy', 'AcademyController@index')->name('root.academy');
     });
 
     Route::group(['middleware' => 'admin', 'prefix' => 'admin', 'namespace' => 'Admin'], function(){
 
-        Route::get('/', 'HomeController@index')->name('home.admin');
+        Route::get('/', 'HomeController@index')->name('admin');
+
+        //AULAS
+        Route::get('/lesson', 'LessonController@index')->name('admin.lesson');
+
+        //ALUNOS
+        Route::get('/student', 'StudentController@index')->name('admin.student');
+
+        //FINANCEIRO
+        Route::get('/financial', 'FinancialController@index')->name('admin.financial');
     });
 
 
     Route::group(['middleware' => 'student', 'prefix' => 'student', 'namespace' => 'Student'], function(){
 
-        Route::get('/', 'HomeController@index')->name('home.student');
+        Route::get('/', 'HomeController@index')->name('student');
 
+        //AULAS
+        Route::get('/lesson', 'LessonController@index')->name('student.lesson');
     });
 
 

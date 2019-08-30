@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class LessonController extends Controller
+class FinancialController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class LessonController extends Controller
      */
     public function index()
     {
-        return view('admin.lesson.home');
+        return view('admin.financial.home');
     }
 
     /**

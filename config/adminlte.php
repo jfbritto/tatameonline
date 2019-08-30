@@ -136,50 +136,49 @@ return [
         ['header' => 'ROOT', 'can'  => 'root'],
 
         [
-            'text'        => 'Inicio',
-            'url'         => 'admin/pages',
+            'text'        => 'Home',
+            'url'         => 'root',
             'can'  => 'root',
         ],
         [
             'text'        => 'Academias',
-            'url'         => 'admin/pages',
+            'url'         => 'root/academy',
             'can'  => 'root',
         ],
         
         ['header' => 'ADMINISTRADOR', 'can'  => 'admin'],
 
         [
-            'text'        => 'Inicio',
-            'url'         => 'admin/pages',
+            'text'        => 'Home',
+            'url'         => 'admin',
             'can'  => 'admin',
-            'icon'        => 'fas fa-fw fa-share',
         ],
         [
             'text'        => 'Alunos',
-            'url'         => 'admin/pages',
+            'url'         => 'admin/student',
             'can'  => 'admin',
         ],
         [
             'text'        => 'Aulas',
-            'url'         => 'admin/pages',
+            'url'         => 'admin/lesson',
             'can'  => 'admin',
         ],
         [
             'text'        => 'Financeiro',
-            'url'         => 'admin/pages',
+            'url'         => 'admin/financial',
             'can'  => 'admin',
         ],
         
         ['header' => 'ALUNO', 'can'  => 'student'],
 
         [
-            'text'        => 'Inicio',
-            'url'         => 'admin/pages',
+            'text'        => 'Home',
+            'url'         => 'student',
             'can'  => 'student',
         ],
         [
             'text'        => 'Aulas',
-            'url'         => 'admin/pages',
+            'url'         => 'student/lesson',
             'can'  => 'student',
         ],
         

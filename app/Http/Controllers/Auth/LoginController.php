@@ -59,13 +59,13 @@ class LoginController extends Controller
         {
 
             if(auth()->user()->isRoot)
-                return redirect()->route('home.root');
+                return redirect()->route('root');
 
             if(auth()->user()->isAdmin)
-                return redirect()->route('home.admin');
+                return redirect()->route('admin');
 
             if(auth()->user()->isStudent)
-                return redirect()->route('home.student');    
+                return redirect()->route('student');    
 
         }
     }
