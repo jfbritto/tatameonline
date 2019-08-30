@@ -15,7 +15,7 @@ return [
 
     'title' => 'AdminLTE 2',
 
-    'title_prefix' => '',
+    'title_prefix' => 'TaTameOnline - ',
 
     'title_postfix' => '',
 
@@ -30,9 +30,9 @@ return [
     |
     */
 
-    'logo' => '<b>TaTame</b>ONLINE',
+    'logo' => '<b>TaTame</b>Online',
 
-    'logo_mini' => '<b>TT</b>ON',
+    'logo_mini' => '<b>TT</b>On',
 
     /*
     |--------------------------------------------------------------------------
@@ -71,7 +71,7 @@ return [
     |
     */
 
-    'collapse_sidebar' => false,
+    'collapse_sidebar' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -138,11 +138,13 @@ return [
         [
             'text'        => 'Home',
             'url'         => 'root',
+            'icon' => 'fas fa-home',
             'can'  => 'root',
         ],
         [
             'text'        => 'Academias',
             'url'         => 'root/academy',
+            'icon' => 'fas fa-briefcase',
             'can'  => 'root',
         ],
         
@@ -151,21 +153,25 @@ return [
         [
             'text'        => 'Home',
             'url'         => 'admin',
+            'icon' => 'fas fa-home',
             'can'  => 'admin',
         ],
         [
             'text'        => 'Alunos',
             'url'         => 'admin/student',
+            'icon' => 'fas fa-user-graduate',
             'can'  => 'admin',
         ],
         [
             'text'        => 'Aulas',
             'url'         => 'admin/lesson',
+            'icon' => 'fas fa-users',
             'can'  => 'admin',
         ],
         [
             'text'        => 'Financeiro',
             'url'         => 'admin/financial',
+            'icon' => 'fas fa-dollar-sign',
             'can'  => 'admin',
         ],
         
@@ -174,11 +180,13 @@ return [
         [
             'text'        => 'Home',
             'url'         => 'student',
+            'icon' => 'fas fa-home',
             'can'  => 'student',
         ],
         [
             'text'        => 'Aulas',
             'url'         => 'student/lesson',
+            'icon' => 'fas fa-users',
             'can'  => 'student',
         ],
         

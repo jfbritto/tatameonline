@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Aulas')
+@section('title', 'Academias')
 
 @section('content_header')
 
@@ -9,8 +9,8 @@
             <!-- <small>preview of simple tables</small> -->
         </h1>
         <ol class="breadcrumb">
-            <li><a href="/admin"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#">Academias</a></li>
+            <li><a href="/admin"><i class="fas fa-home"></i>&nbsp;&nbsp;Home</a></li>
+            <li><a href="#"><i class="fas fa-briefcase"></i>&nbsp;&nbsp;Academias</a></li>
             <!-- <li class="active">Data tables</li> -->
         </ol>
 
@@ -23,11 +23,10 @@
             <h3 class="box-title">Academias</h3>
 
             <div class="box-tools">
-            <div class="input-group input-group-sm hidden-xs" style="width: 150px;">
-                <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
-
+            <div class="input-group input-group-sm hidden-xs" style="width: 150px; text-align: right">
                 <div class="input-group-btn">
-                <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                    <a href="#" class="btn btn-danger" title="Gerar pdf"><i class="fas fa-file-pdf fa-lg"></i></a>
+                    <a href="#" class="btn btn-success" title="Adicionar academia"><i class="fas fa-plus fa-lg"></i></i></a>
                 </div>
             </div>
             </div>
@@ -36,39 +35,29 @@
         <div class="box-body table-responsive no-padding">
             <table class="table table-hover">
             <tbody><tr>
-                <th>ID</th>
-                <th>User</th>
-                <th>Date</th>
+                <th>Nome</th>
+                <th>Nascimento</th>
                 <th>Status</th>
-                <th>Reason</th>
             </tr>
             <tr>
-                <td>183</td>
                 <td>John Doe</td>
                 <td>11-7-2014</td>
                 <td><span class="label label-success">Approved</span></td>
-                <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
             </tr>
             <tr>
-                <td>219</td>
                 <td>Alexander Pierce</td>
                 <td>11-7-2014</td>
                 <td><span class="label label-warning">Pending</span></td>
-                <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
             </tr>
             <tr>
-                <td>657</td>
                 <td>Bob Doe</td>
                 <td>11-7-2014</td>
                 <td><span class="label label-primary">Approved</span></td>
-                <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
             </tr>
             <tr>
-                <td>175</td>
                 <td>Mike Doe</td>
                 <td>11-7-2014</td>
                 <td><span class="label label-danger">Denied</span></td>
-                <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
             </tr>
             </tbody></table>
         </div>

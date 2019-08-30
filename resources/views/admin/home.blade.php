@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Aulas')
+@section('title', 'Home')
 
 @section('content_header')
 
@@ -9,9 +9,7 @@
             <!-- <small>preview of simple tables</small> -->
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <!-- <li><a href="#">Tables</a></li>
-            <li class="active">Data tables</li> -->
+            <li><a href="/admin"><i class="fas fa-home"></i>&nbsp;&nbsp;Home</a></li>
         </ol>
 
 @stop
