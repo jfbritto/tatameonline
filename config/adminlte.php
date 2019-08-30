@@ -152,6 +152,7 @@ return [
             'text'        => 'Inicio',
             'url'         => 'admin/pages',
             'can'  => 'admin',
+            'icon'        => 'fas fa-fw fa-share',
         ],
         [
             'text'        => 'Alunos',

@@ -4,30 +4,35 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+// Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/login', 'Auth\LoginController@get_autenticar')->name('login');
+Route::post('/login', 'Auth\LoginController@post_autenticar')->name('login.post');
+
+// Route::get('/home', 'HomeController@index')->name('home');
 
 
-Route::middleware(['auth'], function(){
+Route::group(['middleware' => ['auth']], function(){
 
-    Route::middleware(['root'], function(){
+    Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
 
-        Route::get('/', 'Root\HomeController@index')->name('home');
+    Route::group(['middleware' => 'root', 'prefix' => 'root', 'namespace' => 'Root'], function(){
 
-    })->prefix('root');
+        Route::get('/', 'HomeController@index')->name('home.root');
 
-    Route::middleware(['admin'], function(){
+    });
 
-        Route::get('/', 'Admin\HomeController@index')->name('home');
+    Route::group(['middleware' => 'admin', 'prefix' => 'admin', 'namespace' => 'Admin'], function(){
 
-    })->prefix('admin');
+        Route::get('/', 'HomeController@index')->name('home.admin');
+    });
 
-    Route::middleware(['student'], function(){
 
-        Route::get('/', 'Student\HomeController@index')->name('home');
+    Route::group(['middleware' => 'student', 'prefix' => 'student', 'namespace' => 'Student'], function(){
 
-    })->prefix('student');
+        Route::get('/', 'HomeController@index')->name('home.student');
+
+    });
 
 
 });
