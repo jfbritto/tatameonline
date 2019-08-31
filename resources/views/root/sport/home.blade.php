@@ -20,8 +20,7 @@
     
     <div class="box">
         <div class="box-header">
-            <h3 class="box-title">Esportes</h3>
-
+            
             <div class="box-tools">
             <div class="input-group input-group-sm hidden-xs" style="width: 150px; text-align: right">
                 <div class="input-group-btn">
@@ -34,34 +33,19 @@
         <!-- /.box-header -->
         <div class="box-body table-responsive no-padding">
             <table class="table table-hover">
-            <tbody><tr>
-                <th>Nome</th>
-                <th>Nascimento</th>
-                <th>Status</th>
-            </tr>
-            <tr>
-                <td>John Doe</td>
-                <td>11-7-2014</td>
-                <td><span class="label label-success">Approved</span></td>
-            </tr>
-            <tr>
-                <td>Alexander Pierce</td>
-                <td>11-7-2014</td>
-                <td><span class="label label-warning">Pending</span></td>
-            </tr>
-            <tr>
-                <td>Bob Doe</td>
-                <td>11-7-2014</td>
-                <td><span class="label label-primary">Approved</span></td>
-            </tr>
-            <tr>
-                <td>Mike Doe</td>
-                <td>11-7-2014</td>
-                <td><span class="label label-danger">Denied</span></td>
-            </tr>
-            </tbody></table>
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                    </tr>
+                </thead>
+                <tbody id="lista"></tbody>
+            </table>
         </div>
         <!-- /.box-body -->
     </div>
 
+@stop
+
+@section('adminlte_js')
+    <script src="{{asset('/js/Root/listSport.js')}}"></script>
 @stop

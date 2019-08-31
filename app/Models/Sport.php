@@ -8,5 +8,6 @@ class Sport extends Model
 {
     protected $fillable = [
         'name',
+        'isAtivo'
     ];
 }

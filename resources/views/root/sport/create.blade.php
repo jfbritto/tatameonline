@@ -10,8 +10,8 @@
         </h1>
         <ol class="breadcrumb">
             <li><a href="/root"><i class="fas fa-home"></i>&nbsp;&nbsp;Home</a></li>
-            <li><a href="/root/student"><i class="fas fa-futbol"></i>&nbsp;&nbsp;Esportes</a></li>
-            <li><a href="/root/student/create"><i class="fas fa-futbol"></i>&nbsp;&nbsp;Cadastrar</a></li>
+            <li><a href="/root/sport"><i class="fas fa-futbol"></i>&nbsp;&nbsp;Esportes</a></li>
+            <li><a href="/root/sport/create"><i class="fas fa-futbol"></i>&nbsp;&nbsp;Cadastrar</a></li>
         </ol>
 
 @stop
@@ -45,5 +45,5 @@
 @stop
 
 @section('adminlte_js')
-    <script src="{{asset('/js/Admin/addSport.js')}}"></script>
+    <script src="{{asset('/js/Root/addSport.js')}}"></script>
 @stop

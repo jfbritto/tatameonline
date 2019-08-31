@@ -4,6 +4,8 @@
     Route::group(['prefix' => 'root', 'namespace' => 'Root'], function(){
 
         Route::post('/sport', 'SportController@store');
+        Route::post('/sport/list', 'SportController@index');
+        Route::post('/sport/destroy', 'SportController@destroy');
     });
 
 
