@@ -14,22 +14,22 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
 
             $table->string('name');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->rememberToken();
-            $table->timestamps();
-
             $table->boolean('isRoot')->default(false);
             $table->boolean('isAdmin')->default(true);
             $table->boolean('isStudent')->default(false);
-
-            $table->boolean('idAcademy')->default(false);
-
             $table->boolean('isAtivo')->default(true);
+            
+            $table->integer('idAcademy')->nullable()->unsigned();
+            
+            $table->timestamps();
+
+            $table->foreign('idAcademy')->references('id')->on('academies')->onDelete('cascade');
+
         });
     }
 

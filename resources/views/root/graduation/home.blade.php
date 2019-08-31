@@ -1,16 +1,16 @@
 @extends('adminlte::page')
 
-@section('title', 'Academias')
+@section('title', 'Graduação')
 
 @section('content_header')
 
         <h1>
-            Academias &nbsp;&nbsp;<i class="fas fa-briefcase"></i>
+            Graduação &nbsp;&nbsp;<i class="fas fa-graduation-cap"></i>
             <!-- <small>preview of simple tables</small> -->
         </h1>
         <ol class="breadcrumb">
             <li><a href="/admin"><i class="fas fa-home"></i>&nbsp;&nbsp;Home</a></li>
-            <li><a href="#"><i class="fas fa-briefcase"></i>&nbsp;&nbsp;Academias</a></li>
+            <li><a href="#"><i class="fas fa-graduation-cap"></i>&nbsp;&nbsp;Graduação</a></li>
             <!-- <li class="active">Data tables</li> -->
         </ol>
 
@@ -20,7 +20,7 @@
     
     <div class="box">
         <div class="box-header">
-            <h3 class="box-title">Academias</h3>
+            <h3 class="box-title">Graduação</h3>
 
             <div class="box-tools">
             <div class="input-group input-group-sm hidden-xs" style="width: 150px; text-align: right">

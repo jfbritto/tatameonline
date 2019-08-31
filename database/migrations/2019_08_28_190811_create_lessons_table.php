@@ -14,8 +14,19 @@ class CreateLessonsTable extends Migration
     public function up()
     {
         Schema::create('lessons', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
+
+            $table->integer('weekDay');
+            $table->time('hour');
+            $table->boolean('isAtivo')->default(true);
+
+            $table->integer('idSport')->unsigned();
+            $table->integer('idAcademy')->unsigned();
+            
             $table->timestamps();
+
+            $table->foreign('idSport')->references('id')->on('academies')->onDelete('cascade');
+            $table->foreign('idAcademy')->references('id')->on('academies')->onDelete('cascade');
         });
     }
 

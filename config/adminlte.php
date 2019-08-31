@@ -13,9 +13,9 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 2',
+    'title' => 'Sistema de gerenciamento de academias de luta',
 
-    'title_prefix' => 'TaTameOnline - ',
+    'title_prefix' => 'TaTameOnline | ',
 
     'title_postfix' => '',
 
@@ -71,7 +71,7 @@ return [
     |
     */
 
-    'collapse_sidebar' => true,
+    'collapse_sidebar' => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -133,6 +133,9 @@ return [
         //     'search' => false,
         // ],
 
+        //********* */
+        //** ROOT ***/
+        //********* */
         ['header' => 'ROOT', 'can'  => 'root'],
 
         [
@@ -147,7 +150,22 @@ return [
             'icon' => 'fas fa-briefcase',
             'can'  => 'root',
         ],
+        [
+            'text'        => 'Esportes',
+            'url'         => 'root/sport',
+            'icon' => 'fas fa-futbol',
+            'can'  => 'root',
+        ],
+        [
+            'text'        => 'Graduações',
+            'url'         => 'root/graduation',
+            'icon' => 'fas fa-graduation-cap',
+            'can'  => 'root',
+        ],
         
+        //********* */
+        //* ADMIN ***/
+        //********* */
         ['header' => 'ADMINISTRADOR', 'can'  => 'admin'],
 
         [
@@ -175,6 +193,9 @@ return [
             'can'  => 'admin',
         ],
         
+        //********** */
+        //** ALUNO ***/
+        //********** */
         ['header' => 'ALUNO', 'can'  => 'student'],
 
         [

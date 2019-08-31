@@ -1,27 +1,25 @@
 <?php
 
-namespace App\Http\Controllers\Root;
+namespace App\Http\Controllers\Api\Root;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Services\Root\SportService;
 
-class AcademyController extends Controller
+class SportController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    private $sportService;
+
+    public function __construct(SportService $sportService)
     {
-        return view('root.academy.home');
+        $this->sportService = $sportService;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function index()
+    {
+        //
+    }
+
     public function create()
     {
         //
@@ -35,7 +33,16 @@ class AcademyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $dataValid = $request->validate([
+            'name' => 'required'
+        ]);
+
+        $response = $this->sportService->store($dataValid);
+
+        if($response['status'] == 'success')
+            return response()->json(['status'=>'success'], 201);
+            
+        return response()->json(['status'=>'error', 'message'=>$response['data']], 500);
     }
 
     /**

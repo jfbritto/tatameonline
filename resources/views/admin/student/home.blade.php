@@ -5,13 +5,12 @@
 @section('content_header')
 
         <h1>
-            Alunos
+            Alunos &nbsp;&nbsp;<i class="fas fa-user-graduate"></i>
             <!-- <small>preview of simple tables</small> -->
         </h1>
         <ol class="breadcrumb">
             <li><a href="/admin"><i class="fas fa-home"></i>&nbsp;&nbsp;Home</a></li>
-            <li><a href="#"><i class="fas fa-user-graduate"></i>&nbsp;&nbsp;Alunos</a></li>
-            <!-- <li class="active">Data tables</li> -->
+            <li><a href="/admin/student"><i class="fas fa-user-graduate"></i>&nbsp;&nbsp;Alunos</a></li>
         </ol>
 
 @stop
@@ -26,7 +25,7 @@
             <div class="input-group input-group-sm hidden-xs" style="width: 150px; text-align: right">
                 <div class="input-group-btn">
                     <a href="#" class="btn btn-danger" title="Gerar pdf"><i class="fas fa-file-pdf fa-lg"></i></a>
-                    <a href="#" class="btn btn-success" title="Adicionar aluno"><i class="fas fa-plus fa-lg"></i></i></a>
+                    <a href="{{ route('admin.student.create') }}" class="btn btn-success" title="Adicionar aluno"><i class="fas fa-plus fa-lg"></i></i></a>
                 </div>
             </div>
             </div>

@@ -14,7 +14,12 @@ class CreateAcademiesTable extends Migration
     public function up()
     {
         Schema::create('academies', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
+            $table->string('name');
+            $table->string('phone');
+            $table->string('responsable');
+            $table->string('phoneResponsable');
+            $table->integer('token');
             $table->timestamps();
         });
     }

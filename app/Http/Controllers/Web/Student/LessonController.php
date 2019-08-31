@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Web\Student;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class StudentController extends Controller
+class LessonController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class StudentController extends Controller
      */
     public function index()
     {
-        return view('admin.student.home');
+        return view('student.lesson.home');
     }
 
     /**

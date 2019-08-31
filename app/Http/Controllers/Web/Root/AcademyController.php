@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Web\Root;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class FinancialController extends Controller
+class AcademyController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class FinancialController extends Controller
      */
     public function index()
     {
-        return view('admin.financial.home');
+        return view('root.academy.home');
     }
 
     /**

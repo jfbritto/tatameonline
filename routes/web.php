@@ -16,13 +16,24 @@ Route::group(['middleware' => ['auth']], function(){
 
     Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
 
+
+
     Route::group(['middleware' => 'root', 'prefix' => 'root', 'namespace' => 'Root'], function(){
 
         Route::get('/', 'HomeController@index')->name('root');
 
         //ACADEMIAS
         Route::get('/academy', 'AcademyController@index')->name('root.academy');
+
+        //GRADUAÇÃO
+        Route::get('/graduation', 'GraduationController@index')->name('root.graduation');
+
+        //ESPORTES
+        Route::get('/sport', 'SportController@index')->name('root.sport');
+        Route::get('/sport/create', 'SportController@create')->name('root.sport.create');
     });
+
+
 
     Route::group(['middleware' => 'admin', 'prefix' => 'admin', 'namespace' => 'Admin'], function(){
 
@@ -30,13 +41,21 @@ Route::group(['middleware' => ['auth']], function(){
 
         //AULAS
         Route::get('/lesson', 'LessonController@index')->name('admin.lesson');
+        Route::get('/lesson/create', 'LessonController@create')->name('admin.lesson.create');
+        Route::get('/lesson/show/{lesson}', 'LessonController@show')->name('admin.lesson.show');
+        Route::get('/lesson/edit/{lesson}', 'LessonController@edit')->name('admin.lesson.edit');
 
         //ALUNOS
         Route::get('/student', 'StudentController@index')->name('admin.student');
+        Route::get('/student/create', 'StudentController@create')->name('admin.student.create');
+        Route::get('/student/show/{user}', 'StudentController@show')->name('admin.student.show');
+        Route::get('/student/edit/{user}', 'StudentController@edit')->name('admin.student.edit');
 
         //FINANCEIRO
         Route::get('/financial', 'FinancialController@index')->name('admin.financial');
     });
+
+
 
 
     Route::group(['middleware' => 'student', 'prefix' => 'student', 'namespace' => 'Student'], function(){
@@ -46,6 +65,8 @@ Route::group(['middleware' => ['auth']], function(){
         //AULAS
         Route::get('/lesson', 'LessonController@index')->name('student.lesson');
     });
+
+
 
 
 });

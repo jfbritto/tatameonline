@@ -14,8 +14,16 @@ class CreateGraduationsTable extends Migration
     public function up()
     {
         Schema::create('graduations', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
+
+            $table->string('name');
+            $table->integer('hours');
+            
+            $table->integer('idSport')->unsigned();
+            
             $table->timestamps();
+
+            $table->foreign('idSport')->references('id')->on('sports')->onDelete('cascade');
         });
     }
 

@@ -14,8 +14,19 @@ class CreateInvoicesTable extends Migration
     public function up()
     {
         Schema::create('invoices', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
+            
+            $table->decimal('value', 8, 2);
+            $table->date('dueDate');
+            $table->boolean('isPaid')->default(false);
+
+            $table->integer('idUser')->unsigned();
+            $table->integer('idContract')->unsigned();
+            
             $table->timestamps();
+
+            $table->foreign('idUser')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('idContract')->references('id')->on('contracts')->onDelete('cascade');
         });
     }
 
