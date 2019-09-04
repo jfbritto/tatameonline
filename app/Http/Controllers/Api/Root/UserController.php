@@ -4,21 +4,22 @@ namespace App\Http\Controllers\Api\Root;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Services\Root\SportService;
-use App\Models\Sport;
+use App\Services\Root\UserService;
+use App\Models\User;
+use App\Models\Academy;
 
-class SportController extends Controller
+class UserController extends Controller
 {
-    private $sportService;
+    private $userService;
 
-    public function __construct(SportService $sportService)
+    public function __construct(UserService $userService)
     {
-        $this->sportService = $sportService;
+        $this->userService = $userService;
     }
 
-    public function index()
+    public function index(Academy $academy)
     {
-        $response = $this->sportService->index();
+        $response = $this->userService->index($academy->id);
 
         if($response['status'] == 'success')
             return response()->json(['status'=>'success', 'data'=>$response['data']], 201);
@@ -34,10 +35,20 @@ class SportController extends Controller
     public function store(Request $request)
     {
         $dataValid = $request->validate([
-            'name' => 'required'
+            'name' => 'required',
+            'email' => 'required|email',
+            'idAcademy' => 'required',
         ]);
 
-        $response = $this->sportService->store($dataValid);
+        $data = [
+            'name' => $request->name,
+            'email' => $request->email,
+            'isAdmin' => true,
+            'idAcademy' => $request->idAcademy,
+            'password' => bcrypt('12345678'),
+        ];
+
+        $response = $this->userService->store($data);
 
         if($response['status'] == 'success')
             return response()->json(['status'=>'success'], 201);
@@ -62,7 +73,7 @@ class SportController extends Controller
 
     public function destroy($id)
     {       
-        $response = $this->sportService->destroy($id);
+        $response = $this->userService->destroy($id);
 
         if($response['status'] == 'success')
             return response()->json(['status'=>'success'], 201);

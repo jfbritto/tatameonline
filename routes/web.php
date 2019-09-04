@@ -24,9 +24,12 @@ Route::group(['middleware' => ['auth']], function(){
 
         //ACADEMIAS
         Route::get('/academy', 'AcademyController@index')->name('root.academy');
+        Route::get('/academy/create', 'AcademyController@create')->name('root.academy.create');
+        Route::get('/academy/show/{academy}', 'AcademyController@show')->name('root.academy.show');
 
         //GRADUAÇÃO
         Route::get('/graduation', 'GraduationController@index')->name('root.graduation');
+        Route::get('/graduation/create', 'GraduationController@create')->name('root.graduation.create');
 
         //ESPORTES
         Route::get('/sport', 'SportController@index')->name('root.sport');

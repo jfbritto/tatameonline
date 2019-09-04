@@ -20,6 +20,7 @@
     
 <div class="box">
     <div class="box-header with-border">
+        <h3 class="box-title"><i class="fas fa-futbol"></i>&nbsp;&nbsp;Cadastrar esporte</h3>
     </div>
     <div class="box-body">
 
@@ -45,5 +46,5 @@
 @stop
 
 @section('adminlte_js')
-    <script src="{{asset('/js/Root/addSport.js')}}"></script>
+    <script src="{{asset('/js/Root/sport/createSport.js')}}"></script>
 @stop

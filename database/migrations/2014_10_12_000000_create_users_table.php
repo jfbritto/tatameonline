@@ -20,9 +20,9 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->boolean('isRoot')->default(false);
-            $table->boolean('isAdmin')->default(true);
+            $table->boolean('isAdmin')->default(false);
             $table->boolean('isStudent')->default(false);
-            $table->boolean('isAtivo')->default(true);
+            $table->boolean('isActive')->default(true);
             
             $table->integer('idAcademy')->nullable()->unsigned();
             

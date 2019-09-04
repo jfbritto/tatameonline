@@ -1,16 +1,16 @@
 @extends('adminlte::page')
 
-@section('title', 'Graduação')
+@section('title', 'Graduações')
 
 @section('content_header')
 
         <h1>
-            Graduação &nbsp;&nbsp;<i class="fas fa-graduation-cap"></i>
+            Graduações &nbsp;&nbsp;<i class="fas fa-graduation-cap"></i>
             <!-- <small>preview of simple tables</small> -->
         </h1>
         <ol class="breadcrumb">
-            <li><a href="/admin"><i class="fas fa-home"></i>&nbsp;&nbsp;Home</a></li>
-            <li><a href="#"><i class="fas fa-graduation-cap"></i>&nbsp;&nbsp;Graduação</a></li>
+            <li><a href="/root"><i class="fas fa-home"></i>&nbsp;&nbsp;Home</a></li>
+            <li><a href="#"><i class="fas fa-graduation-cap"></i>&nbsp;&nbsp;Graduações</a></li>
             <!-- <li class="active">Data tables</li> -->
         </ol>
 
@@ -20,13 +20,11 @@
     
     <div class="box">
         <div class="box-header">
-            <h3 class="box-title">Graduação</h3>
-
+            <h3 class="box-title"><i class="fas fa-graduation-cap"></i>&nbsp;&nbsp;Graduações</h3>
             <div class="box-tools">
-            <div class="input-group input-group-sm hidden-xs" style="width: 150px; text-align: right">
+            <div class="input-group input-group-sm" style="width: 150px; text-align: right">
                 <div class="input-group-btn">
-                    <a href="#" class="btn btn-danger" title="Gerar pdf"><i class="fas fa-file-pdf fa-lg"></i></a>
-                    <a href="#" class="btn btn-success" title="Adicionar academia"><i class="fas fa-plus fa-lg"></i></i></a>
+                    <a href="{{ route('root.graduation.create') }}" class="btn btn-success" title="Adicionar graduação"><i class="fas fa-plus fa-lg"></i></i></a>
                 </div>
             </div>
             </div>
@@ -34,34 +32,22 @@
         <!-- /.box-header -->
         <div class="box-body table-responsive no-padding">
             <table class="table table-hover">
-            <tbody><tr>
-                <th>Nome</th>
-                <th>Nascimento</th>
-                <th>Status</th>
-            </tr>
-            <tr>
-                <td>John Doe</td>
-                <td>11-7-2014</td>
-                <td><span class="label label-success">Approved</span></td>
-            </tr>
-            <tr>
-                <td>Alexander Pierce</td>
-                <td>11-7-2014</td>
-                <td><span class="label label-warning">Pending</span></td>
-            </tr>
-            <tr>
-                <td>Bob Doe</td>
-                <td>11-7-2014</td>
-                <td><span class="label label-primary">Approved</span></td>
-            </tr>
-            <tr>
-                <td>Mike Doe</td>
-                <td>11-7-2014</td>
-                <td><span class="label label-danger">Denied</span></td>
-            </tr>
-            </tbody></table>
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Esporte</th>
+                        <th>Horas de aula</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="lista"></tbody>
+            </table>
         </div>
         <!-- /.box-body -->
     </div>
 
+@stop
+
+@section('adminlte_js')
+    <script src="{{asset('/js/Root/graduation/homeGraduation.js')}}"></script>
 @stop

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web\Root;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Academy;
 
 class AcademyController extends Controller
 {
@@ -24,7 +25,7 @@ class AcademyController extends Controller
      */
     public function create()
     {
-        //
+        return view('root.academy.create');
     }
 
     /**
@@ -44,9 +45,9 @@ class AcademyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Academy $academy)
     {
-        //
+        return view('root.academy.show', ['academy'=>$academy]);
     }
 
     /**

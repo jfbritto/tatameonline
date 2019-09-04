@@ -18,6 +18,7 @@ class CreateGraduationsTable extends Migration
 
             $table->string('name');
             $table->integer('hours');
+            $table->boolean('isActive')->default(true);
             
             $table->integer('idSport')->unsigned();
             

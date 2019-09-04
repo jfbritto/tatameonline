@@ -4,21 +4,21 @@ namespace App\Http\Controllers\Api\Root;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Services\Root\SportService;
-use App\Models\Sport;
+use App\Services\Root\AcademyService;
+use App\Models\Academy;
 
-class SportController extends Controller
+class AcademyController extends Controller
 {
-    private $sportService;
+    private $academyService;
 
-    public function __construct(SportService $sportService)
+    public function __construct(AcademyService $academyService)
     {
-        $this->sportService = $sportService;
+        $this->academyService = $academyService;
     }
 
     public function index()
     {
-        $response = $this->sportService->index();
+        $response = $this->academyService->index();
 
         if($response['status'] == 'success')
             return response()->json(['status'=>'success', 'data'=>$response['data']], 201);
@@ -34,10 +34,13 @@ class SportController extends Controller
     public function store(Request $request)
     {
         $dataValid = $request->validate([
-            'name' => 'required'
+            'name' => 'required',
+            'phone' => 'required',
+            'responsable' => 'required',
+            'phoneResponsable' => 'required',
         ]);
 
-        $response = $this->sportService->store($dataValid);
+        $response = $this->academyService->store($dataValid);
 
         if($response['status'] == 'success')
             return response()->json(['status'=>'success'], 201);
@@ -62,7 +65,7 @@ class SportController extends Controller
 
     public function destroy($id)
     {       
-        $response = $this->sportService->destroy($id);
+        $response = $this->academyService->destroy($id);
 
         if($response['status'] == 'success')
             return response()->json(['status'=>'success'], 201);

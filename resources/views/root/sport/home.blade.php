@@ -20,12 +20,12 @@
     
     <div class="box">
         <div class="box-header">
-            
+            <h3 class="box-title"><i class="fas fa-futbol"></i>&nbsp;&nbsp;Esportes</h3>
+
             <div class="box-tools">
-            <div class="input-group input-group-sm hidden-xs" style="width: 150px; text-align: right">
+            <div class="input-group input-group-sm" style="width: 150px; text-align: right">
                 <div class="input-group-btn">
-                    <a href="#" class="btn btn-danger" title="Gerar pdf"><i class="fas fa-file-pdf fa-lg"></i></a>
-                    <a href="{{ route('root.sport.create') }}" class="btn btn-success" title="Adicionar academia"><i class="fas fa-plus fa-lg"></i></i></a>
+                    <a href="{{ route('root.sport.create') }}" class="btn btn-success" title="Adicionar esporte"><i class="fas fa-plus fa-lg"></i></i></a>
                 </div>
             </div>
             </div>
@@ -47,5 +47,5 @@
 @stop
 
 @section('adminlte_js')
-    <script src="{{asset('/js/Root/listSport.js')}}"></script>
+    <script src="{{asset('/js/Root/sport/homeSport.js')}}"></script>
 @stop

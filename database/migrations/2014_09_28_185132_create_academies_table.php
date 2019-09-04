@@ -19,7 +19,8 @@ class CreateAcademiesTable extends Migration
             $table->string('phone');
             $table->string('responsable');
             $table->string('phoneResponsable');
-            $table->integer('token');
+            $table->integer('token')->default(123456);
+            $table->boolean('isActive')->default(true);
             $table->timestamps();
         });
     }

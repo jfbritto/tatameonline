@@ -16,7 +16,7 @@ class CreateSportsTable extends Migration
         Schema::create('sports', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->boolean('isAtivo')->default(true);
+            $table->boolean('isActive')->default(true);
             $table->timestamps();
         });
     }

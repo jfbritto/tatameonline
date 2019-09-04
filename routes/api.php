@@ -5,7 +5,18 @@
 
         Route::post('/sport', 'SportController@store');
         Route::post('/sport/list', 'SportController@index');
-        Route::post('/sport/destroy', 'SportController@destroy');
+        Route::post('/sport/destroy/{sport}', 'SportController@destroy');
+
+        Route::post('/academy', 'AcademyController@store');
+        Route::post('/academy/list', 'AcademyController@index');
+        Route::post('/academy/destroy/{academy}', 'AcademyController@destroy');
+
+        Route::post('/academy/users', 'UserController@store');
+        Route::post('/academy/users/list/{academy}', 'UserController@index');
+
+        Route::post('/graduation', 'GraduationController@store');
+        Route::post('/graduation/list', 'GraduationController@index');
+        Route::post('/graduation/destroy/{graduation}', 'GraduationController@destroy');
     });
 
 
