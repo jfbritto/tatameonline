@@ -43,10 +43,12 @@ class UserController extends Controller
         $data = [
             'name' => $request->name,
             'email' => $request->email,
-            'isAdmin' => true,
+            'isAdmin' => 1,
             'idAcademy' => $request->idAcademy,
             'password' => bcrypt('12345678'),
         ];
+
+        // return $data;
 
         $response = $this->userService->store($data);
 

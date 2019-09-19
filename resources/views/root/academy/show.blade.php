@@ -62,13 +62,13 @@
                             <span class="input-group-addon"><i class="fas fa-user"></i></span>
                             <input type="text" class="form-control" placeholder="Nome" name="name" id="name">
                         </div>
-                
+
                     </div>
                     <div class="col-sm-6">
 
                         <div class="input-group">
                             <span class="input-group-addon">@</span>
-                            <input type="text" class="form-control" placeholder="Email" name="phone" id="phone">
+                            <input type="text" class="form-control" placeholder="Email" name="email" id="email">
                         </div>
 
                     </div>
@@ -77,7 +77,7 @@
             </form>
         </div>
         <div class="modal-footer">
-            <button form="formAddUser" type="button" class="btn btn-primary"><i class="fas fa-save"></i>&nbsp;&nbsp;Salvar</button>
+            <button form="formAddUser" class="btn btn-primary"><i class="fas fa-save"></i>&nbsp;&nbsp;Salvar</button>
         </div>
         </div>
         <!-- /.modal-content -->

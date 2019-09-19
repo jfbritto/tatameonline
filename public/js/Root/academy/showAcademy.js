@@ -6,6 +6,7 @@ $(document).ready(function(){
     }
 
     $("#formAddUser").submit(function(e) {
+        
         e.preventDefault();
       
         Swal.queue([{
@@ -14,7 +15,7 @@ $(document).ready(function(){
             allowEscapeKey: false,
             onOpen: () => {
                 Swal.showLoading();
-                $.post(window.location.origin + "/api/root/academy/user", {
+                $.post(window.location.origin + "/api/root/academy/users", {
                     name: $("#name").val(),
                     email: $("#email").val(),
                     idAcademy: $("#idAcademy").val(),
