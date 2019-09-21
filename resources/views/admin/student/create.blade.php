@@ -23,51 +23,36 @@
         <h3 class="box-title">Formulário de cadastro</h3>
     </div>
     <div class="box-body">
-
-        <div class="row">
-            <div class="col-sm-6">
-
-                <div class="input-group">
-                    <span class="input-group-addon">@</span>
-                    <input type="text" class="form-control" placeholder="Username">
-                </div>
         
-            </div>
-            <div class="col-sm-6">
+        <form id="formAddStudent">
+            <div class="row">
+                <div class="col-sm-6">
 
-                <div class="input-group">
-                    <span class="input-group-addon">@</span>
-                    <input type="text" class="form-control" placeholder="Username">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fas fa-user"></i></span>
+                        <input type="text" class="form-control" placeholder="Nome do aluno" name="name" id="name">
+                    </div>
+            
                 </div>
+                <div class="col-sm-6">
 
-            </div>
-        </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">@</span>
+                        <input type="text" class="form-control" placeholder="Email do aluno" name="email" id="email">
+                    </div>
 
-        <br>
-
-        <div class="row">
-            <div class="col-sm-6">
-
-                <div class="input-group">
-                    <span class="input-group-addon">@</span>
-                    <input type="text" class="form-control" placeholder="Username">
                 </div>
-        
             </div>
-            <div class="col-sm-6">
-
-                <div class="input-group">
-                    <span class="input-group-addon">@</span>
-                    <input type="text" class="form-control" placeholder="Username">
-                </div>
-
-            </div>
-        </div>
-
+            <input type="hidden" id="idAcademy" name="idAcademy" value="{{auth()->user()->academy->id}}">
+        </form>
     </div>
     <div class="box-footer">
-        <button class="btn btn-primary pull-right"><i class="fas fa-save"></i>&nbsp;&nbsp;Salvar</button>
+        <button form="formAddStudent" class="btn btn-primary pull-right"><i class="fas fa-save"></i>&nbsp;&nbsp;Salvar</button>
     </div>
 </div>
 
+@stop
+
+@section('adminlte_js')
+    <script src="{{asset('/js/Admin/student/createStudent.js')}}"></script>
 @stop

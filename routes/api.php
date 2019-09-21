@@ -13,6 +13,7 @@
 
         Route::post('/academy/users', 'UserController@store');
         Route::post('/academy/users/list/{academy}', 'UserController@index');
+        Route::post('/academy/users/destroy/{academy}', 'UserController@destroy');
 
         Route::post('/graduation', 'GraduationController@store');
         Route::post('/graduation/list', 'GraduationController@index');
@@ -21,7 +22,11 @@
 
 
 
-    Route::group(['middleware' => 'admin', 'prefix' => 'admin', 'namespace' => 'Admin'], function(){
+    Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function(){
+
+        Route::post('/student', 'StudentController@store');
+        Route::post('/student/list/{academy}', 'StudentController@index');
+        Route::post('/student/destroy/{student}', 'StudentController@destroy');
 
         // Route::get('/', 'HomeController@index')->name('admin');
 

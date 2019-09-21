@@ -5,7 +5,7 @@
 @section('content_header')
 
         <h1>
-            Home
+            {{auth()->user()->academy->name}}
             <!-- <small>preview of simple tables</small> -->
         </h1>
         <ol class="breadcrumb">

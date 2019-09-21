@@ -1,44 +1,4 @@
 $(document).ready(function(){
-
-    function goTo500()
-    {
-        // window.location = '/500';
-    }
-
-    $("#formAddUser").submit(function(e) {
-        
-        e.preventDefault();
-      
-        Swal.queue([{
-            title: 'Carregando...',
-            allowOutsideClick: false,
-            allowEscapeKey: false,
-            onOpen: () => {
-                Swal.showLoading();
-                $.post(window.location.origin + "/api/root/academy/users", {
-                    name: $("#name").val(),
-                    email: $("#email").val(),
-                    idAcademy: $("#idAcademy").val(),
-                }).then(function(data) {
-                    callList();
-                    if(data.status == 'success') {
-                        Swal.fire({
-                            type: 'success',
-                            text: 'Usuário cadastrado com sucesso',
-                            showConfirmButton: false,
-                            showCancelButton: true,
-                            cancelButtonText: "OK",
-                            onClose: () => {
-                                $("#formAddUser").trigger("reset");
-                            }
-                        });
-                    } else if (data.status == 'error') {
-                        // showError(data.message);
-                    }
-                }, goTo500).catch(goTo500);
-            }
-        }]);
-    });
     
     function callList(){
         list($("#idAcademy").val());
@@ -49,14 +9,9 @@ $(document).ready(function(){
     // setInterval(function(){ callList(); }, 500);
 });
 
-function goTo500()
-{
-    // window.location = '/500';
-}
-
 function list(id)
 {
-    $.post(window.location.origin + "/api/root/academy/users/list/"+id, {
+    $.post(window.location.origin + "/api/admin/student/list/"+id, {
         
     }).then(function(data) {
         if(data.status == 'success') {
@@ -85,6 +40,11 @@ function list(id)
     }, goTo500).catch(goTo500);
 }
 
+function goTo500()
+{
+    // window.location = '/500';
+}
+
 function destroy(id)
 {
     
@@ -94,19 +54,19 @@ function destroy(id)
         allowEscapeKey: false,
         onOpen: () => {
             Swal.showLoading();
-            $.post(window.location.origin + "/api/root/academy/users/destroy/"+id, {
+            $.post(window.location.origin + "/api/admin/student/destroy/"+id, {
             
             }).then(function(data) {
                 if(data.status == 'success') {
-                    
+                    list();
                     Swal.fire({
                         type: 'success',
-                        text: 'Usuário deletado com sucesso',
+                        text: 'Aluno deletado com sucesso',
                         showConfirmButton: false,
                         showCancelButton: true,
                         cancelButtonText: "OK",
                         onClose: () => {
-                            list(id);
+                            
                         }
                     });
                 } else if (data.status == 'error') {
@@ -116,3 +76,4 @@ function destroy(id)
         }
     }]);
 };
+

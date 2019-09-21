@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Services\Root;
+namespace App\Services\Admin;
 
 use App\Models\User;
 use DB;
 use Exception;
 
-class UserService
+class StudentService
 {
     public function index($id)
     {
@@ -15,10 +15,10 @@ class UserService
         try{
 
             $users = DB::table('users')
-                                ->where('idAcademy', '=', $id)
-                                ->where('isActive', '=', 1)
-                                ->where('isAdmin', '=', 1)
-                                ->get();
+                            ->where('idAcademy', '=', $id)
+                            ->where('isActive', '=', 1)
+                            ->where('isStudent', '=', 1)
+                            ->get();
 
             $response = ['status' => 'success', 'data' => $users];
         }catch(Exception $e){
