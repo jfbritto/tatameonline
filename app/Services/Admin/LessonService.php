@@ -2,11 +2,11 @@
 
 namespace App\Services\Admin;
 
-use App\Models\User;
+use App\Models\Lesson;
 use DB;
 use Exception;
 
-class StudentService
+class LessonService
 {
     public function index($id)
     {
@@ -14,9 +14,9 @@ class StudentService
 
         try{
 
-            $users = DB::table('users')->where('idAcademy', '=', $id)->where('isActive', '=', 1)->where('isStudent', '=', 1)->get();
+            $lessons = DB::table('lessons')->where('idAcademy', '=', $id)->where('isActive', '=', 1)->get();
 
-            $response = ['status' => 'success', 'data' => $users];
+            $response = ['status' => 'success', 'data' => $lessons];
         }catch(Exception $e){
             $response = ['status' => 'error', 'data' => $e->getMessage()];
         }
@@ -32,11 +32,11 @@ class StudentService
 
             DB::beginTransaction();
 
-            $user = User::create($data);
+            $lesson = Lesson::create($data);
 
             DB::commit();
 
-            $response = ['status' => 'success', 'data' => $user];
+            $response = ['status' => 'success', 'data' => $lesson];
         }catch(Exception $e){
             DB::rollBack();
             $response = ['status' => 'error', 'data' => $e->getMessage()];
@@ -52,7 +52,7 @@ class StudentService
         try{
             DB::beginTransaction();
 
-            DB::table('users')
+            DB::table('lessons')
                 ->where('id', $id)
                 ->update(['isActive' => 0]);
 

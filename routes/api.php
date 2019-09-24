@@ -28,6 +28,10 @@
         Route::post('/student/list/{academy}', 'StudentController@index');
         Route::post('/student/destroy/{student}', 'StudentController@destroy');
 
+        Route::post('/lesson', 'LessonController@store');
+        Route::post('/lesson/list/{academy}', 'LessonController@index');
+        Route::post('/lesson/destroy/{lesson}', 'LessonController@destroy');
+
         // Route::get('/', 'HomeController@index')->name('admin');
 
         // //AULAS

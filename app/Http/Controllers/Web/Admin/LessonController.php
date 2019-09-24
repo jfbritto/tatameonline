@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Lesson;
+use App\Models\Sport;
 
 class LessonController extends Controller
 {
@@ -15,7 +16,9 @@ class LessonController extends Controller
 
     public function create()
     {
-        return view('admin.lesson.create');
+        $sports = Sport::get();
+
+        return view('admin.lesson.create', ['sports' => $sports]);
     }
 
     public function store(Request $request)
