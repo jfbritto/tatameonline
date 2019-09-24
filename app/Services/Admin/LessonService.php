@@ -14,7 +14,12 @@ class LessonService
 
         try{
 
-            $lessons = DB::table('lessons')->where('idAcademy', '=', $id)->where('isActive', '=', 1)->get();
+            $lessons = DB::table('lessons')
+                                ->join('sports', 'sports.id', '=', 'lessons.idSport')
+                                ->where('lessons.idAcademy', '=', $id)
+                                ->where('lessons.isActive', '=', 1)
+                                ->select('lessons.*', 'sports.name as sport_name')
+                                ->get();
 
             $response = ['status' => 'success', 'data' => $lessons];
         }catch(Exception $e){
