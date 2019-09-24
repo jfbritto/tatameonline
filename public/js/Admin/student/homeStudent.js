@@ -40,11 +40,6 @@ function list(id)
     }, goTo500).catch(goTo500);
 }
 
-function goTo500()
-{
-    // window.location = '/500';
-}
-
 function destroy(id)
 {
     

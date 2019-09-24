@@ -31,6 +31,11 @@
         Route::post('/lesson', 'LessonController@store');
         Route::post('/lesson/list/{academy}', 'LessonController@index');
         Route::post('/lesson/destroy/{lesson}', 'LessonController@destroy');
+        Route::post('/lesson/not/aluns/list/{lesson}', 'LessonController@listNotAluns');
+        
+        Route::post('/registration', 'RegistrationController@store');
+        Route::post('/registration/list/{lesson}', 'RegistrationController@index');
+        Route::post('/registration/destroy/{registration}', 'RegistrationController@destroy');
 
         // Route::get('/', 'HomeController@index')->name('admin');
 

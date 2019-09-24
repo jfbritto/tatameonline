@@ -1,10 +1,5 @@
 $(document).ready(function(){
 
-    function goTo500()
-    {
-        // window.location = '/500';
-    }
-
     $("#formAddUser").submit(function(e) {
         
         e.preventDefault();
@@ -49,10 +44,6 @@ $(document).ready(function(){
     // setInterval(function(){ callList(); }, 500);
 });
 
-function goTo500()
-{
-    // window.location = '/500';
-}
 
 function list(id)
 {

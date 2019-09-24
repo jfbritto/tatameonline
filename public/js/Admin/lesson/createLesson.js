@@ -1,9 +1,5 @@
 $(document).ready(function(){
 
-    function goTo500()
-    {
-        // window.location = '/500';
-    }
 
     $("#formAddLesson").submit(function(e) {
         e.preventDefault();

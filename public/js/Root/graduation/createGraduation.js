@@ -1,10 +1,5 @@
 $(document).ready(function(){
 
-    function goTo500()
-    {
-        // window.location = '/500';
-    }
-
     $("#formAddGraduation").submit(function(e) {
         e.preventDefault();
        
@@ -41,10 +36,6 @@ $(document).ready(function(){
     list();
 });
 
-function goTo500()
-{
-    // window.location = '/500';
-}
 
 function list()
 {

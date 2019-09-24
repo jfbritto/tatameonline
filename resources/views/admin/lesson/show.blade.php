@@ -43,7 +43,7 @@
 
 <div class="box">
     <div class="box-header">
-        <h3 class="box-title"><i class="fas fa-users"></i>&nbsp;&nbsp;Aula</h3>
+        <h3 class="box-title"><i class="fas fa-user-graduate"></i>&nbsp;&nbsp;Alunos</h3>
         <div class="box-tools">
         <div class="input-group input-group-sm hidden-xs" style="width: 150px; text-align: right">
             <div class="input-group-btn">
@@ -58,7 +58,6 @@
             <thead>
                 <tr>
                     <th>Nome</th>
-                    <th class="hidden-xs">Email</th>
                     <th></th>
                 </tr>
             </thead>
@@ -74,24 +73,16 @@
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title"><i class="fas fa-user"></i>&nbsp;&nbsp;Cadastrar usuário</h4>
+            <h4 class="modal-title"><i class="fas fa-user-graduate"></i>&nbsp;&nbsp;Matricular aluno</h4>
         </div>
         <div class="modal-body">
-            <form id="formAddUser">
+            <form id="formAddAlun">
                 <div class="row">
-                    <div class="col-sm-6">
+                    <div class="col-sm-12">
 
                         <div class="input-group">
-                            <span class="input-group-addon"><i class="fas fa-user"></i></span>
-                            <input type="text" class="form-control" placeholder="Nome" name="name" id="name">
-                        </div>
-
-                    </div>
-                    <div class="col-sm-6">
-
-                        <div class="input-group">
-                            <span class="input-group-addon">@</span>
-                            <input type="text" class="form-control" placeholder="Email" name="email" id="email">
+                            <span class="input-group-addon"><i class="fas fa-user-graduate"></i></span>
+                            <select class="form-control" name="idUser" id="idUser"></select>
                         </div>
 
                     </div>
@@ -101,7 +92,7 @@
             </form>
         </div>
         <div class="modal-footer">
-            <button form="formAddUser" class="btn btn-primary"><i class="fas fa-save"></i>&nbsp;&nbsp;Salvar</button>
+            <button form="formAddAlun" class="btn btn-primary"><i class="fas fa-save"></i>&nbsp;&nbsp;Matricular</button>
         </div>
         </div>
         <!-- /.modal-content -->

@@ -4,30 +4,30 @@ namespace App\Http\Controllers\Api\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Services\Admin\LessonService;
+use App\Services\Admin\RegistrationService;
 use App\Models\User;
 use App\Models\Academy;
 use App\Models\Lesson;
 
-class LessonController extends Controller
+class RegistrationController extends Controller
 {
-    private $lessonService;
+    private $registrationService;
 
-    public function __construct(LessonService $lessonService)
+    public function __construct(RegistrationService $registrationService)
     {
-        $this->lessonService = $lessonService;
+        $this->registrationService = $registrationService;
     }
 
-    public function index(Academy $academy)
+    public function index(Lesson $lesson)
     {
-        $response = $this->lessonService->index($academy->id);
+        $response = $this->registrationService->index($lesson->id);
 
         if($response['status'] == 'success')
             return response()->json(['status'=>'success', 'data'=>$response['data']], 201);
             
         return response()->json(['status'=>'error', 'message'=>$response['data']], 500);
     }
-    
+
     public function create()
     {
         //
@@ -36,25 +36,18 @@ class LessonController extends Controller
     public function store(Request $request)
     {
         $dataValid = $request->validate([
-            'teacher' => 'required',
-            'weekDay' => 'required',
-            'hour' => 'required',
-            'idSport' => 'required',
-            'idAcademy' => 'required',
+            'idLesson' => 'required',
+            'idUser' => 'required',
         ]);
 
         $data = [
-            'teacher' => $request->teacher,
-            'weekDay' => $request->weekDay,
-            'hour' => $request->hour,
-            'isActive' => 1,
-            'idAcademy' => $request->idAcademy,
-            'idSport' => $request->idSport,
+            'idLesson' => $request->idLesson,
+            'idUser' => $request->idUser,
         ];
 
         // return $data;
 
-        $response = $this->lessonService->store($data);
+        $response = $this->registrationService->store($data);
 
         if($response['status'] == 'success')
             return response()->json(['status'=>'success'], 201);
@@ -79,25 +72,10 @@ class LessonController extends Controller
 
     public function destroy($id)
     {       
-        $response = $this->lessonService->destroy($id);
+        $response = $this->registrationService->destroy($id);
 
         if($response['status'] == 'success')
             return response()->json(['status'=>'success'], 201);
-            
-        return response()->json(['status'=>'error', 'message'=>$response['data']], 500);
-    }
-
-
-
-
-
-
-    public function listNotAluns(Lesson $lesson)
-    {
-        $response = $this->lessonService->listNotAluns($lesson->id, 1);
-
-        if($response['status'] == 'success')
-            return response()->json(['status'=>'success', 'data'=>$response['data']], 201);
             
         return response()->json(['status'=>'error', 'message'=>$response['data']], 500);
     }

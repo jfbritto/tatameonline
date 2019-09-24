@@ -1,10 +1,5 @@
 $(document).ready(function(){
 
-    function goTo500()
-    {
-        // window.location = '/500';
-    }
-
     $("#formAddAcademy").submit(function(e) {
         e.preventDefault();
       

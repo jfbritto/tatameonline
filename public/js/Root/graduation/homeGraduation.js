@@ -1,10 +1,5 @@
 $(document).ready(function(){
 
-    function goTo500()
-    {
-        // window.location = '/500';
-    }
-
     list();
 });
 
@@ -22,7 +17,7 @@ function list()
 
                 html += `<tr>
                             <td>${data.data[i].name}</td>
-                            <td>${data.data[i].idSport}</td>
+                            <td>${data.data[i].sport_name}</td>
                             <td>${data.data[i].hours}</td>
                             <td>
                                 <a class="btn btn-danger btn-sm pull-right destroy" onclick="destroy(${data.data[i].id})" data-id="${data.data[i].id}" title="Deletar esporte"><i class="fas fa-trash-alt"></i></a>
@@ -38,10 +33,6 @@ function list()
     }, goTo500).catch(goTo500);
 }
 
-function goTo500()
-{
-    // window.location = '/500';
-}
 
 function destroy(id)
 {

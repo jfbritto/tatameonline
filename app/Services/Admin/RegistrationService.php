@@ -1,27 +1,27 @@
 <?php
 
-namespace App\Services\Root;
+namespace App\Services\Admin;
 
-use App\Models\Graduation;
+use App\Models\Registration;
 use DB;
 use Exception;
 
-class GraduationService
+class RegistrationService
 {
-    public function index()
+    public function index($id)
     {
         $response = [];
 
         try{
 
-            $graduation = DB::table('graduations')
-                                ->join('sports', 'sports.id', '=', 'graduations.idSport')
-                                ->where('graduations.isActive', '=', 1)
-                                ->select('graduations.*', 'sports.name as sport_name')
+            $registrations = DB::table('registrations')
+                                ->join('lessons', 'lessons.id', '=', 'registrations.idLesson')
+                                ->join('users', 'users.id', '=', 'registrations.idUser')
+                                ->where('lessons.id', '=', $id)
+                                ->select('registrations.*', 'users.name as name_alun')
                                 ->get();
 
-
-            $response = ['status' => 'success', 'data' => $graduation];
+            $response = ['status' => 'success', 'data' => $registrations];
         }catch(Exception $e){
             $response = ['status' => 'error', 'data' => $e->getMessage()];
         }
@@ -37,11 +37,11 @@ class GraduationService
 
             DB::beginTransaction();
 
-            $graduation = Graduation::create($data);
+            $registration = Registration::create($data);
 
             DB::commit();
 
-            $response = ['status' => 'success', 'data' => $graduation];
+            $response = ['status' => 'success', 'data' => $registration];
         }catch(Exception $e){
             DB::rollBack();
             $response = ['status' => 'error', 'data' => $e->getMessage()];
@@ -57,7 +57,7 @@ class GraduationService
         try{
             DB::beginTransaction();
 
-            DB::table('graduations')
+            DB::table('registrations')
                 ->where('id', $id)
                 ->update(['isActive' => 0]);
 

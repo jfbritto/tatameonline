@@ -28,6 +28,33 @@ class LessonService
 
         return $response;
     }
+    
+    public function listNotAluns($idLesson, $idAcademy)
+    {
+        $response = [];
+
+        try{
+
+            $users = DB::table('registrations')
+                                ->join('lessons', 'lessons.id', '=', 'registrations.idLesson')
+                                ->join('users', 'users.id', '=', 'registrations.idUser')
+                                ->where('lessons.id', '=', $idLesson)
+                                ->select('users.*')
+                                ->get();
+
+            foreach ($users as $user) {
+                $data[] = $user->id;
+            }
+
+            $us = DB::table('users')->where('idAcademy', '=', $idAcademy)->where('isActive', '=', 1)->where('isStudent', '=', 1)->whereNotIn('id', $data)->get();
+
+            $response = ['status' => 'success', 'data' => $us];
+        }catch(Exception $e){
+            $response = ['status' => 'error', 'data' => $e->getMessage()];
+        }
+
+        return $response;
+    }
 
     public function store(array $data)
     {

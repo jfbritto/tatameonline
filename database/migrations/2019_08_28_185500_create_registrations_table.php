@@ -15,7 +15,14 @@ class CreateRegistrationsTable extends Migration
     {
         Schema::create('registrations', function (Blueprint $table) {
             $table->increments('id');
+
+            $table->integer('idUser')->nullable()->unsigned();
+            $table->integer('idLesson')->nullable()->unsigned();
+            
             $table->timestamps();
+
+            $table->foreign('idUser')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('idLesson')->references('id')->on('lessons')->onDelete('cascade');
         });
     }
 

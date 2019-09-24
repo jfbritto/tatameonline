@@ -1,10 +1,5 @@
 $(document).ready(function(){
 
-    function goTo500()
-    {
-        // window.location = '/500';
-    }
-
     list();
 });
 
@@ -44,10 +39,6 @@ function list()
     }, goTo500).catch(goTo500);
 }
 
-function goTo500()
-{
-    // window.location = '/500';
-}
 
 function destroy(id)
 {
