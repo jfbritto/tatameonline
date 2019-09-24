@@ -5,13 +5,11 @@
 @section('content_header')
 
         <h1>
-            Aulas
-            <!-- <small>preview of simple tables</small> -->
+            Aulas &nbsp;&nbsp;<i class="fas fa-users"></i>
         </h1>
         <ol class="breadcrumb">
             <li><a href="/admin"><i class="fas fa-home"></i>&nbsp;&nbsp;Home</a></li>
             <li><a href="#"><i class="fas fa-users"></i>&nbsp;&nbsp;Aulas</a></li>
-            <!-- <li class="active">Data tables</li> -->
         </ol>
 
 @stop

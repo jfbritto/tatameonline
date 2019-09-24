@@ -28,7 +28,15 @@ class LessonController extends Controller
 
     public function show(Lesson $lesson)
     {
-        return view('admin.lesson.show', ['lesson' => $lesson]);
+        $week_day = ['1'=>'Segunda','2'=>'Terça','3'=>'Quarta','4'=>'Quinta','5'=>'Sexta','6'=>'Sábado','7'=>'Domingo'];
+
+        $sports = Sport::get();
+        foreach ($sports as $sport) {
+            $sport_name[$sport->id] = $sport->name;
+        }
+
+        $academy = auth()->user()->academy;
+        return view('admin.lesson.show', ['lesson' => $lesson, 'academy' => $academy, 'week_day' => $week_day, 'sport_name' => $sport_name]);
     }
 
     public function edit(Lesson $lesson)

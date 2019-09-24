@@ -15,14 +15,24 @@ function list(id)
         
     }).then(function(data) {
         if(data.status == 'success') {
+
+            let dia_semana = {
+                "1":"Segunda",
+                "2":"Terça",
+                "3":"Quarta",
+                "4":"Quinta",
+                "5":"Sexta",
+                "6":"Sábado",
+                "7":"Domingo",
+            }
     
-            var html = '';
+            let html = '';
 
             for (var i in data.data) {
 
                 html += `<tr>
                             <td>${data.data[i].teacher}</td>
-                            <td class="hidden-xs">${data.data[i].weekDay}</td>
+                            <td class="hidden-xs">${dia_semana[data.data[i].weekDay]}</td>
                             <td class="hidden-xs">${data.data[i].hour}</td>
                             <td class="hidden-xs">${data.data[i].sport_name}</td>
                             <td>
