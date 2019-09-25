@@ -36,7 +36,7 @@ $(document).ready(function(){
     
     function callList(){
         list($("#idLesson").val());
-        listAluns($("#idLesson").val());
+        listAluns($("#idLesson").val(), $("#idAcademy").val());
     }
 
     callList();
@@ -73,9 +73,9 @@ function list(id)
     }, goTo500).catch(goTo500);
 }
 
-function listAluns(idLesson)
+function listAluns(idLesson, idAcademy)
 {
-    $.post(window.location.origin + "/api/admin/lesson/not/aluns/list/"+idLesson, {
+    $.post(window.location.origin + "/api/admin/lesson/not/aluns/list/"+idLesson+"/"+idAcademy, {
         
     }).then(function(data) {
         if(data.status == 'success') {

@@ -92,9 +92,9 @@ class LessonController extends Controller
 
 
 
-    public function listNotAluns(Lesson $lesson)
+    public function listNotAluns(Lesson $lesson, Academy $academy)
     {
-        $response = $this->lessonService->listNotAluns($lesson->id, 1);
+        $response = $this->lessonService->listNotAluns($lesson->id, $academy->id);
 
         if($response['status'] == 'success')
             return response()->json(['status'=>'success', 'data'=>$response['data']], 201);

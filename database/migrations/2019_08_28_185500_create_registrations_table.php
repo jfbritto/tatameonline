@@ -18,6 +18,7 @@ class CreateRegistrationsTable extends Migration
 
             $table->integer('idUser')->nullable()->unsigned();
             $table->integer('idLesson')->nullable()->unsigned();
+            $table->boolean('isActive')->default(true);
             
             $table->timestamps();
 
