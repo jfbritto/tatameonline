@@ -16,16 +16,6 @@ function list(id)
     }).then(function(data) {
         if(data.status == 'success') {
 
-            let dia_semana = {
-                "1":"Segunda",
-                "2":"Terça",
-                "3":"Quarta",
-                "4":"Quinta",
-                "5":"Sexta",
-                "6":"Sábado",
-                "7":"Domingo",
-            }
-    
             let html = '';
 
             for (var i in data.data) {

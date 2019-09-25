@@ -25,8 +25,8 @@ function list(id)
                             <td class="hidden-xs">${data.data[i].email}</td>
                             <td>
                                 <div class="input-group-btn">
-                                    <a class="btn btn-primary btn-sm pull-right" href="/root/academy/show/${data.data[i].id}" title="Abrir academia"><i class="fas fa-sign-in-alt"></i></a>
-                                    <a class="btn btn-danger btn-sm pull-right destroy" onclick="destroy(${data.data[i].id})" data-id="${data.data[i].id}" title="Deletar academia"><i class="fas fa-trash-alt"></i></a>
+                                    <a class="btn btn-primary btn-sm pull-right" href="/admin/student/show/${data.data[i].id}" title="Abrir aluno"><i class="fas fa-sign-in-alt"></i></a>
+                                    <a class="btn btn-danger btn-sm pull-right destroy" onclick="destroy(${data.data[i].id})" data-id="${data.data[i].id}" title="Deletar aluno"><i class="fas fa-trash-alt"></i></a>
                                 </div>    
                             </td>
                         </tr>`;

@@ -24,7 +24,7 @@ class StudentController extends Controller
 
     public function show(User $user)
     {
-        return view('admin.student.show', ['user' => $user]);
+        return view('admin.student.show', ['student' => $user]);
     }
 
     public function edit(User $user)

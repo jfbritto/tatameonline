@@ -10,7 +10,7 @@
         <ol class="breadcrumb">
             <li><a href="/admin"><i class="fas fa-home"></i>&nbsp;&nbsp;Home</a></li>
             <li><a href="/admin/lesson"><i class="fas fa-users"></i>&nbsp;&nbsp;Aulas</a></li>
-            <li><a href="/admin/lesson/create"><i class="fas fa-users"></i>&nbsp;&nbsp;Aula</a></li>
+            <li><a href="/admin/lesson/show/{{$lesson->id}}"><i class="fas fa-users"></i>&nbsp;&nbsp;Aula</a></li>
         </ol>
 
 @stop
@@ -19,21 +19,18 @@
 
 <div class="box">
     <div class="box-header">
-        <h3 class="box-title"><i class="fas fa-users"></i>&nbsp;&nbsp;Aula</h3>
+        <h3 class="box-title"><i class="fas fa-users"></i>&nbsp;&nbsp;{{$sport_name[$lesson->idSport]}}</h3>
     </div>
     <div class="box-body">
 
         <div class="row">
-            <div class="col-md-3">
-                <p><strong>Esporte:</strong> {{$sport_name[$lesson->idSport]}}</p>
-            </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <p><strong>Professor:</strong> {{$lesson->teacher}}</p>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <p><strong>Dia:</strong> {{$week_day[$lesson->weekDay]}}</p>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <p><strong>Hora:</strong> {{$lesson->hour}}</p>
             </div>
         </div>

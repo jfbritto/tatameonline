@@ -72,6 +72,8 @@ class LessonService
         return $response;
     }
 
+
+
     public function listNotAluns($idLesson, $idAcademy)
     {
         $response = [];
@@ -82,6 +84,7 @@ class LessonService
                                 ->join('lessons', 'lessons.id', '=', 'registrations.idLesson')
                                 ->join('users', 'users.id', '=', 'registrations.idUser')
                                 ->where('lessons.id', '=', $idLesson)
+                                ->where('registrations.isActive', '=', 1)
                                 ->select('users.*')
                                 ->get();
 
@@ -93,6 +96,28 @@ class LessonService
             $us = DB::table('users')->where('idAcademy', '=', $idAcademy)->where('isActive', '=', 1)->where('isStudent', '=', 1)->whereNotIn('id', $data)->get();
 
             $response = ['status' => 'success', 'data' => $us];
+        }catch(Exception $e){
+            $response = ['status' => 'error', 'data' => $e->getMessage()];
+        }
+
+        return $response;
+    }
+    
+    public function listAluns($idUser)
+    {
+        $response = [];
+
+        try{
+
+            $lessons = DB::table('lessons')
+                                ->join('registrations', 'registrations.idLesson', '=', 'lessons.id')
+                                ->join('sports', 'sports.id', '=', 'lessons.idSport')
+                                ->where('registrations.idUser', '=', $idUser)
+                                ->where('registrations.isActive', '=', 1)
+                                ->select('lessons.*', 'sports.name as sport_name')
+                                ->get();                    
+
+            $response = ['status' => 'success', 'data' => $lessons];
         }catch(Exception $e){
             $response = ['status' => 'error', 'data' => $e->getMessage()];
         }

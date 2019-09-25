@@ -18,6 +18,7 @@ class RegistrationService
                                 ->join('lessons', 'lessons.id', '=', 'registrations.idLesson')
                                 ->join('users', 'users.id', '=', 'registrations.idUser')
                                 ->where('lessons.id', '=', $id)
+                                ->where('registrations.isActive', '=', 1)
                                 ->select('registrations.*', 'users.name as name_alun')
                                 ->get();
 

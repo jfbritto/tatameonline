@@ -101,4 +101,14 @@ class LessonController extends Controller
             
         return response()->json(['status'=>'error', 'message'=>$response['data']], 500);
     }
+
+    public function listAluns($idUser)
+    {
+        $response = $this->lessonService->listAluns($idUser);
+
+        if($response['status'] == 'success')
+            return response()->json(['status'=>'success', 'data'=>$response['data']], 201);
+            
+        return response()->json(['status'=>'error', 'message'=>$response['data']], 500);
+    }
 }

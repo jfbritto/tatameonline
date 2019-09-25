@@ -18,7 +18,7 @@
     
     <div class="box">
         <div class="box-header">
-            <h3 class="box-title">Aulas</h3>
+            <h3 class="box-title">Aulas&nbsp;&nbsp;<i class="fas fa-users"></i></h3>
 
             <div class="box-tools">
             <div class="input-group input-group-sm hidden-xs" style="width: 150px; text-align: right">
