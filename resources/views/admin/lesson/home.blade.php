@@ -33,10 +33,10 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th>Professor</th>
+                        <th>Esporte</th>
+                        <th class="hidden-xs">Professor</th>
                         <th>Dia</th>
                         <th>Hora</th>
-                        <th>Esporte</th>
                         <th></th>
                     </tr>
                 </thead>
