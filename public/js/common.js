@@ -12,3 +12,17 @@ let dia_semana = {
     "6":"Sábado",
     "7":"Domingo",
 }
+
+function showError(message)
+{
+    Swal.fire({
+        type: 'error',
+        text: message,
+        showConfirmButton: false,
+        showCancelButton: true,
+        cancelButtonText: "OK",
+        onClose: () => {
+            
+        }
+    });
+}

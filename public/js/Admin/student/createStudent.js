@@ -23,10 +23,11 @@ $(document).ready(function(){
                             cancelButtonText: "OK",
                             onClose: () => {
                                 $("#formAddStudent").trigger("reset");
+                                setTimeout(function(){ $("#name").focus(); }, 300);
                             }
                         });
                     } else if (data.status == 'error') {
-                        // showError(data.message);
+                        showError(data.message);
                     }
                 }, goTo500).catch(goTo500);
             }

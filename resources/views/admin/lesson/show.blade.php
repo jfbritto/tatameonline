@@ -5,7 +5,7 @@
 @section('content_header')
 
         <h1>
-            Aula &nbsp;&nbsp;<i class="fas fa-users"></i>
+            <i class="fas fa-users"></i>&nbsp;&nbsp; Aula
         </h1>
         <ol class="breadcrumb">
             <li><a href="/admin"><i class="fas fa-home"></i>&nbsp;&nbsp;Home</a></li>
@@ -44,7 +44,7 @@
         <div class="box-tools">
         <div class="input-group input-group-sm" style="width: 150px; text-align: right">
             <div class="input-group-btn">
-                <a href="#" class="btn btn-success" title="Adicionar usuário" data-toggle="modal" data-target="#modal-default"><i class="fas fa-plus fa-lg"></i></i></a>
+                <a href="#" class="btn btn-success" title="Matricular aluno" data-toggle="modal" data-target="#modal-default"><i class="fas fa-plus fa-lg"></i></i></a>
             </div>
         </div>
         </div>
@@ -79,7 +79,7 @@
 
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fas fa-user-graduate"></i></span>
-                            <select class="form-control" name="idUser" id="idUser"></select>
+                            <select style="width:100%" class="form-control" name="idUser" id="idUser"></select>
                         </div>
 
                     </div>

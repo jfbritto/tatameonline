@@ -26,6 +26,7 @@ $(document).ready(function(){
                             cancelButtonText: "OK",
                             onClose: () => {
                                 $("#formAddLesson").trigger("reset");
+                                setTimeout(function(){ $("#teacher").focus(); }, 300);
                             }
                         });
                     } else if (data.status == 'error') {

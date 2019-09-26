@@ -21,7 +21,7 @@ function list()
                             <td class="hidden-xs">${data.data[i].responsable}</td>
                             <td class="hidden-xs">${data.data[i].phoneResponsable}</td>
                             <td class="hidden-xs">${data.data[i].token}</td>
-                            <td class="hidden-xs">${data.data[i].isActive}</td>
+                            <td class="hidden-xs">${data.data[i].isActive==1?'Ativo':'Inativo' }</td>
                             <td>
                                 <div class="input-group-btn">
                                     <a class="btn btn-primary btn-sm pull-right" href="/root/academy/show/${data.data[i].id}" title="Abrir academia"><i class="fas fa-sign-in-alt"></i></a>

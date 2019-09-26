@@ -5,7 +5,7 @@
 @section('content_header')
 
         <h1>
-            Cadastrar esporte &nbsp;&nbsp;<i class="fas fa-futbol"></i>
+            <i class="fas fa-futbol"></i>&nbsp;&nbsp;Cadastrar esporte
             <!-- <small>preview of simple tables</small> -->
         </h1>
         <ol class="breadcrumb">
@@ -20,7 +20,7 @@
     
 <div class="box">
     <div class="box-header with-border">
-        <h3 class="box-title"><i class="fas fa-futbol"></i>&nbsp;&nbsp;Cadastrar esporte</h3>
+        <h3 class="box-title"><i class="fas fa-futbol"></i>&nbsp;&nbsp;Formulário de cadastro</h3>
     </div>
     <div class="box-body">
 

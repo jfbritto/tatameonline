@@ -89,6 +89,8 @@ function listAluns(idLesson, idAcademy)
             }
 
             $('#idUser').html(html);
+            $('#idUser').select2();
+
 
         } else if (data.status == 'error') {
             // showError(data.message);
@@ -110,7 +112,7 @@ function destroy(id)
             }).then(function(data) {
                 if(data.status == 'success') {
                     
-                    list(id);
+                    list($("#idLesson").val());
                     Swal.fire({
                         type: 'success',
                         text: 'Matricula deletada com sucesso',

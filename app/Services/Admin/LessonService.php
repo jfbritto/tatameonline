@@ -18,7 +18,10 @@ class LessonService
                                 ->join('sports', 'sports.id', '=', 'lessons.idSport')
                                 ->where('lessons.idAcademy', '=', $id)
                                 ->where('lessons.isActive', '=', 1)
-                                ->select('lessons.*', 'sports.name as sport_name')
+                                ->select('lessons.*', 'sports.name as sport_name',
+                                (DB::raw("(SELECT count(*) FROM registrations WHERE idLesson = lessons.id and isActive=1) AS alunos")))
+                                ->orderByRaw('lessons.weekDay')
+                                ->orderByRaw('lessons.hour')
                                 ->get();
 
             $response = ['status' => 'success', 'data' => $lessons];
@@ -55,15 +58,24 @@ class LessonService
         $response = [];
 
         try{
-            DB::beginTransaction();
 
-            DB::table('lessons')
+            $alunos = DB::table('registrations')->where('idLesson', '=', $id)->where('isActive', '=', 1)->count();
+
+            if($alunos == 0){
+    
+                DB::beginTransaction();
+                
+                DB::table('lessons')
                 ->where('id', $id)
                 ->update(['isActive' => 0]);
+                
+                DB::commit();
+                
+                $response = ['status' => 'success'];
+            }else{
+                $response = ['status' => 'error', 'data' => 'Existem alunos matriculados nesta aula!'];
+            }
 
-            DB::commit();
-
-            $response = ['status' => 'success'];
         }catch(Exception $e){
             DB::rollBack();
             $response = ['status' => 'error', 'data' => $e->getMessage()];
@@ -114,7 +126,7 @@ class LessonService
                                 ->join('sports', 'sports.id', '=', 'lessons.idSport')
                                 ->where('registrations.idUser', '=', $idUser)
                                 ->where('registrations.isActive', '=', 1)
-                                ->select('lessons.*', 'sports.name as sport_name')
+                                ->select('lessons.*', 'sports.name as sport_name', 'registrations.id as id_registration')
                                 ->get();                    
 
             $response = ['status' => 'success', 'data' => $lessons];

@@ -5,8 +5,7 @@
 @section('content_header')
 
         <h1>
-            Cadastrar Graduações &nbsp;&nbsp;<i class="fas fa-graduation-cap"></i>
-            <!-- <small>preview of simple tables</small> -->
+            <i class="fas fa-graduation-cap"></i>&nbsp;&nbsp;Cadastrar Graduações
         </h1>
         <ol class="breadcrumb">
             <li><a href="/root"><i class="fas fa-home"></i>&nbsp;&nbsp;Home</a></li>
@@ -20,7 +19,7 @@
     
 <div class="box">
     <div class="box-header with-border">
-        <h3 class="box-title"><i class="fas fa-fa-graduation-cap"></i>&nbsp;&nbsp;Cadastrar Graduações</h3>
+        <h3 class="box-title"><i class="fas fa-graduation-cap"></i>&nbsp;&nbsp;Formulário de cadastro</h3>
     </div>
     <div class="box-body">
 

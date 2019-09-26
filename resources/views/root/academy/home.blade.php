@@ -5,13 +5,11 @@
 @section('content_header')
 
         <h1>
-            Academias &nbsp;&nbsp;<i class="fas fa-briefcase"></i>
-            <!-- <small>preview of simple tables</small> -->
+            <i class="fas fa-briefcase"></i>&nbsp;&nbsp;Academias
         </h1>
         <ol class="breadcrumb">
             <li><a href="/admin"><i class="fas fa-home"></i>&nbsp;&nbsp;Home</a></li>
-            <li><a href="#"><i class="fas fa-briefcase"></i>&nbsp;&nbsp;Academias</a></li>
-            <!-- <li class="active">Data tables</li> -->
+            <li><a href="/root/academy"><i class="fas fa-briefcase"></i>&nbsp;&nbsp;Academias</a></li>
         </ol>
 
 @stop
@@ -20,7 +18,7 @@
     
     <div class="box">
         <div class="box-header">
-            <h3 class="box-title"><i class="fas fa-briefcase"></i>&nbsp;&nbsp;Academias</h3>
+            <h3 class="box-title"><i class="fas fa-briefcase"></i></h3>
             <div class="box-tools">
             <div class="input-group input-group-sm hidden-xs" style="width: 150px; text-align: right">
                 <div class="input-group-btn">

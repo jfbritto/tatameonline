@@ -5,8 +5,7 @@
 @section('content_header')
 
         <h1>
-            Alunos &nbsp;&nbsp;<i class="fas fa-user-graduate"></i>
-            <!-- <small>preview of simple tables</small> -->
+            <i class="fas fa-user-graduate"></i> &nbsp;&nbsp; Alunos
         </h1>
         <ol class="breadcrumb">
             <li><a href="/admin"><i class="fas fa-home"></i>&nbsp;&nbsp;Home</a></li>
@@ -19,7 +18,7 @@
     
     <div class="box">
         <div class="box-header">
-            <h3 class="box-title">Alunos&nbsp;&nbsp;<i class="fas fa-user-graduate"></i></h3>
+            <h3 class="box-title"><i class="fas fa-user-graduate"></i> &nbsp;&nbsp; Alunos</h3>
 
             <div class="box-tools">
             <div class="input-group input-group-sm hidden-xs" style="width: 150px; text-align: right">
@@ -36,6 +35,7 @@
                     <tr>
                         <th>Nome</th>
                         <th class="hidden-xs">Email</th>
+                        <th class="hidden-xs">Aulas</th>
                         <th></th>
                     </tr>
                 </thead>

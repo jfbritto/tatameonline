@@ -5,7 +5,7 @@
 @section('content_header')
 
         <h1>
-            Aulas &nbsp;&nbsp;<i class="fas fa-users"></i>
+            <i class="fas fa-users"></i>&nbsp;&nbsp;Cadastrar aula
         </h1>
         <ol class="breadcrumb">
             <li><a href="/admin"><i class="fas fa-home"></i>&nbsp;&nbsp;Home</a></li>
@@ -19,7 +19,7 @@
     
 <div class="box">
     <div class="box-header with-border">
-        <h3 class="box-title">Formulário de cadastro</h3>
+        <h3 class="box-title"><i class="fas fa-users"></i>&nbsp;&nbsp;Formulário de cadastro</h3>
     </div>
     <div class="box-body">
         
@@ -29,7 +29,7 @@
 
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fas fa-user"></i></span>
-                        <input type="text" class="form-control" placeholder="Nome do professor" name="teacher" id="teacher">
+                        <input type="text" class="form-control" placeholder="Nome do professor" name="teacher" id="teacher" autofocus>
                     </div>
             
                 </div>

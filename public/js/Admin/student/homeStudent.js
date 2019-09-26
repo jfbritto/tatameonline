@@ -6,7 +6,6 @@ $(document).ready(function(){
 
     callList();
 
-    // setInterval(function(){ callList(); }, 500);
 });
 
 function list(id)
@@ -23,6 +22,7 @@ function list(id)
                 html += `<tr>
                             <td>${data.data[i].name}</td>
                             <td class="hidden-xs">${data.data[i].email}</td>
+                            <td class="hidden-xs">${data.data[i].aulas}</td>
                             <td>
                                 <div class="input-group-btn">
                                     <a class="btn btn-primary btn-sm pull-right" href="/admin/student/show/${data.data[i].id}" title="Abrir aluno"><i class="fas fa-sign-in-alt"></i></a>
@@ -53,7 +53,7 @@ function destroy(id)
             
             }).then(function(data) {
                 if(data.status == 'success') {
-                    list();
+                    list($("#idAcademy").val());
                     Swal.fire({
                         type: 'success',
                         text: 'Aluno deletado com sucesso',
@@ -65,7 +65,7 @@ function destroy(id)
                         }
                     });
                 } else if (data.status == 'error') {
-                    // showError(data.message);
+                    showError(data.message);
                 }
             }, goTo500).catch(goTo500);
         }

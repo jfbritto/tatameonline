@@ -6,7 +6,6 @@ $(document).ready(function(){
 
     callList();
 
-    // setInterval(function(){ callList(); }, 500);
 });
 
 function list(id)
@@ -25,6 +24,7 @@ function list(id)
                             <td class="hidden-xs">${data.data[i].teacher}</td>
                             <td>${dia_semana[data.data[i].weekDay]}</td>
                             <td>${data.data[i].hour}</td>
+                            <td>${data.data[i].alunos}</td>
                             <td>
                                 <div class="input-group-btn">
                                     <a class="btn btn-primary btn-sm pull-right" href="/admin/lesson/show/${data.data[i].id}" title="Abrir aula"><i class="fas fa-sign-in-alt"></i></a>
@@ -56,7 +56,7 @@ function destroy(id)
             
             }).then(function(data) {
                 if(data.status == 'success') {
-                    list();
+                    list($("#idAcademy").val());
                     Swal.fire({
                         type: 'success',
                         text: 'Aula deletada com sucesso',
@@ -68,7 +68,7 @@ function destroy(id)
                         }
                     });
                 } else if (data.status == 'error') {
-                    // showError(data.message);
+                    showError(data.message);
                 }
             }, goTo500).catch(goTo500);
         }
