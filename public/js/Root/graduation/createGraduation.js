@@ -23,6 +23,7 @@ $(document).ready(function(){
                             cancelButtonText: "OK",
                             onClose: () => {
                                 $("#formAddGraduation").trigger("reset");
+                                setTimeout(function(){ $("#name").focus(); }, 300);
                             }
                         });
                     } else if (data.status == 'error') {

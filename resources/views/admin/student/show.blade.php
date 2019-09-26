@@ -35,12 +35,12 @@
 
 <div class="box">
     <div class="box-header">
-        <h3 class="box-title"><i class="fas fa-file-contract"></i> &nbsp;&nbsp; Contratos</h3>
+        <h3 class="box-title"><i class="fas fa-file-contract"></i> &nbsp;&nbsp; Contrato</h3>
         
         <div class="box-tools">
             <div class="input-group input-group-sm hidden-xs" style="width: 150px; text-align: right">
                 <div class="input-group-btn">
-                    <a href="{{ route('admin.lesson.create') }}" class="btn btn-success" title="Adicionar contrato"><i class="fas fa-plus fa-lg"></i></i></a>
+                    <a href="{{ route('admin.student.contract', ['student' => $student->id]) }}" class="btn btn-primary" title="Abrir contratos"><i class="fas fa-sign-in-alt fa-lg"></i></i></a>
                 </div>
             </div>
         </div>
@@ -53,12 +53,12 @@
 
 <div class="box">
     <div class="box-header">
-        <h3 class="box-title"><i class="fas fa-graduation-cap"></i> &nbsp;&nbsp; Graduações</h3>
+        <h3 class="box-title"><i class="fas fa-graduation-cap"></i> &nbsp;&nbsp; Graduação</h3>
         
         <div class="box-tools">
             <div class="input-group input-group-sm hidden-xs" style="width: 150px; text-align: right">
                 <div class="input-group-btn">
-                    <a href="{{ route('admin.lesson.create') }}" class="btn btn-success" title="Adicionar graduação"><i class="fas fa-plus fa-lg"></i></i></a>
+                    <a href="{{ route('admin.lesson.create') }}" class="btn btn-primary" title="Abrir graduações"><i class="fas fa-sign-in-alt fa-lg"></i></i></a>
                 </div>
             </div>
         </div>

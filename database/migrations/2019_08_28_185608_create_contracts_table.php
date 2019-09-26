@@ -18,6 +18,8 @@ class CreateContractsTable extends Migration
             
             $table->date('signatureDate');
             $table->integer('months');
+            $table->decimal('monthlyPayment', 8, 2);
+            $table->integer('expiryDay');
             $table->boolean('isAtivo')->default(true);
             
             $table->integer('idUser')->unsigned();

@@ -29,7 +29,7 @@
 
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fas fa-graduation-cap"></i></span>
-                        <input required type="text" class="form-control" placeholder="Nome da graduação" id="name">
+                        <input required type="text" class="form-control" placeholder="Nome da graduação" id="name" autofocus>
                     </div>
             
                 </div>

@@ -30,7 +30,7 @@
 
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fas fa-briefcase"></i></span>
-                        <input type="text" class="form-control" placeholder="Nome da academia" name="name" id="name">
+                        <input type="text" class="form-control" placeholder="Nome da academia" name="name" id="name" autofocus>
                     </div>
             
                 </div>

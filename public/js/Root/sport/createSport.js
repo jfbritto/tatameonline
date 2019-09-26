@@ -21,6 +21,7 @@ $(document).ready(function(){
                             cancelButtonText: "OK",
                             onClose: () => {
                                 $("#formAddSport").trigger("reset");
+                                setTimeout(function(){ $("#name").focus(); }, 300);
                             }
                         });
                     } else if (data.status == 'error') {

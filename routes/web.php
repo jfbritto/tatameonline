@@ -53,6 +53,11 @@ Route::group(['middleware' => ['auth']], function(){
         Route::get('/student/create', 'StudentController@create')->name('admin.student.create');
         Route::get('/student/show/{user}', 'StudentController@show')->name('admin.student.show');
         Route::get('/student/edit/{user}', 'StudentController@edit')->name('admin.student.edit');
+        
+        //CONTRATOS
+        Route::get('/student/contract/{user}', 'ContractController@index')->name('admin.student.contract');
+        Route::get('/student/contract/create/{user}', 'ContractController@create')->name('admin.student.contract.create');
+        Route::get('/student/contract/show/{contract}', 'ContractController@show')->name('admin.student.contract.show');
 
         //FINANCEIRO
         Route::get('/financial', 'FinancialController@index')->name('admin.financial');

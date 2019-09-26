@@ -38,6 +38,9 @@
         Route::post('/registration/list/{lesson}', 'RegistrationController@index');
         Route::post('/registration/destroy/{registration}', 'RegistrationController@destroy');
 
+        Route::post('/contract', 'ContractController@store');
+        Route::post('/contract/list/{user}', 'ContractController@index');
+
         // Route::get('/', 'HomeController@index')->name('admin');
 
         // //AULAS

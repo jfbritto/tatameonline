@@ -4,22 +4,22 @@ namespace App\Http\Controllers\Api\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Services\Admin\StudentService;
+use App\Services\Admin\ContractService;
 use App\Models\User;
 use App\Models\Academy;
 
-class StudentController extends Controller
+class ContractController extends Controller
 {
-    private $studentService;
+    private $contractService;
 
-    public function __construct(StudentService $studentService)
+    public function __construct(ContractService $contractService)
     {
-        $this->studentService = $studentService;
+        $this->contractService = $contractService;
     }
 
-    public function index(Academy $academy)
+    public function index(User $user)
     {
-        $response = $this->studentService->index($academy->id);
+        $response = $this->contractService->index($user->id);
 
         if($response['status'] == 'success')
             return response()->json(['status'=>'success', 'data'=>$response['data']], 201);
@@ -35,22 +35,23 @@ class StudentController extends Controller
     public function store(Request $request)
     {
         $dataValid = $request->validate([
-            'name' => 'required',
-            'email' => 'required|email',
-            'idAcademy' => 'required',
+            'signatureDate' => 'required',
+            'months' => 'required',
+            'monthlyPayment' => 'required',
+            'expiryDay' => 'required',
+            'idUser' => 'required',
         ]);
 
         $data = [
-            'name' => $request->name,
-            'email' => $request->email,
-            'isStudent' => 1,
-            'idAcademy' => $request->idAcademy,
-            'password' => bcrypt('12345678'),
+            'signatureDate' => $request->signatureDate,
+            'months' => $request->months,
+            'monthlyPayment' => $request->monthlyPayment,
+            'expiryDay' => $request->expiryDay,
+            'idUser' => $request->idUser,
+            'idActive' => 1,
         ];
 
-        // return $data;
-
-        $response = $this->studentService->store($data);
+        $response = $this->contractService->store($data);
 
         if($response['status'] == 'success')
             return response()->json(['status'=>'success'], 201);
@@ -75,7 +76,7 @@ class StudentController extends Controller
 
     public function destroy($id)
     {       
-        $response = $this->studentService->destroy($id);
+        $response = $this->contractService->destroy($id);
 
         if($response['status'] == 'success')
             return response()->json(['status'=>'success'], 201);
