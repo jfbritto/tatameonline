@@ -1,6 +1,6 @@
-function goTo500()
+function goTo500(e)
 {
-    // window.location = '/500';
+    console.log(e);
 }
 
 let dia_semana = {

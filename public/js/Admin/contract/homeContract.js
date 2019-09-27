@@ -10,7 +10,7 @@ $(document).ready(function(){
             allowEscapeKey: false,
             onOpen: () => {
                 Swal.showLoading();
-                $.post(window.location.origin + "api/admin/contract", {
+                $.post(window.location.origin + "/api/admin/contract", {
                     signatureDate: $("#signatureDate").val(),
                     months: $("#months").val(),
                     monthlyPayment: $("#monthlyPayment").val(),
