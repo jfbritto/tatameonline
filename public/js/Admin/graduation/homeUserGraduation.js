@@ -151,7 +151,7 @@ function openPresences(id)
 
             for (var i in data.data) {
 
-                html += `<tr class="${data.data[i].isPaid==0?'':'success'}">
+                html += `<tr">
                             <td>${dateFormat(data.data[i].dueDate)}</td>
                             <td>${data.data[i].value}</td>
                             <td>${data.data[i].isPaid==0?'Aberto':'Pago'}</td>
