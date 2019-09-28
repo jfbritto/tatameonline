@@ -1,17 +1,17 @@
 @extends('adminlte::page')
 
-@section('title', 'Contratos')
+@section('title', 'Graduações')
 
 @section('content_header')
 
         <h1>
-            <i class="fas fa-file-contract"></i> &nbsp;&nbsp; Contratos
+            <i class="fas fa-graduation-cap"></i> &nbsp;&nbsp; Graduações
         </h1>
         <ol class="breadcrumb">
             <li><a href="/admin"><i class="fas fa-home"></i>&nbsp;&nbsp;Home</a></li>
             <li><a href="/admin/student"><i class="fas fa-user-graduate"></i>&nbsp;&nbsp;Alunos</a></li>
             <li><a href="/admin/student/show/{{$student->id}}"><i class="fas fa-user-graduate"></i>&nbsp;&nbsp;{{$student->name}}</a></li>
-            <li><a href="/admin/student/contract/{{$student->id}}"><i class="fas fa-file-contract"></i>&nbsp;&nbsp;Contratos</a></li>
+            <li><a href="/admin/student/contract/{{$student->id}}"><i class="fas fa-graduation-cap"></i>&nbsp;&nbsp;Graduações</a></li>
         </ol>
 
 @stop
@@ -20,12 +20,12 @@
     
     <div class="box">
         <div class="box-header">
-            <h3 class="box-title"><i class="fas fa-file-contract"></i> &nbsp;&nbsp; Contratos</h3>
+            <h3 class="box-title"><i class="fas fa-graduation-cap"></i> &nbsp;&nbsp; Graduações</h3>
 
             <div class="box-tools">
             <div class="input-group input-group-sm hidden-xs" style="width: 150px; text-align: right">
                 <div class="input-group-btn">
-                    <a href="#" class="btn btn-success" style="display:none" id="add-contract" title="Adicionar contrato" data-toggle="modal" data-target="#modal-default"><i class="fas fa-plus fa-lg"></i></i></a>
+                    <a href="#" class="btn btn-success" title="Adicionar graduação" data-toggle="modal" data-target="#modal-default"><i class="fas fa-plus fa-lg"></i></i></a>
                 </div>
             </div>
             </div>
@@ -35,10 +35,11 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th>Data de assinatura</th>
-                        <th>Período (mêses)</th>
-                        <th class="hidden-xs">Mensalidade</th>
-                        <th class="hidden-xs">Dia vencimento</th>
+                        <th>Esporte</th>
+                        <th>Graduação</th>
+                        <th>Data início</th>
+                        <th>Data fim</th>
+                        <th>Situação</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -48,60 +49,42 @@
         <!-- /.box-body -->
     </div>
 
-    <input type="hidden" id="idAcademy" value="{{auth()->user()->academy->id}}">
-
     <div class="modal fade" id="modal-default">
         <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title"><i class="fas fa-file-contract"></i>&nbsp;&nbsp;Adicionar contrato</h4>
+                <h4 class="modal-title"><i class="fas fa-graduation-cap"></i>&nbsp;&nbsp;Adicionar graduação</h4>
             </div>
             <div class="modal-body">
-                <form id="formAddContract">
+                <form id="formAddUserGraduation">
                     <div class="row">
                         <div class="col-sm-6">
 
-                            <div class="input-group">
-                                <label for="signatureDate">Data assinatura</label>
-                                <input type="date" readonly value="{{date('Y-m-d')}}" class="form-control" name="signatureDate" id="signatureDate">
+                            <div class="input-group" style="width:100%">
+                                <label for="sports">Esporte</label>
+                                <select class="form-control" name="sports" id="sports"></select>
                             </div>
 
                         </div>
                         <div class="col-sm-6">
 
-                            <div class="input-group">
-                                <label for="months">Período contrato (mêses)</label>
-                                <input type="number" readonly value="12" class="form-control" name="months" id="months">
+                            <div class="input-group" style="width:100%">
+                                <label for="idGraduation">Graduação</label>
+                                <select class="form-control" name="idGraduation" id="idGraduation"></select>
                             </div>
 
                         </div>
-                    </div>
-                    <br>
-                    <div class="row">
-                        <div class="col-sm-6">
 
-                            <div class="input-group">
-                                <label for="monthlyPayment">Mensalidade</label>
-                                <input type="text" class="form-control" name="monthlyPayment" id="monthlyPayment">
-                            </div>
-
-                        </div>
-                        <div class="col-sm-6">
-
-                            <div class="input-group">
-                                <label for="expiryDay">Dia vencimento</label>
-                                <input type="number" readonly value="{{date('d')}}" class="form-control" name="expiryDay" id="expiryDay">
-                            </div>
-
-                        </div>
+                    
                         <input type="hidden" id="idUser" value="{{$student->id}}">
+                        <input type="hidden" id="startDate" value="{{date('Y-m-d')}}">
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button form="formAddContract" class="btn btn-primary"><i class="fas fa-save"></i>&nbsp;&nbsp;Salvar</button>
+                <button form="formAddUserGraduation" class="btn btn-primary"><i class="fas fa-save"></i>&nbsp;&nbsp;Salvar</button>
             </div>
             </div>
             <!-- /.modal-content -->
@@ -109,7 +92,7 @@
         <!-- /.modal-dialog -->
     </div>
 
-    <div class="modal fade" id="modal-invoices">
+    <div class="modal fade" id="modal-presences">
         <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-header">
@@ -130,7 +113,7 @@
                                         <th></th>
                                     </tr>
                                 </thead>
-                                <tbody id="listInvoices"></tbody>
+                                <tbody id="listPresences"></tbody>
                             </table>
                         </div>
                     </div>
@@ -145,5 +128,5 @@
 @stop
 
 @section('adminlte_js')
-    <script src="{{asset('/js/Admin/contract/homeContract.js')}}"></script>
+    <script src="{{asset('/js/Admin/graduation/homeUserGraduation.js')}}"></script>
 @stop

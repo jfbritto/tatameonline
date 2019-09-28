@@ -4,23 +4,22 @@ namespace App\Http\Controllers\Api\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Services\Admin\RegistrationService;
+use App\Services\Admin\UserGraduationService;
 use App\Models\User;
 use App\Models\Academy;
-use App\Models\Lesson;
 
-class RegistrationController extends Controller
+class UserGraduationController extends Controller
 {
-    private $registrationService;
+    private $userGraduationService;
 
-    public function __construct(RegistrationService $registrationService)
+    public function __construct(UserGraduationService $userGraduationService)
     {
-        $this->registrationService = $registrationService;
+        $this->userGraduationService = $userGraduationService;
     }
 
-    public function index(Lesson $lesson)
+    public function index(User $user)
     {
-        $response = $this->registrationService->index($lesson->id);
+        $response = $this->userGraduationService->index($user->id);
 
         if($response['status'] == 'success')
             return response()->json(['status'=>'success', 'data'=>$response['data']], 201);
@@ -36,18 +35,20 @@ class RegistrationController extends Controller
     public function store(Request $request)
     {
         $dataValid = $request->validate([
-            'idLesson' => 'required',
+            'startDate' => 'required',
             'idUser' => 'required',
+            'idGraduation' => 'required',
         ]);
 
         $data = [
-            'idLesson' => $request->idLesson,
+            'startDate' => $request->startDate,
+            'endDate' => null,
+            'isActive' => 1,
             'idUser' => $request->idUser,
+            'idGraduation' => $request->idGraduation,
         ];
 
-        // return $data;
-
-        $response = $this->registrationService->store($data);
+        $response = $this->userGraduationService->store($data);
 
         if($response['status'] == 'success')
             return response()->json(['status'=>'success'], 201);
@@ -72,11 +73,11 @@ class RegistrationController extends Controller
 
     public function destroy($id)
     {       
-        $response = $this->registrationService->destroy($id);
+        $response = $this->userGraduationService->destroy($id);
 
         if($response['status'] == 'success')
             return response()->json(['status'=>'success'], 201);
             
-        return response()->json(['status'=>'error', 'message'=>$response['data']], 500);
+        return response()->json(['status'=>'error', 'message'=>$response['data']], 201);
     }
 }

@@ -17,13 +17,15 @@ class CreateUserGraduationsTable extends Migration
             $table->increments('id');
 
             $table->date('startDate');
-            $table->date('endDate');
+            $table->date('endDate')->nullable();
             $table->boolean('isActive')->default(true);
             $table->integer('idUser')->nullable()->unsigned();
+            $table->integer('idGraduation')->nullable()->unsigned();
             
             $table->timestamps();
 
             $table->foreign('idUser')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('idGraduation')->references('id')->on('graduations')->onDelete('cascade');
         });
     }
 

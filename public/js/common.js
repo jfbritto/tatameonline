@@ -29,6 +29,10 @@ function showError(message)
 
 function dateFormat(data)
 {
-    const [ano, mes, dia] = data.split('-');
-    return `${dia}/${mes}/${ano}`;
+    if(data == null || data == undefined || data == ''){
+        return '';
+    }else{
+        const [ano, mes, dia] = data.split('-');
+        return `${dia}/${mes}/${ano}`;
+    }
 }

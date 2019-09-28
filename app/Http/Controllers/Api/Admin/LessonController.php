@@ -59,7 +59,7 @@ class LessonController extends Controller
         if($response['status'] == 'success')
             return response()->json(['status'=>'success'], 201);
             
-        return response()->json(['status'=>'error', 'message'=>$response['data']], 500);
+        return response()->json(['status'=>'error', 'message'=>$response['data']], 201);
     }
 
     public function show($id)

@@ -58,7 +58,7 @@
         <div class="box-tools">
             <div class="input-group input-group-sm hidden-xs" style="width: 150px; text-align: right">
                 <div class="input-group-btn">
-                    <a href="{{ route('admin.lesson.create') }}" class="btn btn-primary" title="Abrir graduações"><i class="fas fa-sign-in-alt fa-lg"></i></i></a>
+                    <a href="{{ route('admin.student.graduation', ['student' => $student->id]) }}" class="btn btn-primary" title="Abrir graduações"><i class="fas fa-sign-in-alt fa-lg"></i></i></a>
                 </div>
             </div>
         </div>

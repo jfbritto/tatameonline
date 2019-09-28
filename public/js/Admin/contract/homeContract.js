@@ -94,7 +94,15 @@ function list(id)
     $.post(window.location.origin + "/api/admin/contract/list/"+id, {
         
     }).then(function(data) {
+        
+        
         if(data.status == 'success') {
+            
+            if(data.data == ''){
+                $("#add-contract").show();
+            }else{
+                $("#add-contract").hide();
+            }
     
             var html = '';
 
@@ -120,35 +128,3 @@ function list(id)
         }
     }, goTo500).catch(goTo500);
 }
-
-function destroy(id)
-{
-    
-    Swal.queue([{
-        title: 'Carregando...',
-        allowOutsideClick: false,
-        allowEscapeKey: false,
-        onOpen: () => {
-            Swal.showLoading();
-            $.post(window.location.origin + "/api/root/academy/users/destroy/"+id, {
-            
-            }).then(function(data) {
-                if(data.status == 'success') {
-                    
-                    Swal.fire({
-                        type: 'success',
-                        text: 'Usuário deletado com sucesso',
-                        showConfirmButton: false,
-                        showCancelButton: true,
-                        cancelButtonText: "OK",
-                        onClose: () => {
-                            list(id);
-                        }
-                    });
-                } else if (data.status == 'error') {
-                    // showError(data.message);
-                }
-            }, goTo500).catch(goTo500);
-        }
-    }]);
-};

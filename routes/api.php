@@ -27,7 +27,7 @@
         Route::post('/student', 'StudentController@store');
         Route::post('/student/list/{academy}', 'StudentController@index');
         Route::post('/student/destroy/{student}', 'StudentController@destroy');
-
+        
         Route::post('/lesson', 'LessonController@store');
         Route::post('/lesson/list/{academy}', 'LessonController@index');
         Route::post('/lesson/destroy/{lesson}', 'LessonController@destroy');
@@ -37,13 +37,19 @@
         Route::post('/registration', 'RegistrationController@store');
         Route::post('/registration/list/{lesson}', 'RegistrationController@index');
         Route::post('/registration/destroy/{registration}', 'RegistrationController@destroy');
-
+        
         Route::post('/contract', 'ContractController@store');
         Route::post('/contract/list/{user}', 'ContractController@index');
-
+        
         Route::post('/invoice/list/{contract}', 'InvoiceController@index');
         Route::post('/invoice/reportPayment/{invoice}', 'InvoiceController@reportPayment');
+        
+        Route::post('/graduation', 'UserGraduationController@store');
+        Route::post('/graduation/list/{user}', 'UserGraduationController@index');
+        Route::post('/graduation/destroy/{userGraduation}', 'UserGraduationController@destroy');
 
+        Route::post('/graduation/list/sport/{sport}', 'GraduationController@listBySport');
+        
         // Route::get('/', 'HomeController@index')->name('admin');
 
         // //AULAS

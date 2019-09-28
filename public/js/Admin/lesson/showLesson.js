@@ -3,6 +3,9 @@ $(document).ready(function(){
     $("#formAddAlun").submit(function(e) {
         
         e.preventDefault();
+
+        if($("#idUser option:selected").val() == undefined)
+            return showError("Nenhum aluno selecionado!");
       
         Swal.queue([{
             title: 'Carregando...',
@@ -27,7 +30,7 @@ $(document).ready(function(){
                             }
                         });
                     } else if (data.status == 'error') {
-                        // showError(data.message);
+                        showError(data.message);
                     }
                 }, goTo500).catch(goTo500);
             }
@@ -41,7 +44,6 @@ $(document).ready(function(){
 
     callList();
 
-    // setInterval(function(){ callList(); }, 500);
 });
 
 function list(id)
@@ -69,7 +71,7 @@ function list(id)
             $('#lista').html(html);
 
         } else if (data.status == 'error') {
-            // showError(data.message);
+            showError(data.message);
         }
     }, goTo500).catch(goTo500);
 }
@@ -93,7 +95,7 @@ function listAluns(idLesson, idAcademy)
 
 
         } else if (data.status == 'error') {
-            // showError(data.message);
+            showError(data.message);
         }
     }, goTo500).catch(goTo500);
 }
@@ -113,6 +115,7 @@ function destroy(id)
                 if(data.status == 'success') {
                     
                     list($("#idLesson").val());
+                    listAluns($("#idLesson").val(), $("#idAcademy").val());
                     Swal.fire({
                         type: 'success',
                         text: 'Matricula deletada com sucesso',
@@ -123,7 +126,7 @@ function destroy(id)
                         }
                     });
                 } else if (data.status == 'error') {
-                    // showError(data.message);
+                    showError(data.message);
                 }
             }, goTo500).catch(goTo500);
         }

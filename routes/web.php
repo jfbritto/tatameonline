@@ -56,8 +56,9 @@ Route::group(['middleware' => ['auth']], function(){
         
         //CONTRATOS
         Route::get('/student/contract/{user}', 'ContractController@index')->name('admin.student.contract');
-        Route::get('/student/contract/create/{user}', 'ContractController@create')->name('admin.student.contract.create');
-        Route::get('/student/contract/show/{contract}', 'ContractController@show')->name('admin.student.contract.show');
+        
+        //GRADUAÇÕES
+        Route::get('/student/graduation/{user}', 'UserGraduationController@index')->name('admin.student.graduation');
 
         //FINANCEIRO
         Route::get('/financial', 'FinancialController@index')->name('admin.financial');
