@@ -45,6 +45,49 @@ $(document).ready(function(){
 
 });
 
+function openInvoices(id)
+{
+    $.post(window.location.origin + "/api/admin/invoice/list/"+id, {
+        
+    }).then(function(data) {
+        if(data.status == 'success') {
+    
+            var html = '';
+
+            for (var i in data.data) {
+
+                html += `<tr class="${data.data[i].isPaid==0?'':'success'}">
+                            <td>${dateFormat(data.data[i].dueDate)}</td>
+                            <td>${data.data[i].value}</td>
+                            <td>${data.data[i].isPaid==0?'Aberto':'Pago'}</td>
+                            <td>
+                                <a title="Informar pagamento" onclick="reportPayment(${data.data[i].id}, ${data.data[i].idContract})" class="btn btn-sm btn-success pull-right"><i class="fas fa-file-invoice-dollar"></i></a>
+                            </td>
+                        </tr>`;
+            }
+
+            $('#listInvoices').html(html);
+
+        } else if (data.status == 'error') {
+            showError(data.message);
+        }
+    }, goTo500).catch(goTo500);
+}
+
+function reportPayment(idInvoice, idContract)
+{
+    $.post(window.location.origin + "/api/admin/invoice/reportPayment/"+idInvoice, {
+        
+    }).then(function(data) {
+        if(data.status == 'success') {
+            
+            openInvoices(idContract);   
+
+        } else if (data.status == 'error') {
+            showError(data.message);
+        }
+    }, goTo500).catch(goTo500);    
+}
 
 function list(id)
 {
@@ -58,12 +101,13 @@ function list(id)
             for (var i in data.data) {
 
                 html += `<tr>
-                            <td>${data.data[i].name}</td>
-                            <td class="hidden-xs">${data.data[i].email}</td>
+                            <td>${dateFormat(data.data[i].signatureDate)}</td>
+                            <td class="hidden-xs">${data.data[i].months}</td>
+                            <td class="hidden-xs">${data.data[i].monthlyPayment}</td>
+                            <td class="hidden-xs">${data.data[i].expiryDay}</td>
                             <td>
                                 <div class="input-group-btn">
-                                    <a class="btn btn-primary btn-sm pull-right" href="/root/academy/show/${data.data[i].id}" title="Abrir academia"><i class="fas fa-sign-in-alt"></i></a>
-                                    <a class="btn btn-danger btn-sm pull-right destroy" onclick="destroy(${data.data[i].id})" data-id="${data.data[i].id}" title="Deletar academia"><i class="fas fa-trash-alt"></i></a>
+                                    <a onclick="openInvoices(${data.data[i].id})" class="btn btn-primary btn-sm pull-right" href="#" title="Ver faturas" data-toggle="modal" data-target="#modal-invoices"><i class="fas fa-file-invoice-dollar"></i></a>
                                 </div>    
                             </td>
                         </tr>`;

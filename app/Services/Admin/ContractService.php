@@ -3,6 +3,7 @@
 namespace App\Services\Admin;
 
 use App\Models\Contract;
+use App\Models\Invoice;
 use DB;
 use Exception;
 
@@ -33,6 +34,25 @@ class ContractService
             DB::beginTransaction();
 
             $contract = Contract::create($data);
+            
+            for ($i=0; $i < $data['months']; $i++) { 
+
+                $data_invoice = [];
+
+                $dueDate = date('Y-m-'.$data['expiryDay'], strtotime("+".$i." month"));
+
+                $data_invoice = [
+                    'value' => $data['monthlyPayment'],
+                    'dueDate' => $dueDate,
+                    'isPaid' => false,
+                    'paymentDate' => null,
+                    'idUser' => $data['idUser'],
+                    'idContract' => $contract->id,
+                ];
+
+                Invoice::create($data_invoice);
+            }
+
 
             DB::commit();
 

@@ -19,6 +19,7 @@ class CreateInvoicesTable extends Migration
             $table->decimal('value', 8, 2);
             $table->date('dueDate');
             $table->boolean('isPaid')->default(false);
+            $table->date('paymentDate')->nullable();;
 
             $table->integer('idUser')->unsigned();
             $table->integer('idContract')->unsigned();

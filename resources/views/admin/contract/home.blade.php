@@ -35,9 +35,10 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th>Nome</th>
-                        <th class="hidden-xs">Email</th>
-                        <th class="hidden-xs">Aulas</th>
+                        <th>Data de assinatura</th>
+                        <th>Período (mêses)</th>
+                        <th class="hidden-xs">Mensalidade</th>
+                        <th class="hidden-xs">Dia vencimento</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -101,6 +102,39 @@
             </div>
             <div class="modal-footer">
                 <button form="formAddContract" class="btn btn-primary"><i class="fas fa-save"></i>&nbsp;&nbsp;Salvar</button>
+            </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+    <div class="modal fade" id="modal-invoices">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title"><i class="fas fa-file-contract"></i>&nbsp;&nbsp;Faturas</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="box-body table-responsive no-padding">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Vencimento</th>
+                                        <th>Valor</th>
+                                        <th>Situação</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="listInvoices"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
             </div>
             <!-- /.modal-content -->

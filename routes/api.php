@@ -41,6 +41,9 @@
         Route::post('/contract', 'ContractController@store');
         Route::post('/contract/list/{user}', 'ContractController@index');
 
+        Route::post('/invoice/list/{contract}', 'InvoiceController@index');
+        Route::post('/invoice/reportPayment/{invoice}', 'InvoiceController@reportPayment');
+
         // Route::get('/', 'HomeController@index')->name('admin');
 
         // //AULAS

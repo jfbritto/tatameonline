@@ -1,5 +1,9 @@
 $(document).ready(function(){
 
+    $("#btn-click").on('click', function(){
+        setTimeout(function(){ $("#name").focus(); }, 300);
+    });
+
     $("#formAddUser").submit(function(e) {
         
         e.preventDefault();
@@ -25,10 +29,11 @@ $(document).ready(function(){
                             cancelButtonText: "OK",
                             onClose: () => {
                                 $("#formAddUser").trigger("reset");
+                                setTimeout(function(){ $("#name").focus(); }, 300);
                             }
                         });
                     } else if (data.status == 'error') {
-                        // showError(data.message);
+                        showError(data.message);
                     }
                 }, goTo500).catch(goTo500);
             }
@@ -41,7 +46,6 @@ $(document).ready(function(){
 
     callList();
 
-    // setInterval(function(){ callList(); }, 500);
 });
 
 
