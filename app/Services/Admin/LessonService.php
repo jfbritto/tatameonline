@@ -126,6 +126,8 @@ class LessonService
                                 ->join('sports', 'sports.id', '=', 'lessons.idSport')
                                 ->where('registrations.idUser', '=', $idUser)
                                 ->where('registrations.isActive', '=', 1)
+                                ->orderByRaw('lessons.weekDay')
+                                ->orderByRaw('lessons.hour')
                                 ->select('lessons.*', 'sports.name as sport_name', 'registrations.id as id_registration')
                                 ->get();                    
 
@@ -149,9 +151,9 @@ class LessonService
                                 ->where('registrations.idUser', '=', $id)
                                 ->where('lessons.isActive', '=', 1)
                                 ->where('registrations.isActive', '=', 1)
-                                ->select('lessons.*', 'sports.name as sport_name')
                                 ->orderByRaw('lessons.weekDay')
                                 ->orderByRaw('lessons.hour')
+                                ->select('lessons.*', 'sports.name as sport_name')
                                 ->get();
 
             $response = ['status' => 'success', 'data' => $lessons];
@@ -168,27 +170,56 @@ class LessonService
 
         try{
 
-            $i = 0;
+            $i = 1;
             $less = false;
 
-            while ($less == false && $i < 7) {
+            $lesson = DB::table('lessons')
+                        ->join('registrations', 'registrations.idLesson', '=', 'lessons.id')
+                        ->join('sports', 'sports.id', '=', 'lessons.idSport')
+                        ->where('registrations.idUser', '=', $id)
+                        ->where('registrations.isActive', '=', 1)
+                        ->where('lessons.isActive', '=', 1)
+                        ->where('lessons.weekDay', '=', date("N"))
+                        ->where('lessons.hour', '>', date("H:i:s"))
+                        ->select('lessons.*', 'sports.name as sport_name')
+                        ->orderByRaw('lessons.hour')
+                        ->first();
+
+            if(!$lesson){
+
+                while ($less == false && $i < 7) {
                 
-                $lesson = DB::table('lessons')
+                        $lesson = DB::table('lessons')
                         ->join('registrations', 'registrations.idLesson', '=', 'lessons.id')
                         ->join('sports', 'sports.id', '=', 'lessons.idSport')
                         ->where('registrations.idUser', '=', $id)
                         ->where('registrations.isActive', '=', 1)
                         ->where('lessons.isActive', '=', 1)
                         ->where('lessons.weekDay', '=', date("N", strtotime("+".$i." day")))
-                        ->where('lessons.hour', '>', date("H:i:s"))
                         ->select('lessons.*', 'sports.name as sport_name')
+                        ->orderByRaw('lessons.hour')
                         ->first();
-                
-                if($lesson){
-                    $less = true;
+                        
+                    if($lesson){
+                        $less = true;
+                    }
+                    
+                    $i++;
                 }
                 
-                $i++;
+                if(!$lesson){
+                    $lesson = DB::table('lessons')
+                    ->join('registrations', 'registrations.idLesson', '=', 'lessons.id')
+                    ->join('sports', 'sports.id', '=', 'lessons.idSport')
+                    ->where('registrations.idUser', '=', $id)
+                    ->where('registrations.isActive', '=', 1)
+                    ->where('lessons.isActive', '=', 1)
+                    ->where('lessons.weekDay', '=', date("N"))
+                    ->where('lessons.hour', '<', date("H:i:s"))
+                    ->select('lessons.*', 'sports.name as sport_name')
+                    ->orderByRaw('lessons.hour')
+                    ->first();
+                }
             }
 
             $response = ['status' => 'success', 'data' => $lesson];
@@ -220,6 +251,20 @@ class LessonService
                     ->select('lessons.*', 'sports.name as sport_name', 'registrations.id as registration_id', 'user_graduations.id as user_graduation_id')
                     ->first();
             
+            $presence = false;        
+            if($lesson){
+
+                $presence = DB::table('presences')
+                    ->where('idRegistration', '=', $lesson->registration_id)
+                    ->where('idUserGraduation', '=', $lesson->user_graduation_id)
+                    ->where('checkedHour', '>=', date("Y-m-d H:i:s", strtotime("-10 minutes")))
+                    ->where('checkedHour', '<=', date("Y-m-d H:i:s", strtotime("+10 minutes")))
+                    ->first();
+            }
+                
+            if($presence)
+                $lesson = null;
+
             $response = ['status' => 'success', 'data' => $lesson];
         }catch(Exception $e){
             $response = ['status' => 'error', 'data' => $e->getMessage()];

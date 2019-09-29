@@ -9,7 +9,7 @@
             <!-- <small>preview of simple tables</small> -->
         </h1>
         <ol class="breadcrumb">
-            <li><a href="/admin"><i class="fas fa-home"></i>&nbsp;&nbsp;Home</a></li>
+            <li><a href="/student"><i class="fas fa-home"></i>&nbsp;&nbsp;Home</a></li>
         </ol>
 
 @stop
@@ -19,6 +19,27 @@
 <input type="hidden" id="idStudent" value="{{auth()->user()->id}}">
 
 <div id="lista"></div>
+
+<div class="box">
+    <div class="box-header">
+        <h3 class="box-title"><i class="fas fa-user-check"></i>&nbsp;&nbsp;últimas presenças</h3>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body table-responsive no-padding">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Dia aula</th>
+                    <th>Hora aula</th>
+                    <th>Data/Hora presença</th>
+                </tr>
+            </thead>
+            <tbody id="listPresences"></tbody>
+        </table>
+    </div>
+    <!-- /.box-body -->
+</div>
+
 
 <div class="modal fade" id="modal-check">
     <div class="modal-dialog">
@@ -47,7 +68,8 @@
             
             <div class="row">
                 <div class="col-md-12">
-                    <p>* Para confirmar sua presença na aula, basta preencher o campo abaixo com o token da academia informado pelo professor.</p>        
+                    <p>* Preencha o campo abaixo com o token da academia informado pelo professor para confirmar sua presença na aula.</p>        
+                    <p>* Tolerância de 10 minutos.</p>        
                 </div>
             </div>
             <form id="formAddPresence">
@@ -56,7 +78,7 @@
                     
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fas fa-key"></i></span>
-                        <input type="text" maxlength='6' class="form-control" placeholder="Informe o token" name="token" id="token">
+                        <input type="number" class="form-control" placeholder="Informe o token" name="token" id="token" required>
                     </div>
 
                 </div>

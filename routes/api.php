@@ -64,5 +64,9 @@
 
         //PRESENÇA
         Route::post('/presence', 'PresenceController@store');
+        Route::post('/presence/last/list/{user}', 'PresenceController@openLastPresencesByStudent');
+        
+        //ACADEMIA
+        Route::post('/academy/token/check/{user}/{token}', 'AcademyController@checkToken');
     });
 
