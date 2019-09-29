@@ -35,13 +35,28 @@ class UserGraduationService
 
         try{
 
-            DB::beginTransaction();
+            $resp = DB::table('graduations')
+                            ->where('id', '=', $data['idGraduation'])->first();
 
-            $user_graduation = UserGraduation::create($data);
+            $graduation = DB::table('user_graduations')
+                            ->join('graduations', 'graduations.id', '=', 'user_graduations.idGraduation')
+                            ->where('graduations.idSport', '=', $resp->idSport)
+                            ->where('user_graduations.idUser', '=', $data['idUser'])
+                            ->first();
 
-            DB::commit();
+            if($graduation){
+                $response = ['status' => 'error', 'data' => "Já existe uma graduação desse esporte vinculada à esse aluno!"];
+            }else{
 
-            $response = ['status' => 'success', 'data' => $user_graduation];
+                
+                DB::beginTransaction();
+                
+                $user_graduation = UserGraduation::create($data);
+                
+                DB::commit();
+                
+                $response = ['status' => 'success', 'data' => $user_graduation];
+            }                  
         }catch(Exception $e){
             DB::rollBack();
             $response = ['status' => 'error', 'data' => $e->getMessage()];

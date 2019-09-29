@@ -15,7 +15,15 @@ class CreatePresencesTable extends Migration
     {
         Schema::create('presences', function (Blueprint $table) {
             $table->increments('id');
+
+            $table->dateTime("checkedHour");
+            $table->integer('idRegistration')->nullable()->unsigned();
+            $table->integer('idUserGraduation')->nullable()->unsigned();
+
             $table->timestamps();
+            
+            $table->foreign('idRegistration')->references('id')->on('registrations')->onDelete('cascade');
+            $table->foreign('idUserGraduation')->references('id')->on('user_graduations')->onDelete('cascade');
         });
     }
 

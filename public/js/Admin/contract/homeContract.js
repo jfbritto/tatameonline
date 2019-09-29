@@ -111,7 +111,7 @@ function list(id)
                 html += `<tr>
                             <td>${dateFormat(data.data[i].signatureDate)}</td>
                             <td class="hidden-xs">${data.data[i].months}</td>
-                            <td class="hidden-xs">${data.data[i].monthlyPayment}</td>
+                            <td>${data.data[i].monthlyPayment}</td>
                             <td class="hidden-xs">${data.data[i].expiryDay}</td>
                             <td>
                                 <div class="input-group-btn">

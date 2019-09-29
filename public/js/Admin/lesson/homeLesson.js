@@ -24,7 +24,7 @@ function list(id)
                             <td class="hidden-xs">${data.data[i].teacher}</td>
                             <td>${dia_semana[data.data[i].weekDay]}</td>
                             <td>${data.data[i].hour}</td>
-                            <td>${data.data[i].alunos}</td>
+                            <td class="hidden-xs">${data.data[i].alunos}</td>
                             <td>
                                 <div class="input-group-btn">
                                     <a class="btn btn-primary btn-sm pull-right" href="/admin/lesson/show/${data.data[i].id}" title="Abrir aula"><i class="fas fa-sign-in-alt"></i></a>

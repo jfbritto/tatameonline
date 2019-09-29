@@ -210,6 +210,12 @@ return [
             'icon' => 'fas fa-users',
             'can'  => 'student',
         ],
+        [
+            'text'        => 'Graduações',
+            'url'         => 'student/graduation',
+            'icon' => 'fas fa-graduation-cap',
+            'can'  => 'student',
+        ],
         
         // [
         //     'text'        => 'Aulas',

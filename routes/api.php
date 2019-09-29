@@ -47,34 +47,22 @@
         Route::post('/graduation', 'UserGraduationController@store');
         Route::post('/graduation/list/{user}', 'UserGraduationController@index');
         Route::post('/graduation/destroy/{userGraduation}', 'UserGraduationController@destroy');
-
         Route::post('/graduation/list/sport/{sport}', 'GraduationController@listBySport');
         
-        // Route::get('/', 'HomeController@index')->name('admin');
-
-        // //AULAS
-        // Route::get('/lesson', 'LessonController@index')->name('admin.lesson');
-        // Route::get('/lesson/create', 'LessonController@create')->name('admin.lesson.create');
-        // Route::get('/lesson/show/{lesson}', 'LessonController@show')->name('admin.lesson.show');
-        // Route::get('/lesson/edit/{lesson}', 'LessonController@edit')->name('admin.lesson.edit');
-
-        // //ALUNOS
-        // Route::get('/student', 'StudentController@index')->name('admin.student');
-        // Route::get('/student/create', 'StudentController@create')->name('admin.student.create');
-        // Route::get('/student/show/{user}', 'StudentController@show')->name('admin.student.show');
-        // Route::get('/student/edit/{user}', 'StudentController@edit')->name('admin.student.edit');
-
-        // //FINANCEIRO
-        // Route::get('/financial', 'FinancialController@index')->name('admin.financial');
+        Route::post('/presence/list/{user}/{userGraduation}', 'PresenceController@index');
+        
     });
 
 
 
-    Route::group(['middleware' => 'student', 'prefix' => 'student', 'namespace' => 'Student'], function(){
+    Route::group(['prefix' => 'student', 'namespace' => 'Student'], function(){    
 
-        // Route::get('/', 'HomeController@index')->name('student');
+        //AULAS
+        Route::post('/lesson/list/{user}', 'LessonController@index');
+        Route::post('/lesson/next/{user}', 'LessonController@nextLesson');
+        Route::post('/lesson/check/{user}', 'LessonController@checkLesson');
 
-        // //AULAS
-        // Route::get('/lesson', 'LessonController@index')->name('student.lesson');
+        //PRESENÇA
+        Route::post('/presence', 'PresenceController@store');
     });
 

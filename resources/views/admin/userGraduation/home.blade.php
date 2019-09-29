@@ -37,8 +37,8 @@
                     <tr>
                         <th>Esporte</th>
                         <th>Graduação</th>
-                        <th>Data início</th>
-                        <th>Data fim</th>
+                        <th class="hidden-xs">Data início</th>
+                        <th class="hidden-xs">Data fim</th>
                         <th>Situação</th>
                         <th></th>
                     </tr>
@@ -98,7 +98,7 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title"><i class="fas fa-file-contract"></i>&nbsp;&nbsp;Faturas</h4>
+                <h4 class="modal-title"><i class="fas fa-user-check"></i>&nbsp;&nbsp;Presenças</h4>
             </div>
             <div class="modal-body">
                 <div class="row">
@@ -107,10 +107,9 @@
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
-                                        <th>Vencimento</th>
-                                        <th>Valor</th>
-                                        <th>Situação</th>
-                                        <th></th>
+                                        <th>Dia aula</th>
+                                        <th>Hora aula</th>
+                                        <th>Data/Hora presença</th>
                                     </tr>
                                 </thead>
                                 <tbody id="listPresences"></tbody>

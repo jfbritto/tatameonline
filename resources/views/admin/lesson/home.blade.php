@@ -37,7 +37,7 @@
                         <th class="hidden-xs">Professor</th>
                         <th>Dia</th>
                         <th>Hora</th>
-                        <th>Alunos</th>
+                        <th class="hidden-xs">Alunos</th>
                         <th></th>
                     </tr>
                 </thead>

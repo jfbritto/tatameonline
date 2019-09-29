@@ -36,3 +36,16 @@ function dateFormat(data)
         return `${dia}/${mes}/${ano}`;
     }
 }
+
+function dateFullFormat(data)
+{
+    if(data == null || data == undefined || data == ''){
+        return '';
+    }else{
+
+        const [date, hour] = data.split(' ');
+
+        const [ano, mes, dia] = date.split('-');
+        return `${dia}/${mes}/${ano} ${hour}`;
+    }
+}
