@@ -32,6 +32,7 @@
                     <th>Dia aula</th>
                     <th>Hora aula</th>
                     <th>Data/Hora presença</th>
+                    <th>Esporte</th>
                 </tr>
             </thead>
             <tbody id="listPresences"></tbody>

@@ -151,6 +151,7 @@ function openLastPresencesByStudent(idUser)
                             <td>${dia_semana[data.data[i].weekDay]}</td>
                             <td>${data.data[i].hour}</td>
                             <td>${dateFullFormat(data.data[i].checkedHour)}</td>
+                            <td>${data.data[i].name_sport}</td>
                         </tr>`;
             }
 
