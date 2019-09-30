@@ -21,7 +21,7 @@
             <h3 class="box-title"><i class="fas fa-user-graduate"></i> &nbsp;&nbsp; Alunos</h3>
 
             <div class="box-tools">
-            <div class="input-group input-group-sm hidden-xs" style="width: 150px; text-align: right">
+            <div class="input-group input-group-sm" style="width: 150px; text-align: right">
                 <div class="input-group-btn">
                     <a href="{{ route('admin.student.create') }}" class="btn btn-success" title="Adicionar aluno"><i class="fas fa-plus fa-lg"></i></i></a>
                 </div>

@@ -21,7 +21,7 @@
             <h3 class="box-title"><i class="fas fa-users"></i> &nbsp;&nbsp;Aulas</h3>
 
             <div class="box-tools">
-            <div class="input-group input-group-sm hidden-xs" style="width: 150px; text-align: right">
+            <div class="input-group input-group-sm" style="width: 150px; text-align: right">
                 <div class="input-group-btn">
                     <a href="{{ route('admin.lesson.create') }}" class="btn btn-success" title="Adicionar aula"><i class="fas fa-plus fa-lg"></i></i></a>
                 </div>
