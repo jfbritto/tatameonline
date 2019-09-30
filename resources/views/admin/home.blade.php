@@ -16,6 +16,10 @@
 
 @section('content')
     
+<div id="container" style="margin: 20px;width: 200px;height: 200px;position: relative;"></div>
 
+@stop
 
+@section('adminlte_js')
+    <script src="{{asset('/js/Admin/indexAdmin.js')}}"></script>
 @stop

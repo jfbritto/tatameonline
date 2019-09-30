@@ -39,6 +39,7 @@
 <script src="{{ asset('vendor/adminlte/vendor/jquery/dist/jquery.min.js') }}"></script>
 <script src="{{ asset('vendor/adminlte/vendor/jquery/dist/jquery.slimscroll.min.js') }}"></script>
 <script src="{{ asset('vendor/adminlte/vendor/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('js/common/progressbar.min.js') }}"></script>
 
 @include('adminlte::plugins', ['type' => 'js'])
 
