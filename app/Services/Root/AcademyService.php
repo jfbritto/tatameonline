@@ -90,4 +90,44 @@ class AcademyService
     
         return $response;
     }
+
+    public function getById($id)
+    {
+        $response = [];
+
+        try{
+
+            $academy = DB::table('academies')->where('id', '=', $id)->first();
+
+            $response = ['status' => 'success', 'data' => $academy];
+        }catch(Exception $e){
+            $response = ['status' => 'error', 'data' => $e->getMessage()];
+        }
+
+        return $response;
+    }
+
+    public function updateToken($id)
+    {
+        $response = [];
+        
+        try{
+            DB::beginTransaction();
+
+            $token = rand(1,9).rand(1,9).rand(1,9).rand(1,9).rand(1,9).rand(1,9);
+            
+            DB::table('academies')
+                            ->where('id', $id)
+                            ->update(['token' => $token]);
+            
+            DB::commit();
+            
+            $response = ['status' => 'success', 'data' => ''];
+        }catch(Exception $e){
+            DB::rollBack();
+            $response = ['status' => 'error', 'data' => $e->getMessage()];
+        }
+        
+        return $response;
+    }
 }

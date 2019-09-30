@@ -61,7 +61,7 @@ function openInvoices(id)
                             <td>${data.data[i].value}</td>
                             <td>${data.data[i].isPaid==0?'Aberto':'Pago'}</td>
                             <td>
-                                <a title="Informar pagamento" onclick="reportPayment(${data.data[i].id}, ${data.data[i].idContract})" class="btn btn-sm btn-success pull-right"><i class="fas fa-file-invoice-dollar"></i></a>
+                                <a title="Informar pagamento" onclick="reportPayment(${data.data[i].id}, ${data.data[i].idContract})" class="btn btn-sm btn-success pull-right"><i id="ico${data.data[i].id}" class="fas fa-file-invoice-dollar"></i></a>
                             </td>
                         </tr>`;
             }
@@ -76,17 +76,51 @@ function openInvoices(id)
 
 function reportPayment(idInvoice, idContract)
 {
-    $.post(window.location.origin + "/api/admin/invoice/reportPayment/"+idInvoice, {
-        
-    }).then(function(data) {
-        if(data.status == 'success') {
-            
-            openInvoices(idContract);   
 
-        } else if (data.status == 'error') {
-            showError(data.message);
+
+    Swal.fire({
+        title: 'Alenção!',
+        text: "Confirma o recebimento?",
+        type: 'warning',
+        showCancelButton: false,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sim'
+      }).then((result) => {
+        if (result.value) {
+
+            $("#ico"+idInvoice).removeClass("fa-file-invoice-dollar");
+            $("#ico"+idInvoice).addClass("fa-sync-alt");
+            $("#ico"+idInvoice).addClass("fa-spin");
+        
+            $.post(window.location.origin + "/api/admin/invoice/reportPayment/"+idInvoice, {
+                
+            }).then(function(data) {
+                if(data.status == 'success') {
+                    
+                    $("#ico"+idInvoice).removeClass("fa-sync-alt");
+                    $("#ico"+idInvoice).removeClass("fa-spin");
+                    $("#ico"+idInvoice).addClass("fa-file-invoice-dollar");
+        
+                    openInvoices(idContract);   
+
+                      Swal.fire(
+                        'Pagamento confirmado!',
+                        '',
+                        'success'
+                      )
+        
+                } else if (data.status == 'error') {
+                    showError(data.message);
+                }
+            }, goTo500).catch(goTo500);    
+
         }
-    }, goTo500).catch(goTo500);    
+      })
+
+
+
+
 }
 
 function list(id)
