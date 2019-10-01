@@ -79,7 +79,7 @@ function reportPayment(idInvoice, idContract)
 
 
     Swal.fire({
-        title: 'Alenção!',
+        title: 'Atenção!',
         text: "Confirma o recebimento?",
         type: 'warning',
         showCancelButton: false,
