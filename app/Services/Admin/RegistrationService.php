@@ -43,7 +43,7 @@ class RegistrationService
                                 ->where('isActive', '=', 1)
                                 ->first();
             
-            if($user_graduation){
+            if($contract){
 
                 
                 $lesson = Lesson::find($data['idLesson']);
