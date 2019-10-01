@@ -38,28 +38,39 @@ class RegistrationService
 
         try{
 
-            $lesson = Lesson::find($data['idLesson']);
-
-            $user_graduation = DB::table('user_graduations')
-                                ->join('graduations', 'graduations.id', '=', 'user_graduations.idGraduation')
-                                ->where('user_graduations.idUser', '=', $data['idUser'])
-                                ->where('user_graduations.isActive', '=', 1)
-                                ->where('graduations.idSport', '=', $lesson->idSport)
+            $contract = DB::table('contracts')
+                                ->where('idUser', '=', $data['idUser'])
+                                ->where('isActive', '=', 1)
                                 ->first();
-
+            
             if($user_graduation){
 
-                DB::beginTransaction();
                 
-                $registration = Registration::create($data);
+                $lesson = Lesson::find($data['idLesson']);
                 
-                DB::commit();
-                
-                $response = ['status' => 'success', 'data' => $registration];
-            }else{
+                $user_graduation = DB::table('user_graduations')
+                                            ->join('graduations', 'graduations.id', '=', 'user_graduations.idGraduation')
+                                            ->where('user_graduations.idUser', '=', $data['idUser'])
+                                            ->where('user_graduations.isActive', '=', 1)
+                                            ->where('graduations.idSport', '=', $lesson->idSport)
+                                            ->first();
+                                
+                if($user_graduation){
 
-                $response = ['status' => 'error', 'data' => "Para se matricular na aula o aluno deve ter graduação desse esporte cadastrada."];
-            }   
+                    DB::beginTransaction();
+
+                    $registration = Registration::create($data);
+                    
+                    DB::commit();
+                    
+                    $response = ['status' => 'success', 'data' => $registration];
+                }else{
+                    
+                    $response = ['status' => 'error', 'data' => "Aluno sem graduação desse esporte cadastrada."];
+                }   
+            }else{
+                $response = ['status' => 'error', 'data' => "Aluno sem contrato cadastrado."];
+            }              
 
         }catch(Exception $e){
             DB::rollBack();
