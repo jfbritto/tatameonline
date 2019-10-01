@@ -22,7 +22,7 @@
             <div class="box-tools">
             <div class="input-group input-group-sm" style="width: 150px; text-align: right">
                 <div class="input-group-btn">
-                    <a href="{{ route('root.academy.create') }}" class="btn btn-success" title="Adicionar academia"><i class="fas fa-plus fa-lg"></i></i></a>
+                    <a href="#" data-toggle="modal" data-target="#modal-academy" class="btn btn-success" title="Adicionar academia"><i class="fas fa-plus fa-lg"></i></i></a>
                 </div>
             </div>
             </div>
@@ -45,6 +45,66 @@
             </table>
         </div>
         <!-- /.box-body -->
+    </div>
+
+    <div class="modal fade" id="modal-academy">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title"><i class="fas fa-briefcase"></i>&nbsp;&nbsp;Cadastrar academia</h4>
+            </div>
+            <div class="modal-body">
+                <form id="formAddAcademy">
+                    <div class="row">
+                        <div class="col-sm-6">
+
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fas fa-briefcase"></i></span>
+                                <input type="text" class="form-control" placeholder="Nome da academia" name="name" id="name" autofocus>
+                            </div>
+                    
+                        </div>
+                        <div class="col-sm-6">
+
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fas fa-phone"></i></span>
+                                <input type="text" class="form-control" placeholder="Telefone da academia" name="phone" id="phone">
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <br>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fas fa-user"></i></span>
+                                <input type="text" class="form-control" placeholder="Nome do responsável" name="responsable" id="responsable">
+                            </div>
+                    
+                        </div>
+                        <div class="col-sm-6">
+
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fas fa-phone"></i></span>
+                                <input type="text" class="form-control" placeholder="Telefone do responsável" name="phoneResponsable" id="phoneResponsable">
+                            </div>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button form="formAddAcademy" class="btn btn-primary pull-right"><i class="fas fa-save"></i>&nbsp;&nbsp;Salvar</button>
+            </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
     </div>
 
 @stop

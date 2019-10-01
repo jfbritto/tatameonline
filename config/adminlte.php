@@ -156,12 +156,6 @@ return [
             'icon' => 'fas fa-futbol',
             'can'  => 'root',
         ],
-        [
-            'text'        => 'Graduações',
-            'url'         => 'root/graduation',
-            'icon' => 'fas fa-graduation-cap',
-            'can'  => 'root',
-        ],
         
         //********* */
         //* ADMIN ***/
@@ -184,6 +178,12 @@ return [
             'text'        => 'Aulas',
             'url'         => 'admin/lesson',
             'icon' => 'fas fa-users',
+            'can'  => 'admin',
+        ],
+        [
+            'text'        => 'Graduações',
+            'url'         => 'admin/graduation',
+            'icon' => 'fas fa-graduation-cap',
             'can'  => 'admin',
         ],
         [

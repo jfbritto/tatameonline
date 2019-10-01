@@ -10,7 +10,7 @@ $(document).ready(function(){
             allowEscapeKey: false,
             onOpen: () => {
                 Swal.showLoading();
-                $.post(window.location.origin + "/api/admin/graduation", {
+                $.post(window.location.origin + "/api/admin/user-graduation", {
                     idGraduation: $("#idGraduation").val(),
                     idUser: $("#idUser").val(),
                     startDate: $("#startDate").val(),
@@ -42,11 +42,11 @@ $(document).ready(function(){
 
     $("#sports").on("change", function(){
 
-        listGraduationsBySport($(this).val());
+        listGraduationsBySport($(this).val(), $("#idAcademy").val());
 
     });
 
-    setTimeout(function(){ listGraduationsBySport($("#sports option:selected").val()); }, 300);
+    setTimeout(function(){ listGraduationsBySport($("#sports option:selected").val(), $("#idAcademy").val()); }, 300);
     
 
 });
@@ -54,7 +54,7 @@ $(document).ready(function(){
 
 function list(id)
 {
-    $.post(window.location.origin + "/api/admin/graduation/list/"+id, {
+    $.post(window.location.origin + "/api/admin/user-graduation/list/"+id, {
         
     }).then(function(data) {
         
@@ -111,10 +111,10 @@ function listSports()
     }, goTo500).catch(goTo500);
 }
 
-function listGraduationsBySport(id)
+function listGraduationsBySport(idSport, idAcademy)
 {
     
-    $.post(window.location.origin + "/api/admin/graduation/list/sport/"+id, {
+    $.post(window.location.origin + "/api/admin/user-graduation/list/sport/"+idSport+"/"+idAcademy, {
     
     }).then(function(data) {
         
@@ -175,7 +175,7 @@ function destroy(id)
         allowEscapeKey: false,
         onOpen: () => {
             Swal.showLoading();
-            $.post(window.location.origin + "/api/admin/graduation/destroy/"+id, {
+            $.post(window.location.origin + "/api/admin/user-graduation/destroy/"+id, {
             
             }).then(function(data) {
                 if(data.status == 'success') {

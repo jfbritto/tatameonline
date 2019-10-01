@@ -49,6 +49,8 @@
         <!-- /.box-body -->
     </div>
 
+    <input type="hidden" id="idAcademy" value="{{auth()->user()->academy->id}}">
+
     <div class="modal fade" id="modal-default">
         <div class="modal-dialog">
             <div class="modal-content">

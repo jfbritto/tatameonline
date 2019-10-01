@@ -20,10 +20,12 @@ class CreateGraduationsTable extends Migration
             $table->integer('hours');
             $table->boolean('isActive')->default(true);
             
+            $table->integer('idAcademy')->unsigned();
             $table->integer('idSport')->unsigned();
             
             $table->timestamps();
 
+            $table->foreign('idAcademy')->references('id')->on('academies')->onDelete('cascade');
             $table->foreign('idSport')->references('id')->on('sports')->onDelete('cascade');
         });
     }

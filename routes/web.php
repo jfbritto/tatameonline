@@ -53,6 +53,10 @@ Route::group(['middleware' => ['auth']], function(){
         Route::get('/student/create', 'StudentController@create')->name('admin.student.create');
         Route::get('/student/show/{user}', 'StudentController@show')->name('admin.student.show');
         Route::get('/student/edit/{user}', 'StudentController@edit')->name('admin.student.edit');
+
+        //GRADUAÇÃO
+        Route::get('/graduation', 'GraduationController@index')->name('admin.graduation');
+        Route::get('/graduation/create', 'GraduationController@create')->name('admin.graduation.create');
         
         //CONTRATOS
         Route::get('/student/contract/{user}', 'ContractController@index')->name('admin.student.contract');

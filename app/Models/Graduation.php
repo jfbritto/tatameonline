@@ -10,6 +10,7 @@ class Graduation extends Model
         'name',
         'hours',
         'idSport',
+        'idAcademy',
         'isActive',
     ];
 }

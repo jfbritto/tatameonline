@@ -185,7 +185,7 @@ function destroy(id)
 listaGraduacao
 function listGraduations(id)
 {
-    $.post(window.location.origin + "/api/admin/graduation/active/list/"+id, {
+    $.post(window.location.origin + "/api/admin/user-graduation/active/list/"+id, {
         
     }).then(function(data) {
         

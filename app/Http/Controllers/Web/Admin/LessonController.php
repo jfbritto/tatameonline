@@ -11,7 +11,9 @@ class LessonController extends Controller
 {
     public function index()
     {
-        return view('admin.lesson.home');
+        $sports = Sport::get();
+        
+        return view('admin.lesson.home', ['sports' => $sports]);
     }
 
     public function create()

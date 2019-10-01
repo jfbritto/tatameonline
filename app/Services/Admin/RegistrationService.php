@@ -3,6 +3,8 @@
 namespace App\Services\Admin;
 
 use App\Models\Registration;
+use App\Models\UserGraduation;
+use App\Models\Lesson;
 use DB;
 use Exception;
 
@@ -36,13 +38,29 @@ class RegistrationService
 
         try{
 
-            DB::beginTransaction();
+            $lesson = Lesson::find($data['idLesson']);
 
-            $registration = Registration::create($data);
+            $user_graduation = DB::table('user_graduations')
+                                ->join('graduations', 'graduations.id', '=', 'user_graduations.idGraduation')
+                                ->where('user_graduations.idUser', '=', $data['idUser'])
+                                ->where('user_graduations.isActive', '=', 1)
+                                ->where('graduations.idSport', '=', $lesson->idSport)
+                                ->first();
 
-            DB::commit();
+            if($user_graduation){
 
-            $response = ['status' => 'success', 'data' => $registration];
+                DB::beginTransaction();
+                
+                $registration = Registration::create($data);
+                
+                DB::commit();
+                
+                $response = ['status' => 'success', 'data' => $registration];
+            }else{
+
+                $response = ['status' => 'error', 'data' => "Para se matricular na aula o aluno deve ter graduação desse esporte cadastrada."];
+            }   
+
         }catch(Exception $e){
             DB::rollBack();
             $response = ['status' => 'error', 'data' => $e->getMessage()];

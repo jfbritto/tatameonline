@@ -44,12 +44,16 @@
         
         Route::post('/invoice/list/{contract}', 'InvoiceController@index');
         Route::post('/invoice/reportPayment/{invoice}', 'InvoiceController@reportPayment');
+
+        Route::post('/graduation', 'GraduationController@store');
+        Route::post('/graduation/list/{academy}', 'GraduationController@index');
+        Route::post('/graduation/destroy/{graduation}', 'GraduationController@destroy');
         
-        Route::post('/graduation', 'UserGraduationController@store');
-        Route::post('/graduation/list/{user}', 'UserGraduationController@index');
-        Route::post('/graduation/destroy/{userGraduation}', 'UserGraduationController@destroy');
-        Route::post('/graduation/list/sport/{sport}', 'GraduationController@listBySport');
-        Route::post('/graduation/active/list/{user}', 'UserGraduationController@listActivesByUser');
+        Route::post('/user-graduation', 'UserGraduationController@store');
+        Route::post('/user-graduation/list/{user}', 'UserGraduationController@index');
+        Route::post('/user-graduation/destroy/{userGraduation}', 'UserGraduationController@destroy');
+        Route::post('/user-graduation/list/sport/{sport}/{academy}', 'GraduationController@listBySport');
+        Route::post('/user-graduation/active/list/{user}', 'UserGraduationController@listActivesByUser');
         
         Route::post('/presence/list/{user}/{userGraduation}', 'PresenceController@index');
         

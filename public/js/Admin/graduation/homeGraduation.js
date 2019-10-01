@@ -1,57 +1,50 @@
 $(document).ready(function(){
 
-    $("#btn-click").on('click', function(){
-        setTimeout(function(){ $("#name").focus(); }, 300);
-    });
-
-    $("#formAddUser").submit(function(e) {
-        
+    $("#formAddGraduation").submit(function(e) {
         e.preventDefault();
-      
+       
         Swal.queue([{
             title: 'Carregando...',
             allowOutsideClick: false,
             allowEscapeKey: false,
             onOpen: () => {
                 Swal.showLoading();
-                $.post(window.location.origin + "/api/root/academy/users", {
+                $.post(window.location.origin + "/api/admin/graduation", {
                     name: $("#name").val(),
-                    email: $("#email").val(),
+                    hours: $("#hours").val(),
+                    idSport: $("#idSport").val(),
                     idAcademy: $("#idAcademy").val(),
+                    startDate: $("#startDate").val()
                 }).then(function(data) {
-                    callList();
                     if(data.status == 'success') {
+                        list($("#idAcademy").val());
                         Swal.fire({
                             type: 'success',
-                            text: 'Usuário cadastrado com sucesso',
+                            text: 'Graduação cadastrada com sucesso',
                             showConfirmButton: false,
                             showCancelButton: true,
                             cancelButtonText: "OK",
                             onClose: () => {
-                                $("#formAddUser").trigger("reset");
+                                $("#formAddGraduation").trigger("reset");
                                 setTimeout(function(){ $("#name").focus(); }, 300);
                             }
                         });
                     } else if (data.status == 'error') {
-                        showError(data.message);
+                        // showError(data.message);
                     }
                 }, goTo500).catch(goTo500);
             }
         }]);
     });
-    
-    function callList(){
-        list($("#idAcademy").val());
-    }
 
-    callList();
-
+    list($("#idAcademy").val());
+    listSports();
 });
-
 
 function list(id)
 {
-    $.post(window.location.origin + "/api/root/academy/users/list/"+id, {
+
+    $.post(window.location.origin + "/api/admin/graduation/list/"+id, {
         
     }).then(function(data) {
         if(data.status == 'success') {
@@ -62,11 +55,10 @@ function list(id)
 
                 html += `<tr>
                             <td>${data.data[i].name}</td>
-                            <td class="hidden-xs">${data.data[i].email}</td>
+                            <td>${data.data[i].sport_name}</td>
+                            <td>${data.data[i].hours}</td>
                             <td>
-                                <div class="input-group-btn">
-                                    <a class="btn btn-danger btn-sm pull-right destroy" onclick="destroy(${data.data[i].id})" data-id="${data.data[i].id}" title="Deletar usuário"><i class="fas fa-trash-alt"></i></a>
-                                </div>    
+                                <a class="btn btn-danger btn-sm pull-right destroy" onclick="destroy(${data.data[i].id})" data-id="${data.data[i].id}" title="Deletar esporte"><i class="fas fa-trash-alt"></i></a>
                             </td>
                         </tr>`;
             }
@@ -79,6 +71,31 @@ function list(id)
     }, goTo500).catch(goTo500);
 }
 
+function listSports()
+{
+
+    $.post(window.location.origin + "/api/root/sport/list", {
+        
+    }).then(function(data) {
+        if(data.status == 'success') {
+    
+            var html = '<option value="">-- Selecione --</option>';
+
+            for (var i in data.data) {
+
+                html += `<option value="${data.data[i].id}">${data.data[i].name}</option>`;
+            }
+
+            $('#idSport').html(html);
+
+        } else if (data.status == 'error') {
+            // showError(data.message);
+        }
+    }, goTo500).catch(goTo500);
+}
+
+
+
 function destroy(id)
 {
     
@@ -88,25 +105,26 @@ function destroy(id)
         allowEscapeKey: false,
         onOpen: () => {
             Swal.showLoading();
-            $.post(window.location.origin + "/api/root/academy/users/destroy/"+id, {
+            $.post(window.location.origin + "/api/admin/graduation/destroy/"+id, {
             
             }).then(function(data) {
                 if(data.status == 'success') {
-                    
+                    list($("#idAcademy").val());
                     Swal.fire({
                         type: 'success',
-                        text: 'Usuário deletado com sucesso',
+                        text: 'Graduação deletada com sucesso',
                         showConfirmButton: false,
                         showCancelButton: true,
                         cancelButtonText: "OK",
                         onClose: () => {
-                            list(id);
+                            
                         }
                     });
                 } else if (data.status == 'error') {
-                    // showError(data.message);
+                    showError(data.message);
                 }
             }, goTo500).catch(goTo500);
         }
     }]);
 };
+

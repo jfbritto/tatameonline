@@ -23,7 +23,7 @@
             <div class="box-tools">
             <div class="input-group input-group-sm" style="width: 150px; text-align: right">
                 <div class="input-group-btn">
-                    <a href="{{ route('admin.lesson.create') }}" class="btn btn-success" title="Adicionar aula"><i class="fas fa-plus fa-lg"></i></i></a>
+                    <a href="#" data-toggle="modal" data-target="#modal-lesson" class="btn btn-success" title="Adicionar aula"><i class="fas fa-plus fa-lg"></i></i></a>
                 </div>
             </div>
             </div>
@@ -47,7 +47,78 @@
         <!-- /.box-body -->
     </div>
 
-    <input type="hidden" id="idAcademy" value="{{auth()->user()->academy->id}}">
+    <div class="modal fade" id="modal-lesson">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title"><i class="fas fa-users"></i>&nbsp;&nbsp;Cadastrar aula</h4>
+            </div>
+            <div class="modal-body">
+                <form id="formAddLesson">
+                    <div class="row">
+                        <div class="col-sm-6">
+
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fas fa-user"></i></span>
+                                <input type="text" class="form-control" placeholder="Nome do professor" name="teacher" id="teacher" autofocus>
+                            </div>
+                    
+                        </div>
+                        <div class="col-sm-6">
+
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fas fa-calendar"></i></span>
+                                <select class="form-control" name="weekDay" id="weekDay">
+                                    <option value=""> -- Selecione -- </option>
+                                    <option value="1">Segunda</option>
+                                    <option value="2">Terça</option>
+                                    <option value="3">Quarta</option>
+                                    <option value="4">Quinta</option>
+                                    <option value="5">Sexta</option>
+                                    <option value="6">Sábado</option>
+                                    <option value="7">Domingo</option>
+                                </select>
+                            </div>
+
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-sm-6">
+
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fas fa-clock"></i></span>
+                                <input type="time" class="form-control" placeholder="Hora da aula" name="hour" id="hour">
+                            </div>
+                    
+                        </div>
+                        <div class="col-sm-6">
+
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fas fa-futbol"></i></span>
+                                <select class="form-control" name="idSport" id="idSport">
+                                    <option value=""> -- Selecione -- </option>
+                                    @foreach($sports as $sport)
+                                        <option value="{{$sport->id}}"> {{$sport->name}} </option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                        </div>
+                    </div>
+                    <input type="hidden" id="idAcademy" name="idAcademy" value="{{auth()->user()->academy->id}}">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button form="formAddLesson" class="btn btn-primary pull-right"><i class="fas fa-save"></i>&nbsp;&nbsp;Salvar</button>
+            </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
 
 @stop
 

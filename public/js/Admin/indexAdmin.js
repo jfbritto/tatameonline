@@ -64,8 +64,8 @@ $(document).ready(function(){
         }, function() {
             updateToken($("#idAcademy").val());
             getToken($("#idAcademy").val());
-            reset();
-            start();
+            // reset();
+            // start();
         });
     } 
     
@@ -110,6 +110,9 @@ $(document).ready(function(){
         }).then(function(data) {
                         
             if(data.status == 'success') {
+
+                reset();
+                start();
                 
             } else if (data.status == 'error') {
                 showError(data.message);
