@@ -92,6 +92,7 @@ class GraduationService
             $graduations = DB::table('graduations')
                                 ->where('graduations.idSport', '=', $idSport)
                                 ->where('graduations.idAcademy', '=', $idAcademy)
+                                ->where('graduations.isActive', '=', 1)
                                 ->select('graduations.*')
                                 ->get();
 
