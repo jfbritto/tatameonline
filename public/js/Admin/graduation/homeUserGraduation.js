@@ -46,7 +46,7 @@ $(document).ready(function(){
 
     });
 
-    setTimeout(function(){ listGraduationsBySport($("#sports option:selected").val(), $("#idAcademy").val()); }, 300);
+    setTimeout(function(){ listGraduationsBySport($("#sports option:selected").val(), $("#idAcademy").val()); }, 500);
     
 
 });
