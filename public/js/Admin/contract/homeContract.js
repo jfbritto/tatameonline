@@ -118,9 +118,6 @@ function reportPayment(idInvoice, idContract)
         }
       })
 
-
-
-
 }
 
 function list(id)

@@ -26,7 +26,7 @@ class ContractController extends Controller
             
         return response()->json(['status'=>'error', 'message'=>$response['data']], 500);
     }
-
+    
     public function create()
     {
         //
@@ -40,47 +40,57 @@ class ContractController extends Controller
             'monthlyPayment' => 'required',
             'expiryDay' => 'required',
             'idUser' => 'required',
-        ]);
-
-        $data = [
-            'signatureDate' => $request->signatureDate,
-            'months' => $request->months,
-            'monthlyPayment' => $request->monthlyPayment,
-            'expiryDay' => $request->expiryDay,
-            'idUser' => $request->idUser,
-            'idActive' => 1,
-        ];
-
-        $response = $this->contractService->store($data);
-
-        if($response['status'] == 'success')
+            ]);
+            
+            $data = [
+                'signatureDate' => $request->signatureDate,
+                'months' => $request->months,
+                'monthlyPayment' => $request->monthlyPayment,
+                'expiryDay' => $request->expiryDay,
+                'idUser' => $request->idUser,
+                'idActive' => 1,
+            ];
+            
+            $response = $this->contractService->store($data);
+            
+            if($response['status'] == 'success')
             return response()->json(['status'=>'success'], 201);
             
-        return response()->json(['status'=>'error', 'message'=>$response['data']], 201);
-    }
-
-    public function show($id)
-    {
-        //
-    }
-
-    public function edit($id)
-    {
-        //
-    }
-
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    public function destroy($id)
-    {       
-        $response = $this->contractService->destroy($id);
-
-        if($response['status'] == 'success')
+            return response()->json(['status'=>'error', 'message'=>$response['data']], 201);
+        }
+        
+        public function show($id)
+        {
+            //
+        }
+        
+        public function edit($id)
+        {
+            //
+        }
+        
+        public function update(Request $request, $id)
+        {
+            //
+        }
+        
+        public function destroy($id)
+        {       
+            $response = $this->contractService->destroy($id);
+            
+            if($response['status'] == 'success')
             return response()->json(['status'=>'success'], 201);
             
-        return response()->json(['status'=>'error', 'message'=>$response['data']], 201);
+            return response()->json(['status'=>'error', 'message'=>$response['data']], 201);
+        }
+        
+        public function getActiveByUser(User $user)
+        {
+            $response = $this->contractService->getActiveByUser($user->id);
+    
+            if($response['status'] == 'success')
+                return response()->json(['status'=>'success', 'data'=>$response['data']], 201);
+                
+            return response()->json(['status'=>'error', 'message'=>$response['data']], 500);
+        }
     }
-}

@@ -52,7 +52,6 @@
         <div class="row">
             <div class="col-sm-6">
                 <select id="time" class="form-control">
-                    <option value="10">10 segundos</option>
                     <option value="20">20 segundos</option>
                     <option value="30">30 segundos</option>
                     <option value="40">40 segundos</option>

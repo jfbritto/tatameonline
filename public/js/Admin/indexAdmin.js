@@ -2,7 +2,7 @@ $(document).ready(function(){
 
     getToken($("#idAcademy").val());
 
-    let time = 10;
+    let time = 20;
     let bar = '';
     let cont = 0;
 

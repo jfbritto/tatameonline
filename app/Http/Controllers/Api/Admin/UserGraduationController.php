@@ -27,6 +27,7 @@ class UserGraduationController extends Controller
         return response()->json(['status'=>'error', 'message'=>$response['data']], 500);
     }
 
+    
     public function create()
     {
         //
@@ -38,8 +39,8 @@ class UserGraduationController extends Controller
             'startDate' => 'required',
             'idUser' => 'required',
             'idGraduation' => 'required',
-        ]);
-
+            ]);
+            
         $data = [
             'startDate' => $request->startDate,
             'endDate' => null,
@@ -47,37 +48,47 @@ class UserGraduationController extends Controller
             'idUser' => $request->idUser,
             'idGraduation' => $request->idGraduation,
         ];
-
+        
         $response = $this->userGraduationService->store($data);
-
+        
         if($response['status'] == 'success')
-            return response()->json(['status'=>'success'], 201);
-            
+        return response()->json(['status'=>'success'], 201);
+        
         return response()->json(['status'=>'error', 'message'=>$response['data']], 201);
     }
-
+    
     public function show($id)
     {
         //
     }
-
+    
     public function edit($id)
     {
         //
     }
-
+    
     public function update(Request $request, $id)
     {
         //
     }
-
+    
     public function destroy($id)
     {       
         $response = $this->userGraduationService->destroy($id);
-
+        
         if($response['status'] == 'success')
-            return response()->json(['status'=>'success'], 201);
-            
+        return response()->json(['status'=>'success'], 201);
+        
         return response()->json(['status'=>'error', 'message'=>$response['data']], 201);
+    }
+    
+    public function listActivesByUser(User $user)
+    {
+        $response = $this->userGraduationService->listActivesByUser($user->id);
+    
+        if($response['status'] == 'success')
+            return response()->json(['status'=>'success', 'data'=>$response['data']], 201);
+            
+        return response()->json(['status'=>'error', 'message'=>$response['data']], 500);
     }
 }

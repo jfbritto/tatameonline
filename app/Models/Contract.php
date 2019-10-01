@@ -11,7 +11,7 @@ class Contract extends Model
         'months',
         'monthlyPayment',
         'expiryDay',
-        'isAtivo',
+        'isActive',
         'idUser',
     ];
 }

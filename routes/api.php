@@ -40,6 +40,7 @@
         
         Route::post('/contract', 'ContractController@store');
         Route::post('/contract/list/{user}', 'ContractController@index');
+        Route::post('/contract/get/{user}', 'ContractController@getActiveByUser');
         
         Route::post('/invoice/list/{contract}', 'InvoiceController@index');
         Route::post('/invoice/reportPayment/{invoice}', 'InvoiceController@reportPayment');
@@ -48,6 +49,7 @@
         Route::post('/graduation/list/{user}', 'UserGraduationController@index');
         Route::post('/graduation/destroy/{userGraduation}', 'UserGraduationController@destroy');
         Route::post('/graduation/list/sport/{sport}', 'GraduationController@listBySport');
+        Route::post('/graduation/active/list/{user}', 'UserGraduationController@listActivesByUser');
         
         Route::post('/presence/list/{user}/{userGraduation}', 'PresenceController@index');
         
