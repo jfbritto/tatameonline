@@ -58,7 +58,7 @@ function openInvoices(id)
 
                 html += `<tr class="${data.data[i].isPaid==0?'':'success'}">
                             <td>${dateFormat(data.data[i].dueDate)}</td>
-                            <td>${data.data[i].value}</td>
+                            <td>${moneyFormat(data.data[i].value)}</td>
                             <td>${data.data[i].isPaid==0?'Aberto':'Pago'}</td>
                             <td>
                                 <a title="Informar pagamento" onclick="reportPayment(${data.data[i].id}, ${data.data[i].idContract})" class="btn btn-sm btn-success pull-right"><i id="ico${data.data[i].id}" class="fas fa-file-invoice-dollar"></i></a>
@@ -142,7 +142,7 @@ function list(id)
                 html += `<tr>
                             <td>${dateFormat(data.data[i].signatureDate)}</td>
                             <td class="hidden-xs">${data.data[i].months}</td>
-                            <td>${data.data[i].monthlyPayment}</td>
+                            <td>${moneyFormat(data.data[i].monthlyPayment)}</td>
                             <td class="hidden-xs">${data.data[i].expiryDay}</td>
                             <td>
                                 <div class="input-group-btn">

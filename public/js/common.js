@@ -42,10 +42,20 @@ function dateFullFormat(data)
     if(data == null || data == undefined || data == ''){
         return '';
     }else{
-
+        
         const [date, hour] = data.split(' ');
-
+        
         const [ano, mes, dia] = date.split('-');
         return `${dia}/${mes}/${ano} ${hour}`;
     }
+}
+
+function moneyFormat(money)
+{
+    let cash = money.replace('.', ',')
+
+    if(cash.length >= 7)
+        return `R$${cash.substr(0, (cash.length-6))}.${cash.substr(-6, 7)}`;
+    else
+        return `R$${cash}`;
 }

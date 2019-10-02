@@ -97,7 +97,13 @@ class AcademyService
 
         try{
 
-            $academy = DB::table('academies')->where('id', '=', $id)->first();
+            $academy = DB::table('academies')
+                                ->where('id', '=', $id)
+                                ->select('academies.*', 
+                                (DB::raw("(SELECT count(*) FROM users WHERE idAcademy = academies.id and isActive=1 and isStudent=1) AS aluns")),
+                                (DB::raw("(SELECT count(*) FROM lessons WHERE idAcademy = academies.id and isActive=1) AS lessons"))
+                                )
+                                ->first();
 
             $response = ['status' => 'success', 'data' => $academy];
         }catch(Exception $e){

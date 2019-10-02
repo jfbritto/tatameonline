@@ -90,6 +90,8 @@ $(document).ready(function(){
             if(data.status == 'success') {
                 
                 $("#info-box-token").html(data.data.token)
+                $("#info-box-aluns").html(data.data.aluns)
+                $("#info-box-lessons").html(data.data.lessons)
                 token = data.data.token;
 
                 if(cont == 0){

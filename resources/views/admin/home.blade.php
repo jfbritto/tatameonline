@@ -18,16 +18,40 @@
 
 <div class="row">
     <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="info-box">
-                <a href="#" data-toggle="modal" data-target="#modal-token">
-                    <span class="info-box-icon bg-yellow"><i class="fas fa-key"></i></span>
-                </a>
-            <div class="info-box-content">
-                <span class="info-box-text">TOKEN</span>
-                <span class="info-box-number" id="info-box-token"></span>
-            </div>
+        <div class="info-box">
+            <a href="#" data-toggle="modal" data-target="#modal-token">
+                <span class="info-box-icon bg-yellow"><i class="fas fa-key"></i></span>
+            </a>
+        <div class="info-box-content">
+            <span class="info-box-text">TOKEN</span>
+            <span class="info-box-number" id="info-box-token"></span>
+        </div>
 
-            </div>
+        </div>
+    </div>
+    <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="info-box">
+            <a href="{{ route('admin.student') }}">
+                <span class="info-box-icon bg-blue"><i class="fas fa-user"></i></span>
+            </a>
+        <div class="info-box-content">
+            <span class="info-box-text">ALUNOS</span>
+            <span class="info-box-number" id="info-box-aluns"></span>
+        </div>
+
+        </div>
+    </div>
+    <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="info-box">
+            <a href="{{ route('admin.lesson') }}">
+                <span class="info-box-icon bg-red"><i class="fas fa-users"></i></span>
+            </a>
+        <div class="info-box-content">
+            <span class="info-box-text">AULAS</span>
+            <span class="info-box-number" id="info-box-lessons"></span>
+        </div>
+
+        </div>
     </div>
 </div>
 

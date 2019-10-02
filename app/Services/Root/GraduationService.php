@@ -19,7 +19,9 @@ class GraduationService
                                 ->join('sports', 'sports.id', '=', 'graduations.idSport')
                                 ->where('graduations.idAcademy', '=', $id)
                                 ->where('graduations.isActive', '=', 1)
-                                ->select('graduations.*', 'sports.name as sport_name')
+                                ->select('graduations.*', 'sports.name as sport_name', 
+                                (DB::raw("(SELECT count(*) FROM user_graduations WHERE idGraduation = graduations.id and isActive=1) AS graduations"))
+                                )
                                 ->get();
 
 

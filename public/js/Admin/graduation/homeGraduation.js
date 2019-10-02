@@ -57,6 +57,7 @@ function list(id)
                             <td>${data.data[i].name}</td>
                             <td>${data.data[i].sport_name}</td>
                             <td>${data.data[i].hours}</td>
+                            <td>${data.data[i].graduations}</td>
                             <td>
                                 <a class="btn btn-danger btn-sm pull-right destroy" onclick="destroy(${data.data[i].id})" data-id="${data.data[i].id}" title="Deletar esporte"><i class="fas fa-trash-alt"></i></a>
                             </td>

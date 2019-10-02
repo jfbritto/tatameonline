@@ -34,7 +34,8 @@
                     <tr>
                         <th>Nome</th>
                         <th>Esporte</th>
-                        <th>Horas de aula</th>
+                        <th>Horas/Aula</th>
+                        <th>Alunos</th>
                         <th></th>
                     </tr>
                 </thead>
