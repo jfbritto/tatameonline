@@ -122,7 +122,7 @@ class AcademyService
             
             DB::commit();
             
-            $response = ['status' => 'success', 'data' => ''];
+            $response = ['status' => 'success', 'data' => $token];
         }catch(Exception $e){
             DB::rollBack();
             $response = ['status' => 'error', 'data' => $e->getMessage()];

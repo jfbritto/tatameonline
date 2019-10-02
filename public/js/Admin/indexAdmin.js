@@ -43,7 +43,7 @@ $(document).ready(function(){
     $("#btn-container-pause").on("click", function(){
         $("#btn-container").show();
         $("#btn-container-pause").hide();
-        bar.stop(1.0);  // Number from 0.0 to 1.0
+        bar.stop(1.0);
     });
 
     $('#modal-token').on('hidden.bs.modal', function (e) {
@@ -51,7 +51,7 @@ $(document).ready(function(){
         $("#btn-container-pause").hide();
         bar.stop(1.0);
     })
-    
+
     function startProgress(){
 
         time = $("#time option:selected").val();
@@ -67,14 +67,14 @@ $(document).ready(function(){
             // reset();
             // start();
         });
-    } 
-    
+    }
+
     function reset(){
-        bar.set(0);  // Number from 0.0 to 1.0
+        bar.set(0);
         startProgress();
     }
     function start(){
-        startProgress();  // Number from 0.0 to 1.0
+        startProgress();
     }
 
     function transformTime(seconds){
@@ -111,6 +111,9 @@ $(document).ready(function(){
                         
             if(data.status == 'success') {
 
+                $("#info-box-token").html(data.data)
+                token = data.data;
+
                 reset();
                 start();
                 
@@ -119,7 +122,6 @@ $(document).ready(function(){
             }
         }, goTo500).catch(goTo500);
     }
-
 
 });
 
