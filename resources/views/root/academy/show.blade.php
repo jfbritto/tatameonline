@@ -68,7 +68,7 @@
 
                         <div class="input-group">
                             <span class="input-group-addon">@</span>
-                            <input type="text" class="form-control" placeholder="Email" name="email" id="email">
+                            <input type="email" class="form-control" placeholder="Email" name="email" id="email">
                         </div>
 
                     </div>
