@@ -4,7 +4,12 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>TaTame Online</title>
+
+        <link rel="icon" href="{{asset("img/ico-page.png")}}">
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="{{ asset('vendor/adminlte/vendor/font-awesome/css/all.min.css') }}">
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -68,7 +73,13 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
+                        @if(auth()->user()->isRoot) 
+                            <a href="{{ url('/root') }}">Home</a>
+                        @elseif(auth()->user()->isAdmin)
+                            <a href="{{ url('/admin') }}">Home</a>
+                        @elseif(auth()->user()->isStudent)
+                            <a href="{{ url('/student') }}">Home</a>
+                        @endif 
                     @else
                         <a href="{{ route('login') }}">Login</a>
 
@@ -81,10 +92,10 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    TaTame Online
                 </div>
 
-                <div class="links">
+                <!-- <div class="links">
                     <a href="https://laravel.com/docs">Docs</a>
                     <a href="https://laracasts.com">Laracasts</a>
                     <a href="https://laravel-news.com">News</a>
@@ -92,7 +103,12 @@
                     <a href="https://nova.laravel.com">Nova</a>
                     <a href="https://forge.laravel.com">Forge</a>
                     <a href="https://github.com/laravel/laravel">GitHub</a>
+                </div> -->
+
+                <div class="links">
+                    <i class="fas fa-cog fa-spin fa-3x"></i>
                 </div>
+
             </div>
         </div>
     </body>
