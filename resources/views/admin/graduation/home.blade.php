@@ -28,8 +28,8 @@
             </div>
         </div>
         <!-- /.box-header -->
-        <div class="box-body table-responsive no-padding">
-            <table class="table table-hover">
+        <div class="box-body table-responsive">
+            <table class="table table-hover datatable-table">
                 <thead>
                     <tr>
                         <th>Nome</th>
@@ -60,7 +60,7 @@
 
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fas fa-graduation-cap"></i></span>
-                                <input required type="text" class="form-control" placeholder="Nome da graduação" id="name" autofocus>
+                                <input required type="text" class="form-control" placeholder="Nome da graduação" id="name" autofocus required>
                             </div>
                     
                         </div>
@@ -71,7 +71,7 @@
 
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fas fa-futbol"></i></span>
-                                <select required class="form-control" id="idSport"></select>
+                                <select required class="form-control" id="idSport" required></select>
                             </div>
                     
                         </div>
@@ -79,7 +79,7 @@
 
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fas fa-clock"></i></span>
-                                <input required type="number" class="form-control" placeholder="Horas de aula para graduar" id="hours">
+                                <input required type="number" class="form-control" placeholder="Horas de aula para graduar" id="hours" required>
                             </div>
                     
                         </div>

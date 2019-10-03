@@ -3,6 +3,11 @@ $(document).ready(function(){
     $("#formAddContract").submit(function(e) {
         
         e.preventDefault();
+
+        let monthlyPayment = $("#monthlyPayment").val();
+            monthlyPayment = monthlyPayment.replace('.', ' ');
+            monthlyPayment = monthlyPayment.replace(',', '.');
+            monthlyPayment = monthlyPayment.replace(' ', '');
       
         Swal.queue([{
             title: 'Carregando...',
@@ -13,7 +18,7 @@ $(document).ready(function(){
                 $.post(window.location.origin + "/api/admin/contract", {
                     signatureDate: $("#signatureDate").val(),
                     months: $("#months").val(),
-                    monthlyPayment: $("#monthlyPayment").val(),
+                    monthlyPayment: monthlyPayment,
                     expiryDay: $("#expiryDay").val(),
                     idUser: $("#idUser").val(),
                 }).then(function(data) {
@@ -42,7 +47,6 @@ $(document).ready(function(){
     }
 
     callList();
-
 });
 
 function openInvoices(id)

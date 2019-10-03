@@ -28,7 +28,7 @@
             </div>
         </div>
         <!-- /.box-header -->
-        <div class="box-body table-responsive no-padding">
+        <div class="box-body table-responsive">
             <table class="table table-hover">
                 <thead>
                     <tr>
@@ -70,7 +70,7 @@
 
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fas fa-phone"></i></span>
-                                <input type="text" class="form-control" placeholder="Telefone da academia" name="phone" id="phone">
+                                <input type="text" class="form-control phone-mask" placeholder="Telefone da academia" name="phone" id="phone">
                             </div>
 
                         </div>
@@ -91,7 +91,7 @@
 
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fas fa-phone"></i></span>
-                                <input type="text" class="form-control" placeholder="Telefone do responsável" name="phoneResponsable" id="phoneResponsable">
+                                <input type="text" class="form-control phone-mask" placeholder="Telefone do responsável" name="phoneResponsable" id="phoneResponsable">
                             </div>
 
                         </div>

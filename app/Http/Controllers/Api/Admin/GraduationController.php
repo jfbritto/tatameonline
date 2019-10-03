@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Services\Root\GraduationService;
+use App\Services\GraduationService;
 use App\Models\Graduation;
 use App\Models\Sport;
 use App\Models\Academy;

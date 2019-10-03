@@ -47,7 +47,7 @@
     </div>
     <div class="box-body">
 
-        <div class="box-body table-responsive no-padding">
+        <div class="box-body table-responsive">
             <table class="table table-hover">
                 <thead>
                     <tr>
@@ -79,7 +79,7 @@
     </div>
     <div class="box-body">
 
-        <div class="box-body table-responsive no-padding">
+        <div class="box-body table-responsive">
             <table class="table table-hover">
                 <thead>
                     <tr>
@@ -105,7 +105,7 @@
         <h3 class="box-title"><i class="fas fa-users"></i>&nbsp;&nbsp;Aulas</h3>
     </div>
     <!-- /.box-header -->
-    <div class="box-body table-responsive no-padding">
+    <div class="box-body table-responsive">
         <table class="table table-hover">
             <thead>
                 <tr>
@@ -133,7 +133,7 @@
         <div class="modal-body">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="box-body table-responsive no-padding">
+                    <div class="box-body table-responsive">
                         <table class="table table-hover">
                             <thead>
                                 <tr>
@@ -166,7 +166,7 @@
         <div class="modal-body">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="box-body table-responsive no-padding">
+                    <div class="box-body table-responsive">
                         <table class="table table-hover">
                             <thead>
                                 <tr>

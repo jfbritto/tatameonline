@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api\Root;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Services\Root\GraduationService;
+use App\Services\GraduationService;
 use App\Models\Graduation;
 
 class GraduationController extends Controller

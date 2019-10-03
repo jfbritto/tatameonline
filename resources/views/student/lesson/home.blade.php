@@ -23,7 +23,7 @@
             <h3 class="box-title">Aulas</h3>
         </div>
         <!-- /.box-header -->
-        <div class="box-body table-responsive no-padding">
+        <div class="box-body table-responsive">
             <table class="table table-hover">
                 <thead>
                     <tr>

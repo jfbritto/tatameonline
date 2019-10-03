@@ -182,7 +182,7 @@ function destroy(id)
 };
 
 //LISTAR GRADUAÇÕES POR ESPORTE
-listaGraduacao
+// listaGraduacao
 function listGraduations(id)
 {
     $.post(window.location.origin + "/api/admin/user-graduation/active/list/"+id, {

@@ -31,7 +31,7 @@
             </div>
         </div>
         <!-- /.box-header -->
-        <div class="box-body table-responsive no-padding">
+        <div class="box-body table-responsive">
             <table class="table table-hover">
                 <thead>
                     <tr>
@@ -65,7 +65,7 @@
 
                             <div class="input-group">
                                 <label for="signatureDate">Data assinatura</label>
-                                <input type="date" readonly value="{{date('Y-m-d')}}" class="form-control" name="signatureDate" id="signatureDate">
+                                <input type="date" readonly value="{{date('Y-m-d')}}" class="form-control" name="signatureDate" id="signatureDate" required>
                             </div>
 
                         </div>
@@ -73,7 +73,7 @@
 
                             <div class="input-group">
                                 <label for="months">Período contrato (mêses)</label>
-                                <input type="number" readonly value="12" class="form-control" name="months" id="months">
+                                <input type="number" readonly value="12" class="form-control" name="months" id="months" required>
                             </div>
 
                         </div>
@@ -84,7 +84,7 @@
 
                             <div class="input-group">
                                 <label for="monthlyPayment">Mensalidade</label>
-                                <input type="text" class="form-control" name="monthlyPayment" id="monthlyPayment">
+                                <input type="text" class="form-control money-mask" name="monthlyPayment" id="monthlyPayment" required>
                             </div>
 
                         </div>
@@ -92,7 +92,7 @@
 
                             <div class="input-group">
                                 <label for="expiryDay">Dia vencimento</label>
-                                <input type="number" readonly value="{{date('d')}}" class="form-control" name="expiryDay" id="expiryDay">
+                                <input type="number" readonly value="{{date('d')}}" class="form-control" name="expiryDay" id="expiryDay" required>
                             </div>
 
                         </div>
@@ -120,7 +120,7 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="box-body table-responsive no-padding">
+                        <div class="box-body table-responsive">
                             <table class="table table-hover">
                                 <thead>
                                     <tr>

@@ -15,6 +15,8 @@
     <!-- Ionicons -->
     <link rel="stylesheet" href="{{ asset('vendor/adminlte/vendor/Ionicons/css/ionicons.min.css') }}">
 
+    <link rel="icon" href="{{asset("img/ico-page.png")}}">
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 
     @include('adminlte::plugins', ['type' => 'css'])
@@ -40,11 +42,13 @@
 <script src="{{ asset('vendor/adminlte/vendor/jquery/dist/jquery.slimscroll.min.js') }}"></script>
 <script src="{{ asset('vendor/adminlte/vendor/bootstrap/dist/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('js/common/progressbar.min.js') }}"></script>
+<script src="{{ asset('js/common/jquery.mask.min.js') }}"></script>
 
 @include('adminlte::plugins', ['type' => 'js'])
 
 <script src="{{asset('/js/common.js')}}"></script>
 @yield('adminlte_js')
+<script src="{{asset('/js/common-after.js')}}"></script>
 
 </body>
 </html>

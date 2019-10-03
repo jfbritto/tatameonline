@@ -19,6 +19,7 @@ class CreateLessonsTable extends Migration
             $table->string('teacher');
             $table->integer('weekDay');
             $table->time('hour');
+            $table->integer('timeLesson')->default(1);
             $table->boolean('isActive')->default(true);
 
             $table->integer('idSport')->unsigned();

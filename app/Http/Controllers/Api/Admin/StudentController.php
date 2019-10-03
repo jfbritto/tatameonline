@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Services\Admin\StudentService;
+use App\Services\StudentService;
 use App\Models\User;
 use App\Models\Academy;
 
@@ -24,7 +24,7 @@ class StudentController extends Controller
         if($response['status'] == 'success')
             return response()->json(['status'=>'success', 'data'=>$response['data']], 201);
             
-        return response()->json(['status'=>'error', 'message'=>$response['data']], 500);
+        return response()->json(['status'=>'error', 'message'=>$response['data']], 201);
     }
 
     public function create()

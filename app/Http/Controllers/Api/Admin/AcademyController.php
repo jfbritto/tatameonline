@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Services\Root\AcademyService;
+use App\Services\AcademyService;
 use App\Models\Academy;
 
 class AcademyController extends Controller

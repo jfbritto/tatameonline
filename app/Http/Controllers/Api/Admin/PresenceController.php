@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Services\Admin\PresenceService;
+use App\Services\PresenceService;
 use App\Models\User;
 use App\Models\UserGraduation;
 

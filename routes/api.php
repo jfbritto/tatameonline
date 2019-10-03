@@ -30,6 +30,7 @@
         
         Route::post('/lesson', 'LessonController@store');
         Route::post('/lesson/list/{academy}', 'LessonController@index');
+        Route::post('/lesson/now/list/{academy}', 'LessonController@lessonNow');
         Route::post('/lesson/destroy/{lesson}', 'LessonController@destroy');
         Route::post('/lesson/not/aluns/list/{lesson}/{academy}', 'LessonController@listNotAluns');
         Route::post('/lesson/student/list/{student}', 'LessonController@listAluns');

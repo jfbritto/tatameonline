@@ -1,26 +1,22 @@
 <?php
 
-namespace App\Services\Root;
+namespace App\Services;
 
-use App\Models\User;
+use App\Models\Sport;
 use DB;
 use Exception;
 
-class UserService
+class SportService
 {
-    public function index($id)
+    public function index()
     {
         $response = [];
 
         try{
 
-            $users = DB::table('users')
-                                ->where('idAcademy', '=', $id)
-                                ->where('isActive', '=', 1)
-                                ->where('isAdmin', '=', 1)
-                                ->get();
+            $sports = DB::table('sports')->where('isActive', '=', 1)->get();
 
-            $response = ['status' => 'success', 'data' => $users];
+            $response = ['status' => 'success', 'data' => $sports];
         }catch(Exception $e){
             $response = ['status' => 'error', 'data' => $e->getMessage()];
         }
@@ -36,11 +32,11 @@ class UserService
 
             DB::beginTransaction();
 
-            $user = User::create($data);
+            $sport = Sport::create($data);
 
             DB::commit();
 
-            $response = ['status' => 'success', 'data' => $user];
+            $response = ['status' => 'success', 'data' => $sport];
         }catch(Exception $e){
             DB::rollBack();
             $response = ['status' => 'error', 'data' => $e->getMessage()];
@@ -56,7 +52,7 @@ class UserService
         try{
             DB::beginTransaction();
 
-            DB::table('users')
+            DB::table('sports')
                 ->where('id', $id)
                 ->update(['isActive' => 0]);
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Root;
+namespace App\Services;
 
 use App\Models\Academy;
 use DB;

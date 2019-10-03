@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api\Root;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Services\Root\UserService;
+use App\Services\UserService;
 use App\Models\User;
 use App\Models\Academy;
 

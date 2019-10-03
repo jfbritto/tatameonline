@@ -24,7 +24,7 @@
             </a>
         <div class="info-box-content">
             <span class="info-box-text">TOKEN</span>
-            <span class="info-box-number" id="info-box-token"></span>
+            <span class="info-box-number" id="info-box-token"><i class="fas fa-sync-alt fa-spin"></i></span>
         </div>
 
         </div>
@@ -36,7 +36,7 @@
             </a>
         <div class="info-box-content">
             <span class="info-box-text">ALUNOS</span>
-            <span class="info-box-number" id="info-box-aluns"></span>
+            <span class="info-box-number" id="info-box-aluns"><i class="fas fa-sync-alt fa-spin"></i></span>
         </div>
 
         </div>
@@ -48,11 +48,17 @@
             </a>
         <div class="info-box-content">
             <span class="info-box-text">AULAS</span>
-            <span class="info-box-number" id="info-box-lessons"></span>
+            <span class="info-box-number" id="info-box-lessons"><i class="fas fa-sync-alt fa-spin"></i></span>
         </div>
 
         </div>
     </div>
+</div>
+
+<h3>Aulas Hoje</h3>
+
+<div class="row" id="lessons-now">
+    
 </div>
 
 <input type="hidden" id="idAcademy" value="{{auth()->user()->academy->id}}">

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Services\Admin\LessonService;
+use App\Services\LessonService;
 use App\Models\User;
 use App\Models\Academy;
 use App\Models\Lesson;
@@ -87,11 +87,6 @@ class LessonController extends Controller
         return response()->json(['status'=>'error', 'message'=>$response['data']], 201);
     }
 
-
-
-
-
-
     public function listNotAluns(Lesson $lesson, Academy $academy)
     {
         $response = $this->lessonService->listNotAluns($lesson->id, $academy->id);
@@ -105,6 +100,16 @@ class LessonController extends Controller
     public function listAluns($idUser)
     {
         $response = $this->lessonService->listAluns($idUser);
+
+        if($response['status'] == 'success')
+            return response()->json(['status'=>'success', 'data'=>$response['data']], 201);
+            
+        return response()->json(['status'=>'error', 'message'=>$response['data']], 500);
+    }
+
+    public function lessonNow(Academy $academy)
+    {
+        $response = $this->lessonService->lessonNow($academy->id);
 
         if($response['status'] == 'success')
             return response()->json(['status'=>'success', 'data'=>$response['data']], 201);

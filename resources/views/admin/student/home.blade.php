@@ -29,8 +29,8 @@
             </div>
         </div>
         <!-- /.box-header -->
-        <div class="box-body table-responsive no-padding">
-            <table class="table table-hover">
+        <div class="box-body table-responsive">
+            <table class="table table-hover datatable-table">
                 <thead>
                     <tr>
                         <th>Nome</th>
@@ -60,7 +60,7 @@
 
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fas fa-user"></i></span>
-                                <input type="text" class="form-control" placeholder="Nome do aluno" name="name" id="name" autofocus>
+                                <input type="text" class="form-control" placeholder="Nome do aluno" name="name" id="name" required>
                             </div>
                     
                         </div>
@@ -68,7 +68,7 @@
 
                             <div class="input-group">
                                 <span class="input-group-addon">@</span>
-                                <input type="text" class="form-control" placeholder="Email do aluno" name="email" id="email">
+                                <input type="text" class="form-control" placeholder="Email do aluno" name="email" required id="email">
                             </div>
 
                         </div>

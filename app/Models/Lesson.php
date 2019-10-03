@@ -10,6 +10,7 @@ class Lesson extends Model
         'teacher',
         'weekDay',
         'hour',
+        'timeLesson',
         'isActive',
         'idSport',
         'idAcademy',

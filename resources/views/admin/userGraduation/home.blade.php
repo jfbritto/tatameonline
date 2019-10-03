@@ -31,7 +31,7 @@
             </div>
         </div>
         <!-- /.box-header -->
-        <div class="box-body table-responsive no-padding">
+        <div class="box-body table-responsive">
             <table class="table table-hover">
                 <thead>
                     <tr>
@@ -49,8 +49,7 @@
         <!-- /.box-body -->
     </div>
 
-    <input type="hidden" id="idAcademy" value="{{auth()->user()->academy->id}}">
-
+    <!-- MODAIS -->
     <div class="modal fade" id="modal-default">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -66,7 +65,7 @@
 
                             <div class="input-group" style="width:100%">
                                 <label for="sports">Esporte</label>
-                                <select class="form-control" name="sports" id="sports"></select>
+                                <select class="form-control" name="sports" id="sports" required></select>
                             </div>
 
                         </div>
@@ -74,7 +73,7 @@
 
                             <div class="input-group" style="width:100%">
                                 <label for="idGraduation">Graduação</label>
-                                <select class="form-control" name="idGraduation" id="idGraduation"></select>
+                                <select class="form-control" name="idGraduation" id="idGraduation" required></select>
                             </div>
 
                         </div>
@@ -105,7 +104,7 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="box-body table-responsive no-padding">
+                        <div class="box-body table-responsive">
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
@@ -126,6 +125,7 @@
         <!-- /.modal-dialog -->
     </div>
 
+    <input type="hidden" id="idAcademy" value="{{auth()->user()->academy->id}}">
 @stop
 
 @section('adminlte_js')

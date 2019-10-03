@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Services\Admin\InvoiceService;
+use App\Services\InvoiceService;
 use App\Models\User;
 use App\Models\Contract;
 use App\Models\Academy;

@@ -29,8 +29,8 @@
             </div>
         </div>
         <!-- /.box-header -->
-        <div class="box-body table-responsive no-padding">
-            <table class="table table-hover">
+        <div class="box-body table-responsive">
+            <table class="table table-hover datatable-table">
                 <thead>
                     <tr>
                         <th>Esporte</th>

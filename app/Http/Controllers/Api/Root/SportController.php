@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api\Root;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Services\Root\SportService;
+use App\Services\SportService;
 use App\Models\Sport;
 
 class SportController extends Controller

@@ -1,6 +1,7 @@
 $(document).ready(function(){
 
     getToken($("#idAcademy").val());
+    lessonsNow($("#idAcademy").val());
 
     let time = 20;
     let bar = '';
@@ -104,7 +105,7 @@ $(document).ready(function(){
             }
         }, goTo500).catch(goTo500);
     }
-
+    
     function updateToken(id)
     {
         $.post(window.location.origin + "/api/admin/academy/update-token/"+id, {
@@ -115,7 +116,7 @@ $(document).ready(function(){
 
                 $("#info-box-token").html(data.data)
                 token = data.data;
-
+                
                 reset();
                 start();
                 
@@ -125,5 +126,41 @@ $(document).ready(function(){
         }, goTo500).catch(goTo500);
     }
 
-});
 
+    function lessonsNow(id)
+    {
+        $.post(window.location.origin + "/api/admin/lesson/now/list/"+id, {
+            
+        }).then(function(data) {
+            if(data.status == 'success') {
+        
+                var html = '';
+
+                for (var i in data.data) {
+
+                    html += `<div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="info-box">
+                                    <a href="#" data-toggle="modal" data-target="#modal-token">
+                                        <span class="info-box-icon bg-green"><i class="fas fa-users"></i></span>
+                                    </a>
+                                <div class="info-box-content">
+                                    <span class="info-box-text">${data.data[i].sport_name}</span>
+                                    <span class="info-box-text">${data.data[i].teacher}</span>
+                                    <span class="info-box-text">${data.data[i].hour}</span>
+                                    <span class="info-box-text">Presentes: <strong>${data.data[i].presences}</strong></span>
+                                </div>
+                        
+                                </div>
+                             </div>`;
+                }
+
+                $('#lessons-now').html(html);
+
+            } else if (data.status == 'error') {
+                // showError(data.message);
+            }
+        }, goTo500).catch(goTo500);
+    }
+    
+
+});

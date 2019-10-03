@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Services\Admin\UserGraduationService;
+use App\Services\UserGraduationService;
 use App\Models\User;
 use App\Models\Academy;
 
