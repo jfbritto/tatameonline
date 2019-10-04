@@ -27,16 +27,6 @@ function showError(message)
     });
 }
 
-function dateFormat(data)
-{
-    if(data == null || data == undefined || data == ''){
-        return '';
-    }else{
-        const [ano, mes, dia] = data.split('-');
-        return `${dia}/${mes}/${ano}`;
-    }
-}
-
 function dateFullFormat(data)
 {
     if(data == null || data == undefined || data == ''){
@@ -47,6 +37,26 @@ function dateFullFormat(data)
         
         const [ano, mes, dia] = date.split('-');
         return `${dia}/${mes}/${ano} ${hour}`;
+    }
+}
+
+function dateFormat(data)
+{
+    if(data == null || data == undefined || data == ''){
+        return '';
+    }else{
+        const [ano, mes, dia] = data.split('-');
+        return `${dia}/${mes}/${ano}`;
+    }
+}
+
+function hourFormat(data)
+{
+    if(data == null || data == undefined || data == ''){
+        return '';
+    }else{
+        let hr = data.split(' ');
+        return `${hr[1]}`;
     }
 }
 

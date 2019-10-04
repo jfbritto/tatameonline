@@ -2,6 +2,7 @@ $(document).ready(function(){
 
     getToken($("#idAcademy").val());
     lessonsNow($("#idAcademy").val());
+    // lessonAlunsList(0);
 
     let time = 20;
     let bar = '';
@@ -65,8 +66,6 @@ $(document).ready(function(){
         }, function() {
             updateToken($("#idAcademy").val());
             getToken($("#idAcademy").val());
-            // reset();
-            // start();
         });
     }
 
@@ -126,7 +125,7 @@ $(document).ready(function(){
         }, goTo500).catch(goTo500);
     }
 
-
+    
     function lessonsNow(id)
     {
         $.post(window.location.origin + "/api/admin/lesson/now/list/"+id, {
@@ -140,7 +139,7 @@ $(document).ready(function(){
 
                     html += `<div class="col-md-3 col-sm-6 col-xs-12">
                                 <div class="info-box">
-                                    <a href="#" data-toggle="modal" data-target="#modal-token">
+                                <a href="#" onclick="lessonAlunsList(${data.data[i].id})">
                                         <span class="info-box-icon bg-green"><i class="fas fa-users"></i></span>
                                     </a>
                                 <div class="info-box-content">
@@ -148,19 +147,59 @@ $(document).ready(function(){
                                     <span class="info-box-text">${data.data[i].teacher}</span>
                                     <span class="info-box-text">${data.data[i].hour}</span>
                                     <span class="info-box-text">Presentes: <strong>${data.data[i].presences}</strong></span>
-                                </div>
+                                    </div>
                         
                                 </div>
                              </div>`;
-                }
+                            }
 
                 $('#lessons-now').html(html);
-
+                
             } else if (data.status == 'error') {
-                // showError(data.message);
+                showError(data.message);
             }
         }, goTo500).catch(goTo500);
     }
-    
 
+    
+    
 });
+
+function lessonAlunsList(id)
+{
+
+    $.post(window.location.origin + "/api/admin/lesson/students/now/list/"+id, {
+        
+    }).then(function(data) {
+        if(data.status == 'success') {
+            
+            var html = '';
+            
+            for (var i in data.data) {
+                
+                html += `<tr>
+                <td>${data.data[i].student_name}</td>
+                            <td>${data.data[i].present != null?'<span class="label label-success">Presente</span>':'<span class="label label-danger">Ausente</span>'}</td>
+                            <td>
+                                ${data.data[i].present != null?'':`
+                                <div class="input-group-btn">
+                                <a class="btn btn-success btn-sm pull-right" href="#" title="Confirmar presença de ${data.data[i].student_name}"><i class="fas fa-user-check"></i></a>
+                                </div>    
+                                `}
+                                </td>
+                                </tr>`;
+            }
+            
+
+            $("#title-lessons-now").show()
+
+            $('#listPresences').html(html);
+                            
+            $("#modal-presences").modal("show");
+                
+        } else if (data.status == 'error') {
+            showError(data.message);
+        }
+    }, goTo500).catch(goTo500);
+    
+}

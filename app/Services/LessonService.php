@@ -235,35 +235,41 @@ class LessonService
         $response = [];
         
         try{
-            
-            $lesson = DB::table('lessons')
-                    ->join('registrations', 'registrations.idLesson', '=', 'lessons.id')
-                    ->join('user_graduations', 'user_graduations.idUser', '=', 'registrations.idUser')
-                    ->join('graduations', 'graduations.id', '=', 'user_graduations.idGraduation')
-                    ->join('sports', 'sports.id', '=', 'lessons.idSport')
-                    ->where('registrations.idUser', '=', $id)
-                    ->where('registrations.isActive', '=', 1)
-                    ->where('lessons.isActive', '=', 1)
-                    ->where('user_graduations.isActive', '=', 1)
-                    ->where('lessons.weekDay', '=', date("N"))
-                    ->where('lessons.hour', '>=', date("H:i:s", strtotime("-10 minutes")))
-                    ->where('lessons.hour', '<=', date("H:i:s", strtotime("+10 minutes")))
-                    ->select('lessons.*', 'sports.name as sport_name', 'registrations.id as registration_id', 'user_graduations.id as user_graduation_id')
-                    ->first();
-                    
-                    $presence = false;        
-                    if($lesson){
 
-                        $presence = DB::table('presences')
-                        ->where('idRegistration', '=', $lesson->registration_id)
-                        ->where('idUserGraduation', '=', $lesson->user_graduation_id)
-                        ->where('checkedHour', '>=', date("Y-m-d H:i:s", strtotime("-10 minutes")))
-                    ->where('checkedHour', '<=', date("Y-m-d H:i:s", strtotime("+10 minutes")))
-                    ->first();
-            }
-            
-            if($presence)
-            $lesson = null;
+            $hora_ini = date("H:i:s", strtotime("-10 minutes"));
+            $hora_fim = date("H:i:s", strtotime("+10 minutes"));
+
+            $lesson = DB::select( DB::raw("select
+                                                le.*,
+                                                sp.id as sport_id, 
+                                                sp.name as sport_name, 
+                                                re.id as registration_id, 
+                                                ug.id as user_graduation_id
+
+                                            from
+                                                lessons le
+                                                join registrations re on re.idLesson=le.id
+                                                join users us on re.idUser=us.id
+                                                join sports sp on le.idSport=sp.id
+                                                join user_graduations ug on ug.idUser=us.id
+                                                join graduations gr on gr.id=ug.idGraduation
+                                                left join presences pr on pr.idRegistration=re.id
+                                            where
+                                                re.idUser='$id'
+                                                and le.weekDay=4
+                                                and pr.id is null
+                                                and gr.idSport=sp.id
+                                                
+                                                and le.isActive = 1
+                                                and re.isActive = 1
+                                                and gr.isActive = 1
+                                                and ug.isActive = 1
+                                                
+                                                and le.hour >= '$hora_ini'
+                                                and le.hour <= '$hora_fim'
+                                            order by 
+                                                le.hour"));
+
 
             $response = ['status' => 'success', 'data' => $lesson];
         }catch(Exception $e){
@@ -298,6 +304,30 @@ class LessonService
                                 )
                             )
                             ->get();
+
+            $response = ['status' => 'success', 'data' => $lessons];
+        }catch(Exception $e){
+            $response = ['status' => 'error', 'data' => $e->getMessage()];
+        }
+
+        return $response;
+    }
+    
+    public function lessonAlunsList($id)
+    {
+        $response = [];
+        
+        try{
+            
+            $lessons = DB::table('lessons')
+                                ->join('registrations', 'registrations.idLesson', '=', 'lessons.id')
+                                ->join('users', 'users.id', '=', 'registrations.idUser')
+                                ->where('lessons.weekDay', '=', date("N"))
+                                ->where('lessons.id', '=', $id)
+                                ->select('lessons.*', 'users.name as student_name', 'users.name as ',
+                                (DB::raw("(select id from presences where idRegistration = registrations.id and date_format(checkedHour, '%Y-%m-%d') = '".date("Y-m-d")."') as present")) )
+                                ->orderByRaw('users.name')
+                                ->get();
 
             $response = ['status' => 'success', 'data' => $lessons];
         }catch(Exception $e){

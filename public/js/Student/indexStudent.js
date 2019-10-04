@@ -66,7 +66,7 @@ setInterval(function(){
     checkLesson($("#idStudent").val()); 
     list($("#idStudent").val()); 
     openLastPresencesByStudent($("#idStudent").val()); 
-}, 5000);
+}, 10000);
 
 });
 
@@ -113,15 +113,15 @@ function checkLesson(id)
         }).then(function(data) {
             if(data.status == 'success') {
 
-                if(data.data != null){
+                if(data.data[0] != null){
 
-                    $("#sport-modal").html(data.data.sport_name);
-                    $("#teacher-modal").html(data.data.teacher);
-                    $("#weekDay-modal").html(dia_semana[data.data.weekDay]);
-                    $("#hour-modal").html(data.data.hour);
+                    $("#sport-modal").html(data.data[0].sport_name);
+                    $("#teacher-modal").html(data.data[0].teacher);
+                    $("#weekDay-modal").html(dia_semana[data.data[0].weekDay]);
+                    $("#hour-modal").html(data.data[0].hour);
 
-                    $("#idRegistration").val(data.data.registration_id);
-                    $("#idUserGraduation").val(data.data.user_graduation_id);
+                    $("#idRegistration").val(data.data[0].registration_id);
+                    $("#idUserGraduation").val(data.data[0].user_graduation_id);
 
                     $("#modal-check").modal('show');
                     setTimeout(function(){ $("#token").focus(); }, 500);
