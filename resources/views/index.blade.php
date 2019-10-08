@@ -73,7 +73,17 @@
             <a class="nav-link js-scroll-trigger" href="#plans">Planos</a>
           </li> -->
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#login">Login</a>
+                @auth
+                    @if(auth()->user()->isRoot)
+                        <a class="nav-link js-scroll-trigger" href="{{ url('/root') }}">Home</a>
+                    @elseif(auth()->user()->isAdmin)
+                        <a class="nav-link js-scroll-trigger" href="{{ url('/admin') }}">Home</a>
+                    @elseif(auth()->user()->isStudent)
+                        <a class="nav-link js-scroll-trigger" href="{{ url('/student') }}">Home</a>
+                    @endif
+                @else
+                    <a class="nav-link js-scroll-trigger" href="#login">Login</a>
+                @endauth
           </li>
           {{-- <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#contact">Contato</a>

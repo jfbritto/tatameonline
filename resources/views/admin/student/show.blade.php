@@ -90,6 +90,8 @@
                         <th class="hidden-xs">Data início</th>
                         <th class="hidden-xs">Data fim</th>
                         <th>Situação</th>
+                        <th>H. necessárias</th>
+                        <th>H. completadas</th>
                         <th></th>
                     </tr>
                 </thead>

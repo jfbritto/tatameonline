@@ -17,7 +17,7 @@
 @stop
 
 @section('content')
-    
+
     <div class="box">
         <div class="box-header">
             <h3 class="box-title"><i class="fas fa-graduation-cap"></i> &nbsp;&nbsp; Graduações</h3>
@@ -40,6 +40,8 @@
                         <th class="hidden-xs">Data início</th>
                         <th class="hidden-xs">Data fim</th>
                         <th>Situação</th>
+                        <th>H. necessárias</th>
+                        <th>H. completadas</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -78,7 +80,7 @@
 
                         </div>
 
-                    
+
                         <input type="hidden" id="idUser" value="{{$student->id}}">
                         <input type="hidden" id="startDate" value="{{date('Y-m-d')}}">
                     </div>

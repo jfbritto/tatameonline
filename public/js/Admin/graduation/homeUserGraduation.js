@@ -1,9 +1,9 @@
 $(document).ready(function(){
 
     $("#formAddUserGraduation").submit(function(e) {
-        
+
         e.preventDefault();
-      
+
         Swal.queue([{
             title: 'Carregando...',
             allowOutsideClick: false,
@@ -34,7 +34,7 @@ $(document).ready(function(){
             }
         }]);
     });
-    
+
 
     list($("#idUser").val());
 
@@ -47,7 +47,7 @@ $(document).ready(function(){
     });
 
     setTimeout(function(){ listGraduationsBySport($("#sports option:selected").val(), $("#idAcademy").val()); }, 1000);
-    
+
 
 });
 
@@ -55,12 +55,12 @@ $(document).ready(function(){
 function list(id)
 {
     $.post(window.location.origin + "/api/admin/user-graduation/list/"+id, {
-        
+
     }).then(function(data) {
-        
-        
+
+
         if(data.status == 'success') {
-                
+
             var html = '';
 
             for (var i in data.data) {
@@ -71,10 +71,12 @@ function list(id)
                             <td class="hidden-xs">${dateFormat(data.data[i].startDate)}</td>
                             <td class="hidden-xs">${dateFormat(data.data[i].endDate)}</td>
                             <td>${data.data[i].isActive==1?'Graduando':'Graduado'}</td>
+                            <td>${data.data[i].required_hours}</td>
+                            <td>${data.data[i].completed_hours}</td>
                             <td>
                                 <div class="input-group-btn">
                                     <a onclick="openPresences(${data.data[i].idUser},${data.data[i].id})" class="btn btn-primary btn-sm pull-right" href="#" title="Ver presenças" data-toggle="modal" data-target="#modal-presences"><i class="fas fa-user-check"></i></a>
-                                </div>    
+                                </div>
                             </td>
                         </tr>`;
             }
@@ -90,12 +92,12 @@ function list(id)
 function listSports()
 {
     $.post(window.location.origin + "/api/root/sport/list", {
-        
+
     }).then(function(data) {
-        
-        
+
+
         if(data.status == 'success') {
-                
+
             var html = '';
 
             for (var i in data.data) {
@@ -113,14 +115,14 @@ function listSports()
 
 function listGraduationsBySport(idSport, idAcademy)
 {
-    
+
     $.post(window.location.origin + "/api/admin/user-graduation/list/sport/"+idSport+"/"+idAcademy, {
-    
+
     }).then(function(data) {
-        
-        
+
+
         if(data.status == 'success') {
-                
+
             var html = '';
 
             for (var i in data.data) {
@@ -143,10 +145,10 @@ function listGraduationsBySport(idSport, idAcademy)
 function openPresences(idUser, idUserGraduation)
 {
     $.post(window.location.origin + "/api/admin/presence/list/"+idUser+"/"+idUserGraduation, {
-        
+
     }).then(function(data) {
         if(data.status == 'success') {
-    
+
             var html = '';
 
             for (var i in data.data) {
@@ -168,7 +170,7 @@ function openPresences(idUser, idUserGraduation)
 
 function destroy(id)
 {
-    
+
     Swal.queue([{
         title: 'Carregando...',
         allowOutsideClick: false,
@@ -176,10 +178,10 @@ function destroy(id)
         onOpen: () => {
             Swal.showLoading();
             $.post(window.location.origin + "/api/admin/user-graduation/destroy/"+id, {
-            
+
             }).then(function(data) {
                 if(data.status == 'success') {
-                    
+
                     Swal.fire({
                         type: 'success',
                         text: 'Graduação deletada com sucesso',
