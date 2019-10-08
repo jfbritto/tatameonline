@@ -34,7 +34,7 @@ class InvoiceService
 
             DB::table('invoices')
                 ->where('id', $id)
-                ->update(['isPaid' => 1]);
+                ->update(['isPaid' => 1, 'paymentDate' => date('Y-m-d')]);
 
             DB::commit();
 

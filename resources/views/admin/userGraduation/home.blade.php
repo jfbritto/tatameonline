@@ -127,6 +127,57 @@
         <!-- /.modal-dialog -->
     </div>
 
+    <div class="modal fade" id="modal-graduate">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title"><i class="fas fa-graduation-cap"></i>&nbsp;&nbsp;Graduar aluno</h4>
+            </div>
+            <div class="modal-body">
+                <form id="formAddUserNewGraduation">
+                    <div class="row">
+                        <div class="col-sm-6">
+
+                            <div class="input-group" style="width:100%">
+                                <label for="sports">Graduação atual:</label>
+                                <font id="desc_graduacao"></font>
+                            </div>
+
+                        </div>
+                        <div class="col-sm-6">
+
+                            <div class="input-group" style="width:100%">
+                                <label for="sports">Esporte:</label>
+                                <font id="desc_sport"></font>
+                            </div>
+
+                        </div>
+                        <hr>
+                        <div class="col-sm-12">
+
+                            <div class="input-group" style="width:100%">
+                                <label for="idGraduation">Graduar para</label>
+                                <select class="form-control" name="idNewGraduation" id="idNewGraduation" required></select>
+                            </div>
+
+                        </div>
+
+
+                        <input type="hidden" id="idOldUserGraduation" value="">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button form="formAddUserNewGraduation" class="btn btn-primary"><i class="fas fa-save"></i>&nbsp;&nbsp;Salvar</button>
+            </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
     <input type="hidden" id="idAcademy" value="{{auth()->user()->academy->id}}">
 @stop
 

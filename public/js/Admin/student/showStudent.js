@@ -59,7 +59,7 @@ function getContrato(id)
                         <td class="hidden-xs">${data.data.fatNotPay}</td>
                         <td>
                             <div class="input-group-btn">
-                                <a onclick="openInvoices(${data.data.id})" class="btn btn-primary btn-sm pull-right" href="#" title="Ver faturas" data-toggle="modal" data-target="#modal-invoices"><i class="fas fa-file-invoice-dollar"></i></a>
+                                <a onclick="openInvoices(${data.data.id})" class="btn btn-success btn-sm pull-right" href="#" title="Ver faturas" data-toggle="modal" data-target="#modal-invoices"><i class="fas fa-file-invoice-dollar"></i></a>
                             </div>
                         </td>
                     </tr>`;
@@ -198,17 +198,17 @@ function listGraduations(id)
 
             for (var i in data.data) {
 
-                html += `<tr>
+                html += `<tr class="${data.data[i].completed_hours>=data.data[i].required_hours?'success':''}">
                             <td>${data.data[i].name_sport}</td>
                             <td>${data.data[i].name_graduation}</td>
                             <td class="hidden-xs">${dateFormat(data.data[i].startDate)}</td>
                             <td class="hidden-xs">${dateFormat(data.data[i].endDate)}</td>
                             <td>${data.data[i].isActive==1?'Graduando':'Graduado'}</td>
                             <td>${data.data[i].required_hours}</td>
-                            <td>${data.data[i].completed_hours}</td>
+                            <td>${data.data[i].completed_hours==null?'0':data.data[i].completed_hours}</td>
                             <td>
                                 <div class="input-group-btn">
-                                    <a onclick="openPresences(${data.data[i].idUser},${data.data[i].id})" class="btn btn-primary btn-sm pull-right" href="#" title="Ver presenças" data-toggle="modal" data-target="#modal-presences"><i class="fas fa-user-check"></i></a>
+                                    <a onclick="openPresences(${data.data[i].idUser},${data.data[i].id})" class="btn btn-success btn-sm pull-right" href="#" title="Ver presenças" data-toggle="modal" data-target="#modal-presences"><i class="fas fa-user-check"></i></a>
                                 </div>
                             </td>
                         </tr>`;

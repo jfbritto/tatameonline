@@ -2,6 +2,7 @@ $(document).ready(function(){
 
     getToken($("#idAcademy").val());
     lessonsNow($("#idAcademy").val());
+    situationAlunsByAcademy($("#idAcademy").val());
     // lessonAlunsList(0);
 
     let time = 20;
@@ -153,6 +154,49 @@ $(document).ready(function(){
                             }
 
                 $('#lessons-now').html(html);
+
+            } else if (data.status == 'error') {
+                showError(data.message);
+            }
+        }, goTo500).catch(goTo500);
+    }
+
+    function situationAlunsByAcademy(id)
+    {
+        $.post(window.location.origin + "/api/admin/user-graduation/situation/"+id, {
+
+        }).then(function(data) {
+            if(data.status == 'success') {
+
+                var html = '';
+
+                for (var i in data.data) {
+
+                    if(data.data[i].isActive==1){
+
+                        let v1 = parseInt(data.data[i].completed_hours);
+                        let v2 = parseInt(5);
+                        let v3 = v1+v2;
+
+                        if(v3>=data.data[i].required_hours){
+
+                            html += `<tr class="${data.data[i].completed_hours>=data.data[i].required_hours&&data.data[i].isActive==1?'success':''}">
+                                        <td>${data.data[i].name_alun}</td>
+                                        <td>${data.data[i].name_sport}</td>
+                                        <td>${data.data[i].name_graduation}</td>
+                                        <td>${data.data[i].required_hours}</td>
+                                        <td>${data.data[i].completed_hours==null?'0':data.data[i].completed_hours}</td>
+                                        <td>
+                                            <div class="input-group-btn">
+                                                <a class="btn btn-primary btn-sm pull-right" href="/admin/student/graduation/${data.data[i].idUser}" title="Ir para graduação"><i class="fas fa-sign-in-alt"></i></a>
+                                            </div>
+                                        </td>
+                                     </tr>`;
+                        }
+                    }
+                }
+
+                $('#listGraduations').html(html);
 
             } else if (data.status == 'error') {
                 showError(data.message);

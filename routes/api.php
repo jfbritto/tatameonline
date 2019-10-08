@@ -53,10 +53,13 @@
         Route::post('/graduation/destroy/{graduation}', 'GraduationController@destroy');
 
         Route::post('/user-graduation', 'UserGraduationController@store');
+        Route::post('/user-graduation/graduate', 'UserGraduationController@graduate');
         Route::post('/user-graduation/list/{user}', 'UserGraduationController@index');
+        Route::post('/user-graduation/find/{user_graduation}', 'UserGraduationController@find');
         Route::post('/user-graduation/destroy/{userGraduation}', 'UserGraduationController@destroy');
         Route::post('/user-graduation/list/sport/{sport}/{academy}', 'GraduationController@listBySport');
         Route::post('/user-graduation/active/list/{user}', 'UserGraduationController@listActivesByUser');
+        Route::post('/user-graduation/situation/{academy}', 'UserGraduationController@situationAlunsByAcademy');
 
         Route::post('/presence/list/{user}/{userGraduation}', 'PresenceController@index');
 

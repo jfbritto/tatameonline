@@ -20,7 +20,6 @@ class PresenceService
                                 ->join('lessons', 'lessons.id', '=', 'registrations.idLesson')
                                 ->where('registrations.idUser', '=', $idUser)
                                 ->where('user_graduations.id', '=', $idUserGraduation)
-                                ->where('user_graduations.isActive', '=', 1)
                                 ->select('presences.*', 'lessons.weekDay', 'lessons.hour')
                                 ->get();
 
@@ -41,7 +40,7 @@ class PresenceService
             DB::beginTransaction();
 
             $presence = Presence::create($data);
-            
+
             DB::commit();
 
             $response = ['status' => 'success', 'data' => $presence];

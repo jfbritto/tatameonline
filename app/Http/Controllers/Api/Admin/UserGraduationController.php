@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Services\UserGraduationService;
 use App\Models\User;
+use App\Models\UserGraduation;
 use App\Models\Academy;
 
 class UserGraduationController extends Controller
@@ -23,11 +24,31 @@ class UserGraduationController extends Controller
 
         if($response['status'] == 'success')
             return response()->json(['status'=>'success', 'data'=>$response['data']], 201);
-            
+
         return response()->json(['status'=>'error', 'message'=>$response['data']], 500);
     }
 
-    
+    public function situationAlunsByAcademy(Academy $academy)
+    {
+        $response = $this->userGraduationService->situationAlunsByAcademy($academy->id);
+
+        if($response['status'] == 'success')
+            return response()->json(['status'=>'success', 'data'=>$response['data']], 201);
+
+        return response()->json(['status'=>'error', 'message'=>$response['data']], 500);
+    }
+
+    public function find(UserGraduation $user_graduation)
+    {
+        $response = $this->userGraduationService->find($user_graduation->id);
+
+        if($response['status'] == 'success')
+            return response()->json(['status'=>'success', 'data'=>$response['data']], 201);
+
+        return response()->json(['status'=>'error', 'message'=>$response['data']], 500);
+    }
+
+
     public function create()
     {
         //
@@ -40,7 +61,7 @@ class UserGraduationController extends Controller
             'idUser' => 'required',
             'idGraduation' => 'required',
             ]);
-            
+
         $data = [
             'startDate' => $request->startDate,
             'endDate' => null,
@@ -48,47 +69,71 @@ class UserGraduationController extends Controller
             'idUser' => $request->idUser,
             'idGraduation' => $request->idGraduation,
         ];
-        
+
         $response = $this->userGraduationService->store($data);
-        
+
         if($response['status'] == 'success')
         return response()->json(['status'=>'success'], 201);
-        
+
         return response()->json(['status'=>'error', 'message'=>$response['data']], 201);
     }
-    
+
+    public function graduate(Request $request)
+    {
+        $dataValid = $request->validate([
+            'startDate' => 'required',
+            'idUser' => 'required',
+            'idGraduation' => 'required',
+            ]);
+
+        $data = [
+            'startDate' => $request->startDate,
+            'endDate' => null,
+            'isActive' => 1,
+            'idUser' => $request->idUser,
+            'idGraduation' => $request->idGraduation,
+        ];
+
+        $response = $this->userGraduationService->graduate($data, $request->idOldUserGraduation);
+
+        if($response['status'] == 'success')
+        return response()->json(['status'=>'success'], 201);
+
+        return response()->json(['status'=>'error', 'message'=>$response['data']], 201);
+    }
+
     public function show($id)
     {
         //
     }
-    
+
     public function edit($id)
     {
         //
     }
-    
+
     public function update(Request $request, $id)
     {
         //
     }
-    
+
     public function destroy($id)
-    {       
+    {
         $response = $this->userGraduationService->destroy($id);
-        
+
         if($response['status'] == 'success')
         return response()->json(['status'=>'success'], 201);
-        
+
         return response()->json(['status'=>'error', 'message'=>$response['data']], 201);
     }
-    
+
     public function listActivesByUser(User $user)
     {
         $response = $this->userGraduationService->listActivesByUser($user->id);
-    
+
         if($response['status'] == 'success')
             return response()->json(['status'=>'success', 'data'=>$response['data']], 201);
-            
+
         return response()->json(['status'=>'error', 'message'=>$response['data']], 500);
     }
 }
