@@ -321,8 +321,8 @@
 
             <form method="POST" action="{{ route('login.post') }}" class="form-inline d-flex">
                 @csrf
-                <input type="email" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" name="email" placeholder="Informe seu email" style="text-transform: none;">
-                <input type="password" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" name="password" placeholder="Informe a senha" style="text-transform: none;">
+                <input required type="email" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" name="email" placeholder="Informe seu email" style="text-transform: none;">
+                <input required type="password" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" name="password" placeholder="Informe a senha" style="text-transform: none;">
                 <button type="submit" class="btn btn-primary mx-auto" style="background-color: #3c8dbc">Entrar</button>
             </form>
 
