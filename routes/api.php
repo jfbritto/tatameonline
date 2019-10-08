@@ -27,7 +27,7 @@
         Route::post('/student', 'StudentController@store');
         Route::post('/student/list/{academy}', 'StudentController@index');
         Route::post('/student/destroy/{student}', 'StudentController@destroy');
-        
+
         Route::post('/lesson', 'LessonController@store');
         Route::post('/lesson/list/{academy}', 'LessonController@index');
         Route::post('/lesson/now/list/{academy}', 'LessonController@lessonNow');
@@ -35,30 +35,31 @@
         Route::post('/lesson/not/aluns/list/{lesson}/{academy}', 'LessonController@listNotAluns');
         Route::post('/lesson/students/now/list/{lesson}', 'LessonController@lessonAlunsList');
         Route::post('/lesson/student/list/{student}', 'LessonController@listAluns');
-        
+
         Route::post('/registration', 'RegistrationController@store');
         Route::post('/registration/list/{lesson}', 'RegistrationController@index');
         Route::post('/registration/destroy/{registration}', 'RegistrationController@destroy');
-        
+
         Route::post('/contract', 'ContractController@store');
+        Route::post('/contract/renew', 'ContractController@renew');
         Route::post('/contract/list/{user}', 'ContractController@index');
         Route::post('/contract/get/{user}', 'ContractController@getActiveByUser');
-        
+
         Route::post('/invoice/list/{contract}', 'InvoiceController@index');
         Route::post('/invoice/reportPayment/{invoice}', 'InvoiceController@reportPayment');
 
         Route::post('/graduation', 'GraduationController@store');
         Route::post('/graduation/list/{academy}', 'GraduationController@index');
         Route::post('/graduation/destroy/{graduation}', 'GraduationController@destroy');
-        
+
         Route::post('/user-graduation', 'UserGraduationController@store');
         Route::post('/user-graduation/list/{user}', 'UserGraduationController@index');
         Route::post('/user-graduation/destroy/{userGraduation}', 'UserGraduationController@destroy');
         Route::post('/user-graduation/list/sport/{sport}/{academy}', 'GraduationController@listBySport');
         Route::post('/user-graduation/active/list/{user}', 'UserGraduationController@listActivesByUser');
-        
+
         Route::post('/presence/list/{user}/{userGraduation}', 'PresenceController@index');
-        
+
         Route::post('/academy/list/{academy}', 'AcademyController@index');
         Route::post('/academy/update-token/{academy}', 'AcademyController@updateToken');
 
@@ -66,7 +67,7 @@
 
 
 
-    Route::group(['prefix' => 'student', 'namespace' => 'Student'], function(){    
+    Route::group(['prefix' => 'student', 'namespace' => 'Student'], function(){
 
         //AULAS
         Route::post('/lesson/list/{user}', 'LessonController@index');
@@ -76,7 +77,7 @@
         //PRESENÇA
         Route::post('/presence', 'PresenceController@store');
         Route::post('/presence/last/list/{user}', 'PresenceController@openLastPresencesByStudent');
-        
+
         //ACADEMIA
         Route::post('/academy/token/check/{user}/{token}', 'AcademyController@checkToken');
     });

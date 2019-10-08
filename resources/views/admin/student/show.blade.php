@@ -36,7 +36,7 @@
 <div class="box">
     <div class="box-header">
         <h3 class="box-title"><i class="fas fa-file-contract"></i> &nbsp;&nbsp; Contrato</h3>
-        
+
         <div class="box-tools">
             <div class="input-group input-group-sm" style="width: 150px; text-align: right">
                 <div class="input-group-btn">
@@ -55,6 +55,8 @@
                         <th class="hidden-xs">Período (mêses)</th>
                         <th>Mensalidade</th>
                         <th class="hidden-xs">Dia vencimento</th>
+                        <th>Fat. Pagas</th>
+                        <th>Fat. Abertas</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -68,7 +70,7 @@
 <div class="box">
     <div class="box-header">
         <h3 class="box-title"><i class="fas fa-graduation-cap"></i> &nbsp;&nbsp; Graduação</h3>
-        
+
         <div class="box-tools">
             <div class="input-group input-group-sm" style="width: 150px; text-align: right">
                 <div class="input-group-btn">
@@ -93,7 +95,7 @@
                 </thead>
                 <tbody id="listGraduations"></tbody>
             </table>
-        </div>    
+        </div>
 
     </div>
 </div>

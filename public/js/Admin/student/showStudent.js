@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    
+
     list($("#idStudent").val());
     getContrato($("#idStudent").val());
     listGraduations($("#idStudent").val());
@@ -10,10 +10,10 @@ $(document).ready(function(){
 function list(id)
 {
     $.post(window.location.origin + "/api/admin/lesson/student/list/"+id, {
-        
+
     }).then(function(data) {
         if(data.status == 'success') {
-    
+
             var html = '';
 
             for (var i in data.data) {
@@ -27,7 +27,7 @@ function list(id)
                                 <div class="input-group-btn">
                                     <a class="btn btn-primary btn-sm pull-right" href="/admin/lesson/show/${data.data[i].id}" title="Abrir aula"><i class="fas fa-sign-in-alt"></i></a>
                                     <a class="btn btn-danger btn-sm pull-right destroy" onclick="destroy(${data.data[i].id_registration})" data-id="${data.data[i].id_registration}" title="Deletar matricula"><i class="fas fa-trash-alt"></i></a>
-                                </div>    
+                                </div>
                             </td>
                         </tr>`;
             }
@@ -44,10 +44,10 @@ function list(id)
 function getContrato(id)
 {
     $.post(window.location.origin + "/api/admin/contract/get/"+id, {
-        
+
     }).then(function(data) {
         if(data.status == 'success') {
-    
+
             var html = '';
 
             html += `<tr>
@@ -55,13 +55,15 @@ function getContrato(id)
                         <td class="hidden-xs">${data.data.months}</td>
                         <td>${moneyFormat(data.data.monthlyPayment)}</td>
                         <td class="hidden-xs">${data.data.expiryDay}</td>
+                        <td class="hidden-xs">${data.data.fatPay}</td>
+                        <td class="hidden-xs">${data.data.fatNotPay}</td>
                         <td>
                             <div class="input-group-btn">
                                 <a onclick="openInvoices(${data.data.id})" class="btn btn-primary btn-sm pull-right" href="#" title="Ver faturas" data-toggle="modal" data-target="#modal-invoices"><i class="fas fa-file-invoice-dollar"></i></a>
-                            </div>    
+                            </div>
                         </td>
                     </tr>`;
-        
+
 
             $('#listaContrato').html(html);
 
@@ -75,10 +77,10 @@ function getContrato(id)
 function openInvoices(id)
 {
     $.post(window.location.origin + "/api/admin/invoice/list/"+id, {
-        
+
     }).then(function(data) {
         if(data.status == 'success') {
-    
+
             var html = '';
 
             for (var i in data.data) {
@@ -107,7 +109,7 @@ function reportPayment(idInvoice, idContract)
 
 
     Swal.fire({
-        title: 'Alenção!',
+        title: 'Atenção!',
         text: "Confirma o recebimento?",
         type: 'warning',
         showCancelButton: false,
@@ -120,28 +122,28 @@ function reportPayment(idInvoice, idContract)
             $("#ico"+idInvoice).removeClass("fa-file-invoice-dollar");
             $("#ico"+idInvoice).addClass("fa-sync-alt");
             $("#ico"+idInvoice).addClass("fa-spin");
-        
+
             $.post(window.location.origin + "/api/admin/invoice/reportPayment/"+idInvoice, {
-                
+
             }).then(function(data) {
                 if(data.status == 'success') {
-                    
+
                     $("#ico"+idInvoice).removeClass("fa-sync-alt");
                     $("#ico"+idInvoice).removeClass("fa-spin");
                     $("#ico"+idInvoice).addClass("fa-file-invoice-dollar");
-        
-                    openInvoices(idContract);   
+
+                    openInvoices(idContract);
 
                       Swal.fire(
                         'Pagamento confirmado!',
                         '',
                         'success'
                       )
-        
+
                 } else if (data.status == 'error') {
                     showError(data.message);
                 }
-            }, goTo500).catch(goTo500);    
+            }, goTo500).catch(goTo500);
 
         }
       })
@@ -151,7 +153,7 @@ function reportPayment(idInvoice, idContract)
 //DESMATRICULAR DA AULA
 function destroy(id)
 {
-    
+
     Swal.queue([{
         title: 'Carregando...',
         allowOutsideClick: false,
@@ -159,7 +161,7 @@ function destroy(id)
         onOpen: () => {
             Swal.showLoading();
             $.post(window.location.origin + "/api/admin/registration/destroy/"+id, {
-            
+
             }).then(function(data) {
                 if(data.status == 'success') {
 
@@ -186,12 +188,12 @@ function destroy(id)
 function listGraduations(id)
 {
     $.post(window.location.origin + "/api/admin/user-graduation/active/list/"+id, {
-        
+
     }).then(function(data) {
-        
-        
+
+
         if(data.status == 'success') {
-                
+
             var html = '';
 
             for (var i in data.data) {
@@ -205,7 +207,7 @@ function listGraduations(id)
                             <td>
                                 <div class="input-group-btn">
                                     <a onclick="openPresences(${data.data[i].idUser},${data.data[i].id})" class="btn btn-primary btn-sm pull-right" href="#" title="Ver presenças" data-toggle="modal" data-target="#modal-presences"><i class="fas fa-user-check"></i></a>
-                                </div>    
+                                </div>
                             </td>
                         </tr>`;
             }
@@ -222,10 +224,10 @@ function listGraduations(id)
 function openPresences(idUser, idUserGraduation)
 {
     $.post(window.location.origin + "/api/admin/presence/list/"+idUser+"/"+idUserGraduation, {
-        
+
     }).then(function(data) {
         if(data.status == 'success') {
-    
+
             var html = '';
 
             for (var i in data.data) {

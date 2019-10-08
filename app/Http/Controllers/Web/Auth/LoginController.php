@@ -65,8 +65,12 @@ class LoginController extends Controller
                 return redirect()->route('admin');
 
             if(auth()->user()->isStudent)
-                return redirect()->route('student');    
+                return redirect()->route('student');
 
+
+
+        }else{
+            return redirect(route('site').'#login')->with('error', 'E-mail ou senha incorretos!');
         }
     }
 }

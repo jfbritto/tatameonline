@@ -27,14 +27,14 @@ $(document).ready(function(){
             step: function(state, circle) {
                 circle.path.setAttribute('stroke', state.color);
                 circle.path.setAttribute('stroke-width', state.width);
-                                        
+
                 circle.setText("<center><font style='font-size:10px'>TOKEN</font><br><font style='font-size:35px'>"+token+"</font></center>");
             }
         });
         bar.text.style.fontFamily = '"Raleway", Helvetica, sans-serif';
         bar.text.style.fontSize = '2rem';
     }
-    
+
     $("#btn-container").on("click", function(){
         if(bar.value() != 0)
         reset();
@@ -84,11 +84,11 @@ $(document).ready(function(){
     function getToken(id)
     {
         $.post(window.location.origin + "/api/admin/academy/list/"+id, {
-            
+
         }).then(function(data) {
-            
+
             if(data.status == 'success') {
-                
+
                 $("#info-box-token").html(data.data.token)
                 $("#info-box-aluns").html(data.data.aluns)
                 $("#info-box-lessons").html(data.data.lessons)
@@ -104,35 +104,34 @@ $(document).ready(function(){
             }
         }, goTo500).catch(goTo500);
     }
-    
+
     function updateToken(id)
     {
         $.post(window.location.origin + "/api/admin/academy/update-token/"+id, {
-            
+
         }).then(function(data) {
-                        
+
             if(data.status == 'success') {
 
                 $("#info-box-token").html(data.data)
                 token = data.data;
-                
+
                 reset();
                 start();
-                
+
             } else if (data.status == 'error') {
                 showError(data.message);
             }
         }, goTo500).catch(goTo500);
     }
 
-    
     function lessonsNow(id)
     {
         $.post(window.location.origin + "/api/admin/lesson/now/list/"+id, {
-            
+
         }).then(function(data) {
             if(data.status == 'success') {
-        
+
                 var html = '';
 
                 for (var i in data.data) {
@@ -146,60 +145,92 @@ $(document).ready(function(){
                                     <span class="info-box-text">${data.data[i].sport_name}</span>
                                     <span class="info-box-text">${data.data[i].teacher}</span>
                                     <span class="info-box-text">${data.data[i].hour}</span>
-                                    <span class="info-box-text">Presentes: <strong>${data.data[i].presences}</strong></span>
+                                    <span class="info-box-text">Presentes: <strong id="lesson${data.data[i].id}">${data.data[i].presences}</strong></span>
                                     </div>
-                        
+
                                 </div>
                              </div>`;
                             }
 
                 $('#lessons-now').html(html);
-                
+
             } else if (data.status == 'error') {
                 showError(data.message);
             }
         }, goTo500).catch(goTo500);
     }
 
-    
-    
+
+
 });
+
+function givePresence(idReg, idUsGr, idLesson)
+{
+    $.post(window.location.origin + "/api/student/presence", {
+        idRegistration: idReg,
+        idUserGraduation: idUsGr,
+    }).then(function(data) {
+        // $("#modal-presences").modal('hide');
+
+        let totPres = parseInt($("#lesson"+idLesson).html());
+        let res = totPres + 1;
+        $("#lesson"+idLesson).html(res)
+
+        $("#situ"+idReg).html('<span class="label label-success">Presente</span>')
+        $("#btn"+idReg).hide()
+
+        if(data.status == 'success') {
+            Swal.fire({
+                type: 'success',
+                text: 'Presença cadastrada com sucesso',
+                showConfirmButton: false,
+                showCancelButton: true,
+                cancelButtonText: "OK",
+                onClose: () => {
+
+                }
+            });
+        } else if (data.status == 'error') {
+            showError(data.message);
+        }
+    }, goTo500).catch(goTo500);
+}
 
 function lessonAlunsList(id)
 {
 
     $.post(window.location.origin + "/api/admin/lesson/students/now/list/"+id, {
-        
+
     }).then(function(data) {
         if(data.status == 'success') {
-            
+
             var html = '';
-            
+
             for (var i in data.data) {
-                
+
                 html += `<tr>
                 <td>${data.data[i].student_name}</td>
-                            <td>${data.data[i].present != null?'<span class="label label-success">Presente</span>':'<span class="label label-danger">Ausente</span>'}</td>
+                            <td id="situ${data.data[i].id_registration}">${data.data[i].present != null?'<span class="label label-success">Presente</span>':'<span class="label label-danger">Ausente</span>'}</td>
                             <td>
                                 ${data.data[i].present != null?'':`
                                 <div class="input-group-btn">
-                                <a class="btn btn-success btn-sm pull-right" href="#" title="Confirmar presença de ${data.data[i].student_name}"><i class="fas fa-user-check"></i></a>
-                                </div>    
+                                <a id="btn${data.data[i].id_registration}" class="btn btn-success btn-sm pull-right" href="#" onclick="givePresence(${data.data[i].id_registration}, ${data.data[i].id_user_graduation}, ${data.data[i].id})" title="Confirmar presença de ${data.data[i].student_name}"><i class="fas fa-user-check"></i></a>
+                                </div>
                                 `}
                                 </td>
                                 </tr>`;
             }
-            
+
 
             $("#title-lessons-now").show()
 
             $('#listPresences').html(html);
-                            
+
             $("#modal-presences").modal("show");
-                
+
         } else if (data.status == 'error') {
             showError(data.message);
         }
     }, goTo500).catch(goTo500);
-    
+
 }

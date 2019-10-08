@@ -58,7 +58,7 @@
 <h3>Aulas Hoje</h3>
 
 <div class="row" id="lessons-now">
-    
+
 </div>
 
 <input type="hidden" id="idAcademy" value="{{auth()->user()->academy->id}}">

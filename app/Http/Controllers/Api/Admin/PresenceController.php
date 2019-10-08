@@ -23,7 +23,7 @@ class PresenceController extends Controller
 
         if($response['status'] == 'success')
             return response()->json(['status'=>'success', 'data'=>$response['data']], 201);
-            
+
         return response()->json(['status'=>'error', 'message'=>$response['data']], 500);
     }
 
@@ -34,29 +34,25 @@ class PresenceController extends Controller
 
     public function store(Request $request)
     {
-        // $dataValid = $request->validate([
-        //     'signatureDate' => 'required',
-        //     'months' => 'required',
-        //     'monthlyPayment' => 'required',
-        //     'expiryDay' => 'required',
-        //     'idUser' => 'required',
-        // ]);
+        $dataValid = $request->validate([
+            'idRegistration' => 'required',
+            'idUserGraduation' => 'required',
+            ]);
 
-        // $data = [
-        //     'signatureDate' => $request->signatureDate,
-        //     'months' => $request->months,
-        //     'monthlyPayment' => $request->monthlyPayment,
-        //     'expiryDay' => $request->expiryDay,
-        //     'idUser' => $request->idUser,
-        //     'idActive' => 1,
-        // ];
+        $data = [
+            'idRegistration' => $request->idRegistration,
+            'idUserGraduation' => $request->idUserGraduation,
+            'checkedHour' => date("Y-m-d H:i:s"),
+        ];
 
-        // $response = $this->presenceService->store($data);
+        // return $data;
 
-        // if($response['status'] == 'success')
-        //     return response()->json(['status'=>'success'], 201);
-            
-        // return response()->json(['status'=>'error', 'message'=>$response['data']], 201);
+        $response = $this->presenceService->store($data);
+
+        if($response['status'] == 'success')
+        return response()->json(['status'=>'success'], 201);
+
+        return response()->json(['status'=>'error', 'message'=>$response['data']], 201);
     }
 
     public function show($id)
@@ -75,12 +71,12 @@ class PresenceController extends Controller
     }
 
     public function destroy($id)
-    {       
+    {
         // $response = $this->presenceService->destroy($id);
 
         // if($response['status'] == 'success')
         //     return response()->json(['status'=>'success'], 201);
-            
+
         // return response()->json(['status'=>'error', 'message'=>$response['data']], 201);
     }
 }

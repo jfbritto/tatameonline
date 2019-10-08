@@ -17,7 +17,7 @@
 @stop
 
 @section('content')
-    
+
     <div class="box">
         <div class="box-header">
             <h3 class="box-title"><i class="fas fa-file-contract"></i> &nbsp;&nbsp; Contratos</h3>
@@ -39,6 +39,8 @@
                         <th class="hidden-xs">Período (mêses)</th>
                         <th>Mensalidade</th>
                         <th class="hidden-xs">Dia vencimento</th>
+                        <th>Fat. Pagas</th>
+                        <th>Fat. Abertas</th>
                         <th></th>
                     </tr>
                 </thead>

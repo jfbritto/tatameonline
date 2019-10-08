@@ -31,7 +31,7 @@ class LessonService
 
         return $response;
     }
-    
+
     public function store(array $data)
     {
         $response = [];
@@ -41,15 +41,15 @@ class LessonService
             DB::beginTransaction();
 
             $lesson = Lesson::create($data);
-            
+
             DB::commit();
-            
+
             $response = ['status' => 'success', 'data' => $lesson];
         }catch(Exception $e){
             DB::rollBack();
             $response = ['status' => 'error', 'data' => $e->getMessage()];
         }
-        
+
         return $response;
     }
 
@@ -62,15 +62,15 @@ class LessonService
             $alunos = DB::table('registrations')->where('idLesson', '=', $id)->where('isActive', '=', 1)->count();
 
             if($alunos == 0){
-                
+
                 DB::beginTransaction();
-                
+
                 DB::table('lessons')
                 ->where('id', $id)
                 ->update(['isActive' => 0]);
-                
+
                 DB::commit();
-                
+
                 $response = ['status' => 'success'];
             }else{
                 $response = ['status' => 'error', 'data' => 'Existem alunos matriculados nesta aula!'];
@@ -84,14 +84,14 @@ class LessonService
         return $response;
     }
 
-    
-    
+
+
     public function listNotAluns($idLesson, $idAcademy)
     {
         $response = [];
-        
+
         try{
-            
+
             $users = DB::table('registrations')
             ->join('lessons', 'lessons.id', '=', 'registrations.idLesson')
             ->join('users', 'users.id', '=', 'registrations.idUser')
@@ -99,28 +99,28 @@ class LessonService
                                 ->where('registrations.isActive', '=', 1)
                                 ->select('users.*')
                                 ->get();
-                                
+
             $data = [];
             foreach ($users as $user) {
                 $data[] = $user->id;
             }
-            
+
             $us = DB::table('users')->where('idAcademy', '=', $idAcademy)->where('isActive', '=', 1)->where('isStudent', '=', 1)->whereNotIn('id', $data)->get();
-            
+
             $response = ['status' => 'success', 'data' => $us];
         }catch(Exception $e){
             $response = ['status' => 'error', 'data' => $e->getMessage()];
         }
-        
+
         return $response;
     }
-    
+
     public function listAluns($idUser)
     {
         $response = [];
-        
+
         try{
-            
+
             $lessons = DB::table('lessons')
             ->join('registrations', 'registrations.idLesson', '=', 'lessons.id')
             ->join('sports', 'sports.id', '=', 'lessons.idSport')
@@ -129,7 +129,7 @@ class LessonService
             ->orderByRaw('lessons.weekDay')
                                 ->orderByRaw('lessons.hour')
                                 ->select('lessons.*', 'sports.name as sport_name', 'registrations.id as id_registration')
-                                ->get();                    
+                                ->get();
 
                                 $response = ['status' => 'success', 'data' => $lessons];
         }catch(Exception $e){
@@ -138,13 +138,13 @@ class LessonService
 
         return $response;
     }
-    
+
     public function listLessonsByUser($id)
     {
         $response = [];
-        
+
         try{
-            
+
             $lessons = DB::table('lessons')
                                 ->join('registrations', 'registrations.idLesson', '=', 'lessons.id')
                                 ->join('sports', 'sports.id', '=', 'lessons.idSport')
@@ -155,24 +155,24 @@ class LessonService
                                 ->orderByRaw('lessons.hour')
                                 ->select('lessons.*', 'sports.name as sport_name')
                                 ->get();
-                                
+
             $response = ['status' => 'success', 'data' => $lessons];
         }catch(Exception $e){
             $response = ['status' => 'error', 'data' => $e->getMessage()];
         }
-        
+
         return $response;
     }
-    
+
     public function nextLesson($id)
     {
         $response = [];
-        
+
         try{
 
             $i = 1;
             $less = false;
-            
+
             $lesson = DB::table('lessons')
             ->join('registrations', 'registrations.idLesson', '=', 'lessons.id')
             ->join('sports', 'sports.id', '=', 'lessons.idSport')
@@ -186,9 +186,9 @@ class LessonService
                         ->first();
 
             if(!$lesson){
-                
+
                 while ($less == false && $i < 7) {
-                
+
                     $lesson = DB::table('lessons')
                         ->join('registrations', 'registrations.idLesson', '=', 'lessons.id')
                         ->join('sports', 'sports.id', '=', 'lessons.idSport')
@@ -199,14 +199,14 @@ class LessonService
                         ->select('lessons.*', 'sports.name as sport_name')
                         ->orderByRaw('lessons.hour')
                         ->first();
-                        
+
                     if($lesson){
                         $less = true;
                     }
-                    
+
                     $i++;
                 }
-                
+
                 if(!$lesson){
                     $lesson = DB::table('lessons')
                     ->join('registrations', 'registrations.idLesson', '=', 'lessons.id')
@@ -221,7 +221,7 @@ class LessonService
                     ->first();
                 }
             }
-            
+
             $response = ['status' => 'success', 'data' => $lesson];
         }catch(Exception $e){
             $response = ['status' => 'error', 'data' => $e->getMessage()];
@@ -229,11 +229,11 @@ class LessonService
 
         return $response;
     }
-    
+
     public function checkLesson($id)
     {
         $response = [];
-        
+
         try{
 
             $hora_ini = date("H:i:s", strtotime("-10 minutes"));
@@ -241,9 +241,9 @@ class LessonService
 
             $lesson = DB::select( DB::raw("select
                                                 le.*,
-                                                sp.id as sport_id, 
-                                                sp.name as sport_name, 
-                                                re.id as registration_id, 
+                                                sp.id as sport_id,
+                                                sp.name as sport_name,
+                                                re.id as registration_id,
                                                 ug.id as user_graduation_id
 
                                             from
@@ -256,18 +256,18 @@ class LessonService
                                                 left join presences pr on pr.idRegistration=re.id
                                             where
                                                 re.idUser='$id'
-                                                and le.weekDay=4
+                                                and le.weekDay=".date("N")."
                                                 and pr.id is null
                                                 and gr.idSport=sp.id
-                                                
+
                                                 and le.isActive = 1
                                                 and re.isActive = 1
                                                 and gr.isActive = 1
                                                 and ug.isActive = 1
-                                                
+
                                                 and le.hour >= '$hora_ini'
                                                 and le.hour <= '$hora_fim'
-                                            order by 
+                                            order by
                                                 le.hour"));
 
 
@@ -278,13 +278,13 @@ class LessonService
 
         return $response;
     }
-    
+
     public function lessonNow($id)
     {
         $response = [];
-        
+
         try{
-            
+
             $lessons = DB::table('lessons as les')
                             ->join('sports', 'sports.id', '=', 'les.idSport')
                             ->where('les.isActive', '=', 1)
@@ -292,14 +292,14 @@ class LessonService
                             ->where('les.hour', '<=', now())
                             ->where('les.weekDay', '=', date("N"))
                             ->select('les.*', 'sports.name as sport_name',
-                                (DB::raw("(select 
-                                                count(*) 
+                                (DB::raw("(select
+                                                count(*)
                                             from
                                                 presences
                                                 join registrations on presences.idRegistration=registrations.id
                                                 join lessons ls on registrations.idLesson=ls.id
                                             where
-                                                ls.id = les.id and 
+                                                ls.id = les.id and
                                                 date_format(presences.checkedHour, '%Y-%m-%d') = date_format(now(), '%Y-%m-%d')) AS presences")
                                 )
                             )
@@ -312,19 +312,22 @@ class LessonService
 
         return $response;
     }
-    
+
     public function lessonAlunsList($id)
     {
         $response = [];
-        
+
         try{
-            
+
             $lessons = DB::table('lessons')
                                 ->join('registrations', 'registrations.idLesson', '=', 'lessons.id')
                                 ->join('users', 'users.id', '=', 'registrations.idUser')
+                                ->join('user_graduations', 'users.id', '=', 'user_graduations.idUser')
+                                ->join('graduations', 'graduations.id', '=', 'user_graduations.idGraduation')
                                 ->where('lessons.weekDay', '=', date("N"))
                                 ->where('lessons.id', '=', $id)
-                                ->select('lessons.*', 'users.name as student_name', 'users.name as ',
+                                ->where('user_graduations.isActive', '=', 1)
+                                ->select('lessons.*', 'users.name as student_name', 'users.name as ', 'user_graduations.id as id_user_graduation', 'registrations.id as id_registration',
                                 (DB::raw("(select id from presences where idRegistration = registrations.id and date_format(checkedHour, '%Y-%m-%d') = '".date("Y-m-d")."') as present")) )
                                 ->orderByRaw('users.name')
                                 ->get();
@@ -336,6 +339,6 @@ class LessonService
 
         return $response;
     }
-    
+
 
 }

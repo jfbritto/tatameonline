@@ -1,12 +1,10 @@
 <?php
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'SiteController@index')->name('site');
 
 // Auth::routes();
 
-Route::get('/login', 'Auth\LoginController@get_autenticar')->name('login');
+// Route::get('/login', 'Auth\LoginController@get_autenticar')->name('login');
 Route::post('/login', 'Auth\LoginController@post_autenticar')->name('login.post');
 
 // Route::get('/home', 'HomeController@index')->name('home');
@@ -57,10 +55,10 @@ Route::group(['middleware' => ['auth']], function(){
         //GRADUAÇÃO
         Route::get('/graduation', 'GraduationController@index')->name('admin.graduation');
         Route::get('/graduation/create', 'GraduationController@create')->name('admin.graduation.create');
-        
+
         //CONTRATOS
         Route::get('/student/contract/{user}', 'ContractController@index')->name('admin.student.contract');
-        
+
         //GRADUAÇÕES
         Route::get('/student/graduation/{user}', 'UserGraduationController@index')->name('admin.student.graduation');
 
