@@ -55,8 +55,8 @@
                         <th class="hidden-xs">Período (mêses)</th>
                         <th>Mensalidade</th>
                         <th class="hidden-xs">Dia vencimento</th>
-                        <th>Fat. Pagas</th>
-                        <th>Fat. Abertas</th>
+                        <th class="hidden-xs">Fat. Pagas</th>
+                        <th class="hidden-xs">Fat. Abertas</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -89,9 +89,9 @@
                         <th>Graduação</th>
                         <th class="hidden-xs">Data início</th>
                         <th class="hidden-xs">Data fim</th>
-                        <th>Situação</th>
-                        <th>H. necessárias</th>
-                        <th>H. completadas</th>
+                        <th class="hidden-xs">Situação</th>
+                        <th class="hidden-xs" title="Horas necessárias">Hrs. neces</th>
+                        <th class="hidden-xs" title="Horas completadas">Hrs. comp.</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -175,6 +175,7 @@
                             <thead>
                                 <tr>
                                     <th>Dia aula</th>
+                                    <th>Professor</th>
                                     <th>Hora aula</th>
                                     <th>Data/Hora presença</th>
                                 </tr>

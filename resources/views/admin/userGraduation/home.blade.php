@@ -40,8 +40,8 @@
                         <th class="hidden-xs">Data início</th>
                         <th class="hidden-xs">Data fim</th>
                         <th>Situação</th>
-                        <th>H. necessárias</th>
-                        <th>H. completadas</th>
+                        <th title="Horas necessárias">Hrs. neces</th>
+                        <th title="Horas completadas">Hrs. comp.</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -111,6 +111,7 @@
                                 <thead>
                                     <tr>
                                         <th>Dia aula</th>
+                                        <th>Professor</th>
                                         <th>Hora aula</th>
                                         <th>Data/Hora presença</th>
                                     </tr>
@@ -171,6 +172,44 @@
             </div>
             <div class="modal-footer">
                 <button form="formAddUserNewGraduation" class="btn btn-primary"><i class="fas fa-save"></i>&nbsp;&nbsp;Salvar</button>
+            </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+    <div class="modal fade" id="modal-start">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title"><i class="fas fa-clock"></i>&nbsp;&nbsp;Start de horas</h4>
+            </div>
+            <div class="modal-body">
+                <form id="formAddStart">
+                    <div class="row">
+                        <div class="col-sm-12">
+
+                            <p>* Informe quantas horas de aula nessa graduação este aluno já possúi.</p>
+
+                        </div>
+                        <div class="col-sm-12">
+
+                            <div class="input-group" style="width:100%">
+                                <label for="time">Horas</label>
+                                <input type="number" min="1" class="form-control" name="time" id="time" required>
+                            </div>
+
+                        </div>
+
+                        <input type="hidden" id="idUserGraduationStart" value="">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button form="formAddStart" class="btn btn-primary"><i class="fas fa-save"></i>&nbsp;&nbsp;Salvar</button>
             </div>
             </div>
             <!-- /.modal-content -->

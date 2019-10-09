@@ -36,9 +36,9 @@
                 <thead>
                     <tr>
                         <th>Data de assinatura</th>
-                        <th class="hidden-xs">Período (mêses)</th>
+                        <th>Período (mêses)</th>
                         <th>Mensalidade</th>
-                        <th class="hidden-xs">Dia vencimento</th>
+                        <th>Dia vencimento</th>
                         <th>Fat. Pagas</th>
                         <th>Fat. Abertas</th>
                         <th></th>

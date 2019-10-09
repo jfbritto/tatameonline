@@ -20,7 +20,7 @@ class PresenceService
                                 ->join('lessons', 'lessons.id', '=', 'registrations.idLesson')
                                 ->where('registrations.idUser', '=', $idUser)
                                 ->where('user_graduations.id', '=', $idUserGraduation)
-                                ->select('presences.*', 'lessons.weekDay', 'lessons.hour')
+                                ->select('presences.*', 'lessons.teacher', 'lessons.weekDay', 'lessons.hour')
                                 ->get();
 
             $response = ['status' => 'success', 'data' => $presences];
@@ -64,7 +64,6 @@ class PresenceService
                                 ->join('lessons', 'lessons.id', '=', 'registrations.idLesson')
                                 ->join('sports', 'sports.id', '=', 'lessons.idSport')
                                 ->where('registrations.idUser', '=', $idUser)
-                                ->where('user_graduations.isActive', '=', 1)
                                 ->select('presences.*', 'lessons.weekDay', 'lessons.hour', 'sports.name as name_sport')
                                 ->orderBy('presences.checkedHour', 'desc')
                                 ->limit(5)

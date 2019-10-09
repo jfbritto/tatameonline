@@ -71,6 +71,40 @@ $(document).ready(function(){
         }]);
     });
 
+    $("#formAddStart").submit(function(e) {
+
+        e.preventDefault();
+
+        Swal.queue([{
+            title: 'Carregando...',
+            allowOutsideClick: false,
+            allowEscapeKey: false,
+            onOpen: () => {
+                Swal.showLoading();
+                $.post(window.location.origin + "/api/admin/start", {
+                    time: $("#time").val(),
+                    idUserGraduationStart: $("#idUserGraduationStart").val()
+                }).then(function(data) {
+                    list($("#idUser").val());
+                    if(data.status == 'success') {
+                        Swal.fire({
+                            type: 'success',
+                            text: 'Start de horas cadastrado com sucesso!',
+                            showConfirmButton: false,
+                            showCancelButton: true,
+                            cancelButtonText: "OK",
+                            onClose: () => {
+                                $("#formAddStart").trigger("reset");
+                            }
+                        });
+                    } else if (data.status == 'error') {
+                        showError(data.message);
+                    }
+                }, goTo500).catch(goTo500);
+            }
+        }]);
+    });
+
 
     list($("#idUser").val());
 
@@ -101,19 +135,37 @@ function list(id)
 
             for (var i in data.data) {
 
-                html += `<tr class="${data.data[i].isActive==0?'danger':''} ${data.data[i].completed_hours>=data.data[i].required_hours&&data.data[i].isActive==1?'success':''}">
+                let comp_hours = parseInt(0);
+                let stt_hours = parseInt(0);
+                let total_hours = parseInt(0);
+
+                if(data.data[i].completed_hours!=null)
+                    comp_hours = parseInt(data.data[i].completed_hours);
+
+                if(data.data[i].start_hours!=null)
+                    stt_hours = parseInt(data.data[i].start_hours);
+
+                total_hours = comp_hours+stt_hours;
+
+                html += `<tr class="${data.data[i].isActive==0?'danger':''} ${total_hours>=data.data[i].required_hours&&data.data[i].isActive==1?'success':''}">
                             <td>${data.data[i].name_sport}</td>
                             <td>${data.data[i].name_graduation}</td>
                             <td class="hidden-xs">${dateFormat(data.data[i].startDate)}</td>
                             <td class="hidden-xs">${dateFormat(data.data[i].endDate)}</td>
                             <td>${data.data[i].isActive==1?'Graduando':'Graduado'}</td>
                             <td>${data.data[i].required_hours}</td>
-                            <td>${data.data[i].completed_hours==null?'0':data.data[i].completed_hours}</td>
+                            <td>${total_hours}</td>
                             <td>
                                 <div class="input-group-btn">
+
+                                    ${data.data[i].isActive==1?`
+                                        <a onclick="openStart(${data.data[i].id})" class="btn btn-warning btn-sm pull-right" href="#" title="Adicionar start de horas completadas"><i class="fas fa-clock"></i></a>
+                                    `:''}
+
                                     <a onclick="openPresences(${data.data[i].idUser},${data.data[i].id})" class="btn btn-primary btn-sm pull-right" href="#" title="Ver presenças" data-toggle="modal" data-target="#modal-presences"><i class="fas fa-user-check"></i></a>
 
-                                    ${data.data[i].completed_hours>=data.data[i].required_hours&&data.data[i].isActive==1?`
+
+                                    ${total_hours>=data.data[i].required_hours&&data.data[i].isActive==1?`
                                         <a onclick="alunGraduation(${data.data[i].id})" class="btn btn-success btn-sm pull-right btn-graduate" href="#" title="Graduar">Graduar</a>
                                     `:''}
 
@@ -130,6 +182,15 @@ function list(id)
     }, goTo500).catch(goTo500);
 }
 
+
+function openStart(idUserGraduation)
+{
+
+    $("#idUserGraduationStart").val(idUserGraduation);
+
+    $("#modal-start").modal('show');
+
+}
 
 function alunGraduation(idUserGraduation)
 {
@@ -229,6 +290,7 @@ function openPresences(idUser, idUserGraduation)
 
                 html += `<tr">
                             <td>${dia_semana[data.data[i].weekDay]}</td>
+                            <td>${data.data[i].teacher}</td>
                             <td>${data.data[i].hour}</td>
                             <td>${dateFullFormat(data.data[i].checkedHour)}</td>
                         </tr>`;

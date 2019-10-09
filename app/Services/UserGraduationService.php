@@ -29,7 +29,13 @@ class UserGraduationService
                                                 join lessons le on re.idLesson=le.id
                                             where
                                                 ug.id= user_g.id
-                                                and ug.idUser = ".$id.") as completed_hours")))
+                                                and ug.idUser = ".$id.") as completed_hours")),
+                                (DB::raw("(select
+                                                sug.time
+                                            from
+                                                start_user_graduations sug
+                                            where
+                                                sug.idUserGraduation= user_g.id) as start_hours")))
                                 ->orderBY('user_g.id', 'desc')
                                 ->get();
 
@@ -155,7 +161,13 @@ class UserGraduationService
                                                 join lessons le on re.idLesson=le.id
                                                 where
                                                 ug.id= user_g.id
-                                                and ug.idUser = ".$id.") as completed_hours")))
+                                                and ug.idUser = ".$id.") as completed_hours")),
+                                (DB::raw("(select
+                                                sug.time
+                                            from
+                                                start_user_graduations sug
+                                            where
+                                                sug.idUserGraduation= user_g.id) as start_hours")))
                                                 ->get();
 
             $response = ['status' => 'success', 'data' => $graduations];
@@ -225,7 +237,13 @@ class UserGraduationService
                                                 join lessons le on re.idLesson=le.id
                                             where
                                                 ug.id= user_g.id
-                                                and ug.idUser = us.id) as completed_hours")))
+                                                and ug.idUser = us.id) as completed_hours")),
+                                (DB::raw("(select
+                                                sug.time
+                                            from
+                                                start_user_graduations sug
+                                            where
+                                                sug.idUserGraduation= user_g.id) as start_hours")))
                                 ->orderBY('user_g.id', 'desc')
                                 ->get();
 

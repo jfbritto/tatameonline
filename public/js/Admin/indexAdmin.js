@@ -172,20 +172,32 @@ $(document).ready(function(){
 
                 for (var i in data.data) {
 
+                    let comp_hours = parseInt(0);
+                    let stt_hours = parseInt(0);
+                    let total_hours = parseInt(0);
+
+                    if(data.data[i].completed_hours!=null)
+                        comp_hours = parseInt(data.data[i].completed_hours);
+
+                    if(data.data[i].start_hours!=null)
+                        stt_hours = parseInt(data.data[i].start_hours);
+
+                    total_hours = comp_hours+stt_hours;
+
                     if(data.data[i].isActive==1){
 
-                        let v1 = parseInt(data.data[i].completed_hours);
+                        let v1 = parseInt(total_hours);
                         let v2 = parseInt(5);
                         let v3 = v1+v2;
 
                         if(v3>=data.data[i].required_hours){
 
-                            html += `<tr class="${data.data[i].completed_hours>=data.data[i].required_hours&&data.data[i].isActive==1?'success':''}">
+                            html += `<tr class="${total_hours>=data.data[i].required_hours&&data.data[i].isActive==1?'success':''}">
                                         <td>${data.data[i].name_alun}</td>
                                         <td>${data.data[i].name_sport}</td>
                                         <td>${data.data[i].name_graduation}</td>
                                         <td>${data.data[i].required_hours}</td>
-                                        <td>${data.data[i].completed_hours==null?'0':data.data[i].completed_hours}</td>
+                                        <td>${total_hours}</td>
                                         <td>
                                             <div class="input-group-btn">
                                                 <a class="btn btn-primary btn-sm pull-right" href="/admin/student/graduation/${data.data[i].idUser}" title="Ir para graduação"><i class="fas fa-sign-in-alt"></i></a>

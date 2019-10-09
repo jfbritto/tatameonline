@@ -190,13 +190,13 @@ function list(id)
 
             for (var i in data.data) {
 
-                html += `<tr class="${data.data[i].isActive==1?'success':'danger'}">
+                html += `<tr class="${data.data[i].isActive==1?'':'danger'}">
                             <td>${dateFormat(data.data[i].signatureDate)}</td>
-                            <td class="hidden-xs">${data.data[i].months}</td>
+                            <td>${data.data[i].months}</td>
                             <td>${moneyFormat(data.data[i].monthlyPayment)}</td>
-                            <td class="hidden-xs">${data.data[i].expiryDay}</td>
-                            <td class="hidden-xs">${data.data[i].fatPay}</td>
-                            <td class="hidden-xs">${data.data[i].fatNotPay}</td>
+                            <td>${data.data[i].expiryDay}</td>
+                            <td>${data.data[i].fatPay}</td>
+                            <td>${data.data[i].fatNotPay}</td>
                             <td>
                                 <div class="input-group-btn">
 

@@ -66,6 +66,8 @@
         Route::post('/academy/list/{academy}', 'AcademyController@index');
         Route::post('/academy/update-token/{academy}', 'AcademyController@updateToken');
 
+        Route::post('/start', 'StartUserGraduationController@store');
+
     });
 
 
