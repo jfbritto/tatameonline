@@ -320,17 +320,23 @@ class LessonService
         try{
 
             $lessons = DB::table('lessons')
-                                ->join('registrations', 'registrations.idLesson', '=', 'lessons.id')
-                                ->join('users', 'users.id', '=', 'registrations.idUser')
-                                ->join('user_graduations', 'users.id', '=', 'user_graduations.idUser')
-                                ->join('graduations', 'graduations.id', '=', 'user_graduations.idGraduation')
-                                ->where('lessons.weekDay', '=', date("N"))
-                                ->where('lessons.id', '=', $id)
-                                ->where('user_graduations.isActive', '=', 1)
-                                ->select('lessons.*', 'users.name as student_name', 'users.name as ', 'user_graduations.id as id_user_graduation', 'registrations.id as id_registration',
-                                (DB::raw("(select id from presences where idRegistration = registrations.id and date_format(checkedHour, '%Y-%m-%d') = '".date("Y-m-d")."') as present")) )
-                                ->orderByRaw('users.name')
-                                ->get();
+                            ->join('registrations', 'registrations.idLesson', '=', 'lessons.id')
+                            ->join('users', 'users.id', '=', 'registrations.idUser')
+                            ->where('lessons.weekDay', '=', date("N"))
+                            ->where('lessons.id', '=', $id)
+                            ->select('lessons.*', 'users.name as student_name', 'registrations.id as id_registration',
+                            (DB::raw("(select CASE WHEN id is null THEN 'false' ELSE 'true' END from presences where idRegistration = registrations.id and date_format(checkedHour, '%Y-%m-%d') = '".date("Y-m-d")."') as present")),
+                            (DB::raw("(select
+                                            ugr.id
+                                        from
+                                            user_graduations ugr
+                                            join graduations gra on ugr.idGraduation=gra.id
+                                        where
+                                            ugr.isActive=1
+                                            and ugr.idUser=users.id
+                                            and gra.idSport=lessons.idSport) as id_user_graduation")) )
+                            ->orderByRaw('users.name')
+                            ->get();
 
             $response = ['status' => 'success', 'data' => $lessons];
         }catch(Exception $e){

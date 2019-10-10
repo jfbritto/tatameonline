@@ -17,51 +17,54 @@
 @stop
 
 @section('content')
-    
-    <div class="box">
-        <div class="box-header">
-            <h3 class="box-title">Financeiro</h3>
 
-            <div class="box-tools">
-            <div class="input-group input-group-sm" style="width: 150px; text-align: right">
-                <div class="input-group-btn">
-                    <a href="#" class="btn btn-danger" title="Gerar pdf"><i class="fas fa-file-pdf fa-lg"></i></a>
-                    <a href="#" class="btn btn-success" title="Adicionar aluno"><i class="fas fa-plus fa-lg"></i></i></a>
-                </div>
+<div class="row">
+
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <div class="small-box bg-yellow">
+            <div class="inner">
+                <h3 id="receive">1.150,00</h3>
+
+                <p>À receber</p>
             </div>
+            <div class="icon">
+                <i class="ion ion-cash"></i>
             </div>
         </div>
-        <!-- /.box-header -->
-        <div class="box-body table-responsive">
-            <table class="table table-hover">
-            <tbody><tr>
-                <th>Nome</th>
-                <th>Nascimento</th>
-                <th>Status</th>
-            </tr>
-            <tr>
-                <td>John Doe</td>
-                <td>11-7-2014</td>
-                <td><span class="label label-success">Approved</span></td>
-            </tr>
-            <tr>
-                <td>Alexander Pierce</td>
-                <td>11-7-2014</td>
-                <td><span class="label label-warning">Pending</span></td>
-            </tr>
-            <tr>
-                <td>Bob Doe</td>
-                <td>11-7-2014</td>
-                <td><span class="label label-primary">Approved</span></td>
-            </tr>
-            <tr>
-                <td>Mike Doe</td>
-                <td>11-7-2014</td>
-                <td><span class="label label-danger">Denied</span></td>
-            </tr>
-            </tbody></table>
-        </div>
-        <!-- /.box-body -->
     </div>
 
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <div class="small-box bg-green">
+            <div class="inner">
+                <h3 id="received">830,00</h3>
+
+                <p>Recebido</p>
+            </div>
+            <div class="icon">
+                <i class="ion ion-cash"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <div class="small-box bg-red">
+            <div class="inner">
+                <h3 id="late">470,00</h3>
+
+                <p>Atrasado</p>
+            </div>
+            <div class="icon">
+                <i class="ion ion-cash"></i>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<input type="hidden" id="idAcademy" name="idAcademy" value="{{auth()->user()->academy->id}}">
+
+@stop
+
+@section('adminlte_js')
+    <script src="{{asset('/js/Admin/financial/homeFinancial.js')}}"></script>
 @stop

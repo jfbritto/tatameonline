@@ -126,6 +126,7 @@ $(document).ready(function(){
         }, goTo500).catch(goTo500);
     }
 
+    //BUSCAR AULAS APLICADAS NO DIA
     function lessonsNow(id)
     {
         $.post(window.location.origin + "/api/admin/lesson/now/list/"+id, {
@@ -161,6 +162,7 @@ $(document).ready(function(){
         }, goTo500).catch(goTo500);
     }
 
+    //BUSCAR OS ALUNOS COMPOSSIBILIDADE DE GRADUAÇÃO OU QUE ESTÃO PRÓXIMOS
     function situationAlunsByAcademy(id)
     {
         $.post(window.location.origin + "/api/admin/user-graduation/situation/"+id, {
@@ -220,6 +222,7 @@ $(document).ready(function(){
 
 });
 
+//REGISTRAR PRESENÇA DOS ALUNOS
 function givePresence(idReg, idUsGr, idLesson)
 {
     $.post(window.location.origin + "/api/student/presence", {
@@ -252,6 +255,7 @@ function givePresence(idReg, idUsGr, idLesson)
     }, goTo500).catch(goTo500);
 }
 
+//LISTAGEM DOS ALUNOS QUE ESTÃO CADASTRADOS NA AULA
 function lessonAlunsList(id)
 {
 

@@ -68,6 +68,8 @@
 
         Route::post('/start', 'StartUserGraduationController@store');
 
+        Route::post('/financial/{academy}', 'FinancialController@index');
+
     });
 
 

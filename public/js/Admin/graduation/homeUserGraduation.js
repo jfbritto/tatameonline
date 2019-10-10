@@ -158,7 +158,7 @@ function list(id)
                             <td>
                                 <div class="input-group-btn">
 
-                                    ${data.data[i].isActive==1?`
+                                    ${data.data[i].isActive==1&&data.data[i].start_hours==null?`
                                         <a onclick="openStart(${data.data[i].id})" class="btn btn-warning btn-sm pull-right" href="#" title="Adicionar start de horas completadas"><i class="fas fa-clock"></i></a>
                                     `:''}
 
