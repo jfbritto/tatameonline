@@ -23,7 +23,7 @@
     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
         <div class="small-box bg-yellow">
             <div class="inner">
-                <h3 id="receive">1.150,00</h3>
+                <h3 id="receive"><i class="fas fa-sync-alt fa-spin"></i></h3>
 
                 <p>À receber</p>
             </div>
@@ -36,7 +36,7 @@
     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
         <div class="small-box bg-green">
             <div class="inner">
-                <h3 id="received">830,00</h3>
+                <h3 id="received"><i class="fas fa-sync-alt fa-spin"></i></h3>
 
                 <p>Recebido</p>
             </div>
@@ -49,7 +49,7 @@
     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
         <div class="small-box bg-red">
             <div class="inner">
-                <h3 id="late">470,00</h3>
+                <h3 id="late"><i class="fas fa-sync-alt fa-spin"></i></h3>
 
                 <p>Atrasado</p>
             </div>
