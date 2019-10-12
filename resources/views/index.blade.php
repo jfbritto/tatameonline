@@ -7,12 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <meta name=”keywords” content="tatameonline, tatame, luta, fight, gerenciamento, controle, jiu-jitsu, tatame online, online, sistema de luta, sistema, JIU JITSU, JIU-JITSU, Muay thai, Muay-thai, judô, JUDÔ, graduação, graduacao" />
+    <meta name=”keywords” content="artes marciais, tatame on,tatame online, tatameonline, tatame, luta, fight, gerenciamento, controle, jiu-jitsu, tatame online, online, sistema de luta, sistema, JIU JITSU, JIU-JITSU, Muay thai, Muay-thai, judô, JUDÔ, graduação, graduacao" />
     <meta property="og:url" content="http://www.tatameonline.com.br/" />
     <meta property="type" content="website" />
     <meta property="og:title" content="TATAME ONLINE">
     <meta property="og:description" content="Sistema de gestão de academias de artes marciais">
-    <meta property="og:image" content="{{asset("img/site/1.jpg")}}">
+    <meta property="og:image" content="{{asset("img/site/1min.jpg")}}">
     <meta property="og:locale" content="pt_BR">
     <meta property="og:image:type" content="image/jpg">
     <meta property="og:image:width" content="640">
