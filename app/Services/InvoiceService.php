@@ -58,14 +58,15 @@ class InvoiceService
             $late = 0;
 
             $receive_obj = DB::select( DB::raw("select
-                                                sum(inv.value) as total
-                                            from
-                                                invoices inv
-                                                join users us on inv.idUser=us.id
-                                            where
-                                                us.idAcademy = ".$id."
-                                                and us.isStudent = 1
-                                                and date_format(inv.dueDate, '%Y-%m') = date_format(now(), '%Y-%m')"));
+                                                    sum(inv.value) as total
+                                                from
+                                                    invoices inv
+                                                    join users us on inv.idUser=us.id
+                                                where
+                                                    us.idAcademy = ".$id."
+                                                    and us.isStudent = 1
+                                                    and us.isActive = 1
+                                                    and date_format(inv.dueDate, '%Y-%m') = date_format(now(), '%Y-%m')"));
 
             $received_obj = DB::select( DB::raw("select
                                                 sum(inv.value) as total
@@ -75,6 +76,7 @@ class InvoiceService
                                             where
                                                 us.idAcademy = ".$id."
                                                 and us.isStudent = 1
+                                                and us.isActive = 1
                                                 and inv.isPaid = 1
                                                 and date_format(inv.dueDate, '%Y-%m') = date_format(now(), '%Y-%m')"));
 
@@ -86,6 +88,7 @@ class InvoiceService
                                             where
                                                 us.idAcademy = ".$id."
                                                 and us.isStudent = 1
+                                                and us.isActive = 1
                                                 and inv.isPaid = 0
                                                 and date_format(inv.dueDate, '%Y-%m') = date_format(now(), '%Y-%m')
                                                 and inv.dueDate < date_format(now(), '%Y-%m-%d')"));
