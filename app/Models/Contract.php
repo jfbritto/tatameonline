@@ -13,5 +13,6 @@ class Contract extends Model
         'expiryDay',
         'isActive',
         'idUser',
+        'idAcademy'
     ];
 }

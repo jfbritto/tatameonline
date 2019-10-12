@@ -53,6 +53,7 @@ class ContractService
                     'isPaid' => false,
                     'paymentDate' => null,
                     'idUser' => $data['idUser'],
+                    'idAcademy' => $data['idAcademy'],
                     'idContract' => $contract->id,
                 ];
 

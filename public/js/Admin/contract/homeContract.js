@@ -21,6 +21,7 @@ $(document).ready(function(){
                     monthlyPayment: monthlyPayment,
                     expiryDay: $("#expiryDay").val(),
                     idUser: $("#idUser").val(),
+                    idAcademy: $("#idAcademy").val(),
                 }).then(function(data) {
                     callList();
                     if(data.status == 'success') {

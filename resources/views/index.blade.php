@@ -21,8 +21,6 @@
     <!-- Chrome, Firefox OS and Opera -->
     <meta name="theme-color" content="#3c8dbc">
 
-    <link rel="icon" href="img/cross.png">
-
   <title>TaTame Online - Sistema de gestão de academias de artes marciais.</title>
 
 
@@ -313,22 +311,34 @@
 
   <!-- Login Section -->
   <section id="login" class="signup-section d-flex">
-    <div class="container my-auto">
+    <div class="container">
       <div class="row">
-        <div class="col-md-10 col-lg-8 mx-auto text-center">
+        <div class="mx-auto text-center">
 
             <h2 class="text-white-50 mx-auto mt-2 mb-5">Login</h2>
 
             <form method="POST" action="{{ route('login.post') }}" class="form-inline d-flex">
                 @csrf
-                <input required type="email" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" name="email" placeholder="Informe seu email" style="text-transform: none;">
-                <input required type="password" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" name="password" placeholder="Informe a senha" style="text-transform: none;">
-                <select required class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" name="idAcademy">
-                    <option value="">-- Selecione --</option>
-                    @foreach($academies as $academy)
+                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+
+                    <input required type="email" class="form-control flex-fill mr-0 mb-3" name="email" placeholder="Informe seu email" style="text-transform: none;">
+
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+
+                    <input required type="password" class="form-control flex-fill mr-0 mb-3" name="password" placeholder="Informe a senha" style="text-transform: none;">
+
+                </div>
+                <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+
+                    <select required class="form-control flex-fill mr-0 mb-3" name="idAcademy" style="text-transform: none;">
+                        <option value="">-- Selecione --</option>
+                        @foreach($academies as $academy)
                         <option value="{{$academy->id}}">{{$academy->name}}</option>
-                    @endforeach
-                </select>
+                        @endforeach
+                    </select>
+
+                </div>
                 <button type="submit" class="btn btn-primary mx-auto" style="background-color: #3c8dbc">Entrar</button>
             </form>
 
@@ -414,11 +424,7 @@
 
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/adminlte/vendor/jquery/dist/jquery.min.js"></script>
-  <script src="vendor/adminlte/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <script src="js/common/bootstrap4.min.js"></script>
-
-  <!-- Plugin JavaScript -->
-  <script src="vendor/adminlte/vendor/jquery-easing/jquery.easing.min.js"></script>
 
   <!-- Custom scripts for this template -->
   <script src="js/common/grayscale.min.js"></script>

@@ -15,7 +15,7 @@ class CreateInvoicesTable extends Migration
     {
         Schema::create('invoices', function (Blueprint $table) {
             $table->increments('id');
-            
+
             $table->decimal('value', 8, 2);
             $table->date('dueDate');
             $table->boolean('isPaid')->default(false);
@@ -23,11 +23,13 @@ class CreateInvoicesTable extends Migration
 
             $table->integer('idUser')->unsigned();
             $table->integer('idContract')->unsigned();
-            
+            $table->integer('idAcademy')->nullable()->unsigned();
+
             $table->timestamps();
 
             $table->foreign('idUser')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('idContract')->references('id')->on('contracts')->onDelete('cascade');
+            $table->foreign('idAcademy')->references('id')->on('academies')->onDelete('cascade');
         });
     }
 

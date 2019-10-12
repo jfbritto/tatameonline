@@ -15,18 +15,20 @@ class CreateContractsTable extends Migration
     {
         Schema::create('contracts', function (Blueprint $table) {
             $table->increments('id');
-            
+
             $table->date('signatureDate');
             $table->integer('months');
             $table->decimal('monthlyPayment', 8, 2);
             $table->integer('expiryDay');
             $table->boolean('isActive')->default(true);
-            
+
             $table->integer('idUser')->unsigned();
-            
+            $table->integer('idAcademy')->nullable()->unsigned();
+
             $table->timestamps();
 
             $table->foreign('idUser')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('idAcademy')->references('id')->on('academies')->onDelete('cascade');
         });
     }
 

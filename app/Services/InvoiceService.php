@@ -61,7 +61,7 @@ class InvoiceService
                                                 sum(inv.value) as total
                                             from
                                                 invoices inv
-                                                join users us
+                                                join users us on inv.idUser=us.id
                                             where
                                                 us.idAcademy = ".$id."
                                                 and us.isStudent = 1
@@ -71,7 +71,7 @@ class InvoiceService
                                                 sum(inv.value) as total
                                             from
                                                 invoices inv
-                                                join users us
+                                                join users us on inv.idUser=us.id
                                             where
                                                 us.idAcademy = ".$id."
                                                 and us.isStudent = 1
@@ -82,7 +82,7 @@ class InvoiceService
                                                 sum(inv.value) as total
                                             from
                                                 invoices inv
-                                                join users us
+                                                join users us on inv.idUser=us.id
                                             where
                                                 us.idAcademy = ".$id."
                                                 and us.isStudent = 1

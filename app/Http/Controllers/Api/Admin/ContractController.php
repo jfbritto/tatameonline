@@ -40,6 +40,7 @@ class ContractController extends Controller
             'monthlyPayment' => 'required',
             'expiryDay' => 'required',
             'idUser' => 'required',
+            'idAcademy' => 'required',
             ]);
 
         $data = [
@@ -48,6 +49,7 @@ class ContractController extends Controller
             'monthlyPayment' => $request->monthlyPayment,
             'expiryDay' => $request->expiryDay,
             'idUser' => $request->idUser,
+            'idAcademy' => $request->idAcademy,
             'isActive' => 1,
         ];
 

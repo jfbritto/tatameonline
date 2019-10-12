@@ -13,5 +13,6 @@ class Invoice extends Model
         'paymentDate',
         'idUser',
         'idContract',
+        'idAcademy'
     ];
 }
