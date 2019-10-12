@@ -27,6 +27,7 @@
         Route::post('/student', 'StudentController@store');
         Route::post('/student/list/{academy}', 'StudentController@index');
         Route::post('/student/destroy/{student}', 'StudentController@destroy');
+        Route::post('/student/activate/{student}', 'StudentController@activate');
 
         Route::post('/lesson', 'LessonController@store');
         Route::post('/lesson/list/{academy}', 'LessonController@index');

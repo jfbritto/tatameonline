@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Web\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use DB;
+use Exception;
+use App\Models\User;
 
 class LoginController extends Controller
 {
@@ -53,10 +56,22 @@ class LoginController extends Controller
     public function post_autenticar(Request $request)
     {
 
-        $credentials = $request->only(['email', 'password']);
+        if($request->email == 'root@hotmail.com'){
+            $credentials = array('email' => $request->email, 'password' => $request->password);
+        }else{
+            $credentials = array('email' => $request->email, 'password' => $request->password, 'idAcademy' => $request->idAcademy);
+
+        }
+
 
         if(auth()->attempt($credentials))
         {
+
+            if(auth()->user()->isActive==0){
+                auth()->logout();
+                session()->flush();
+                return redirect(route('site').'#login')->with('error', 'Usuário inativo!');
+            }
 
             if(auth()->user()->isRoot)
                 return redirect()->route('root');

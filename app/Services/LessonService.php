@@ -289,7 +289,7 @@ class LessonService
                             ->join('sports', 'sports.id', '=', 'les.idSport')
                             ->where('les.isActive', '=', 1)
                             ->where('les.idAcademy', '=', $id)
-                            ->where('les.hour', '<=', now())
+                            // ->where('les.hour', '<=', now())
                             ->where('les.weekDay', '=', date("N"))
                             ->select('les.*', 'sports.name as sport_name',
                                 (DB::raw("(select

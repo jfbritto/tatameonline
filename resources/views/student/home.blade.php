@@ -15,7 +15,7 @@
 @stop
 
 @section('content')
-    
+
 <input type="hidden" id="idStudent" value="{{auth()->user()->id}}">
 
 <div id="lista"></div>
@@ -51,7 +51,7 @@
             <h4 class="modal-title"><i class="fas fa-user-check"></i>&nbsp;&nbsp;Lista de presença</h4>
         </div>
         <div class="modal-body">
-            
+
             <div class="row">
                 <div class="col-sm-3">
                     <p><strong>Esporte:</strong> <font id="sport-modal"></font></p>
@@ -66,20 +66,20 @@
                     <p><strong>Hora:</strong> <font id="hour-modal"></font></p>
                 </div>
             </div>
-            
+
             <div class="row">
                 <div class="col-md-12">
-                    <p>* Preencha o campo abaixo com o token da academia informado pelo professor para confirmar sua presença na aula.</p>        
-                    <p>* Tolerância de 10 minutos.</p>        
+                    <p>* Preencha o campo abaixo com o token da academia informado pelo professor para confirmar sua presença na aula.</p>
+                    <p>* Tolerância de 10 minutos.</p>
                 </div>
             </div>
             <form id="formAddPresence">
             <div class="row">
                 <div class="col-md-12">
-                    
+
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fas fa-key"></i></span>
-                        <input type="number" class="form-control" placeholder="Informe o token" name="token" id="token" required>
+                        <input type="number" class="form-control" placeholder="Informe o token" name="token" id="token" onpaste="return false" ondrop="return false" required>
                     </div>
 
                 </div>
@@ -87,7 +87,7 @@
 
             <input type="hidden" id="idRegistration" value="">
             <input type="hidden" id="idUserGraduation" value="">
-            
+
             </form>
         </div>
         <div class="box-footer">

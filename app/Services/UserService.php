@@ -34,13 +34,22 @@ class UserService
 
         try{
 
-            DB::beginTransaction();
+            $users = DB::table('users')->where('email', '=', $data['email'])->where('idAcademy', '=', $data['idAcademy'])->first();
 
-            $user = User::create($data);
+            if(!$users){
 
-            DB::commit();
+                DB::beginTransaction();
 
-            $response = ['status' => 'success', 'data' => $user];
+                $user = User::create($data);
+
+                DB::commit();
+
+                $response = ['status' => 'success', 'data' => $user];
+
+            }else{
+                $response = ['status' => 'error', 'data' => 'Já existe um usuário cadastrado com esse email nessa academia!'];
+            }
+
         }catch(Exception $e){
             DB::rollBack();
             $response = ['status' => 'error', 'data' => $e->getMessage()];

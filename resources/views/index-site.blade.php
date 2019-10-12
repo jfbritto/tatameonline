@@ -97,7 +97,7 @@
   <header class="masthead">
     <div class="container d-flex h-100 align-items-center">
       <div class="mx-auto text-center">
-        <h1 class="mx-auto my-0 text-uppercase">TaTame Online</h1>
+        <h1 class="mx-auto my-0 text-uppercase">{{$academy->name}}</h1>
         <h2 class="text-white-50 mx-auto mt-2 mb-5">Um novo conceito de organização.</h2>
         <a href="#login" class="btn btn-primary js-scroll-trigger" style="background-color: #3c8dbc">Efetuar login</a>
       </div>
@@ -323,12 +323,8 @@
                 @csrf
                 <input required type="email" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" name="email" placeholder="Informe seu email" style="text-transform: none;">
                 <input required type="password" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" name="password" placeholder="Informe a senha" style="text-transform: none;">
-                <select required class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" name="idAcademy">
-                    <option value="">-- Selecione --</option>
-                    @foreach($academies as $academy)
-                        <option value="{{$academy->id}}">{{$academy->name}}</option>
-                    @endforeach
-                </select>
+                <input type="hidden" value="{{$academy->id}}" name="idAcademy">
+
                 <button type="submit" class="btn btn-primary mx-auto" style="background-color: #3c8dbc">Entrar</button>
             </form>
 

@@ -7,13 +7,13 @@ $(document).ready(function(){
         let id    = $("#idStudent").val();
 
         $.post(window.location.origin + "/api/student/academy/token/check/"+id+"/"+token, {
-        
+
         }).then(function(data) {
             if(data.status == 'success') {
 
                 if(data.data == true){
 
-                    
+
                     Swal.queue([{
                         title: 'Carregando...',
                         allowOutsideClick: false,
@@ -48,24 +48,24 @@ $(document).ready(function(){
                     $("#formAddPresence").trigger("reset");
                     setTimeout(function(){ $("#token").focus(); }, 500);
                 }
-                
+
             } else if (data.status == 'error') {
                 showError(data.message);
             }
         }, goTo500).catch(goTo500);
 
     });
-    
 
-    
+
+
 checkLesson($("#idStudent").val());
 list($("#idStudent").val());
-openLastPresencesByStudent($("#idStudent").val()); 
+openLastPresencesByStudent($("#idStudent").val());
 
-setInterval(function(){ 
-    checkLesson($("#idStudent").val()); 
-    list($("#idStudent").val()); 
-    openLastPresencesByStudent($("#idStudent").val()); 
+setInterval(function(){
+    checkLesson($("#idStudent").val());
+    list($("#idStudent").val());
+    openLastPresencesByStudent($("#idStudent").val());
 }, 10000);
 
 });
@@ -73,7 +73,7 @@ setInterval(function(){
 function list(id)
 {
     $.post(window.location.origin + "/api/student/lesson/next/"+id, {
-        
+
     }).then(function(data) {
         if(data.status == 'success') {
 
@@ -84,16 +84,16 @@ function list(id)
                 html += `<div class="alert alert-danger alert-dismissible">
                         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                             Você ainda não está matriculado em nenhuma aula.
-                        </div>`;    
+                        </div>`;
 
             }else{
-   
+
                 html += `<div class="alert alert-success alert-dismissible">
                         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                             Sua próxima aula será ${dia_semana[data.data.weekDay]} às ${data.data.hour}.
-                        </div>`;        
+                        </div>`;
             }
-                
+
 
             $('#lista').html(html);
 
@@ -106,10 +106,10 @@ function list(id)
 function checkLesson(id)
 {
 
-        //MARCA PRESENÇA    
+        //MARCA PRESENÇA
 
         $.post(window.location.origin + "/api/student/lesson/check/"+id, {
-            
+
         }).then(function(data) {
             if(data.status == 'success') {
 
@@ -128,7 +128,7 @@ function checkLesson(id)
                 }else{
                     $("#modal-check").modal('hide');
                 }
-                
+
 
             } else if (data.status == 'error') {
                 showError(data.message);
@@ -139,10 +139,10 @@ function checkLesson(id)
 function openLastPresencesByStudent(idUser)
 {
     $.post(window.location.origin + "/api/student/presence/last/list/"+idUser, {
-        
+
     }).then(function(data) {
         if(data.status == 'success') {
-    
+
             var html = '';
 
             for (var i in data.data) {

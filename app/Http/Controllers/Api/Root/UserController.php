@@ -23,7 +23,7 @@ class UserController extends Controller
 
         if($response['status'] == 'success')
             return response()->json(['status'=>'success', 'data'=>$response['data']], 201);
-            
+
         return response()->json(['status'=>'error', 'message'=>$response['data']], 500);
     }
 
@@ -54,8 +54,8 @@ class UserController extends Controller
 
         if($response['status'] == 'success')
             return response()->json(['status'=>'success'], 201);
-            
-        return response()->json(['status'=>'error', 'message'=>$response['data']], 500);
+
+        return response()->json(['status'=>'error', 'message'=>$response['data']], 201);
     }
 
     public function show($id)
@@ -74,12 +74,12 @@ class UserController extends Controller
     }
 
     public function destroy($id)
-    {       
+    {
         $response = $this->userService->destroy($id);
 
         if($response['status'] == 'success')
             return response()->json(['status'=>'success'], 201);
-            
+
         return response()->json(['status'=>'error', 'message'=>$response['data']], 500);
     }
 }

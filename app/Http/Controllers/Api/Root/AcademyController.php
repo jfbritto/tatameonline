@@ -22,7 +22,7 @@ class AcademyController extends Controller
 
         if($response['status'] == 'success')
             return response()->json(['status'=>'success', 'data'=>$response['data']], 201);
-            
+
         return response()->json(['status'=>'error', 'message'=>$response['data']], 500);
     }
 
@@ -33,6 +33,7 @@ class AcademyController extends Controller
 
     public function store(Request $request)
     {
+
         $dataValid = $request->validate([
             'name' => 'required',
             'phone' => 'required',
@@ -40,11 +41,25 @@ class AcademyController extends Controller
             'phoneResponsable' => 'required',
         ]);
 
-        $response = $this->academyService->store($dataValid);
+        $comAcentos = array('à', 'á', 'â', 'ã', 'ä', 'å', 'ç', 'è', 'é', 'ê', 'ë', 'ì', 'í', 'î', 'ï', 'ñ', 'ò', 'ó', 'ô', 'õ', 'ö', 'ù', 'ü', 'ú', 'ÿ', 'À', 'Á', 'Â', 'Ã', 'Ä', 'Å', 'Ç', 'È', 'É', 'Ê', 'Ë', 'Ì', 'Í', 'Î', 'Ï', 'Ñ', 'Ò', 'Ó', 'Ô', 'Õ', 'Ö', 'O', 'Ù', 'Ü', 'Ú');
+
+        $semAcentos = array('a', 'a', 'a', 'a', 'a', 'a', 'c', 'e', 'e', 'e', 'e', 'i', 'i', 'i', 'i', 'n', 'o', 'o', 'o', 'o', 'o', 'u', 'u', 'u', 'y', 'A', 'A', 'A', 'A', 'A', 'A', 'C', 'E', 'E', 'E', 'E', 'I', 'I', 'I', 'I', 'N', 'O', 'O', 'O', 'O', 'O', '0', 'U', 'U', 'U');
+
+        $name_academy_site = kebab_case( str_replace($comAcentos, $semAcentos, $request->name) );
+
+        $data = [
+            'name' => $request->name,
+            'phone' => $request->phone,
+            'responsable' => $request->responsable,
+            'phoneResponsable' => $request->phoneResponsable,
+            'siteName' => $name_academy_site
+        ];
+
+        $response = $this->academyService->store($data);
 
         if($response['status'] == 'success')
             return response()->json(['status'=>'success'], 201);
-            
+
         return response()->json(['status'=>'error', 'message'=>$response['data']], 500);
     }
 
@@ -64,12 +79,12 @@ class AcademyController extends Controller
     }
 
     public function destroy($id)
-    {       
+    {
         $response = $this->academyService->destroy($id);
 
         if($response['status'] == 'success')
             return response()->json(['status'=>'success'], 201);
-            
+
         return response()->json(['status'=>'error', 'message'=>$response['data']], 500);
     }
 }

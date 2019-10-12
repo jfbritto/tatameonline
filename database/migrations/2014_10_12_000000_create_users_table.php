@@ -17,15 +17,15 @@ class CreateUsersTable extends Migration
             $table->increments('id');
 
             $table->string('name');
-            $table->string('email')->unique();
+            $table->string('email');
             $table->string('password');
             $table->boolean('isRoot')->default(false);
             $table->boolean('isAdmin')->default(false);
             $table->boolean('isStudent')->default(false);
             $table->boolean('isActive')->default(true);
-            
+
             $table->integer('idAcademy')->nullable()->unsigned();
-            
+
             $table->timestamps();
 
             $table->foreign('idAcademy')->references('id')->on('academies')->onDelete('cascade');

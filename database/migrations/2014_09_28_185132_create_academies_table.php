@@ -16,6 +16,7 @@ class CreateAcademiesTable extends Migration
         Schema::create('academies', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('siteName');
             $table->string('phone');
             $table->string('responsable');
             $table->string('phoneResponsable');

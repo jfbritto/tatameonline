@@ -15,7 +15,7 @@
 @stop
 
 @section('content')
-    
+
     <div class="box">
         <div class="box-header">
             <h3 class="box-title"><i class="fas fa-user-graduate"></i> &nbsp;&nbsp; Alunos</h3>
@@ -35,6 +35,7 @@
                     <tr>
                         <th>Nome</th>
                         <th class="hidden-xs">Email</th>
+                        <th class="hidden-xs">Status</th>
                         <th class="hidden-xs">Aulas</th>
                         <th></th>
                     </tr>
@@ -62,7 +63,7 @@
                                 <span class="input-group-addon"><i class="fas fa-user"></i></span>
                                 <input type="text" class="form-control" placeholder="Nome do aluno" name="name" id="name" required>
                             </div>
-                    
+
                         </div>
                         <div class="col-sm-6">
 

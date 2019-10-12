@@ -1,6 +1,7 @@
 <?php
 
 Route::get('/', 'SiteController@index')->name('site');
+// Route::get('/{siteName}', 'SiteController@academy_area')->name('site.name');
 
 // Auth::routes();
 
@@ -13,7 +14,6 @@ Route::post('/login', 'Auth\LoginController@post_autenticar')->name('login.post'
 Route::group(['middleware' => ['auth']], function(){
 
     Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
-
 
 
     Route::group(['middleware' => 'root', 'prefix' => 'root', 'namespace' => 'Root'], function(){

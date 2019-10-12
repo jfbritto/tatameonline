@@ -5,9 +5,9 @@ $(document).ready(function(){
     });
 
     $("#formAddUser").submit(function(e) {
-        
+
         e.preventDefault();
-      
+
         Swal.queue([{
             title: 'Carregando...',
             allowOutsideClick: false,
@@ -39,7 +39,7 @@ $(document).ready(function(){
             }
         }]);
     });
-    
+
     function callList(){
         list($("#idAcademy").val());
     }
@@ -52,10 +52,10 @@ $(document).ready(function(){
 function list(id)
 {
     $.post(window.location.origin + "/api/root/academy/users/list/"+id, {
-        
+
     }).then(function(data) {
         if(data.status == 'success') {
-    
+
             var html = '';
 
             for (var i in data.data) {
@@ -66,7 +66,7 @@ function list(id)
                             <td>
                                 <div class="input-group-btn">
                                     <a class="btn btn-danger btn-sm pull-right destroy" onclick="destroy(${data.data[i].id})" data-id="${data.data[i].id}" title="Deletar usuário"><i class="fas fa-trash-alt"></i></a>
-                                </div>    
+                                </div>
                             </td>
                         </tr>`;
             }
@@ -74,14 +74,14 @@ function list(id)
             $('#lista').html(html);
 
         } else if (data.status == 'error') {
-            // showError(data.message);
+            showError(data.message);
         }
     }, goTo500).catch(goTo500);
 }
 
 function destroy(id)
 {
-    
+
     Swal.queue([{
         title: 'Carregando...',
         allowOutsideClick: false,
@@ -89,10 +89,10 @@ function destroy(id)
         onOpen: () => {
             Swal.showLoading();
             $.post(window.location.origin + "/api/root/academy/users/destroy/"+id, {
-            
+
             }).then(function(data) {
                 if(data.status == 'success') {
-                    
+
                     Swal.fire({
                         type: 'success',
                         text: 'Usuário deletado com sucesso',
@@ -104,7 +104,7 @@ function destroy(id)
                         }
                     });
                 } else if (data.status == 'error') {
-                    // showError(data.message);
+                    showError(data.message);
                 }
             }, goTo500).catch(goTo500);
         }
