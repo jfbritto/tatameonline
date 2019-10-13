@@ -335,7 +335,7 @@ class LessonService
                                             ugr.isActive=1
                                             and ugr.idUser=users.id
                                             and gra.idSport=lessons.idSport) as id_user_graduation")) )
-                            ->orderByRaw('users.name')
+                            ->orderBy('lessons.hour')
                             ->get();
 
             $response = ['status' => 'success', 'data' => $lessons];
