@@ -65,22 +65,16 @@ class StudentService
 
         try{
 
-            $aulas = DB::table('registrations')->where('idUser', '=', $id)->where('isActive', '=', 1)->count();
+            DB::beginTransaction();
 
-            if($aulas == 0){
+            DB::table('users')
+                    ->where('id', $id)
+                    ->update(['isActive' => 0]);
 
-                DB::beginTransaction();
+            DB::commit();
 
-                DB::table('users')
-                        ->where('id', $id)
-                        ->update(['isActive' => 0]);
+            $response = ['status' => 'success'];
 
-                DB::commit();
-
-                $response = ['status' => 'success'];
-            }else{
-                $response = ['status' => 'error', 'data' => 'Existem aulas vinculadas a este aluno!'];
-            }
 
         }catch(Exception $e){
             DB::rollBack();
