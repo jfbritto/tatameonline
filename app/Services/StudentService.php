@@ -19,6 +19,7 @@ class StudentService
                             ->where('isStudent', '=', 1)
                             ->select('users.*',
                             (DB::raw("(SELECT count(*) FROM registrations WHERE idUser = users.id and isActive=1) AS aulas")))
+                            ->orderBy('users.name')
                             ->get();
 
             $response = ['status' => 'success', 'data' => $users];

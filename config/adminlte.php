@@ -156,7 +156,13 @@ return [
             'icon' => 'fas fa-futbol',
             'can'  => 'root',
         ],
-        
+        [
+            'text'        => 'Bugs',
+            'url'         => 'root/bug',
+            'icon' => 'fas fa-bug',
+            'can'  => 'root',
+        ],
+
         //********* */
         //* ADMIN ***/
         //********* */
@@ -192,7 +198,13 @@ return [
             'icon' => 'fas fa-dollar-sign',
             'can'  => 'admin',
         ],
-        
+        [
+            'text'        => 'Bugs',
+            'url'         => 'admin/bug',
+            'icon' => 'fas fa-bug',
+            'can'  => 'admin',
+        ],
+
         //********** */
         //** ALUNO ***/
         //********** */
@@ -216,7 +228,13 @@ return [
             'icon' => 'fas fa-graduation-cap',
             'can'  => 'student',
         ],
-        
+        [
+            'text'        => 'Bugs',
+            'url'         => 'student/bug',
+            'icon' => 'fas fa-bug',
+            'can'  => 'student',
+        ],
+
         // [
         //     'text'        => 'Aulas',
         //     'url'         => 'admin/pages',

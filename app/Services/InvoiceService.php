@@ -68,17 +68,40 @@ class InvoiceService
                                                     and us.isActive = 1
                                                     and date_format(inv.dueDate, '%Y-%m') = date_format(now(), '%Y-%m')"));
 
+            $receive_list_obj = DB::select( DB::raw("select
+                                                        us.name, inv.dueDate, inv.value
+                                                    from
+                                                        invoices inv
+                                                        join users us on inv.idUser=us.id
+                                                    where
+                                                        us.idAcademy = ".$id."
+                                                        and us.isStudent = 1
+                                                        and us.isActive = 1
+                                                        and date_format(inv.dueDate, '%Y-%m') = date_format(now(), '%Y-%m')"));
+
             $received_obj = DB::select( DB::raw("select
-                                                sum(inv.value) as total
-                                            from
-                                                invoices inv
-                                                join users us on inv.idUser=us.id
-                                            where
-                                                us.idAcademy = ".$id."
-                                                and us.isStudent = 1
-                                                and us.isActive = 1
-                                                and inv.isPaid = 1
-                                                and date_format(inv.dueDate, '%Y-%m') = date_format(now(), '%Y-%m')"));
+                                                    sum(inv.value) as total
+                                                from
+                                                    invoices inv
+                                                    join users us on inv.idUser=us.id
+                                                where
+                                                    us.idAcademy = ".$id."
+                                                    and us.isStudent = 1
+                                                    and us.isActive = 1
+                                                    and inv.isPaid = 1
+                                                    and date_format(inv.dueDate, '%Y-%m') = date_format(now(), '%Y-%m')"));
+
+            $received_list_obj = DB::select( DB::raw("select
+                                                    us.name, inv.dueDate, inv.value
+                                                from
+                                                    invoices inv
+                                                    join users us on inv.idUser=us.id
+                                                where
+                                                    us.idAcademy = ".$id."
+                                                    and us.isStudent = 1
+                                                    and us.isActive = 1
+                                                    and inv.isPaid = 1
+                                                    and date_format(inv.dueDate, '%Y-%m') = date_format(now(), '%Y-%m')"));
 
             $late_obj = DB::select( DB::raw("select
                                                 sum(inv.value) as total
@@ -93,6 +116,19 @@ class InvoiceService
                                                 and date_format(inv.dueDate, '%Y-%m') = date_format(now(), '%Y-%m')
                                                 and inv.dueDate < date_format(now(), '%Y-%m-%d')"));
 
+            $late_list_obj = DB::select( DB::raw("select
+                                                    us.name, inv.dueDate, inv.value
+                                                from
+                                                    invoices inv
+                                                    join users us on inv.idUser=us.id
+                                                where
+                                                    us.idAcademy = ".$id."
+                                                    and us.isStudent = 1
+                                                    and us.isActive = 1
+                                                    and inv.isPaid = 0
+                                                    and date_format(inv.dueDate, '%Y-%m') = date_format(now(), '%Y-%m')
+                                                    and inv.dueDate < date_format(now(), '%Y-%m-%d')"));
+
             if($receive_obj[0]->total != null)
                 $receive = number_format($receive_obj[0]->total,2,',','.');
 
@@ -102,7 +138,7 @@ class InvoiceService
             if($late_obj[0]->total != null)
                 $late = number_format($late_obj[0]->total,2,',','.');
 
-            $revenue = ['receive'=>$receive, 'received'=>$received, 'late'=>$late];
+            $revenue = ['receive'=>$receive, 'list_receive' => $receive_list_obj, 'received'=>$received, 'list_received' => $received_list_obj, 'late'=>$late, 'list_late' => $late_list_obj];
 
             $response = ['status' => 'success', 'data' => $revenue];
         }catch(Exception $e){

@@ -61,6 +61,71 @@
 
 </div>
 
+
+<div class="panel panel-default">
+    <div class="panel-body">
+
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#home">À receber</a></li>
+            <li><a data-toggle="tab" href="#menu1">Recebido</a></li>
+            <li><a data-toggle="tab" href="#menu2">Atrasado</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div id="home" class="tab-pane fade in active">
+            <div class="box-body table-responsive">
+                    <table class="table table-hover datatable-table">
+                        <thead>
+                            <tr>
+                                <th>Aluno</th>
+                                <th>Vencimento</th>
+                                <th>Valor</th>
+                            </tr>
+                        </thead>
+                        <tbody id="list-receive"></tbody>
+                    </table>
+                </div>
+            </div>
+            <div id="menu1" class="tab-pane fade">
+                <div class="box-body table-responsive">
+                    <table class="table table-hover datatable-table">
+                        <thead>
+                            <tr>
+                                <th>Aluno</th>
+                                <th>Vencimento</th>
+                                <th>Valor</th>
+                            </tr>
+                        </thead>
+                        <tbody id="list-received"></tbody>
+                    </table>
+                </div>
+            </div>
+            <div id="menu2" class="tab-pane fade">
+                <div class="box-body table-responsive">
+                    <table class="table table-hover datatable-table">
+                        <thead>
+                            <tr>
+                                <th>Aluno</th>
+                                <th>Vencimento</th>
+                                <th>Valor</th>
+                            </tr>
+                        </thead>
+                        <tbody id="list-late"></tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
 <input type="hidden" id="idAcademy" name="idAcademy" value="{{auth()->user()->academy->id}}">
 
 @stop

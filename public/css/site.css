@@ -15,7 +15,7 @@
 }
 
 .masthead{
-	background: linear-gradient(to bottom,rgba(22,22,22,.3) 0,rgba(22,22,22,.7) 99%,#161616 100%),url(../img/site/1min.jpg) !important;
+	background: linear-gradient(to bottom,rgba(22,22,22,.3) 0,rgba(22,22,22,.7) 99%,#161616 100%),url(../img/site/4min.jpg) !important;
 	background-position: center;
 	background-repeat: no-repeat;
 	background-attachment: scroll;
@@ -29,3 +29,46 @@
 	background-attachment: scroll;
 	background-size: cover;
 }
+
+/* If the screen size is 600px or less, set the font-size of <div> to 30px */
+@media only screen and (max-width: 2000px) {
+    .masthead{
+        background: linear-gradient(to bottom,rgba(22,22,22,.3) 0,rgba(22,22,22,.7) 70%,#161616 100%),url(../img/site/4lg.jpg) no-repeat !important;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: scroll;
+        background-size: cover;
+    }
+}
+
+/* If the screen size is 600px or less, set the font-size of <div> to 30px */
+@media only screen and (max-width: 1500px) {
+    .masthead{
+        background: linear-gradient(to bottom,rgba(22,22,22,.3) 0,rgba(22,22,22,.7) 70%,#161616 100%),url(../img/site/4md.jpg) no-repeat !important;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: scroll;
+        background-size: cover;
+    }
+}
+
+/* If the screen size is 600px or less, set the font-size of <div> to 30px */
+@media only screen and (max-width: 767px) {
+    .masthead{
+        background: linear-gradient(to bottom,rgba(22,22,22,.3) 0,rgba(22,22,22,.7) 70%,#161616 100%),url(../img/site/4sm.jpg) no-repeat !important;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: scroll;
+        background-size: cover;
+}
+
+
+/* If the screen size is 600px or less, set the font-size of <div> to 30px */
+/* @media only screen and (max-width: 360px) {
+    .masthead{
+        background: linear-gradient(to bottom,rgba(22,22,22,.3) 0,rgba(22,22,22,.7) 30%,#161616 100%),url(../img/site/3min.jpg) no-repeat !important;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: scroll;
+        background-size: cover;
+} */

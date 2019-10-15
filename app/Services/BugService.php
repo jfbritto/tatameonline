@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Models\Sport;
+use App\Models\Bug;
 use DB;
 use Exception;
 
@@ -14,9 +14,9 @@ class BugService
 
         try{
 
-            $sports = DB::table('bugs')->get();
+            $bugs = DB::table('bugs')->get();
 
-            $response = ['status' => 'success', 'data' => $sports];
+            $response = ['status' => 'success', 'data' => $bugs];
         }catch(Exception $e){
             $response = ['status' => 'error', 'data' => $e->getMessage()];
         }
@@ -32,11 +32,11 @@ class BugService
 
             DB::beginTransaction();
 
-            $sport = Sport::create($data);
+            $bug = Bug::create($data);
 
             DB::commit();
 
-            $response = ['status' => 'success', 'data' => $sport];
+            $response = ['status' => 'success', 'data' => $bug];
         }catch(Exception $e){
             DB::rollBack();
             $response = ['status' => 'error', 'data' => $e->getMessage()];

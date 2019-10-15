@@ -24,11 +24,13 @@
 
     Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function(){
 
+        //ALUNO
         Route::post('/student', 'StudentController@store');
         Route::post('/student/list/{academy}', 'StudentController@index');
         Route::post('/student/destroy/{student}', 'StudentController@destroy');
         Route::post('/student/activate/{student}', 'StudentController@activate');
 
+        //AULA
         Route::post('/lesson', 'LessonController@store');
         Route::post('/lesson/list/{academy}', 'LessonController@index');
         Route::post('/lesson/now/list/{academy}', 'LessonController@lessonNow');
@@ -37,22 +39,27 @@
         Route::post('/lesson/students/now/list/{lesson}', 'LessonController@lessonAlunsList');
         Route::post('/lesson/student/list/{student}', 'LessonController@listAluns');
 
+        //MATRÍCULA
         Route::post('/registration', 'RegistrationController@store');
         Route::post('/registration/list/{lesson}', 'RegistrationController@index');
         Route::post('/registration/destroy/{registration}', 'RegistrationController@destroy');
 
+        //CONTRATO
         Route::post('/contract', 'ContractController@store');
         Route::post('/contract/renew', 'ContractController@renew');
         Route::post('/contract/list/{user}', 'ContractController@index');
         Route::post('/contract/get/{user}', 'ContractController@getActiveByUser');
 
+        //FATURA
         Route::post('/invoice/list/{contract}', 'InvoiceController@index');
         Route::post('/invoice/reportPayment/{invoice}', 'InvoiceController@reportPayment');
 
+        //GRADUAÇÃO
         Route::post('/graduation', 'GraduationController@store');
         Route::post('/graduation/list/{academy}', 'GraduationController@index');
         Route::post('/graduation/destroy/{graduation}', 'GraduationController@destroy');
 
+        //GRADUAÇÃO DO ALUNO
         Route::post('/user-graduation', 'UserGraduationController@store');
         Route::post('/user-graduation/graduate', 'UserGraduationController@graduate');
         Route::post('/user-graduation/list/{user}', 'UserGraduationController@index');
@@ -62,14 +69,21 @@
         Route::post('/user-graduation/active/list/{user}', 'UserGraduationController@listActivesByUser');
         Route::post('/user-graduation/situation/{academy}', 'UserGraduationController@situationAlunsByAcademy');
 
+        //PRESENÇA
         Route::post('/presence/list/{user}/{userGraduation}', 'PresenceController@index');
 
+        //ACADEMIA
         Route::post('/academy/list/{academy}', 'AcademyController@index');
         Route::post('/academy/update-token/{academy}', 'AcademyController@updateToken');
 
+        //HORA START
         Route::post('/start', 'StartUserGraduationController@store');
 
+        //FINANCEIRO
         Route::post('/financial/{academy}', 'FinancialController@index');
+
+        //BUGS
+        Route::post('/bug', 'BugController@store');
 
     });
 
@@ -88,5 +102,8 @@
 
         //ACADEMIA
         Route::post('/academy/token/check/{user}/{token}', 'AcademyController@checkToken');
+
+        //BUGS
+        Route::post('/bug', 'BugController@store');
     });
 

@@ -5,4 +5,4 @@ setTimeout(() => {
           },
           "bLengthChange": false
     });
-}, 300);
+}, 500);

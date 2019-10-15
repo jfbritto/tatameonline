@@ -64,6 +64,9 @@ Route::group(['middleware' => ['auth']], function(){
 
         //FINANCEIRO
         Route::get('/financial', 'FinancialController@index')->name('admin.financial');
+
+        //BUGS
+        Route::get('/bug', 'BugController@index')->name('admin.bug');
     });
 
 
@@ -75,6 +78,9 @@ Route::group(['middleware' => ['auth']], function(){
 
         //AULAS
         Route::get('/lesson', 'LessonController@index')->name('student.lesson');
+
+        //BUGS
+        Route::get('/bug', 'BugController@index')->name('student.bug');
     });
 
 
