@@ -5,6 +5,8 @@ namespace App\Services;
 use App\Models\User;
 use DB;
 use Exception;
+use App\Mail\SendMailUser;
+use Illuminate\Support\Facades\Mail;
 
 class StudentService
 {
@@ -43,6 +45,8 @@ class StudentService
                 DB::beginTransaction();
 
                 $user = User::create($data);
+
+                Mail::to($user->email)->queue(new SendMailUser($user));
 
                 DB::commit();
 

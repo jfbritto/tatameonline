@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+
 class StudentController extends Controller
 {
     public function index()
