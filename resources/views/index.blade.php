@@ -18,6 +18,8 @@
     <meta property="og:image:width" content="640">
     <meta property="og:image:height" content="480">
 
+    <link rel="icon" href="{{asset("img/ico-page.png")}}">
+
     <!-- Chrome, Firefox OS and Opera -->
     <meta name="theme-color" content="#3c8dbc">
 
@@ -67,9 +69,9 @@
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#clients">Igrejas</a>
           </li> --}}
-<!--           <li class="nav-item">
+          <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#plans">Planos</a>
-          </li> -->
+          </li>
           <li class="nav-item">
                 @auth
                     @if(auth()->user()->isRoot)
@@ -285,7 +287,7 @@
 
 
   <!-- Login Section -->
-<!--   <section id="plans" class="plans-section d-flex bg-light">
+<section id="plans" class="plans-section d-flex bg-light">
     <div class="container my-auto">
 
       <div class="text-center">
@@ -302,10 +304,7 @@
       </div>
 
     </div>
-  </section>
-
-
- -->
+</section>
 
 
 

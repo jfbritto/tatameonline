@@ -5,8 +5,7 @@
 @section('content_header')
 
         <h1>
-            Financeiro
-            <!-- <small>preview of simple tables</small> -->
+            <i class="fas fa-dollar-sign"></i>&nbsp;&nbsp;Financeiro - <font id="title"></font>
         </h1>
         <ol class="breadcrumb">
             <li><a href="/admin"><i class="fas fa-home"></i>&nbsp;&nbsp;Home</a></li>
@@ -65,6 +64,18 @@
 <div class="panel panel-default">
     <div class="panel-body">
 
+        <div class="row" style="margin-bottom:10px">
+            <div class="col-sm-12">
+                <form id="formSearchRevenue">
+                    <div class="input-group">
+                        <label for="months">Mês</label>
+                        <input type="month" class="form-control" id="date" value="{{date('Y-m')}}">
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
         <ul class="nav nav-tabs">
             <li class="active"><a data-toggle="tab" href="#home">À receber</a></li>
             <li><a data-toggle="tab" href="#menu1">Recebido</a></li>
@@ -80,6 +91,7 @@
                                 <th>Aluno</th>
                                 <th>Vencimento</th>
                                 <th>Valor</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody id="list-receive"></tbody>
@@ -94,6 +106,7 @@
                                 <th>Aluno</th>
                                 <th>Vencimento</th>
                                 <th>Valor</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody id="list-received"></tbody>
@@ -108,6 +121,7 @@
                                 <th>Aluno</th>
                                 <th>Vencimento</th>
                                 <th>Valor</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody id="list-late"></tbody>
@@ -119,6 +133,25 @@
     </div>
 </div>
 
+<div class="panel panel-default">
+        <div class="panel-heading">
+            Alunos com débito
+        </div>
+
+        <div class="box-body table-responsive">
+            <table class="table table-hover datatable-table">
+                <thead>
+                    <tr>
+                        <th>Aluno</th>
+                        <th>Faturas vencidas</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="list-debtors"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
 
 

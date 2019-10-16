@@ -13,6 +13,21 @@ let dia_semana = {
     "7":"Domingo",
 }
 
+let meses_nome = {
+    "01":"Janeiro",
+    "02":"Fevereiro",
+    "03":"Março",
+    "04":"Abril",
+    "05":"Maio",
+    "06":"Junho",
+    "07":"Julho",
+    "08":"Agosto",
+    "09":"Setembro",
+    "10":"Outubro",
+    "11":"Novembro",
+    "12":"Dezembro",
+}
+
 function showError(message)
 {
     Swal.fire({
@@ -22,7 +37,7 @@ function showError(message)
         showCancelButton: true,
         cancelButtonText: "OK",
         onClose: () => {
-            
+
         }
     });
 }
@@ -32,9 +47,9 @@ function dateFullFormat(data)
     if(data == null || data == undefined || data == ''){
         return '';
     }else{
-        
+
         const [date, hour] = data.split(' ');
-        
+
         const [ano, mes, dia] = date.split('-');
         return `${dia}/${mes}/${ano} ${hour}`;
     }
@@ -57,6 +72,17 @@ function hourFormat(data)
     }else{
         let hr = data.split(' ');
         return `${hr[1]}`;
+    }
+}
+
+function monthName(data)
+{
+    if(data == null || data == undefined || data == ''){
+        return '';
+    }else{
+        let dt = data.split('-');
+
+        return `${meses_nome[dt[1]]} de ${dt[0]}`;
     }
 }
 

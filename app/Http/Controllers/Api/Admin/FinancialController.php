@@ -16,9 +16,9 @@ class FinancialController extends Controller
         $this->invoiceService = $invoiceService;
     }
 
-    public function index(Academy $academy)
+    public function index(Academy $academy, $date)
     {
-        $response = $this->invoiceService->revenueByMonth($academy->id);
+        $response = $this->invoiceService->revenueByMonth($academy->id, $date);
 
         if($response['status'] == 'success')
             return response()->json(['status'=>'success', 'data'=>$response['data']], 201);

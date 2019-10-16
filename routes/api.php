@@ -80,7 +80,7 @@
         Route::post('/start', 'StartUserGraduationController@store');
 
         //FINANCEIRO
-        Route::post('/financial/{academy}', 'FinancialController@index');
+        Route::post('/financial/{academy}/{date}', 'FinancialController@index');
 
         //BUGS
         Route::post('/bug', 'BugController@store');
