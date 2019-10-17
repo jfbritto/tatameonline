@@ -2,7 +2,7 @@ $(document).ready(function(){
 
     $("#formAddGraduation").submit(function(e) {
         e.preventDefault();
-       
+
         Swal.queue([{
             title: 'Carregando...',
             allowOutsideClick: false,
@@ -12,6 +12,7 @@ $(document).ready(function(){
                 $.post(window.location.origin + "/api/admin/graduation", {
                     name: $("#name").val(),
                     hours: $("#hours").val(),
+                    color: $("#color").val(),
                     idSport: $("#idSport").val(),
                     idAcademy: $("#idAcademy").val(),
                     startDate: $("#startDate").val()
@@ -45,16 +46,16 @@ function list(id)
 {
 
     $.post(window.location.origin + "/api/admin/graduation/list/"+id, {
-        
+
     }).then(function(data) {
         if(data.status == 'success') {
-    
+
             var html = '';
 
             for (var i in data.data) {
 
                 html += `<tr>
-                            <td>${data.data[i].name}</td>
+                            <td>${data.data[i].name}&nbsp;&nbsp;<i style="color:${data.data[i].color}" class="fas fa-ribbon"></i></td>
                             <td>${data.data[i].sport_name}</td>
                             <td>${data.data[i].hours}</td>
                             <td>${data.data[i].graduations}</td>
@@ -76,10 +77,10 @@ function listSports()
 {
 
     $.post(window.location.origin + "/api/root/sport/list", {
-        
+
     }).then(function(data) {
         if(data.status == 'success') {
-    
+
             var html = '<option value="">-- Selecione --</option>';
 
             for (var i in data.data) {
@@ -99,7 +100,7 @@ function listSports()
 
 function destroy(id)
 {
-    
+
     Swal.queue([{
         title: 'Carregando...',
         allowOutsideClick: false,
@@ -107,7 +108,7 @@ function destroy(id)
         onOpen: () => {
             Swal.showLoading();
             $.post(window.location.origin + "/api/admin/graduation/destroy/"+id, {
-            
+
             }).then(function(data) {
                 if(data.status == 'success') {
                     list($("#idAcademy").val());
@@ -118,7 +119,7 @@ function destroy(id)
                         showCancelButton: true,
                         cancelButtonText: "OK",
                         onClose: () => {
-                            
+
                         }
                     });
                 } else if (data.status == 'error') {

@@ -3,8 +3,10 @@
 Route::get('/mailable', function () {
     $user = App\Models\User::find(1);
 
-    return new App\Mail\SendMailUser($user);
+    return new App\Mail\SendMailUser($user, "1", "123456", "teste academia");
 });
+
+Route::get('/payment/{token}', 'SiteController@receipt')->name('receipt');
 
 Route::get('/', 'SiteController@index')->name('site');
 // Route::get('/{siteName}', 'SiteController@academy_area')->name('site.name');

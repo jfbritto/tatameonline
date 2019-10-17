@@ -20,6 +20,7 @@ class CreateInvoicesTable extends Migration
             $table->date('dueDate');
             $table->boolean('isPaid')->default(false);
             $table->date('paymentDate')->nullable();
+            $table->char('tokenPayment', 32)->nullable();
 
             $table->integer('idUser')->unsigned();
             $table->integer('idContract')->unsigned();

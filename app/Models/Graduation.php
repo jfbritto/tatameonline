@@ -12,5 +12,6 @@ class Graduation extends Model
         'idSport',
         'idAcademy',
         'isActive',
+        'color'
     ];
 }

@@ -69,7 +69,9 @@ function openInvoices(id)
                             <td>
                                 ${data.data[i].isPaid==0?`
                                     <a title="Informar pagamento" onclick="reportPayment(${data.data[i].id}, ${data.data[i].idContract})" class="btn btn-sm btn-success pull-right"><i id="ico${data.data[i].id}" class="fas fa-file-invoice-dollar"></i></a>
-                                `:''}
+                                `:`
+                                    <a title="Ver recibo" target="_blank" href="/payment/${data.data[i].tokenPayment}" class="btn btn-sm btn-primary pull-right"><i class="fas fa-file-invoice-dollar"></i></a>
+                                `}
                             </td>
                         </tr>`;
             }

@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\User;
+use App\Models\Academy;
 use DB;
 use Exception;
 use App\Mail\SendMailUser;
@@ -46,7 +47,12 @@ class StudentService
 
                 $user = User::create($data);
 
-                Mail::to($user->email)->queue(new SendMailUser($user));
+                // $pass = rand(0,9).rand(0,9).rand(0,9).rand(0,9).rand(0,9).rand(0,9).rand(0,9).rand(0,9);
+                // $password = bcrypt($pass);
+                // DB::table('users')->where('id', $user->id)->update(['password' => $password]);
+                // $academy = Academy::where('id', '=', $user->idAcademy)->first()->name;
+                // //enviar email
+                // Mail::to($user->email)->queue(new SendMailUser($user, "1", $pass, $academy));
 
                 DB::commit();
 

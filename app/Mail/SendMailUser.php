@@ -13,6 +13,10 @@ class SendMailUser extends Mailable implements ShouldQueue
     use Queueable, SerializesModels;
 
     public $user;
+    public $password;
+    public $academy;
+    public $type;
+    public $invoice;
 
     /**
      * Create a new message instance.
@@ -20,9 +24,13 @@ class SendMailUser extends Mailable implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(User $user)
+    public function __construct(User $user, $type = "1", $password = "", $academy = "", $invoice = "")
     {
         $this->user = $user;
+        $this->password = $password;
+        $this->academy = $academy;
+        $this->type = $type;
+        $this->invoice = $invoice;
     }
 
     /**
@@ -32,11 +40,31 @@ class SendMailUser extends Mailable implements ShouldQueue
      */
     public function build()
     {
-        return $this->from('jf.britto@hotmail.com')
-                    ->subject("Teste de email")
-                    ->view('emails.test')
-                    ->with([
-                        'user' => $this->user,
-                    ]);
+
+        switch ($this->type) {
+            case '1':
+
+                return $this->from('noreply@tatameonline.com')
+                            ->subject("Bem-vindo!")
+                            ->view('emails.welcome')
+                            ->with([
+                                'user' => $this->user,
+                                'password' => $this->password,
+                                'academy' => $this->academy,
+                            ]);
+                break;
+
+            case '2':
+
+                return $this->from('noreply@tatameonline.com')
+                            ->subject("Pagamento confirmado!")
+                            ->view('emails.payment')
+                            ->with([
+                                'user' => $this->user,
+                                'invoice' => $this->invoice,
+                            ]);
+                break;
+        }
+
     }
 }

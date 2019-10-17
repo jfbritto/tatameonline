@@ -4,8 +4,11 @@ namespace App\Services;
 
 use App\Models\Contract;
 use App\Models\Invoice;
+use App\Models\User;
 use DB;
 use Exception;
+use App\Mail\SendMailUser;
+use Illuminate\Support\Facades\Mail;
 
 class InvoiceService
 {
@@ -32,9 +35,16 @@ class InvoiceService
         try{
             DB::beginTransaction();
 
+            $tokenPaiment = md5($id.date("YmdHis"));
+
             DB::table('invoices')
-            ->where('id', $id)
-            ->update(['isPaid' => 1, 'paymentDate' => date('Y-m-d')]);
+                            ->where('id', $id)
+                            ->update(['isPaid' => 1, 'paymentDate' => date('Y-m-d'), 'tokenPayment' => $tokenPaiment]);
+
+            // $invoice = Invoice::where('id', '=', $id)->first();
+            // $user = User::where('id', '=', $invoice->idUser)->first();
+            // //enviar email
+            // Mail::to($user->email)->queue(new SendMailUser($user, "2", "", "", $invoice));
 
             DB::commit();
 

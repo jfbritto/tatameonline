@@ -24,7 +24,7 @@ class GraduationController extends Controller
 
         if($response['status'] == 'success')
             return response()->json(['status'=>'success', 'data'=>$response['data']], 201);
-            
+
         return response()->json(['status'=>'error', 'message'=>$response['data']], 500);
     }
 
@@ -40,14 +40,15 @@ class GraduationController extends Controller
             'hours' => 'required',
             'idAcademy' => 'required',
             'idSport' => 'required',
-            'startDate' => 'required'
+            'startDate' => 'required',
+            'color' => 'required'
         ]);
 
         $response = $this->graduationService->store($dataValid);
 
         if($response['status'] == 'success')
             return response()->json(['status'=>'success'], 201);
-            
+
         return response()->json(['status'=>'error', 'message'=>$response['data']], 500);
     }
 
@@ -67,12 +68,12 @@ class GraduationController extends Controller
     }
 
     public function destroy($id)
-    {       
+    {
         $response = $this->graduationService->destroy($id);
 
         if($response['status'] == 'success')
             return response()->json(['status'=>'success'], 201);
-            
+
         return response()->json(['status'=>'error', 'message'=>$response['data']], 201);
     }
 
@@ -82,7 +83,7 @@ class GraduationController extends Controller
 
         if($response['status'] == 'success')
             return response()->json(['status'=>'success', 'data'=>$response['data']], 201);
-            
+
         return response()->json(['status'=>'error', 'message'=>$response['data']], 500);
     }
 

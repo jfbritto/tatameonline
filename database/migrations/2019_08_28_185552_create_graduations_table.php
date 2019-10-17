@@ -18,11 +18,12 @@ class CreateGraduationsTable extends Migration
 
             $table->string('name');
             $table->integer('hours');
+            $table->char('color', 20)->nullable();
             $table->boolean('isActive')->default(true);
-            
+
             $table->integer('idAcademy')->unsigned();
             $table->integer('idSport')->unsigned();
-            
+
             $table->timestamps();
 
             $table->foreign('idAcademy')->references('id')->on('academies')->onDelete('cascade');
