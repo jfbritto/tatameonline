@@ -13,11 +13,11 @@ class AcademiesTableSeeder extends Seeder
     {
         DB::table('academies')->insert([
             'id' => 1,
-            'name' => 'Time Atitude',
+            'name' => 'Team Atitude',
             'siteName' => 'time-atitude',
             'phone' => '(28)99448-9448',
-            'responsable' => 'Júnior',
-            'phoneResponsable' => '(28)99448-9448',
+            'responsible' => 'Júnior',
+            'phoneResponsible' => '(28)99448-9448',
             'token' => 123456,
             'isActive' => 1,
         ]);

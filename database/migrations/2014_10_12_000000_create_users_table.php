@@ -19,6 +19,23 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email');
             $table->string('password');
+
+            $table->string('phone')->nullable();
+            $table->char('cpf', 14)->nullable();
+            $table->date('birth')->nullable();
+            $table->string('responsible')->nullable();
+            $table->string('phoneResponsible')->nullable();
+
+            $table->integer('zipCode')->nullable();
+            $table->integer('city')->nullable();
+            $table->string('neighborhood')->nullable();
+            $table->string('address')->nullable();
+            $table->string('number')->nullable();
+            $table->string('complement')->nullable();
+            $table->string('avatar')->nullable();
+            $table->text('observation')->nullable();
+
+
             $table->boolean('isRoot')->default(false);
             $table->boolean('isAdmin')->default(false);
             $table->boolean('isStudent')->default(false);

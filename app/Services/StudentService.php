@@ -47,12 +47,12 @@ class StudentService
 
                 $user = User::create($data);
 
-                // $pass = rand(0,9).rand(0,9).rand(0,9).rand(0,9).rand(0,9).rand(0,9).rand(0,9).rand(0,9);
-                // $password = bcrypt($pass);
-                // DB::table('users')->where('id', $user->id)->update(['password' => $password]);
-                // $academy = Academy::where('id', '=', $user->idAcademy)->first()->name;
-                // //enviar email
-                // Mail::to($user->email)->queue(new SendMailUser($user, "1", $pass, $academy));
+                $pass = rand(0,9).rand(0,9).rand(0,9).rand(0,9).rand(0,9).rand(0,9).rand(0,9).rand(0,9);
+                $password = bcrypt($pass);
+                DB::table('users')->where('id', $user->id)->update(['password' => $password]);
+                $academy = Academy::where('id', '=', $user->idAcademy)->first()->name;
+                //enviar email
+                Mail::to($user->email)->queue(new SendMailUser($user, "1", $pass, $academy));
 
                 DB::commit();
 

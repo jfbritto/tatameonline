@@ -41,10 +41,10 @@ class InvoiceService
                             ->where('id', $id)
                             ->update(['isPaid' => 1, 'paymentDate' => date('Y-m-d'), 'tokenPayment' => $tokenPaiment]);
 
-            // $invoice = Invoice::where('id', '=', $id)->first();
-            // $user = User::where('id', '=', $invoice->idUser)->first();
-            // //enviar email
-            // Mail::to($user->email)->queue(new SendMailUser($user, "2", "", "", $invoice));
+            $invoice = Invoice::where('id', '=', $id)->first();
+            $user = User::where('id', '=', $invoice->idUser)->first();
+            //enviar email
+            Mail::to($user->email)->queue(new SendMailUser($user, "2", "", "", $invoice));
 
             DB::commit();
 

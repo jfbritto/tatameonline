@@ -18,7 +18,20 @@ class User extends Authenticatable
         'isRoot',
         'isAdmin',
         'isStudent',
-        'idAcademy'
+        'idAcademy',
+        'phone',
+        'cpf',
+        'birth',
+        'responsible',
+        'phoneResponsible',
+        'zipCode',
+        'city',
+        'neighborhood',
+        'address',
+        'number',
+        'complement',
+        'avatar',
+        'observation',
     ];
 
     public function academy()

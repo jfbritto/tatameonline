@@ -18,10 +18,21 @@ class CreateAcademiesTable extends Migration
             $table->string('name');
             $table->string('siteName');
             $table->string('phone');
-            $table->string('responsable');
-            $table->string('phoneResponsable');
+            $table->string('responsible')->nullable();
+            $table->string('phoneResponsible')->nullable();
             $table->integer('token')->default(123456);
             $table->boolean('isActive')->default(true);
+
+            $table->integer('zipCode')->nullable();
+            $table->integer('city')->nullable();
+            $table->string('neighborhood')->nullable();
+            $table->string('address')->nullable();
+            $table->string('number')->nullable();
+            $table->string('complement')->nullable();
+            $table->string('avatar')->nullable();
+            $table->string('latitude')->nullable();
+            $table->string('longitude')->nullable();
+
             $table->timestamps();
         });
     }
