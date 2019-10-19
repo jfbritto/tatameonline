@@ -45,6 +45,18 @@ class StudentController extends Controller
             'email' => $request->email,
             'isStudent' => 1,
             'idAcademy' => $request->idAcademy,
+            'phone' => $request->phone,
+            'cpf' => $request->cpf,
+            'birth' => $request->birth,
+            'responsible' => $request->responsible,
+            'phoneResponsible' => $request->phoneResponsible,
+            'zipCode' => $request->zipCode,
+            'city' => $request->city,
+            'neighborhood' => $request->neighborhood,
+            'address' => $request->address,
+            'number' => $request->number,
+            'complement' => $request->complement,
+            'observation' => $request->observation,
             'password' => bcrypt('12345678'),
         ];
 

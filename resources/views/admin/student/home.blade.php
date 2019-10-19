@@ -62,15 +62,15 @@
 
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fas fa-user"></i></span>
-                                <input type="text" class="form-control" placeholder="Nome do aluno" name="name" id="name" required>
+                                <input type="text" class="form-control" placeholder="Nome" name="name" id="name" required>
                             </div>
 
                         </div>
                         <div class="col-sm-4">
 
                             <div class="input-group">
-                                <span class="input-group-addon">@</span>
-                                <input type="email" class="form-control" placeholder="Email do aluno" name="email" required id="email">
+                                <span class="input-group-addon"><i class="fas fa-at"></i></span>
+                                <input type="email" class="form-control" placeholder="Email" name="email" required id="email">
                             </div>
 
                         </div>
@@ -78,7 +78,7 @@
 
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fas fa-phone"></i></span>
-                                <input type="text" class="form-control phone-mask" placeholder="Telefone do aluno" name="phone" required id="phone">
+                                <input type="text" class="form-control phone-mask" placeholder="Telefone" name="phone" required id="phone">
                             </div>
 
                         </div>
@@ -89,7 +89,7 @@
 
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fas fa-address-card"></i></span>
-                                <input type="text" class="form-control" placeholder="Cpf do aluno" name="cpf" id="cpf" required>
+                                <input type="text" class="form-control cpf-mask" placeholder="Cpf" name="cpf" id="cpf" required>
                             </div>
 
                         </div>
@@ -105,7 +105,7 @@
 
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fas fa-user-friends"></i></span>
-                                <input type="text" class="form-control" placeholder="Responsável" name="responsible" id="responsible" required>
+                                <input type="text" class="form-control" placeholder="Responsável" name="responsible" id="responsible">
                             </div>
 
                         </div>
@@ -113,62 +113,72 @@
 
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fas fa-phone"></i></span>
-                                <input type="text" class="form-control" placeholder="Tel. responsável" name="phoneResponsible" required id="phoneResponsible">
+                                <input type="text" class="form-control phone-mask" placeholder="Tel. responsável" name="phoneResponsible" id="phoneResponsible">
                             </div>
 
                         </div>
                     </div>
                     <br>
                     <div class="row">
-                        <div class="col-sm-3">
+                        <div class="col-sm-4">
 
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fas fa-map-marker-alt"></i></span>
-                                <input type="text" class="form-control" placeholder="Cep" name="zipCode" id="zipCode" required>
+                                <input type="text" class="form-control cep-mask" placeholder="Cep" name="zipCode" id="zipCode">
                             </div>
 
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-sm-4">
 
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fas fa-map-marker-alt"></i></span>
-                                <input type="text" class="form-control" placeholder="Bairro" name="neighborhood" id="neighborhood" required>
+                                <input type="text" class="form-control" placeholder="Cidade" name="city" id="city">
                             </div>
 
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-sm-4">
 
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fas fa-map-marker-alt"></i></span>
-                                <input type="text" class="form-control" placeholder="Endereço" name="address" id="address" required>
-                            </div>
-
-                        </div>
-                        <div class="col-sm-3">
-
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="fas fa-map-marker-alt"></i></span>
-                                <input type="text" class="form-control" placeholder="Número" name="number" required id="number">
-                            </div>
-
-                        </div>
-                        <div class="col-sm-3">
-
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="fas fa-map-marker-alt"></i></span>
-                                <input type="text" class="form-control" placeholder="Complemento" name="complement" required id="complement">
+                                <input type="text" class="form-control" placeholder="Bairro" name="neighborhood" id="neighborhood">
                             </div>
 
                         </div>
                     </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-sm-4">
 
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fas fa-map-marker-alt"></i></span>
+                                <input type="text" class="form-control" placeholder="Endereço" name="address" id="address">
+                            </div>
 
+                        </div>
+                        <div class="col-sm-4">
+
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fas fa-map-marker-alt"></i></span>
+                                <input type="text" class="form-control" placeholder="Número" name="number" id="number">
+                            </div>
+
+                        </div>
+                        <div class="col-sm-4">
+
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fas fa-map-marker-alt"></i></span>
+                                <input type="text" class="form-control" placeholder="Complemento" name="complement" id="complement">
+                            </div>
+
+                        </div>
+                    </div>
+                    <br>
                     <div class="row">
                         <div class="col-sm-12">
 
                             <div class="input-group">
-                                <span class="input-group-addon">@</span>
-                                <textarea class="form-control" name="observation" id="observation"></textarea>
+                                <span class="input-group-addon"><i class="fas fa-align-justify"></i></span>
+                                <textarea class="form-control" placeholder="Observações" name="observation" id="observation"></textarea>
                             </div>
 
                         </div>

@@ -229,6 +229,12 @@ return [
             'can'  => 'student',
         ],
         [
+            'text'        => 'Financeiro',
+            'url'         => 'student/financial',
+            'icon' => 'fas fa-dollar-sign',
+            'can'  => 'student',
+        ],
+        [
             'text'        => 'Bugs',
             'url'         => 'student/bug',
             'icon' => 'fas fa-bug',

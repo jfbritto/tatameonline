@@ -69,9 +69,9 @@
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#clients">Igrejas</a>
           </li> --}}
-          <li class="nav-item">
+          {{-- <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#plans">Planos</a>
-          </li>
+          </li> --}}
           <li class="nav-item">
                 @auth
                     @if(auth()->user()->isRoot)
@@ -287,7 +287,7 @@
 
 
   <!-- Login Section -->
-<section id="plans" class="plans-section d-flex bg-light">
+{{-- <section id="plans" class="plans-section d-flex bg-light">
     <div class="container my-auto">
 
       <div class="text-center">
@@ -304,7 +304,7 @@
       </div>
 
     </div>
-</section>
+</section> --}}
 
 
 
@@ -314,7 +314,7 @@
       <div class="row">
         <div class="mx-auto text-center">
 
-            <h2 class="text-white-50 mx-auto mt-2 mb-5">Login</h2>
+            <h2 class="text-white-50 mx-auto mt-2 mb-5">LOGIN</h2>
 
             <form method="POST" action="{{ route('login.post') }}" class="form-inline d-flex">
                 @csrf

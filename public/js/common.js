@@ -108,3 +108,7 @@ var SPMaskBehavior = function (val) {
 $('.phone-mask').mask(SPMaskBehavior, spOptions);
 
 $('.money-mask').mask('#.##0,00', {reverse: true});
+
+$('.cpf-mask').mask('000.000.000-00', {reverse: true});
+
+$('.cep-mask').mask('00000-000');

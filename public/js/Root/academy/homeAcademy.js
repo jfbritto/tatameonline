@@ -2,7 +2,7 @@ $(document).ready(function(){
 
     $("#formAddAcademy").submit(function(e) {
         e.preventDefault();
-      
+
         Swal.queue([{
             title: 'Carregando...',
             allowOutsideClick: false,
@@ -12,8 +12,16 @@ $(document).ready(function(){
                 $.post(window.location.origin + "/api/root/academy", {
                     name: $("#name").val(),
                     phone: $("#phone").val(),
-                    responsable: $("#responsable").val(),
-                    phoneResponsable: $("#phoneResponsable").val(),
+                    responsible: $("#responsible").val(),
+                    phoneResponsible: $("#phoneResponsible").val(),
+                    zipCode: $("#zipCode").val(),
+                    city: $("#city").val(),
+                    neighborhood: $("#neighborhood").val(),
+                    address: $("#address").val(),
+                    number: $("#number").val(),
+                    complement: $("#complement").val(),
+                    latitude: $("#latitude").val(),
+                    longitude: $("#longitude").val(),
                 }).then(function(data) {
                     if(data.status == 'success') {
                         list();
@@ -34,7 +42,7 @@ $(document).ready(function(){
                 }, goTo500).catch(goTo500);
             }
         }]);
-    }); 
+    });
 
     list();
 });
@@ -43,10 +51,10 @@ function list()
 {
 
     $.post(window.location.origin + "/api/root/academy/list", {
-        
+
     }).then(function(data) {
         if(data.status == 'success') {
-    
+
             var html = '';
 
             for (var i in data.data) {
@@ -54,15 +62,15 @@ function list()
                 html += `<tr>
                             <td>${data.data[i].name}</td>
                             <td class="hidden-xs">${data.data[i].phone}</td>
-                            <td class="hidden-xs">${data.data[i].responsable}</td>
-                            <td class="hidden-xs">${data.data[i].phoneResponsable}</td>
+                            <td class="hidden-xs">${data.data[i].responsible}</td>
+                            <td class="hidden-xs">${data.data[i].phoneResponsible}</td>
                             <td class="hidden-xs">${data.data[i].token}</td>
                             <td class="hidden-xs">${data.data[i].isActive==1?'Ativo':'Inativo' }</td>
                             <td>
                                 <div class="input-group-btn">
                                     <a class="btn btn-primary btn-sm pull-right" href="/root/academy/show/${data.data[i].id}" title="Abrir academia"><i class="fas fa-sign-in-alt"></i></a>
                                     <a class="btn btn-danger btn-sm pull-right destroy" onclick="destroy(${data.data[i].id})" data-id="${data.data[i].id}" title="Deletar academia"><i class="fas fa-trash-alt"></i></a>
-                                </div>    
+                                </div>
                             </td>
                         </tr>`;
             }
@@ -78,7 +86,7 @@ function list()
 
 function destroy(id)
 {
-    
+
     Swal.queue([{
         title: 'Carregando...',
         allowOutsideClick: false,
@@ -86,7 +94,7 @@ function destroy(id)
         onOpen: () => {
             Swal.showLoading();
             $.post(window.location.origin + "/api/root/academy/destroy/"+id, {
-            
+
             }).then(function(data) {
                 if(data.status == 'success') {
                     list();
@@ -97,7 +105,7 @@ function destroy(id)
                         showCancelButton: true,
                         cancelButtonText: "OK",
                         onClose: () => {
-                            
+
                         }
                     });
                 } else if (data.status == 'error') {

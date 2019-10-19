@@ -13,6 +13,18 @@ $(document).ready(function(){
                     name: $("#name").val(),
                     email: $("#email").val(),
                     idAcademy: $("#idAcademy").val(),
+                    phone: $("#phone").val(),
+                    cpf: $("#cpf").val(),
+                    birth: $("#birth").val(),
+                    responsible: $("#responsible").val(),
+                    phoneResponsible: $("#phoneResponsible").val(),
+                    zipCode: $("#zipCode").val(),
+                    city: $("#city").val(),
+                    neighborhood: $("#neighborhood").val(),
+                    address: $("#address").val(),
+                    number: $("#number").val(),
+                    complement: $("#complement").val(),
+                    observation: $("#observation").val(),
                 }).then(function(data) {
                     if(data.status == 'success') {
                         list($("#idAcademy").val());

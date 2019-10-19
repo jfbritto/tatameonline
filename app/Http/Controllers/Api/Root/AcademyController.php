@@ -37,8 +37,8 @@ class AcademyController extends Controller
         $dataValid = $request->validate([
             'name' => 'required',
             'phone' => 'required',
-            'responsable' => 'required',
-            'phoneResponsable' => 'required',
+            'responsible' => 'required',
+            'phoneResponsible' => 'required',
         ]);
 
         $comAcentos = array('à', 'á', 'â', 'ã', 'ä', 'å', 'ç', 'è', 'é', 'ê', 'ë', 'ì', 'í', 'î', 'ï', 'ñ', 'ò', 'ó', 'ô', 'õ', 'ö', 'ù', 'ü', 'ú', 'ÿ', 'À', 'Á', 'Â', 'Ã', 'Ä', 'Å', 'Ç', 'È', 'É', 'Ê', 'Ë', 'Ì', 'Í', 'Î', 'Ï', 'Ñ', 'Ò', 'Ó', 'Ô', 'Õ', 'Ö', 'O', 'Ù', 'Ü', 'Ú');
@@ -50,9 +50,17 @@ class AcademyController extends Controller
         $data = [
             'name' => $request->name,
             'phone' => $request->phone,
-            'responsable' => $request->responsable,
-            'phoneResponsable' => $request->phoneResponsable,
-            'siteName' => $name_academy_site
+            'responsible' => $request->responsible,
+            'phoneResponsible' => $request->phoneResponsible,
+            'siteName' => $name_academy_site,
+            'zipCode' => $request->zipCode,
+            'city' => $request->city,
+            'neighborhood' => $request->neighborhood,
+            'address' => $request->address,
+            'number' => $request->number,
+            'complement' => $request->complement,
+            'latitude' => $request->latitude,
+            'longitude' => $request->longitude,
         ];
 
         $response = $this->academyService->store($data);

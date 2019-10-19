@@ -15,7 +15,7 @@
 @stop
 
 @section('content')
-    
+
     <div class="box">
         <div class="box-header">
             <h3 class="box-title"><i class="fas fa-briefcase"></i></h3>
@@ -48,7 +48,7 @@
     </div>
 
     <div class="modal fade" id="modal-academy">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -62,15 +62,15 @@
 
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fas fa-briefcase"></i></span>
-                                <input type="text" class="form-control" placeholder="Nome da academia" name="name" id="name" autofocus>
+                                <input type="text" class="form-control" placeholder="Nome" name="name" id="name" autofocus>
                             </div>
-                    
+
                         </div>
                         <div class="col-sm-6">
 
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fas fa-phone"></i></span>
-                                <input type="text" class="form-control phone-mask" placeholder="Telefone da academia" name="phone" id="phone">
+                                <input type="text" class="form-control phone-mask" placeholder="Telefone" name="phone" id="phone">
                             </div>
 
                         </div>
@@ -83,19 +83,96 @@
 
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fas fa-user"></i></span>
-                                <input type="text" class="form-control" placeholder="Nome do responsável" name="responsable" id="responsable">
+                                <input type="text" class="form-control" placeholder="Responsável" name="responsible" id="responsible">
                             </div>
-                    
+
                         </div>
                         <div class="col-sm-6">
 
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fas fa-phone"></i></span>
-                                <input type="text" class="form-control phone-mask" placeholder="Telefone do responsável" name="phoneResponsable" id="phoneResponsable">
+                                <input type="text" class="form-control phone-mask" placeholder="Telefone do responsável" name="phoneResponsible" id="phoneResponsible">
                             </div>
 
                         </div>
                     </div>
+
+                    <br>
+                    <div class="row">
+                        <div class="col-sm-4">
+
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fas fa-map-marker-alt"></i></span>
+                                <input type="text" class="form-control cep-mask" placeholder="Cep" name="zipCode" id="zipCode">
+                            </div>
+
+                        </div>
+                        <div class="col-sm-4">
+
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fas fa-map-marker-alt"></i></span>
+                                <input type="text" class="form-control" placeholder="Cidade" name="city" id="city">
+                            </div>
+
+                        </div>
+                        <div class="col-sm-4">
+
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fas fa-map-marker-alt"></i></span>
+                                <input type="text" class="form-control" placeholder="Bairro" name="neighborhood" id="neighborhood">
+                            </div>
+
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-sm-4">
+
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fas fa-map-marker-alt"></i></span>
+                                <input type="text" class="form-control" placeholder="Endereço" name="address" id="address">
+                            </div>
+
+                        </div>
+                        <div class="col-sm-4">
+
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fas fa-map-marker-alt"></i></span>
+                                <input type="text" class="form-control" placeholder="Número" name="number" id="number">
+                            </div>
+
+                        </div>
+                        <div class="col-sm-4">
+
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fas fa-map-marker-alt"></i></span>
+                                <input type="text" class="form-control" placeholder="Complemento" name="complement" id="complement">
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <br>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fas fa-map-marker-alt"></i></span>
+                                <input type="text" class="form-control" placeholder="Latitude" name="latitude" id="latitude">
+                            </div>
+
+                        </div>
+                        <div class="col-sm-6">
+
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fas fa-map-marker-alt"></i></span>
+                                <input type="text" class="form-control" placeholder="Longitude" name="longitude" id="longitude">
+                            </div>
+
+                        </div>
+                    </div>
+
                 </form>
             </div>
             <div class="modal-footer">

@@ -14,13 +14,29 @@ class StartUserGraduationService
 
         try{
 
-            DB::beginTransaction();
+            $stt = StartUserGraduation::where('idUserGraduation', '=', $data['idUserGraduation'])->first();
 
-            $sport = StartUserGraduation::create($data);
+            if($stt){
+                DB::beginTransaction();
 
-            DB::commit();
+                $start = DB::table('start_user_graduations')
+                            ->where('idUserGraduation', $data['idUserGraduation'])
+                            ->update(['time' => $data['time']]);
 
-            $response = ['status' => 'success', 'data' => $sport];
+                DB::commit();
+
+                $response = ['status' => 'success', 'data' => $start];
+            }else{
+
+                DB::beginTransaction();
+
+                $start = StartUserGraduation::create($data);
+
+                DB::commit();
+
+                $response = ['status' => 'success', 'data' => $start];
+            }
+
         }catch(Exception $e){
             DB::rollBack();
             $response = ['status' => 'error', 'data' => $e->getMessage()];

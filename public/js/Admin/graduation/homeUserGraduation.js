@@ -89,7 +89,7 @@ $(document).ready(function(){
                     if(data.status == 'success') {
                         Swal.fire({
                             type: 'success',
-                            text: 'Start de horas cadastrado com sucesso!',
+                            text: 'Start de horas salvo com sucesso!',
                             showConfirmButton: false,
                             showCancelButton: true,
                             cancelButtonText: "OK",
@@ -149,7 +149,7 @@ function list(id)
 
                 html += `<tr class="${data.data[i].isActive==0?'danger':''} ${total_hours>=data.data[i].required_hours&&data.data[i].isActive==1?'success':''}">
                             <td>${data.data[i].name_sport}</td>
-                            <td>${data.data[i].name_graduation}</td>
+                            <td>${data.data[i].name_graduation}&nbsp;&nbsp;<i style="color:${data.data[i].color}" class="fas fa-ribbon"></i></td>
                             <td class="hidden-xs">${dateFormat(data.data[i].startDate)}</td>
                             <td class="hidden-xs">${dateFormat(data.data[i].endDate)}</td>
                             <td>${data.data[i].isActive==1?'Graduando':'Graduado'}</td>
@@ -158,7 +158,7 @@ function list(id)
                             <td>
                                 <div class="input-group-btn">
 
-                                    ${data.data[i].isActive==1&&data.data[i].start_hours==null?`
+                                    ${data.data[i].isActive==1?`
                                         <a onclick="openStart(${data.data[i].id})" class="btn btn-warning btn-sm pull-right" href="#" title="Adicionar start de horas completadas"><i class="fas fa-clock"></i></a>
                                     `:''}
 

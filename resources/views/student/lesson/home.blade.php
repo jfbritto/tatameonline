@@ -5,22 +5,20 @@
 @section('content_header')
 
         <h1>
-            Aulas
-            <!-- <small>preview of simple tables</small> -->
+            <i class="fas fa-users"></i>&nbsp;&nbsp;Aulas
         </h1>
         <ol class="breadcrumb">
-            <li><a href="/admin"><i class="fas fa-home"></i>&nbsp;&nbsp;Home</a></li>
-            <li><a href="#"><i class="fas fa-users"></i>&nbsp;&nbsp;Aulas</a></li>
-            <!-- <li class="active">Data tables</li> -->
+            <li><a href="/student"><i class="fas fa-home"></i>&nbsp;&nbsp;Home</a></li>
+            <li><a href="/student/lesson"><i class="fas fa-users"></i>&nbsp;&nbsp;Aulas</a></li>
         </ol>
 
 @stop
 
 @section('content')
-    
+
     <div class="box">
         <div class="box-header">
-            <h3 class="box-title">Aulas</h3>
+            <h3 class="box-title"><i class="fas fa-users"></i>&nbsp;&nbsp;Aulas</h3>
         </div>
         <!-- /.box-header -->
         <div class="box-body table-responsive">

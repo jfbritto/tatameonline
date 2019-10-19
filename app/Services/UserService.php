@@ -79,4 +79,29 @@ class UserService
 
         return $response;
     }
+
+    public function updateAvatar(Array $request)
+    {
+        $response = [];
+
+        try{
+            DB::beginTransaction();
+
+            $nameFile = null;
+            if ( $request->hasfile('avatar') && $request->file('avatar')->isValid() ) {
+                $nameFile = Laracrop::cropImage($request->input('avatar'));
+                Image::make(public_path("filetmp/{$nameFile}"))->resize(200, 200)->save(storage_path("app/public/users/{$nameFile}"));
+                // File::move(public_path("filetmp/{$nameFile}"), storage_path("app/public/churches/{$nameFile}"));
+            }
+
+            DB::commit();
+
+            $response = ['status' => 'success'];
+        }catch(Exception $e){
+            DB::rollBack();
+            $response = ['status' => 'error', 'data' => $e->getMessage()];
+        }
+
+        return $response;
+    }
 }

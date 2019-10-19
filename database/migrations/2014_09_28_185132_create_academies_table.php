@@ -23,8 +23,8 @@ class CreateAcademiesTable extends Migration
             $table->integer('token')->default(123456);
             $table->boolean('isActive')->default(true);
 
-            $table->integer('zipCode')->nullable();
-            $table->integer('city')->nullable();
+            $table->string('zipCode')->nullable();
+            $table->string('city')->nullable();
             $table->string('neighborhood')->nullable();
             $table->string('address')->nullable();
             $table->string('number')->nullable();

@@ -46,7 +46,7 @@
 </div>
 
 <div class="modal fade" id="modal-default">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -55,25 +55,108 @@
         </div>
         <div class="modal-body">
             <form id="formAddUser">
+
+                <div class="row">
+                    <div class="col-sm-4">
+
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fas fa-user"></i></span>
+                            <input type="text" class="form-control" placeholder="Nome" name="name" id="name" required>
+                        </div>
+
+                    </div>
+                    <div class="col-sm-4">
+
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fas fa-at"></i></span>
+                            <input type="email" class="form-control" placeholder="Email" name="email" required id="email">
+                        </div>
+
+                    </div>
+                    <div class="col-sm-4">
+
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fas fa-phone"></i></span>
+                            <input type="text" class="form-control phone-mask" placeholder="Telefone" name="phone" required id="phone">
+                        </div>
+
+                    </div>
+                </div>
+                <br>
                 <div class="row">
                     <div class="col-sm-6">
 
                         <div class="input-group">
-                            <span class="input-group-addon"><i class="fas fa-user"></i></span>
-                            <input type="text" class="form-control" placeholder="Nome" name="name" id="name">
+                            <span class="input-group-addon"><i class="fas fa-address-card"></i></span>
+                            <input type="text" class="form-control cpf-mask" placeholder="Cpf" name="cpf" id="cpf" required>
                         </div>
 
                     </div>
                     <div class="col-sm-6">
 
                         <div class="input-group">
-                            <span class="input-group-addon">@</span>
-                            <input type="email" class="form-control" placeholder="Email" name="email" id="email">
+                            <span class="input-group-addon"><i class="fas fa-birthday-cake"></i></span>
+                            <input type="date" class="form-control" name="birth" required id="birth">
                         </div>
 
                     </div>
-                    <input type="hidden" id="idAcademy" value="{{$academy->id}}">
                 </div>
+                <br>
+                <div class="row">
+                    <div class="col-sm-4">
+
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fas fa-map-marker-alt"></i></span>
+                            <input type="text" class="form-control cep-mask" placeholder="Cep" name="zipCode" id="zipCode">
+                        </div>
+
+                    </div>
+                    <div class="col-sm-4">
+
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fas fa-map-marker-alt"></i></span>
+                            <input type="text" class="form-control" placeholder="Cidade" name="city" id="city">
+                        </div>
+
+                    </div>
+                    <div class="col-sm-4">
+
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fas fa-map-marker-alt"></i></span>
+                            <input type="text" class="form-control" placeholder="Bairro" name="neighborhood" id="neighborhood">
+                        </div>
+
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-sm-4">
+
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fas fa-map-marker-alt"></i></span>
+                            <input type="text" class="form-control" placeholder="Endereço" name="address" id="address">
+                        </div>
+
+                    </div>
+                    <div class="col-sm-4">
+
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fas fa-map-marker-alt"></i></span>
+                            <input type="text" class="form-control" placeholder="Número" name="number" id="number">
+                        </div>
+
+                    </div>
+                    <div class="col-sm-4">
+
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fas fa-map-marker-alt"></i></span>
+                            <input type="text" class="form-control" placeholder="Complemento" name="complement" id="complement">
+                        </div>
+
+                    </div>
+                </div>
+
+                <input type="hidden" id="idAcademy" value="{{$academy->id}}">
             </form>
         </div>
         <div class="modal-footer">

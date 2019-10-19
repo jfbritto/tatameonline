@@ -46,6 +46,15 @@ class UserController extends Controller
             'isAdmin' => 1,
             'idAcademy' => $request->idAcademy,
             'password' => bcrypt('12345678'),
+            'phone' => $request->phone,
+            'cpf' => $request->cpf,
+            'birth' => $request->birth,
+            'zipCode' => $request->zipCode,
+            'city' => $request->city,
+            'neighborhood' => $request->neighborhood,
+            'address' => $request->address,
+            'number' => $request->number,
+            'complement' => $request->complement,
         ];
 
         // return $data;

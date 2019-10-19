@@ -87,6 +87,9 @@ Route::group(['middleware' => ['auth']], function(){
         //AULAS
         Route::get('/lesson', 'LessonController@index')->name('student.lesson');
 
+        //GRADUAÇÕES
+        Route::get('/graduation', 'UserGraduationController@index')->name('student.graduation');
+
         //BUGS
         Route::get('/bug', 'BugController@index')->name('student.bug');
     });

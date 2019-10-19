@@ -18,6 +18,15 @@ $(document).ready(function(){
                     name: $("#name").val(),
                     email: $("#email").val(),
                     idAcademy: $("#idAcademy").val(),
+                    phone: $("#phone").val(),
+                    cpf: $("#cpf").val(),
+                    birth: $("#birth").val(),
+                    zipCode: $("#zipCode").val(),
+                    city: $("#city").val(),
+                    neighborhood: $("#neighborhood").val(),
+                    address: $("#address").val(),
+                    number: $("#number").val(),
+                    complement: $("#complement").val(),
                 }).then(function(data) {
                     callList();
                     if(data.status == 'success') {

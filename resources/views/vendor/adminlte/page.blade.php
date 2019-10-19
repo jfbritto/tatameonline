@@ -22,14 +22,14 @@
             <nav class="navbar navbar-static-top">
                 <div class="container">
                     <div class="navbar-header">
-                        <a 
-                            @if(auth()->user()->isRoot) 
-                                href="{{ url('/root') }}" 
+                        <a
+                            @if(auth()->user()->isRoot)
+                                href="{{ url('/root') }}"
                             @elseif(auth()->user()->isAdmin)
-                                href="{{ url('/admin') }}" 
+                                href="{{ url('/admin') }}"
                             @elseif(auth()->user()->isStudent)
-                                href="{{ url('/student') }}" 
-                            @endif 
+                                href="{{ url('/student') }}"
+                            @endif
                             class="navbar-brand">
                             {!! config('adminlte.logo', '<b>Admin</b>LTE') !!}
                         </a>
@@ -65,6 +65,54 @@
                 <div class="navbar-custom-menu">
 
                     <ul class="nav navbar-nav">
+                        <!-- User Account Menu -->
+                        <li class="dropdown user user-menu">
+                            <!-- Menu Toggle Button -->
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <!-- The user image in the navbar-->
+                                <img src="@if(!is_null(auth()->user()->avatar)){{ url('storage/users/'.auth()->user()->avatar) }} @else {{ url('storage/users/default.jpg') }} @endif" class="user-image" alt="">
+                                <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                                <span class="hidden-xs">{{auth()->user()->name}}</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <!-- The user image in the menu -->
+                                <li class="user-header">
+                                    <img src="@if(!is_null(auth()->user()->avatar)){{ url('storage/users/'.auth()->user()->avatar) }} @else {{ url('storage/users/default.jpg') }} @endif" class="img-circle" alt="User Image">
+
+                                    <p>
+                                    {{auth()->user()->name}}
+                                    <small></small>
+                                    </p>
+                                </li>
+                                <!-- Menu Footer-->
+                                <li class="user-footer">
+                                    <div class="pull-left">
+                                    <a href="{{ url('church/member/show', auth()->user()->id) }}" class="btn btn-default btn-flat">Perfil</a>
+                                    </div>
+                                    <div class="pull-right">
+                                        @if(config('adminlte.logout_method') == 'GET' || !config('adminlte.logout_method') && version_compare(\Illuminate\Foundation\Application::VERSION, '5.3.0', '<'))
+                                            <a class="btn btn-default btn-flat" href="{{ url(config('adminlte.logout_url', 'auth/logout')) }}">
+                                                <i class="fa fa-fw fa-power-off"></i> {{ trans('adminlte::adminlte.log_out') }}
+                                            </a>
+                                        @else
+                                            <a class="btn btn-default btn-flat" href="#"
+                                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                                            >
+                                                <i class="fa fa-fw fa-power-off"></i> {{ trans('adminlte::adminlte.log_out') }}
+                                            </a>
+                                            <form id="logout-form" action="{{ url(config('adminlte.logout_url', 'auth/logout')) }}" method="POST" style="display: none;">
+                                                @if(config('adminlte.logout_method'))
+                                                    {{ method_field(config('adminlte.logout_method')) }}
+                                                @endif
+                                                {{ csrf_field() }}
+                                            </form>
+                                        @endif
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    <ul>
+                    {{-- <ul class="nav navbar-nav">
                         <li>
                             @if(config('adminlte.logout_method') == 'GET' || !config('adminlte.logout_method') && version_compare(\Illuminate\Foundation\Application::VERSION, '5.3.0', '<'))
                                 <a href="{{ url(config('adminlte.logout_url', 'auth/logout')) }}">
@@ -92,7 +140,7 @@
                                 </a>
                             </li>
                         @endif
-                    </ul>
+                    </ul> --}}
                 </div>
                 @if(config('adminlte.layout') == 'top-nav')
                 </div>
