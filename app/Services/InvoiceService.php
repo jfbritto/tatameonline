@@ -151,7 +151,7 @@ class InvoiceService
                                                     and inv.isPaid = 0
                                                     and inv.dueDate < date_format(now(), '%Y-%m-%d')
                                                 group by
-                                                    us.id
+                                                    us.id, us.name
                                                 having
                                                     total > 1"));
 
