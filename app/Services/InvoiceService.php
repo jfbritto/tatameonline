@@ -150,9 +150,8 @@ class InvoiceService
                                                     and us.isActive = 1
                                                     and inv.isPaid = 0
                                                     and inv.dueDate < date_format(now(), '%Y-%m-%d')
-                                                    and 3 is not null
                                                 group by
-                                                    us.id, us.name
+                                                    us.id
                                                 having
                                                     total > 1"));
 
