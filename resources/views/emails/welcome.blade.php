@@ -26,7 +26,7 @@
                     <a href="{{env('APP_URL')}}/#login" class="btn btn-info">Plataforma</a>
                 </div>
                 <div class="card-footer text-muted">
-                    {{$invoice->user->academy->name}}
+                    {{$user->academy->name}}
                 </div>
             </div>
 
