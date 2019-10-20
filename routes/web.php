@@ -40,6 +40,9 @@ Route::group(['middleware' => ['auth']], function(){
         //ESPORTES
         Route::get('/sport', 'SportController@index')->name('root.sport');
         Route::get('/sport/create', 'SportController@create')->name('root.sport.create');
+
+        //BUGS
+        Route::get('/bug', 'BugController@index')->name('root.bug');
     });
 
 
