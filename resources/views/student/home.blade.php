@@ -18,6 +18,7 @@
 
 <input type="hidden" id="idStudent" value="{{auth()->user()->id}}">
 
+<div id="lista2"></div>
 <div id="lista"></div>
 
 <div class="box">

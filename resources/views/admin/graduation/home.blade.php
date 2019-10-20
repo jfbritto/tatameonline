@@ -18,7 +18,7 @@
 
     <div class="box">
         <div class="box-header">
-            <h3 class="box-title"><i class="fas fa-graduation-cap"></i></h3>
+            <h3 class="box-title"><i class="fas fa-graduation-cap"></i>&nbsp;&nbsp;Graduações</h3>
             <div class="box-tools">
             <div class="input-group input-group-sm" style="width: 150px; text-align: right">
                 <div class="input-group-btn">

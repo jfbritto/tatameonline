@@ -57,29 +57,28 @@ $(document).ready(function(){
     });
 
 
-
-checkLesson($("#idStudent").val());
-list($("#idStudent").val());
-openLastPresencesByStudent($("#idStudent").val());
+mainFunction($("#idStudent").val());
 
 setInterval(function(){
-    checkLesson($("#idStudent").val());
-    list($("#idStudent").val());
-    openLastPresencesByStudent($("#idStudent").val());
-}, 10000);
+
+    mainFunction($("#idStudent").val());
+
+}, 15000);
 
 });
 
-function list(id)
+function mainFunction(idUser)
 {
-    $.post(window.location.origin + "/api/student/lesson/next/"+id, {
+    $.post(window.location.origin + "/api/student/index/"+idUser, {
 
     }).then(function(data) {
-        if(data.status == 'success') {
+
+        //PROCURANDO PRÓXIMA AULA
+        if(data.data.nextLesson.status == 'success') {
 
             let html = '';
 
-            if(data.data == null){
+            if(data.data.nextLesson.data == null){
 
                 html += `<div class="alert alert-danger alert-dismissible">
                         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -90,75 +89,77 @@ function list(id)
 
                 html += `<div class="alert alert-success alert-dismissible">
                         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                            Sua próxima aula será ${dia_semana[data.data.weekDay]} às ${data.data.hour}.
+                            Sua próxima aula será ${dia_semana[data.data.nextLesson.data.weekDay]} às ${data.data.nextLesson.data.hour}.
                         </div>`;
             }
 
 
             $('#lista').html(html);
 
-        } else if (data.status == 'error') {
-            showError(data.message);
         }
-    }, goTo500).catch(goTo500);
-}
 
-function checkLesson(id)
-{
+        //CASA ENCONTRE AULA ABRE O MODAL
+        if(data.data.checkLesson.status == 'success') {
 
-        //MARCA PRESENÇA
+            if(data.data.checkLesson.data[0] != null){
 
-        $.post(window.location.origin + "/api/student/lesson/check/"+id, {
+                $("#sport-modal").html(data.data.checkLesson.data[0].sport_name);
+                $("#teacher-modal").html(data.data.checkLesson.data[0].teacher);
+                $("#weekDay-modal").html(dia_semana[data.data.checkLesson.data[0].weekDay]);
+                $("#hour-modal").html(data.data.checkLesson.data[0].hour);
 
-        }).then(function(data) {
-            if(data.status == 'success') {
+                $("#idRegistration").val(data.data.checkLesson.data[0].registration_id);
+                $("#idUserGraduation").val(data.data.checkLesson.data[0].user_graduation_id);
 
-                if(data.data[0] != null){
-
-                    $("#sport-modal").html(data.data[0].sport_name);
-                    $("#teacher-modal").html(data.data[0].teacher);
-                    $("#weekDay-modal").html(dia_semana[data.data[0].weekDay]);
-                    $("#hour-modal").html(data.data[0].hour);
-
-                    $("#idRegistration").val(data.data[0].registration_id);
-                    $("#idUserGraduation").val(data.data[0].user_graduation_id);
-
-                    $("#modal-check").modal('show');
-                    setTimeout(function(){ $("#token").focus(); }, 500);
-                }else{
-                    $("#modal-check").modal('hide');
-                }
-
-
-            } else if (data.status == 'error') {
-                showError(data.message);
+                $("#modal-check").modal('show');
+                setTimeout(function(){ $("#token").focus(); }, 500);
+            }else{
+                $("#modal-check").modal('hide');
             }
-        }, goTo500).catch(goTo500);
-}
 
-function openLastPresencesByStudent(idUser)
-{
-    $.post(window.location.origin + "/api/student/presence/last/list/"+idUser, {
 
-    }).then(function(data) {
-        if(data.status == 'success') {
+        }
+
+        //LISTANDO ULTIMAS PRESENÇAS
+        if(data.data.openLastPresencesByStudent.status == 'success') {
 
             var html = '';
 
-            for (var i in data.data) {
+            for (var i in data.data.openLastPresencesByStudent.data) {
 
                 html += `<tr">
-                            <td>${dia_semana[data.data[i].weekDay]}</td>
-                            <td>${data.data[i].hour}</td>
-                            <td>${dateFullFormat(data.data[i].checkedHour)}</td>
-                            <td>${data.data[i].name_sport}</td>
+                            <td>${dia_semana[data.data.openLastPresencesByStudent.data[i].weekDay]}</td>
+                            <td>${data.data.openLastPresencesByStudent.data[i].hour}</td>
+                            <td>${dateFullFormat(data.data.openLastPresencesByStudent.data[i].checkedHour)}</td>
+                            <td>${data.data.openLastPresencesByStudent.data[i].name_sport}</td>
                         </tr>`;
             }
 
             $('#listPresences').html(html);
 
-        } else if (data.status == 'error') {
-            showError(data.message);
         }
+
+        //PROCURANDO FATURA ABERTA
+        if(data.data.invoiceDue.status == 'success') {
+
+            let html = '';
+
+            if(data.data.invoiceDue.data[0] == null){
+
+
+
+            }else{
+
+                html += `<div class="alert alert-danger alert-dismissible">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            Sua fatura está perto de vencer! pague até dia ${dateFormat(data.data.invoiceDue.data[0].dueDate)}
+                        </div>`;
+            }
+
+
+            $('#lista2').html(html);
+
+        }
+
     }, goTo500).catch(goTo500);
 }

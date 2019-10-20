@@ -173,4 +173,29 @@ class InvoiceService
 
         return $response;
     }
+
+    public function invoiceDue($id)
+    {
+        $response = [];
+
+        try{
+
+            $date = date("Y-m-d", strtotime("+7 days", strtotime(date("Y-m-d"))));
+
+            $invoice = DB::select( DB::raw("SELECT
+                                                *
+                                            FROM
+                                                invoices
+                                            WHERE
+                                                idUser = ".$id."
+                                                and dueDate between now() and '".$date."'
+                                                and isPaid = 0"));
+
+            $response = ['status' => 'success', 'data' => $invoice];
+        }catch(Exception $e){
+            $response = ['status' => 'error', 'data' => $e->getMessage()];
+        }
+
+        return $response;
+    }
 }

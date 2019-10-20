@@ -107,5 +107,8 @@
 
         //BUGS
         Route::post('/bug', 'BugController@store');
+
+        //BUGS
+        Route::post('/index/{user}', 'IndexController@mainFunction');
     });
 
