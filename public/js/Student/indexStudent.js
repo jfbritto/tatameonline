@@ -80,14 +80,14 @@ function mainFunction(idUser)
 
             if(data.data.nextLesson.data == null){
 
-                html += `<div class="alert alert-danger alert-dismissible">
+                html += `<div class="alert alert-warning alert-dismissible">
                         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                             Você ainda não está matriculado em nenhuma aula.
                         </div>`;
 
             }else{
 
-                html += `<div class="alert alert-success alert-dismissible">
+                html += `<div class="alert alert-info alert-dismissible">
                         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                             Sua próxima aula será ${dia_semana[data.data.nextLesson.data.weekDay]} às ${data.data.nextLesson.data.hour}.
                         </div>`;
@@ -146,11 +146,11 @@ function mainFunction(idUser)
 
             if(data.data.invoiceDue.data[0] == null){
 
-
+                html += '';
 
             }else{
 
-                html += `<div class="alert alert-danger alert-dismissible">
+                html += `<div class="alert alert-warning alert-dismissible">
                         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                             Sua fatura está perto de vencer! pague até dia ${dateFormat(data.data.invoiceDue.data[0].dueDate)}
                         </div>`;

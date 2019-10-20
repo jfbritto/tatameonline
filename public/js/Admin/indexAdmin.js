@@ -134,9 +134,12 @@ $(document).ready(function(){
         }).then(function(data) {
             if(data.status == 'success') {
 
-                var html = '';
+                let html = '';
+                let cont = 0;
 
                 for (var i in data.data) {
+
+                    cont = 1;
 
                     html += `<div class="col-md-3 col-sm-6 col-xs-12">
                                 <div class="info-box">
@@ -156,6 +159,9 @@ $(document).ready(function(){
 
                 $('#lessons-now').html(html);
 
+                if(cont == 1)
+                    $('#less-now').show();
+
             } else if (data.status == 'error') {
                 showError(data.message);
             }
@@ -170,7 +176,8 @@ $(document).ready(function(){
         }).then(function(data) {
             if(data.status == 'success') {
 
-                var html = '';
+                let html = '';
+                let cont = 0;
 
                 for (var i in data.data) {
 
@@ -194,6 +201,8 @@ $(document).ready(function(){
 
                         if(v3>=data.data[i].required_hours){
 
+                            cont = 1;
+
                             html += `<tr class="${total_hours>=data.data[i].required_hours&&data.data[i].isActive==1?'success':''}">
                                         <td>${data.data[i].name_alun}</td>
                                         <td>${data.data[i].name_sport}</td>
@@ -211,6 +220,9 @@ $(document).ready(function(){
                 }
 
                 $('#listGraduations').html(html);
+
+                if(cont == 1)
+                    $('#prox-grad').show();
 
             } else if (data.status == 'error') {
                 showError(data.message);

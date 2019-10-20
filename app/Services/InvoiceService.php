@@ -87,6 +87,7 @@ class InvoiceService
                                                         us.idAcademy = ".$id."
                                                         and us.isStudent = 1
                                                         and us.isActive = 1
+                                                        and inv.isPaid = 0
                                                         and date_format(inv.dueDate, '%Y-%m') = '".$date."'"));
 
             $received_obj = DB::select( DB::raw("select
@@ -181,6 +182,7 @@ class InvoiceService
         try{
 
             $date = date("Y-m-d", strtotime("+7 days", strtotime(date("Y-m-d"))));
+            $date = date("Y-m-d", strtotime("+7 days", strtotime(date("Y-m-d"))));
 
             $invoice = DB::select( DB::raw("SELECT
                                                 *
@@ -188,7 +190,7 @@ class InvoiceService
                                                 invoices
                                             WHERE
                                                 idUser = ".$id."
-                                                and dueDate between now() and '".$date."'
+                                                and dueDate < '".$date."'
                                                 and isPaid = 0"));
 
             $response = ['status' => 'success', 'data' => $invoice];

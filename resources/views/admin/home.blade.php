@@ -67,39 +67,47 @@
     </div>
 </div>
 
-<h3>Aulas Hoje</h3>
+<section id="less-now" style="display:none">
 
-<div class="row" id="lessons-now"></div>
+    <h3>Aulas Hoje</h3>
 
-<h3>Próximas graduações</h3>
+    <div class="row" id="lessons-now"></div>
 
-<div class="row">
-    <div class="col-md-12">
+</section>
 
-        <div class="box">
-            <div class="box-body">
+<section id="prox-grad" style="display:none">
 
-                <div class="box-body table-responsive">
-                    <table class="table table-hover table-condensed">
-                        <thead>
-                            <tr>
-                                <th>Aluno</th>
-                                <th>Esporte</th>
-                                <th>Graduação</th>
-                                <th>H. necessárias</th>
-                                <th>H. completadas</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody id="listGraduations"></tbody>
-                    </table>
+    <h3>Próximas graduações</h3>
+
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="box">
+                <div class="box-body">
+
+                    <div class="box-body table-responsive">
+                        <table class="table table-hover table-condensed">
+                            <thead>
+                                <tr>
+                                    <th>Aluno</th>
+                                    <th>Esporte</th>
+                                    <th>Graduação</th>
+                                    <th>H. necessárias</th>
+                                    <th>H. completadas</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="listGraduations"></tbody>
+                        </table>
+                    </div>
+
                 </div>
-
             </div>
-        </div>
 
+        </div>
     </div>
-</div>
+
+</section>
 
 <input type="hidden" id="idAcademy" value="{{auth()->user()->academy->id}}">
 

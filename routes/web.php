@@ -92,6 +92,9 @@ Route::group(['middleware' => ['auth']], function(){
 
         //BUGS
         Route::get('/bug', 'BugController@index')->name('student.bug');
+
+        //FINANCEIRO
+        Route::get('/financial', 'FinancialController@index')->name('student.financial');
     });
 
 

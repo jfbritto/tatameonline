@@ -108,7 +108,10 @@
         //BUGS
         Route::post('/bug', 'BugController@store');
 
-        //BUGS
+        //FINNANCEIRO
+        Route::post('/financial/invoiceDue/{user}', 'InvoiceController@invoiceDue');
+
+        //INDEX
         Route::post('/index/{user}', 'IndexController@mainFunction');
     });
 
