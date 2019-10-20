@@ -94,7 +94,7 @@
 
                             <div class="input-group" style="width:100%">
                                 <label for="expiryDay">Dia vencimento</label>
-                                <input type="number" readonly value="{{date('d')}}" class="form-control" name="expiryDay" id="expiryDay" required>
+                                <input type="number" value="{{date('d')}}" class="form-control" name="expiryDay" id="expiryDay" required>
                             </div>
 
                         </div>

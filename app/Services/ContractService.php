@@ -47,8 +47,22 @@ class ContractService
 
                 $dueDate = date('Y-m-'.$data['expiryDay'], strtotime("+".$i." month"));
 
+                if($i == 0){
+                    $date1 = date("Y-m-d");
+                    $date2 = $dueDate;
+                    $diff = abs(strtotime($date2) - strtotime($date1));
+                    $days = floor($diff / (60*60*24));
+
+                    $div = $data['monthlyPayment']/30;
+
+                    $value = $data['monthlyPayment'] + ($days*$div);
+
+                }else{
+                    $value = $data['monthlyPayment'];
+                }
+
                 $data_invoice = [
-                    'value' => $data['monthlyPayment'],
+                    'value' => $value,
                     'dueDate' => $dueDate,
                     'isPaid' => false,
                     'paymentDate' => null,
