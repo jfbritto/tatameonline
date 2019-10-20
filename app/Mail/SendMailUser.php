@@ -17,6 +17,7 @@ class SendMailUser extends Mailable implements ShouldQueue
     public $academy;
     public $type;
     public $invoice;
+    public $email;
 
     /**
      * Create a new message instance.
@@ -31,6 +32,7 @@ class SendMailUser extends Mailable implements ShouldQueue
         $this->academy = $academy;
         $this->type = $type;
         $this->invoice = $invoice;
+        $this->email = $this->user->academy->siteName."@tatameonline.com";
     }
 
     /**
@@ -44,7 +46,7 @@ class SendMailUser extends Mailable implements ShouldQueue
         switch ($this->type) {
             case '1':
 
-                return $this->from('noreply@tatameonline.com')
+                return $this->from($this->email)
                             ->subject("Bem-vindo!")
                             ->view('emails.welcome')
                             ->with([
@@ -56,7 +58,7 @@ class SendMailUser extends Mailable implements ShouldQueue
 
             case '2':
 
-                return $this->from('noreply@tatameonline.com')
+                return $this->from($this->email)
                             ->subject("Pagamento confirmado!")
                             ->view('emails.payment')
                             ->with([

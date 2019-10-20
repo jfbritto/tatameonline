@@ -70,6 +70,51 @@ class StudentService
         return $response;
     }
 
+    public function update(array $data)
+    {
+        $response = [];
+
+        try{
+
+            $user = User::where('id', '=', $data['id'])->first();
+
+            if($user->idAcademy == $data['idAcademy']){
+
+                DB::beginTransaction();
+
+                $user = DB::table('users')
+                            ->where('id', $data['id'])
+                            ->update(['name' => $data['name'],
+                                    'email' => $data['email'],
+                                    'phone' => $data['phone'],
+                                    'cpf' => $data['cpf'],
+                                    'birth' => $data['birth'],
+                                    'responsible' => $data['responsible'],
+                                    'phoneResponsible' => $data['phoneResponsible'],
+                                    'zipCode' => $data['zipCode'],
+                                    'city' => $data['city'],
+                                    'neighborhood' => $data['neighborhood'],
+                                    'address' => $data['address'],
+                                    'number' => $data['number'],
+                                    'complement' => $data['complement'],
+                                    'observation' => $data['observation']]
+                            );
+
+                DB::commit();
+
+                $response = ['status' => 'success', 'data' => $user];
+            }else{
+                $response = ['status' => 'error', 'data' => "Usuário selecionado não pertence à esta academia!"];
+            }
+
+        }catch(Exception $e){
+            DB::rollBack();
+            $response = ['status' => 'error', 'data' => $e->getMessage()];
+        }
+
+        return $response;
+    }
+
     public function destroy($id)
     {
         $response = [];
@@ -104,12 +149,64 @@ class StudentService
             DB::beginTransaction();
 
             DB::table('users')
-                    ->where('id', $id)
-                    ->update(['isActive' => 1]);
+            ->where('id', $id)
+            ->update(['isActive' => 1]);
 
             DB::commit();
 
             $response = ['status' => 'success'];
+
+        }catch(Exception $e){
+            DB::rollBack();
+            $response = ['status' => 'error', 'data' => $e->getMessage()];
+        }
+
+        return $response;
+    }
+
+    public function find($id)
+    {
+        $response = [];
+
+        try{
+
+            $user = DB::table('users')
+            ->where('id', '=', $id)
+            ->first();
+
+            $response = ['status' => 'success', 'data' => $user];
+        }catch(Exception $e){
+            $response = ['status' => 'error', 'data' => $e->getMessage()];
+        }
+
+        return $response;
+    }
+
+    public function editPass(Array $data)
+    {
+        $response = [];
+
+        try{
+
+            $user = User::where('id', '=', $data['id'])->first();
+
+            if($user->idAcademy == $data['idAcademy']){
+
+                DB::beginTransaction();
+
+                $pass = bcrypt($data['pass']);
+
+                DB::table('users')
+                        ->where('id', $data['id'])
+                        ->update(['password' => $pass]);
+
+                DB::commit();
+
+                $response = ['status' => 'success'];
+
+            }else{
+                $response = ['status' => 'error', 'data' => "Usuário selecionado não pertence à esta academia!"];
+            }
 
         }catch(Exception $e){
             DB::rollBack();

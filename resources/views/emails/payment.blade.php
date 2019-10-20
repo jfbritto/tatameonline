@@ -1,24 +1,40 @@
-<html>
-    <header>
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <!-- Bootstrap core CSS -->
-        <link href="css/bootstrap4.min.css" rel="stylesheet">
-    </header>
-    <body>
+        <link href="{{env('APP_URL')}}/css/bootstrap4.min.css" rel="stylesheet">
+</header>
+<body>
 
-        <div class="container">
-            <p>Olá, {{ $user->name }}!</p>
-            <p></p>
-            <p>Acabamos de confirmar seu pagamento!</p>
+        <div class="container" style="margin-top:20px">
 
-            <p>Valor: R$ {{ number_format($invoice->value, 2, ',', '.') }}</p>
-            <p>Vencimento: {{ date("d/m/Y", strtotime($invoice->dueDate)) }}</p>
 
-            {{-- <p>Acesse seu recibo online <a target="_blank" href="https://www.tatameonline.com.br/#login">Aqui</a></p> --}}
-            <p>Acesse seu recibo online <a target="_blank" href="http://tatameonline.local/payment/{{$invoice->tokenPayment}}">Aqui</a></p>
+            @if($invoice != '')
 
-            <p>Att, <br>
-                Equipe TaTame Online!</p>
+                <div class="card text-center">
+                    <div class="card-header">
+                        Olá, {{ $user->name }}!
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Acabamos de confirmar seu pagamento!</h5>
+                        <p class="card-text">Valor: R$ <strong>{{ number_format($invoice->value, 2, ',', '.') }}</strong></p>
+                        <p class="card-text">Vencimento: <strong>{{ date("d/m/Y", strtotime($invoice->dueDate)) }}</strong></p>
+
+                        <a href="{{env('APP_URL')}}/payment/{{$invoice->tokenPayment}}" class="btn btn-info">Recibo Online</a>
+                    </div>
+                    <div class="card-footer text-muted">
+                        {{$invoice->user->academy->name}}
+                    </div>
+                </div>
+
+            @else
+                <p>Pagamento não encontrado!</p>
+            @endif
         </div>
 
-    </body>
+</body>
 </html>

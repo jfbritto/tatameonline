@@ -23,12 +23,52 @@
         <h3 class="box-title"><i class="fas fa-user-graduate"></i> &nbsp;&nbsp; {{$student->name}}</h3>
     </div>
     <div class="box-body">
-
+        <hr>
         <div class="row">
-            <div class="col-md-6">
-                <p><strong>Email:</strong> {{$student->email}}</p>
+            <div class="col-md-3 col-sm-6" title="Email">
+                <p><strong><i class="fas fa-at"></i></strong> &nbsp; {{$student->email}}</p>
+            </div>
+            <div class="col-md-3 col-sm-6" title="Tel">
+                <p><strong><i class="fas fa-phone"></i></strong> &nbsp; {{$student->phone}}</p>
+            </div>
+            <div class="col-md-3 col-sm-6" title="CPF">
+                <p><strong><i class="fas fa-address-card"></i></strong> &nbsp; {{$student->cpf}}</p>
+            </div>
+            <div class="col-md-3 col-sm-6" title="Nascimento">
+                <p><strong><i class="fas fa-birthday-cake"></i></strong> &nbsp; {{date("d/m/Y", strtotime($student->birth))}}</p>
             </div>
         </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-3 col-sm-6" title="Responsável">
+                <p><strong><i class="fas fa-user-friends"></i></strong> &nbsp; {{$student->responsible}}</p>
+            </div>
+            <div class="col-md-3 col-sm-6" title="Tel. Responsável">
+                <p><strong><i class="fas fa-phone"></i></strong> &nbsp; {{$student->phoneResponsible}}</p>
+            </div>
+            <div class="col-md-3 col-sm-6" title="Cep">
+                <p><strong><i class="fas fa-map-marker-alt"></i></strong> &nbsp; {{$student->zipCode}}</p>
+            </div>
+            <div class="col-md-3 col-sm-6" title="Cidade">
+                <p><strong><i class="fas fa-map-marker-alt"></i></strong> &nbsp; {{$student->city}}</p>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-3 col-sm-6" title="Bairro">
+                <p><strong><i class="fas fa-map-marker-alt"></i></strong> &nbsp; {{$student->neighborhood}}</p>
+            </div>
+            <div class="col-md-3 col-sm-6" title="Endereço">
+                <p><strong><i class="fas fa-map-marker-alt"></i></strong> &nbsp; {{$student->address}} - {{$student->number}}</p>
+            </div>
+            <div class="col-md-3 col-sm-6" title="Complemento">
+                <p><strong><i class="fas fa-map-marker-alt"></i></strong> &nbsp; {{$student->complement}}</p>
+            </div>
+            <div class="col-md-3 col-sm-6" title="Observação">
+                <p><strong><i class="fas fa-align-justify"></i></strong> &nbsp; {{$student->observation}}</p>
+            </div>
+        </div>
+        <hr>
 
     </div>
 </div>
@@ -48,7 +88,7 @@
     <div class="box-body">
 
         <div class="box-body table-responsive">
-            <table class="table table-hover">
+            <table class="table table-hover table-condensed">
                 <thead>
                     <tr>
                         <th>Data de assinatura</th>
@@ -82,7 +122,7 @@
     <div class="box-body">
 
         <div class="box-body table-responsive">
-            <table class="table table-hover">
+            <table class="table table-hover table-condensed">
                 <thead>
                     <tr>
                         <th>Esporte</th>
@@ -110,7 +150,7 @@
     </div>
     <!-- /.box-header -->
     <div class="box-body table-responsive">
-        <table class="table table-hover">
+        <table class="table table-hover table-condensed">
             <thead>
                 <tr>
                     <th>Esporte</th>
@@ -138,7 +178,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="box-body table-responsive">
-                        <table class="table table-hover">
+                        <table class="table table-hover table-condensed">
                             <thead>
                                 <tr>
                                     <th>Vencimento</th>
@@ -171,7 +211,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="box-body table-responsive">
-                        <table class="table table-hover">
+                        <table class="table table-hover table-condensed">
                             <thead>
                                 <tr>
                                     <th>Dia aula</th>

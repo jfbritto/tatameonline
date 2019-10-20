@@ -85,7 +85,7 @@
         <div class="tab-content">
             <div id="home" class="tab-pane fade in active">
             <div class="box-body table-responsive">
-                    <table class="table table-hover datatable-table">
+                    <table class="table table-hover table-condensed datatable-table">
                         <thead>
                             <tr>
                                 <th>Aluno</th>
@@ -100,7 +100,7 @@
             </div>
             <div id="menu1" class="tab-pane fade">
                 <div class="box-body table-responsive">
-                    <table class="table table-hover datatable-table">
+                    <table class="table table-hover table-condensed datatable-table">
                         <thead>
                             <tr>
                                 <th>Aluno</th>
@@ -115,7 +115,7 @@
             </div>
             <div id="menu2" class="tab-pane fade">
                 <div class="box-body table-responsive">
-                    <table class="table table-hover datatable-table">
+                    <table class="table table-hover table-condensed datatable-table">
                         <thead>
                             <tr>
                                 <th>Aluno</th>
@@ -139,7 +139,7 @@
         </div>
 
         <div class="box-body table-responsive">
-            <table class="table table-hover datatable-table">
+            <table class="table table-hover table-condensed datatable-table">
                 <thead>
                     <tr>
                         <th>Aluno</th>

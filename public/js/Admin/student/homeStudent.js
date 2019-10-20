@@ -1,6 +1,21 @@
 $(document).ready(function(){
 
-    $("#formAddStudent").submit(function(e) {
+    $(".open-modal-pass").on("click", function(){
+
+        $("#modal-pass").modal("show");
+
+    });
+
+    $(".open-modal-user").on("click", function(){
+
+        $(".open-modal-pass").hide();
+        $("#param").val("new");
+        $("#title-modal").html("Cadastrar");
+        $("#modal-user").modal("show");
+
+    });
+
+    $("#formStudent").submit(function(e) {
         e.preventDefault();
 
         Swal.queue([{
@@ -25,18 +40,76 @@ $(document).ready(function(){
                     number: $("#number").val(),
                     complement: $("#complement").val(),
                     observation: $("#observation").val(),
+                    param: $("#param").val(),
+                    id_user: $("#id_user").val(),
+                }).then(function(data) {
+
+                    let msg = '';
+                    let param = $("#id_user").val();
+
+                    if(param == 'new'){
+                        msg = 'Aluno cadastrado com sucesso';
+                    }else{
+                        msg = 'Aluno editado com sucesso';
+                    }
+
+                    if(data.status == 'success') {
+                        list($("#idAcademy").val());
+                        Swal.fire({
+                            type: 'success',
+                            text: msg,
+                            showConfirmButton: false,
+                            showCancelButton: true,
+                            cancelButtonText: "OK",
+                            onClose: () => {
+                                if(param == 'new'){
+                                    $("#formStudent").trigger("reset");
+                                    setTimeout(function(){ $("#name").focus(); }, 300);
+                                }else{
+                                    $("#modal-user").modal("hide");
+                                }
+                            }
+                        });
+                    } else if (data.status == 'error') {
+                        showError(data.message);
+                    }
+                }, goTo500).catch(goTo500);
+            }
+        }]);
+    });
+
+    $("#formPass").submit(function(e) {
+        e.preventDefault();
+
+        if($("#pass").val() != $("#passConfirm").val()){
+            showError("Senhas divergentes!");
+            return false;
+        }
+
+        Swal.queue([{
+            title: 'Carregando...',
+            allowOutsideClick: false,
+            allowEscapeKey: false,
+            onOpen: () => {
+                Swal.showLoading();
+                $.post(window.location.origin + "/api/admin/student/edit/pass", {
+                    pass: $("#pass").val(),
+                    idAcademy: $("#idAcademy").val(),
+                    id_user: $("#id_user").val(),
                 }).then(function(data) {
                     if(data.status == 'success') {
                         list($("#idAcademy").val());
                         Swal.fire({
                             type: 'success',
-                            text: 'Aluno cadastrado com sucesso',
+                            text: 'Senha editada com sucesso!',
                             showConfirmButton: false,
                             showCancelButton: true,
                             cancelButtonText: "OK",
                             onClose: () => {
-                                $("#formAddStudent").trigger("reset");
-                                setTimeout(function(){ $("#name").focus(); }, 300);
+
+                                $("#formPass").trigger("reset");
+                                $("#modal-pass").modal("hide");
+
                             }
                         });
                     } else if (data.status == 'error') {
@@ -72,6 +145,8 @@ function list(id)
                                 <div class="input-group-btn">
                                     <a class="btn btn-primary btn-sm pull-right" href="/admin/student/show/${data.data[i].id}" title="Abrir aluno"><i class="fas fa-sign-in-alt"></i></a>
 
+                                    <a onclick="fillUser(${data.data[i].id})" class="btn btn-warning btn-sm pull-right" href="#" title="Editar aluno"><i class="fas fa-pen"></i></a>
+
                                     ${data.data[i].isActive==1?`
 
                                         <a id="power${data.data[i].id}" class="btn btn-danger btn-sm pull-right destroy" onclick="destroy(${data.data[i].id})" data-id="${data.data[i].id}" title="Inativar aluno"><i class="fas fa-power-off"></i></a>
@@ -91,6 +166,44 @@ function list(id)
             // showError(data.message);
         }
     }, goTo500).catch(goTo500);
+}
+
+
+function fillUser(id){
+
+    $.post(window.location.origin + "/api/admin/student/find/"+id, {
+
+    }).then(function(data) {
+        if(data.status == 'success') {
+
+            $("#name").val(data.data.name);
+            $("#email").val(data.data.email);
+            $("#phone").val(data.data.phone);
+            $("#cpf").val(data.data.cpf);
+            $("#birth").val(data.data.birth);
+            $("#responsible").val(data.data.responsible);
+            $("#phoneResponsible").val(data.data.phoneResponsible);
+            $("#zipCode").val(data.data.zipCode);
+            $("#city").val(data.data.city);
+            $("#neighborhood").val(data.data.neighborhood);
+            $("#address").val(data.data.address);
+            $("#number").val(data.data.number);
+            $("#complement").val(data.data.complement);
+            $("#observation").val(data.data.observation);
+
+            $("#param").val("edit");
+            $(".open-modal-pass").show();
+            $("#title-modal").html("Editar");
+            $("#id_user").val(data.data.id);
+
+            $("#modal-user").modal("show");
+
+        } else if (data.status == 'error') {
+            showError(data.message);
+        }
+    }, goTo500).catch(goTo500);
+
+
 }
 
 function destroy(id)

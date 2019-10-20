@@ -23,14 +23,14 @@
             <div class="box-tools">
             <div class="input-group input-group-sm" style="width: 150px; text-align: right">
                 <div class="input-group-btn">
-                    <a href="#" data-toggle="modal" data-target="#modal-user" class="btn btn-success" title="Adicionar aluno"><i class="fas fa-plus fa-lg"></i></i></a>
+                    <a href="#" class="btn btn-success open-modal-user" title="Adicionar aluno"><i class="fas fa-plus fa-lg"></i></i></a>
                 </div>
             </div>
             </div>
         </div>
         <!-- /.box-header -->
         <div class="box-body table-responsive">
-            <table class="table table-hover datatable-table">
+            <table class="table table-hover table-condensed datatable-table">
                 <thead>
                     <tr>
                         <th>Nome</th>
@@ -52,10 +52,13 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title"><i class="fas fa-user-graduate"></i>&nbsp;&nbsp;Cadastrar aluno</h4>
+                <h4 class="modal-title"><i class="fas fa-user-graduate"></i>&nbsp;&nbsp;<font id="title-modal">Cadastrar</font> aluno</h4>
             </div>
             <div class="modal-body">
-                <form id="formAddStudent">
+                <form id="formStudent">
+
+                    <input type="hidden" id="param" value="new">
+                    <input type="hidden" id="id_user" value="">
 
                     <div class="row">
                         <div class="col-sm-4">
@@ -66,7 +69,7 @@
                             </div>
 
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-5">
 
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fas fa-at"></i></span>
@@ -74,7 +77,7 @@
                             </div>
 
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
 
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fas fa-phone"></i></span>
@@ -147,7 +150,7 @@
                     </div>
                     <br>
                     <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col-sm-6">
 
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fas fa-map-marker-alt"></i></span>
@@ -155,7 +158,7 @@
                             </div>
 
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-2">
 
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fas fa-map-marker-alt"></i></span>
@@ -188,7 +191,58 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button form="formAddStudent" class="btn btn-primary pull-right"><i class="fas fa-save"></i>&nbsp;&nbsp;Salvar</button>
+                <a href="#" class="btn btn-warning pull-left open-modal-pass"><i class="fas fa-lock"></i>&nbsp;&nbsp;Alterar senha</a>
+
+                <button form="formStudent" class="btn btn-primary pull-right"><i class="fas fa-save"></i>&nbsp;&nbsp;Salvar</button>
+            </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+    <div class="modal fade" id="modal-pass">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title"><i class="fas fa-lock"></i>&nbsp;&nbsp;Editar senha</h4>
+            </div>
+            <div class="modal-body">
+                <form id="formPass">
+
+                    <input type="hidden" id="param" value="new">
+                    <input type="hidden" id="id_user" value="">
+
+                    <div class="row">
+                        <div class="col-sm-12">
+
+                            <div class="input-group" style="width:100%">
+                                <label>Nova senha</label>
+                                <input minlength="8" type="password" class="form-control" name="pass" id="pass" required>
+                            </div>
+
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-sm-12">
+
+                            <div class="input-group" style="width:100%">
+                                <label>Confirme a nova senha</label>
+                                <input minlength="8" type="password" class="form-control" name="passConfirm" id="passConfirm" required>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <input type="hidden" id="idAcademy" name="idAcademy" value="{{auth()->user()->academy->id}}">
+                </form>
+            </div>
+            <div class="modal-footer">
+
+                <button form="formPass" class="btn btn-primary pull-right"><i class="fas fa-save"></i>&nbsp;&nbsp;Salvar</button>
             </div>
             </div>
             <!-- /.modal-content -->

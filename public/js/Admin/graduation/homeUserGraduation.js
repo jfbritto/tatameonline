@@ -149,7 +149,7 @@ function list(id)
 
                 html += `<tr class="${data.data[i].isActive==0?'danger':''} ${total_hours>=data.data[i].required_hours&&data.data[i].isActive==1?'success':''}">
                             <td>${data.data[i].name_sport}</td>
-                            <td>${data.data[i].name_graduation}&nbsp;&nbsp;<i style="color:${data.data[i].color}" class="fas fa-ribbon"></i></td>
+                            <td><i style="color:${data.data[i].color}" class="fas fa-ribbon"></i>&nbsp;&nbsp;${data.data[i].name_graduation}</td>
                             <td class="hidden-xs">${dateFormat(data.data[i].startDate)}</td>
                             <td class="hidden-xs">${dateFormat(data.data[i].endDate)}</td>
                             <td>${data.data[i].isActive==1?'Graduando':'Graduado'}</td>

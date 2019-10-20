@@ -55,7 +55,7 @@ function list(id)
             for (var i in data.data) {
 
                 html += `<tr>
-                            <td>${data.data[i].name}&nbsp;&nbsp;<i style="color:${data.data[i].color}" class="fas fa-ribbon"></i></td>
+                            <td><i style="color:${data.data[i].color}" class="fas fa-ribbon"></i>&nbsp;&nbsp;${data.data[i].name}</td>
                             <td>${data.data[i].sport_name}</td>
                             <td>${data.data[i].hours}</td>
                             <td>${data.data[i].graduations}</td>

@@ -22,7 +22,7 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body table-responsive">
-            <table class="table table-hover">
+            <table class="table table-hover table-condensed">
                 <thead>
                     <tr>
                         <th>Esporte</th>
@@ -97,7 +97,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="box-body table-responsive">
-                            <table class="table table-hover">
+                            <table class="table table-hover table-condensed">
                                 <thead>
                                     <tr>
                                         <th>Dia aula</th>

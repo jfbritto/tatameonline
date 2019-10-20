@@ -15,7 +15,7 @@
 @stop
 
 @section('content')
-    
+
     <div class="box">
         <div class="box-header">
             <h3 class="box-title"><i class="fas fa-users"></i> &nbsp;&nbsp;Aulas</h3>
@@ -30,7 +30,7 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body table-responsive">
-            <table class="table table-hover datatable-table">
+            <table class="table table-hover table-condensed datatable-table">
                 <thead>
                     <tr>
                         <th>Esporte</th>
@@ -64,7 +64,7 @@
                                 <span class="input-group-addon"><i class="fas fa-user"></i></span>
                                 <input type="text" class="form-control" placeholder="Nome do professor" name="teacher" id="teacher" autofocus>
                             </div>
-                    
+
                         </div>
                         <div class="col-sm-6">
 
@@ -92,7 +92,7 @@
                                 <span class="input-group-addon"><i class="fas fa-clock"></i></span>
                                 <input type="time" class="form-control" placeholder="Hora da aula" name="hour" id="hour">
                             </div>
-                    
+
                         </div>
                         <div class="col-sm-6">
 

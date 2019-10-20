@@ -27,6 +27,16 @@ class StudentController extends Controller
         return response()->json(['status'=>'error', 'message'=>$response['data']], 201);
     }
 
+    public function find($id)
+    {
+        $response = $this->studentService->find($id);
+
+        if($response['status'] == 'success')
+            return response()->json(['status'=>'success', 'data'=>$response['data']], 201);
+
+        return response()->json(['status'=>'error', 'message'=>$response['data']], 201);
+    }
+
     public function create()
     {
         //
@@ -38,31 +48,57 @@ class StudentController extends Controller
             'name' => 'required',
             'email' => 'required|email',
             'idAcademy' => 'required',
+            'param' => 'required',
         ]);
 
-        $data = [
-            'name' => $request->name,
-            'email' => $request->email,
-            'isStudent' => 1,
-            'idAcademy' => $request->idAcademy,
-            'phone' => $request->phone,
-            'cpf' => $request->cpf,
-            'birth' => $request->birth,
-            'responsible' => $request->responsible,
-            'phoneResponsible' => $request->phoneResponsible,
-            'zipCode' => $request->zipCode,
-            'city' => $request->city,
-            'neighborhood' => $request->neighborhood,
-            'address' => $request->address,
-            'number' => $request->number,
-            'complement' => $request->complement,
-            'observation' => $request->observation,
-            'password' => bcrypt('12345678'),
-        ];
 
-        // return $data;
+        if($request->param == 'new'){
 
-        $response = $this->studentService->store($data);
+            $data = [
+                'name' => $request->name,
+                'email' => $request->email,
+                'isStudent' => 1,
+                'idAcademy' => $request->idAcademy,
+                'phone' => $request->phone,
+                'cpf' => $request->cpf,
+                'birth' => $request->birth,
+                'responsible' => $request->responsible,
+                'phoneResponsible' => $request->phoneResponsible,
+                'zipCode' => $request->zipCode,
+                'city' => $request->city,
+                'neighborhood' => $request->neighborhood,
+                'address' => $request->address,
+                'number' => $request->number,
+                'complement' => $request->complement,
+                'observation' => $request->observation,
+                'password' => bcrypt('12345678'),
+            ];
+
+            $response = $this->studentService->store($data);
+
+        }else if($request->param == 'edit'){
+
+            $data = [
+                'id' => $request->id_user,
+                'idAcademy' => $request->idAcademy,
+                'name' => $request->name,
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'cpf' => $request->cpf,
+                'birth' => $request->birth,
+                'responsible' => $request->responsible,
+                'phoneResponsible' => $request->phoneResponsible,
+                'zipCode' => $request->zipCode,
+                'city' => $request->city,
+                'neighborhood' => $request->neighborhood,
+                'address' => $request->address,
+                'number' => $request->number,
+                'complement' => $request->complement,
+                'observation' => $request->observation,
+            ];
+
+            $response = $this->studentService->update($data);
+        }
 
         if($response['status'] == 'success')
             return response()->json(['status'=>'success'], 201);
@@ -80,9 +116,27 @@ class StudentController extends Controller
         //
     }
 
-    public function update(Request $request, $id)
+    public function editPass(Request $request)
     {
-        //
+
+        $dataValid = $request->validate([
+            'id_user' => 'required',
+            'pass' => 'required',
+            'idAcademy' => 'required',
+        ]);
+
+        $data = [
+            'id' => $request->id_user,
+            'pass' => $request->pass,
+            'idAcademy' => $request->idAcademy,
+        ];
+
+        $response = $this->studentService->editPass($data);
+
+        if($response['status'] == 'success')
+            return response()->json(['status'=>'success'], 201);
+
+        return response()->json(['status'=>'error', 'message'=>$response['data']], 201);
     }
 
     public function destroy($id)

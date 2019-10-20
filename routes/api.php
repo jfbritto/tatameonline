@@ -27,8 +27,10 @@
         //ALUNO
         Route::post('/student', 'StudentController@store');
         Route::post('/student/list/{academy}', 'StudentController@index');
+        Route::post('/student/find/{student}', 'StudentController@find');
         Route::post('/student/destroy/{student}', 'StudentController@destroy');
         Route::post('/student/activate/{student}', 'StudentController@activate');
+        Route::post('/student/edit/pass', 'StudentController@editPass');
 
         //AULA
         Route::post('/lesson', 'LessonController@store');

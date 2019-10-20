@@ -15,7 +15,7 @@
 @stop
 
 @section('content')
-    
+
     <div class="box">
         <div class="box-header">
             <h3 class="box-title"><i class="fas fa-graduation-cap"></i></h3>
@@ -29,7 +29,7 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body table-responsive">
-            <table class="table table-hover">
+            <table class="table table-hover table-condensed">
                 <thead>
                     <tr>
                         <th>Nome</th>

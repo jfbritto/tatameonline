@@ -15,7 +15,7 @@
 @stop
 
 @section('content')
-    
+
     <div class="box">
         <div class="box-header">
             <h3 class="box-title"><i class="fas fa-futbol"></i></h3>
@@ -30,7 +30,7 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body table-responsive">
-            <table class="table table-hover">
+            <table class="table table-hover table-condensed">
                 <thead>
                     <tr>
                         <th>Nome</th>
@@ -59,7 +59,7 @@
                                 <span class="input-group-addon"><i class="fas fa-futbol"></i></span>
                                 <input type="text" class="form-control" placeholder="Nome do esporte" id="name" autofocus>
                             </div>
-                    
+
                         </div>
                     </div>
                 </form>

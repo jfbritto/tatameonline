@@ -216,7 +216,7 @@ function listGraduations(id)
 
                 html += `<tr class="${total_hours>=data.data[i].required_hours?'success':''}">
                             <td>${data.data[i].name_sport}</td>
-                            <td>${data.data[i].name_graduation}</td>
+                            <td><i style="color:${data.data[i].color}" class="fas fa-ribbon"></i>&nbsp;&nbsp;${data.data[i].name_graduation}</td>
                             <td class="hidden-xs">${dateFormat(data.data[i].startDate)}</td>
                             <td class="hidden-xs">${dateFormat(data.data[i].endDate)}</td>
                             <td class="hidden-xs">${data.data[i].isActive==1?'Graduando':'Graduado'}</td>

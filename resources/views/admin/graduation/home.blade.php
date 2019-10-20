@@ -29,7 +29,7 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body table-responsive">
-            <table class="table table-hover datatable-table">
+            <table class="table table-hover table-condensed datatable-table">
                 <thead>
                     <tr>
                         <th>Nome</th>

@@ -5,4 +5,8 @@ setTimeout(() => {
           },
           "bLengthChange": false
     });
+
+    $("table tr td").css("vertical-align", "middle");
+
 }, 500);
+

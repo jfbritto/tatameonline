@@ -150,7 +150,7 @@ class UserGraduationService
                                 ->join('sports as spo', 'spo.id', '=', 'gra.idSport')
                                 ->where('user_g.idUser', '=', $id)
                                 ->where('user_g.isActive', '=', 1)
-                                ->select('user_g.*', 'spo.name as name_sport', 'gra.name as name_graduation', 'gra.hours as required_hours',
+                                ->select('user_g.*', 'spo.name as name_sport', 'gra.color', 'gra.name as name_graduation', 'gra.hours as required_hours',
                                 (DB::raw("(select
                                                 sum(le.timeLesson)
                                                 from
