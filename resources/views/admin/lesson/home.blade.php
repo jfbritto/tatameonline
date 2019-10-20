@@ -38,7 +38,7 @@
                         <th>Dia</th>
                         <th>Hora</th>
                         <th class="hidden-xs">Alunos</th>
-                        <th></th>
+                        <th style="width:80px"></th>
                     </tr>
                 </thead>
                 <tbody id="lista"></tbody>
