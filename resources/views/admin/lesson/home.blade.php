@@ -62,7 +62,7 @@
 
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fas fa-user"></i></span>
-                                <input type="text" class="form-control" placeholder="Nome do professor" name="teacher" id="teacher" autofocus>
+                                <input type="text" class="form-control" required placeholder="Nome do professor" name="teacher" id="teacher" autofocus>
                             </div>
 
                         </div>
@@ -70,7 +70,7 @@
 
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fas fa-calendar"></i></span>
-                                <select class="form-control" name="weekDay" id="weekDay">
+                                <select class="form-control" required name="weekDay" id="weekDay">
                                     <option value=""> -- Selecione -- </option>
                                     <option value="1">Segunda</option>
                                     <option value="2">Terça</option>
@@ -90,7 +90,7 @@
 
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fas fa-clock"></i></span>
-                                <input type="time" class="form-control" placeholder="Hora da aula" name="hour" id="hour">
+                                <input type="time" class="form-control" required placeholder="Hora da aula" name="hour" id="hour">
                             </div>
 
                         </div>
@@ -98,7 +98,7 @@
 
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fas fa-futbol"></i></span>
-                                <select class="form-control" name="idSport" id="idSport">
+                                <select class="form-control" name="idSport" id="idSport" required>
                                     <option value=""> -- Selecione -- </option>
                                     @foreach($sports as $sport)
                                         <option value="{{$sport->id}}"> {{$sport->name}} </option>
