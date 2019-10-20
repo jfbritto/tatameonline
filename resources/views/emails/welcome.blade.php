@@ -22,8 +22,9 @@
 
                     <p class="card-text">Login: <strong>{{ $user->email }}</strong></p>
                     <p class="card-text">Senha: <strong>{{ $password }}</strong></p>
+                    <p class="card-text">Plataforma: <strong><a href="{{env('APP_URL')}}/#login" class="btn btn-info">TaTame Online</a></strong></p>
 
-                    <a href="{{env('APP_URL')}}/#login" class="btn btn-info">Plataforma</a>
+
                 </div>
                 <div class="card-footer text-muted">
                     Att,<br>{{$user->academy->name}}

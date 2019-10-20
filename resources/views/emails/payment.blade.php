@@ -20,8 +20,8 @@
                     <p class="card-text">Acabamos de confirmar seu pagamento!</p>
                     <p class="card-text">Valor: R$ <strong>{{ number_format($invoice->value, 2, ',', '.') }}</strong></p>
                     <p class="card-text">Vencimento: <strong>{{ date("d/m/Y", strtotime($invoice->dueDate)) }}</strong></p>
+                    <p class="card-text"><a href="{{env('APP_URL')}}/payment/{{$invoice->tokenPayment}}" class="btn btn-info">Recibo Online</a></p>
 
-                    <a href="{{env('APP_URL')}}/payment/{{$invoice->tokenPayment}}" class="btn btn-info">Recibo Online</a>
                 </div>
                 <div class="card-footer text-muted">
                     Att,<br>{{$invoice->user->academy->name}}
