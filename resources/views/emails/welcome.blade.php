@@ -17,7 +17,7 @@
                     Olá, {{ $user->name }}!
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title">Seja bem vindo ao time da <strong>{{ $academy }}</strong>, teremos uma longa jornada pela frente!</h5>
+                    <p class="card-text">Seja bem vindo ao time da <strong>{{ $academy }}</strong>, teremos uma longa jornada pela frente!</p>
                     <p class="card-text">Segue abaixo seu login e senha para acesso à plataforma!</p>
 
                     <p class="card-text">Login: <strong>{{ $user->email }}</strong></p>
@@ -26,7 +26,7 @@
                     <a href="{{env('APP_URL')}}/#login" class="btn btn-info">Plataforma</a>
                 </div>
                 <div class="card-footer text-muted">
-                    {{$user->academy->name}}
+                    Att,<br>{{$user->academy->name}}
                 </div>
             </div>
 
