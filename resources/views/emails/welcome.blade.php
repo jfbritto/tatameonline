@@ -12,30 +12,24 @@
 
         <div class="container" style="margin-top:20px">
 
-
-            @if($invoice != '')
-
-                <div class="card text-center">
-                    <div class="card-header">
-                        Olá, {{ $user->name }}!
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Seja bem vindo ao time da <strong>{{ $academy }}</strong>, teremos uma longa jornada pela frente!</h5>
-                        <p class="card-text">Segue abaixo seu login e senha para acesso à plataforma!</p>
-
-                        <p class="card-text">Login: <strong>{{ $user->email }}</strong></p>
-                        <p class="card-text">Senha: <strong>{{ $password }}</strong></p>
-
-                        <a href="{{env('APP_URL')}}/#login" class="btn btn-info">Plataforma</a>
-                    </div>
-                    <div class="card-footer text-muted">
-                        {{$invoice->user->academy->name}}
-                    </div>
+            <div class="card text-center">
+                <div class="card-header">
+                    Olá, {{ $user->name }}!
                 </div>
+                <div class="card-body">
+                    <h5 class="card-title">Seja bem vindo ao time da <strong>{{ $academy }}</strong>, teremos uma longa jornada pela frente!</h5>
+                    <p class="card-text">Segue abaixo seu login e senha para acesso à plataforma!</p>
 
-            @else
-                <p>Pagamento não encontrado!</p>
-            @endif
+                    <p class="card-text">Login: <strong>{{ $user->email }}</strong></p>
+                    <p class="card-text">Senha: <strong>{{ $password }}</strong></p>
+
+                    <a href="{{env('APP_URL')}}/#login" class="btn btn-info">Plataforma</a>
+                </div>
+                <div class="card-footer text-muted">
+                    {{$invoice->user->academy->name}}
+                </div>
+            </div>
+
         </div>
 
 </body>
