@@ -45,7 +45,7 @@ $(document).ready(function(){
                 }).then(function(data) {
 
                     let msg = '';
-                    let param = $("#id_user").val();
+                    let param = $("#param").val();
 
                     if(param == 'new'){
                         msg = 'Aluno cadastrado com sucesso';
