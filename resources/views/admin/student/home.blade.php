@@ -33,6 +33,7 @@
             <table class="table table-hover table-condensed datatable-table">
                 <thead>
                     <tr>
+                        <th></th>
                         <th>Nome</th>
                         <th class="hidden-xs">Email</th>
                         <th class="hidden-xs">Status</th>
@@ -250,22 +251,39 @@
         <!-- /.modal-dialog -->
     </div>
 
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+
+          <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close fechar-modal" data-dismiss="modal">&times;</button>
+                  Selecione a imagem
+                </div>
+                <div class="modal-body">
+                        <form id="formAvatar" method="POST" action="{{ route('admin.user.update.avatar') }}" enctype="multipart/form-data">
+                            @csrf
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for='avatar'>Imagem</label>
+                                    @laracrop(name=avatar | aspectratio=1/1 | minsize=[100, 100] | maxsize=[400, 400] | bgcolor=black | bgopacity=0.7 | value=old('avatar'))
+                                </div>
+                            </div>
+                            <input type="hidden" id="id_user_avatar" name="id_user_avatar" value="">
+                            <input type="hidden" id="idAcademy_avatar" name="idAcademy_avatar" value="{{auth()->user()->academy->id}}">
+                        </form>
+                        <div class="col-md-12">
+                            <button form="formAvatar" class="btn btn-primary pull-right"><i class="fas fa-save"></i>&nbsp;&nbsp;Salvar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 @stop
 
 @section('adminlte_js')
     <script src="{{asset('/js/Admin/student/homeStudent.js')}}"></script>
 @stop
-
-{{--
-cpf
-birth
-responsible
-phoneResponsible
-zipCode
-city
-neighborhood
-address
-number
-complement
-avatar
-observation --}}

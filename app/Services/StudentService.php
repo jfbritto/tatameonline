@@ -215,4 +215,36 @@ class StudentService
 
         return $response;
     }
+
+    public function editAvatar(Array $data)
+    {
+        $response = [];
+
+        try{
+
+            $user = User::where('id', '=', $data['id'])->first();
+
+            if($user->idAcademy == $data['idAcademy']){
+
+                DB::beginTransaction();
+
+                DB::table('users')
+                        ->where('id', $data['id'])
+                        ->update(['avatar' => $data['avatar']]);
+
+                DB::commit();
+
+                $response = ['status' => 'success'];
+
+            }else{
+                $response = ['status' => 'error', 'data' => "Usuário selecionado não pertence à esta academia!"];
+            }
+
+        }catch(Exception $e){
+            DB::rollBack();
+            $response = ['status' => 'error', 'data' => $e->getMessage()];
+        }
+
+        return $response;
+    }
 }

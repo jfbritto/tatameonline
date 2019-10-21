@@ -7,6 +7,9 @@ use App\Http\Controllers\Controller;
 use App\Services\StudentService;
 use App\Models\User;
 use App\Models\Academy;
+use Illuminate\Support\Facades\Storage;
+use Arisharyanto\Laracrop\Laracrop;
+use Intervention\Image\Facades\Image;
 
 class StudentController extends Controller
 {
@@ -138,6 +141,41 @@ class StudentController extends Controller
 
         return response()->json(['status'=>'error', 'message'=>$response['data']], 201);
     }
+
+    // public function editAvatar(Request $request)
+    // {
+
+    //     // dd($request->all());
+
+    //     $dataValid = $request->validate([
+    //         'id_user_avatar' => 'required',
+    //         'avatar' => 'required|',
+    //         'idAcademy' => 'required',
+    //     ]);
+
+    //     $user = User::where('id', '=', $request->id_user_avatar)->first();
+
+    //     // dd($request->all());
+
+    //     $nameFile = $user->avatar;
+    //     // if ( $request->hasfile('avatar') && $request->file('avatar')->isValid() ) {
+    //         $nameFile = Laracrop::cropImage($request->input('avatar'));
+    //         Storage::delete("users/{$user->avatar}");
+    //         Image::make(public_path("filetmp/{$nameFile}"))->resize(200, 200)->save(storage_path("app/public/users/{$nameFile}"));
+    //         $data = ['id_user' => $user->id, 'avatar' => $nameFile, 'idAcademy' => $request->idAcademy];
+
+    //         $response = $this->studentService->editAvatar($data);
+    //         Laracrop::cleanCropTemp();
+
+    //     // }else{
+    //     //     return response()->json(['status'=>'error', 'message'=>'Arquivo enviado inválido!'], 201);
+    //     // }
+
+    //     if($response['status'] == 'success')
+    //         return response()->json(['status'=>'success'], 201);
+
+    //     return response()->json(['status'=>'error', 'message'=>$response['data']], 201);
+    // }
 
     public function destroy($id)
     {

@@ -120,10 +120,97 @@ $(document).ready(function(){
         }]);
     });
 
+    // $("#formAvatar").submit(function(e) {
+    //     e.preventDefault();
+
+    //     if($("input[name='avatar']").val() == ''){
+    //         showError("Selecione uma imagem!");
+    //         return false;
+    //     }
+
+    //     Swal.queue([{
+    //         title: 'Carregando...',
+    //         allowOutsideClick: false,
+    //         allowEscapeKey: false,
+    //         onOpen: () => {
+    //             Swal.showLoading();
+
+
+    //             // $.post(window.location.origin + "/api/admin/student/edit/avatar", {
+    //             //     avatar: $("input[name='avatar']").val(),
+    //             //     id_user_avatar: $("#id_user_avatar").val(),
+    //             //     idAcademy: $("#idAcademy").val(),
+    //             // }).then(function(data) {
+    //             //     if(data.status == 'success') {
+    //             //         list($("#idAcademy").val());
+    //             //         Swal.fire({
+    //             //             type: 'success',
+    //             //             text: 'Senha editada com sucesso!',
+    //             //             showConfirmButton: false,
+    //             //             showCancelButton: true,
+    //             //             cancelButtonText: "OK",
+    //             //             onClose: () => {
+
+    //             //                 $("#formAvatar").trigger("reset");
+    //             //                 $("#myModal").modal("hide");
+
+    //             //             }
+    //             //         });
+    //             //     } else if (data.status == 'error') {
+    //             //         showError(data.message);
+    //             //     }
+    //             // }, goTo500).catch(goTo500);
+
+    //             var fd = new FormData();
+
+    //             // fd.append('avatar', $("input[name='avatar']").val());
+    //             fd.append('avatar', dataURItoBlob(data));
+    //             fd.append('id_user_avatar', $("#id_user_avatar").val());
+    //             fd.append('idAcademy', $("#idAcademy").val());
+
+    //             $.ajax({
+    //                 type: 'POST',
+    //                 url: window.location.origin + "/api/admin/student/edit/avatar",
+    //                 data: fd,
+    //                 processData: false,
+    //                 contentType: false
+    //             }).done(function(data) {
+    //                 if(data.status == 1) {
+    //                     swal({
+    //                         type: 'success',
+    //                         title: "",
+    //                         text: 'Foto atualizada com sucesso!',
+    //                         showConfirmButton: false,
+    //                         showCancelButton: true,
+    //                         cancelButtonText: "OK"
+    //                     });
+    //                 } else if (data.status == 0) {
+    //                     showError(data.message);
+    //                 }
+    //             });
+
+
+    //         }
+    //     }]);
+    // });
+
+    // function dataURItoBlob(dataURI) {
+    //     var binary = atob(dataURI.split(',')[1]);
+    //     var array = [];
+    //     for (var i = 0; i < binary.length; i++) {
+    //         array.push(binary.charCodeAt(i));
+    //     }
+    //     return new Blob([new Uint8Array(array)], {type: 'image/jpeg'});
+    // }
 
     list($("#idAcademy").val());
 
 });
+
+function openModalPhoto(id){
+    $("#id_user_avatar").val(id);
+    $("#myModal").modal('show');
+}
 
 function list(id)
 {
@@ -137,15 +224,19 @@ function list(id)
             for (var i in data.data) {
 
                 html += `<tr>
+                            <td><img src="${data.data[i].avatar==''?`/storage/users/default.jpg`:'/storage/users/'+data.data[i].avatar}" class='img img-circle' width='40'></td>
                             <td>${data.data[i].name}</td>
                             <td class="hidden-xs">${data.data[i].email}</td>
                             <td id="status${data.data[i].id}" class="hidden-xs">${data.data[i].isActive==1?'<span class="label label-success">Ativo</span>':'<span class="label label-danger">Inativo</span>'}</td>
                             <td class="hidden-xs">${data.data[i].aulas}</td>
                             <td style="width:130px">
                                 <div class="input-group-btn">
+
                                     <a class="btn btn-primary btn-sm pull-right" href="/admin/student/show/${data.data[i].id}" title="Abrir aluno"><i class="fas fa-sign-in-alt"></i></a>
 
                                     <a onclick="fillUser(${data.data[i].id})" class="btn btn-warning btn-sm pull-right" href="#" title="Editar aluno"><i class="fas fa-pen"></i></a>
+
+                                    <a onclick="openModalPhoto(${data.data[i].id})" class="btn btn-info btn-sm pull-right" href="#" title="Editar foto"><i class="fas fa-user"></i></a>
 
                                     ${data.data[i].isActive==1?`
 

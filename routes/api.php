@@ -31,6 +31,7 @@
         Route::post('/student/destroy/{student}', 'StudentController@destroy');
         Route::post('/student/activate/{student}', 'StudentController@activate');
         Route::post('/student/edit/pass', 'StudentController@editPass');
+        Route::post('/student/edit/avatar', 'StudentController@editAvatar');
 
         //AULA
         Route::post('/lesson', 'LessonController@store');

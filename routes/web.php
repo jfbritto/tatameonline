@@ -63,6 +63,8 @@ Route::group(['middleware' => ['auth']], function(){
         Route::get('/student/show/{user}', 'StudentController@show')->name('admin.student.show');
         Route::get('/student/edit/{user}', 'StudentController@edit')->name('admin.student.edit');
 
+        Route::post('/user/update/avatar', 'StudentController@editAvatar')->name('admin.user.update.avatar');
+
         //GRADUAÇÃO
         Route::get('/graduation', 'GraduationController@index')->name('admin.graduation');
         Route::get('/graduation/create', 'GraduationController@create')->name('admin.graduation.create');

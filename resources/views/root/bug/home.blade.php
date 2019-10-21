@@ -23,27 +23,16 @@
         <!-- /.box-header -->
         <div class="box-body">
 
-                <ul class="list-group">
-                    <li class="list-group-item">New <span class="badge">12</span></li>
-                    <li class="list-group-item">Deleted <span class="badge">5</span></li>
-                    <li class="list-group-item">Warnings <span class="badge">3</span></li>
-                    <li class="list-group-item">Warnings <span class="badge">3</span></li>
-                    <li class="list-group-item">Warnings <span class="badge">3</span></li>
-                    <li class="list-group-item">Warnings <span class="badge">3</span></li>
-                    <li class="list-group-item">Warnings <span class="badge">3</span></li>
-                    <li class="list-group-item">Warnings <span class="badge">3</span></li>
-                </ul>
-
                 <div class="list-group">
-                    <a href="#" class="list-group-item">First item</a>
-                    <a href="#" class="list-group-item">Second item</a>
-                    <a href="#" class="list-group-item">Second item</a>
-                    <a href="#" class="list-group-item">Second item</a>
-                    <a href="#" class="list-group-item">Second item</a>
-                    <a href="#" class="list-group-item">Third item</a>
-                    <a href="#" class="list-group-item">Third item</a>
-                    <a href="#" class="list-group-item">Third item</a>
-                    <a href="#" class="list-group-item">Third item</a>
+                    <a href="#" class="list-group-item">First <span class="badge">5</span></a>
+                    <a href="#" class="list-group-item">Second <span class="badge">5</span></a>
+                    <a href="#" class="list-group-item">Second <span class="badge">5</span></a>
+                    <a href="#" class="list-group-item">Second <span class="badge">5</span></a>
+                    <a href="#" class="list-group-item">Second <span class="badge">5</span></a>
+                    <a href="#" class="list-group-item">Third <span class="badge">5</span></a>
+                    <a href="#" class="list-group-item">Third <span class="badge">5</span></a>
+                    <a href="#" class="list-group-item">Third <span class="badge">5</span></a>
+                    <a href="#" class="list-group-item">Third <span class="badge">5</span></a>
                 </div>
 
         </div>

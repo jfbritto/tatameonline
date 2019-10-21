@@ -10,6 +10,9 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
     <link rel="stylesheet" href="{{ asset('vendor/adminlte/vendor/bootstrap/dist/css/bootstrap.min.css') }}">
+    <!-- Laracrop -->
+    <link rel="stylesheet" href="{{ asset('vendor/laracrop/jCrop/css/Jcrop.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendor/laracrop/jCrop/css/Jcrop.css') }}">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{ asset('vendor/adminlte/vendor/font-awesome/css/all.min.css') }}">
     <!-- Ionicons -->
@@ -41,11 +44,16 @@
 
 @yield('body')
 
+{{-- <script src="{{ asset('vendor/laracrop/jQuery/jquery-2.2.3.min.js') }}"></script> --}}
+
 <script src="{{ asset('vendor/adminlte/vendor/jquery/dist/jquery.min.js') }}"></script>
 <script src="{{ asset('vendor/adminlte/vendor/jquery/dist/jquery.slimscroll.min.js') }}"></script>
 <script src="{{ asset('vendor/adminlte/vendor/bootstrap/dist/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('js/common/progressbar.min.js') }}"></script>
 <script src="{{ asset('js/common/jquery.mask.min.js') }}"></script>
+
+<script src="{{ asset('vendor/laracrop/jCrop/js/Jcrop.js') }}"></script>
+<script src="{{ asset('vendor/laracrop/laracrop.js') }}"></script>
 
 @include('adminlte::plugins', ['type' => 'js'])
 
