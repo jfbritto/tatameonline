@@ -11,13 +11,14 @@ class SiteController extends Controller
     public function index()
     {
 
-        $isMobile = preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", $_SERVER["HTTP_USER_AGENT"]);
+        // $isMobile = preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", $_SERVER["HTTP_USER_AGENT"]);
         $isApp = preg_match("/(GoNativeAndroid)/i", $_SERVER["HTTP_USER_AGENT"]);
 
         $academies = Academy::where('isActive', '=', 1)->get();
 
         if($isApp){
-            echo $_SERVER["HTTP_USER_AGENT"];
+            // echo $_SERVER["HTTP_USER_AGENT"];
+            return view('index', ['academies'=>$academies]);
         }else{
             return view('index', ['academies'=>$academies]);
         }
