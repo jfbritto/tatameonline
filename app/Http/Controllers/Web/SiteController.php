@@ -10,9 +10,17 @@ class SiteController extends Controller
 {
     public function index()
     {
+
+        $isMobile = preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", $_SERVER["HTTP_USER_AGENT"]);
+
         $academies = Academy::where('isActive', '=', 1)->get();
 
-        return view('index', ['academies'=>$academies]);
+        if($isMobile){
+            echo $_SERVER["HTTP_USER_AGENT"];
+        }else{
+            return view('index', ['academies'=>$academies]);
+        }
+
     }
 
     public function academy_area($siteName)
