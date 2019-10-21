@@ -17,8 +17,8 @@ class SiteController extends Controller
         $academies = Academy::where('isActive', '=', 1)->get();
 
         if($isApp){
-            echo $_SERVER["HTTP_USER_AGENT"];
-            // return view('index', ['academies'=>$academies]);
+            // echo $_SERVER["HTTP_USER_AGENT"];
+            return view('index', ['academies'=>$academies]);
         }else{
             return view('index', ['academies'=>$academies]);
         }
