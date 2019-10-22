@@ -1,13 +1,16 @@
-setTimeout(() => {
-    $(".datatable-table").DataTable({
-        "language": {
-            "url": "//cdn.datatables.net/plug-ins/1.10.20/i18n/Portuguese-Brasil.json"
-          },
-          "bLengthChange": false,
-          "paging": true,
-    });
+function buildDataTable(){
 
-    $("table tr td").css("vertical-align", "middle");
+    // setTimeout(() => {
+        $(".datatable-table").DataTable({
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.20/i18n/Portuguese-Brasil.json"
+            },
+            "bLengthChange": false,
+            "paging": true,
+        });
 
-}, 1000);
+        $("table tr td").css("vertical-align", "middle");
 
+    // }, 1000);
+
+}

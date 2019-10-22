@@ -205,6 +205,8 @@ $(document).ready(function(){
 
     list($("#idAcademy").val());
 
+    buildDataTable();
+
 });
 
 function openModalPhoto(id){
