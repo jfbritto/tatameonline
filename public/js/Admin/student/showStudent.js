@@ -221,7 +221,7 @@ function listGraduations(id)
                             <td class="hidden-xs">${dateFormat(data.data[i].endDate)}</td>
                             <td class="hidden-xs">${data.data[i].isActive==1?'Graduando':'Graduado'}</td>
                             <td class="hidden-xs">${data.data[i].required_hours}</td>
-                            <td>${total_hours}</td>
+                            <td class="hidden-xs">${total_hours}</td>
                             <td>
                                 <div class="input-group-btn">
                                     <a onclick="openPresences(${data.data[i].idUser},${data.data[i].id})" class="btn btn-success btn-sm pull-right" href="#" title="Ver presenças" data-toggle="modal" data-target="#modal-presences"><i class="fas fa-user-check"></i></a>

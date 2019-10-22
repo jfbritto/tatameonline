@@ -21,14 +21,6 @@
     <div class="box">
         <div class="box-header">
             <h3 class="box-title"><i class="fas fa-file-contract"></i> &nbsp;&nbsp; Contratos</h3>
-
-            <div class="box-tools">
-            <div class="input-group input-group-sm" style="width: 150px; text-align: right">
-                <div class="input-group-btn">
-                    <a href="#" class="btn btn-success" style="display:none" id="add-contract" title="Adicionar contrato" data-toggle="modal" data-target="#modal-default"><i class="fas fa-plus fa-lg"></i></i></a>
-                </div>
-            </div>
-            </div>
         </div>
         <!-- /.box-header -->
         <div class="box-body table-responsive">
