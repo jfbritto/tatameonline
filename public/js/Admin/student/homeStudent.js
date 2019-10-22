@@ -224,7 +224,7 @@ function list(id)
             for (var i in data.data) {
 
                 html += `<tr>
-                            <td><img src="${data.data[i].avatar==''?`/storage/users/default.jpg`:'/storage/users/'+data.data[i].avatar}" class='img img-circle' width='40'></td>
+                            <td><img src="${data.data[i].avatar==''||data.data[i].avatar==null?`/storage/users/default.jpg`:'/storage/users/'+data.data[i].avatar}" class='img img-circle' width='40'></td>
                             <td>${data.data[i].name}</td>
                             <td class="hidden-xs">${data.data[i].email}</td>
                             <td id="status${data.data[i].id}" class="hidden-xs">${data.data[i].isActive==1?'<span class="label label-success">Ativo</span>':'<span class="label label-danger">Inativo</span>'}</td>
