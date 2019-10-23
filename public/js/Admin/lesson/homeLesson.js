@@ -69,6 +69,8 @@ function list(id)
 
             $('#lista').html(html);
 
+            buildDataTable();
+
         } else if (data.status == 'error') {
             showError(data.message);
         }

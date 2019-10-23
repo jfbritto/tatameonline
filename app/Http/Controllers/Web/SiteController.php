@@ -11,8 +11,8 @@ class SiteController extends Controller
     public function index()
     {
 
-        $isApp = preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", $_SERVER["HTTP_USER_AGENT"]);
-        // $isApp = preg_match("/(Build)/i", $_SERVER["HTTP_USER_AGENT"]);
+        // $isApp = preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", $_SERVER["HTTP_USER_AGENT"]);
+        $isApp = preg_match("/(Build)/i", $_SERVER["HTTP_USER_AGENT"]);
 
         $academies = Academy::where('isActive', '=', 1)->get();
 

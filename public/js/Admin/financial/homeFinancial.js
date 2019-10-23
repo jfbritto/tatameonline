@@ -81,8 +81,10 @@ $(document).ready(function(){
                 $('#list-received').html(html2);
                 $('#list-late').html(html3);
                 $('#list-debtors').html(html4);
+                buildDataTable();
 
                 $('#title').html(monthName(date))
+
 
             } else if (data.status == 'error') {
                 showError(data.message);
