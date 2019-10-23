@@ -214,7 +214,6 @@ function openModalPhoto(id){
 
 function list(id)
 {
-    let cotDt = 0;
     $.post(window.location.origin + "/api/admin/student/list/"+id, {
 
     }).then(function(data) {
@@ -254,10 +253,7 @@ function list(id)
 
             $('#lista').html(html);
 
-            if(cotDt == 0){
-                cotDt = 1;
-                buildDataTable();
-            }
+            // buildDataTable();
 
         } else if (data.status == 'error') {
             showError(data.message);

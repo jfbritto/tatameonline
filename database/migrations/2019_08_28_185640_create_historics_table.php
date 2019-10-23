@@ -15,7 +15,18 @@ class CreateHistoricsTable extends Migration
     {
         Schema::create('historics', function (Blueprint $table) {
             $table->increments('id');
+
+            $table->integer('reference')->nullable();
+            $table->datetime('actionDate')->nullable();
+            $table->text('description')->nullable();
+
+            $table->integer('idUser')->unsigned();
+            $table->integer('idHistoricType')->unsigned();
+
             $table->timestamps();
+
+            $table->foreign('idUser')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('idHistoricType')->references('id')->on('historic_types')->onDelete('cascade');
         });
     }
 

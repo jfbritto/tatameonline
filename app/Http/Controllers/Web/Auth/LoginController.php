@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use DB;
 use Exception;
 use App\Models\User;
+use App\Services\HistoricService;
 
 class LoginController extends Controller
 {
@@ -36,9 +37,10 @@ class LoginController extends Controller
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(HistoricService $historic)
     {
         $this->middleware('guest')->except('logout');
+        $this->historicService = $historic;
     }
 
     public function logout()
@@ -73,14 +75,19 @@ class LoginController extends Controller
                 return redirect(route('site').'#login')->with('error', 'Usuário inativo!');
             }
 
-            if(auth()->user()->isRoot)
+            $this->historicService->store(['idUser'=>auth()->user()->id,'idHistoricType'=>1,'actionDate'=>date("Y-m-d H:i:s")]);
+
+            if(auth()->user()->isRoot){
                 return redirect()->route('root');
+            }
 
-            if(auth()->user()->isAdmin)
+            if(auth()->user()->isAdmin){
                 return redirect()->route('admin');
+            }
 
-            if(auth()->user()->isStudent)
+            if(auth()->user()->isStudent){
                 return redirect()->route('student');
+            }
 
 
 

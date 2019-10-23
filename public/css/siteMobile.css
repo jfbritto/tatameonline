@@ -1,0 +1,13 @@
+.signup-section{
+	height: calc(100vh - 70px);
+}
+
+.signup-section{
+	background-image: linear-gradient(#fff, #3c8dbc);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-attachment: scroll;
+    background-size: cover;
+    padding-top: 60px
+}
+
