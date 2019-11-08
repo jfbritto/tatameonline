@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Services\InvoiceService;
 use App\Models\User;
 
-class IndexController extends Controller
+class InvoiceController extends Controller
 {
     private $presenceService;
     private $lessonService;

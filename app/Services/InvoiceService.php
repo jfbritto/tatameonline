@@ -182,10 +182,16 @@ class InvoiceService
         try{
 
             $date = date("Y-m-d", strtotime("+7 days", strtotime(date("Y-m-d"))));
-            $date = date("Y-m-d", strtotime("+7 days", strtotime(date("Y-m-d"))));
+            $date_now = date("Y-m-d");
 
             $invoice = DB::select( DB::raw("SELECT
-                                                *
+                                                *,
+                                                CASE
+                                                    WHEN dueDate < '".$date_now."' THEN 'late'
+                                                    WHEN dueDate > '".$date_now."' THEN 'ontime'
+                                                    WHEN dueDate = '".$date_now."' THEN 'today'
+                                                    ELSE 'result'
+                                                END as situation
                                             FROM
                                                 invoices
                                             WHERE
