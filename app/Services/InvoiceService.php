@@ -154,7 +154,7 @@ class InvoiceService
                                                 group by
                                                     us.id
                                                 having
-                                                    total > 1"));
+                                                    total > 0"));
 
             if($receive_obj[0]->total != null)
                 $receive = number_format($receive_obj[0]->total,2,',','.');
