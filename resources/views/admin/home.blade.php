@@ -55,12 +55,12 @@
     </div>
     <div class="col-md-3 col-sm-6 col-xs-12">
         <div class="info-box">
-            <a href="{{ route('admin.lesson') }}">
+            <a href="{{ route('admin.financial') }}">
                 <span class="info-box-icon bg-green"><i class="fas fa-dollar-sign"></i></span>
             </a>
         <div class="info-box-content">
             <span class="info-box-text">FINANCEIRO</span>
-            <span class="info-box-number" id="info-box-lessons"><i class="fas fa-sync-alt fa-spin"></i></span>
+            <span class="info-box-number" id="info-box-financial"><i class="fas fa-sync-alt fa-spin"></i></span>
         </div>
 
         </div>

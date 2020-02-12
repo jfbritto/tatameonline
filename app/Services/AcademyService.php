@@ -94,6 +94,7 @@ class AcademyService
     public function getById($id)
     {
         $response = [];
+        $date = date('Y-m');
 
         try{
 
@@ -101,9 +102,19 @@ class AcademyService
                                 ->where('id', '=', $id)
                                 ->select('academies.*', 
                                 (DB::raw("(SELECT count(*) FROM users WHERE idAcademy = academies.id and isActive=1 and isStudent=1) AS aluns")),
-                                (DB::raw("(SELECT count(*) FROM lessons WHERE idAcademy = academies.id and isActive=1) AS lessons"))
-                                )
-                                ->first();
+                                (DB::raw("(SELECT count(*) FROM lessons WHERE idAcademy = academies.id and isActive=1) AS lessons")),
+                                (DB::raw("(select
+                                                sum(inv.value) as total
+                                            from
+                                                invoices inv
+                                                join users us on inv.idUser=us.id
+                                            where
+                                                us.idAcademy = ".$id."
+                                                and us.isStudent = 1
+                                                and us.isActive = 1
+                                                and inv.isPaid = 1
+                                                and date_format(inv.dueDate, '%Y-%m') = '".$date."') AS financial")) 
+                                )->first();
 
             $response = ['status' => 'success', 'data' => $academy];
         }catch(Exception $e){

@@ -96,6 +96,16 @@ function moneyFormat(money)
         return `R$${cash}`;
 }
 
+function moneyFormatNoDollarSign(money)
+{
+    let cash = money.replace('.', ',')
+
+    if(cash.length >= 7)
+        return `${cash.substr(0, (cash.length-6))}.${cash.substr(-6, 7)}`;
+    else
+        return `${cash}`;
+}
+
 var SPMaskBehavior = function (val) {
     return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
   },

@@ -89,10 +89,16 @@ $(document).ready(function(){
         }).then(function(data) {
 
             if(data.status == 'success') {
-
+                console.log(data.data)
                 $("#info-box-token").html(data.data.token)
                 $("#info-box-aluns").html(data.data.aluns)
                 $("#info-box-lessons").html(data.data.lessons)
+                if(data.data.financial == null){
+                    $("#info-box-financial").html(moneyFormatNoDollarSign(0))
+                }else{
+                    $("#info-box-financial").html(moneyFormatNoDollarSign(data.data.financial))
+                }
+
                 token = data.data.token;
 
                 if(cont == 0){
