@@ -221,6 +221,8 @@ function list(id)
 
             var html = '';
 
+            {/* <a onclick="openModalPhoto(${data.data[i].id})" class="btn btn-info btn-sm pull-right" href="#" title="Editar foto"><i class="fas fa-user"></i></a> */}
+
             for (var i in data.data) {
 
                 html += `<tr>
@@ -235,8 +237,6 @@ function list(id)
                                     <a class="btn btn-primary btn-sm pull-right" href="/admin/student/show/${data.data[i].id}" title="Abrir aluno"><i class="fas fa-sign-in-alt"></i></a>
 
                                     <a onclick="fillUser(${data.data[i].id})" class="btn btn-warning btn-sm pull-right" href="#" title="Editar aluno"><i class="fas fa-pen"></i></a>
-
-                                    <a onclick="openModalPhoto(${data.data[i].id})" class="btn btn-info btn-sm pull-right" href="#" title="Editar foto"><i class="fas fa-user"></i></a>
 
                                     ${data.data[i].isActive==1?`
 

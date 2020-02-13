@@ -86,9 +86,9 @@
                                 </li>
                                 <!-- Menu Footer-->
                                 <li class="user-footer">
-                                    <div class="pull-left">
+                                    <!-- <div class="pull-left">
                                     <a href="#" class="btn btn-default btn-flat">Perfil</a>
-                                    </div>
+                                    </div> -->
                                     <div class="pull-right">
                                         @if(config('adminlte.logout_method') == 'GET' || !config('adminlte.logout_method') && version_compare(\Illuminate\Foundation\Application::VERSION, '5.3.0', '<'))
                                             <a class="btn btn-default btn-flat" href="{{ url(config('adminlte.logout_url', 'auth/logout')) }}">
