@@ -302,42 +302,66 @@ function fillUser(id){
 function destroy(id)
 {
 
-    Swal.queue([{
-        title: 'Carregando...',
-        allowOutsideClick: false,
-        allowEscapeKey: false,
-        onOpen: () => {
-            Swal.showLoading();
-            $.post(window.location.origin + "/api/admin/student/destroy/"+id, {
 
-            }).then(function(data) {
-                if(data.status == 'success') {
+    const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+          confirmButton: 'btn btn-success',
+          cancelButton: 'btn btn-danger'
+        },
+        buttonsStyling: false
+      })
+      
+      swalWithBootstrapButtons.fire({
+        title: 'Tem certeza?',
+        text: "Deseja realmente inativar o aluno?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Sim',
+        cancelButtonText: 'Não',
+        reverseButtons: true
+      }).then((result) => {
+        if (result.value) {
 
-                    $("#status"+id).html('<span class="label label-danger">Inativo</span>');
-
-                    $("#power"+id).removeClass('btn-danger');
-                    $("#power"+id).addClass('btn-success');
-
-                    $("#power"+id).attr('onclick', 'activate('+id+')');
-                    $("#power"+id).attr('title', 'Ativar aluno');
-
-                    // list($("#idAcademy").val());
-                    Swal.fire({
-                        type: 'success',
-                        text: 'Aluno inativado com sucesso',
-                        showConfirmButton: false,
-                        showCancelButton: true,
-                        cancelButtonText: "OK",
-                        onClose: () => {
-
+            Swal.queue([{
+                title: 'Carregando...',
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                onOpen: () => {
+                    Swal.showLoading();
+                    $.post(window.location.origin + "/api/admin/student/destroy/"+id, {
+        
+                    }).then(function(data) {
+                        if(data.status == 'success') {
+        
+                            $("#status"+id).html('<span class="label label-danger">Inativo</span>');
+        
+                            $("#power"+id).removeClass('btn-danger');
+                            $("#power"+id).addClass('btn-success');
+        
+                            $("#power"+id).attr('onclick', 'activate('+id+')');
+                            $("#power"+id).attr('title', 'Ativar aluno');
+        
+                            // list($("#idAcademy").val());
+                            Swal.fire({
+                                type: 'success',
+                                text: 'Aluno inativado com sucesso',
+                                showConfirmButton: false,
+                                showCancelButton: true,
+                                cancelButtonText: "OK",
+                                onClose: () => {
+        
+                                }
+                            });
+                        } else if (data.status == 'error') {
+                            showError(data.message);
                         }
-                    });
-                } else if (data.status == 'error') {
-                    showError(data.message);
+                    }, goTo500).catch(goTo500);
                 }
-            }, goTo500).catch(goTo500);
+            }]);
+
         }
-    }]);
+      })
+
 };
 
 function activate(id)

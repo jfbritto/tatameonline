@@ -102,33 +102,56 @@ function listAluns(idLesson, idAcademy)
 
 function destroy(id)
 {
-    
-    Swal.queue([{
-        title: 'Carregando...',
-        allowOutsideClick: false,
-        allowEscapeKey: false,
-        onOpen: () => {
-            Swal.showLoading();
-            $.post(window.location.origin + "/api/admin/registration/destroy/"+id, {
-            
-            }).then(function(data) {
-                if(data.status == 'success') {
+
+    const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+          confirmButton: 'btn btn-success',
+          cancelButton: 'btn btn-danger'
+        },
+        buttonsStyling: false
+      })
+      
+      swalWithBootstrapButtons.fire({
+        title: 'Tem certeza?',
+        text: "Deseja realmente deletar a matrícula?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Sim',
+        cancelButtonText: 'Não',
+        reverseButtons: true
+      }).then((result) => {
+        if (result.value) {
+
+            Swal.queue([{
+                title: 'Carregando...',
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                onOpen: () => {
+                    Swal.showLoading();
+                    $.post(window.location.origin + "/api/admin/registration/destroy/"+id, {
                     
-                    list($("#idLesson").val());
-                    listAluns($("#idLesson").val(), $("#idAcademy").val());
-                    Swal.fire({
-                        type: 'success',
-                        text: 'Matricula deletada com sucesso',
-                        showConfirmButton: false,
-                        showCancelButton: true,
-                        cancelButtonText: "OK",
-                        onClose: () => {
+                    }).then(function(data) {
+                        if(data.status == 'success') {
+                            
+                            list($("#idLesson").val());
+                            listAluns($("#idLesson").val(), $("#idAcademy").val());
+                            Swal.fire({
+                                type: 'success',
+                                text: 'Matricula deletada com sucesso',
+                                showConfirmButton: false,
+                                showCancelButton: true,
+                                cancelButtonText: "OK",
+                                onClose: () => {
+                                }
+                            });
+                        } else if (data.status == 'error') {
+                            showError(data.message);
                         }
-                    });
-                } else if (data.status == 'error') {
-                    showError(data.message);
+                    }, goTo500).catch(goTo500);
                 }
-            }, goTo500).catch(goTo500);
+            }]);
+
         }
-    }]);
+      })
+    
 };

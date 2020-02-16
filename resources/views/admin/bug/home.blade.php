@@ -53,7 +53,7 @@
 
         </div>
         <div class="box-footer">
-            <button form="formAddBug" class="btn btn-primary pull-right"><i class="fas fa-save"></i>&nbsp;&nbsp;Salvar</button>
+            <button form="formAddBug" class="btn btn-primary pull-right"><i class="fas fa-save"></i>&nbsp;&nbsp;Enviar</button>
         </div>
         <!-- /.box-body -->
     </div>

@@ -192,17 +192,25 @@
                     <div class="row">
                         <div class="col-sm-12">
 
+                            <p>* Informe quando o aluno iniciou nessa graduação.</p>
                             <p>* Informe quantas horas de aula nessa graduação este aluno já possúi.</p>
 
                         </div>
-                        <div class="col-sm-12">
+                        <div class="col-sm-6">
+
+                            <div class="input-group" style="width:100%">
+                                <label for="startDate2">Data de início</label>
+                                <input type="date" class="form-control" name="startDate2" id="startDate2">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
 
                             <div class="input-group" style="width:100%">
                                 <label for="time">Horas</label>
                                 <input type="number" min="1" class="form-control" name="time" id="time" required>
                             </div>
-
                         </div>
+
 
                         <input type="hidden" id="idUserGraduationStart" value="">
                     </div>

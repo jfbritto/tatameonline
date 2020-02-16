@@ -50,6 +50,7 @@
         <!-- /.box-body -->
     </div>
 
+    <input type="hidden" id="idUser2" value="{{auth()->user()->id}}">
     <input type="hidden" id="idAcademy" value="{{auth()->user()->academy->id}}">
 
     <div class="modal fade" id="modal-default">

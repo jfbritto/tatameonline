@@ -69,14 +69,15 @@
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fas fa-ribbon"></i></span>
                                 <select required class="form-control" id="color" required>
+                                    <option value="#fdcf00">Amarela</option>
+                                    <option value="#0339c0">Azul</option>
                                     <option value="#d4d5e7">Branca</option>
                                     <option value="#5b585f">Cinza</option>
-                                    <option value="#fdcf00">Amarela</option>
                                     <option value="#f49d00">Laranja</option>
-                                    <option value="#0339c0">Azul</option>
-                                    <option value="#963fa8">Roxa</option>
                                     <option value="#6c3f2b">Marrom</option>
                                     <option value="#0d0e13">Preta</option>
+                                    <option value="#963fa8">Roxa</option>
+                                    <option value="#06d755">Verde</option>
                                 </select>
                             </div>
 

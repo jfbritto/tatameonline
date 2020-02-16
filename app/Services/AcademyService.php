@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Academy;
 use DB;
+use Illuminate\Support\Facades\Hash;
 use Exception;
 
 class AcademyService
@@ -82,6 +83,32 @@ class AcademyService
                 $check = true;
             else    
                 $check = false;
+
+            $response = ['status' => 'success', 'data' => $check];
+        }catch(Exception $e){
+            $response = ['status' => 'error', 'data' => $e->getMessage()];
+        }
+    
+        return $response;
+    }
+    
+    public function checkuserpass($idUser, $password)
+    {
+        $response = [];
+        
+        try{
+    
+            $user = DB::table('users')
+                                ->select('password')    
+                                ->where('id', '=', $idUser)
+                                ->first();
+            
+
+            if(Hash::check($password, $user->password)){
+                $check = true;
+            }else{
+                $check = false;
+            }
 
             $response = ['status' => 'success', 'data' => $check];
         }catch(Exception $e){

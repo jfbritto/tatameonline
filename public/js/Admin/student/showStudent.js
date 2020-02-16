@@ -82,8 +82,12 @@ function openInvoices(id)
         if(data.status == 'success') {
 
             var html = '';
+            let cont = 0;
 
             for (var i in data.data) {
+
+                if(data.data[i].isPaid==0)
+                    cont++;
 
                 html += `<tr class="${data.data[i].isPaid==0?'':'success'}">
                             <td>${dateFormat(data.data[i].dueDate)}</td>
@@ -91,7 +95,9 @@ function openInvoices(id)
                             <td>${data.data[i].isPaid==0?'Aberto':'Pago'}</td>
                             <td>
                                 ${data.data[i].isPaid==0?`
-                                    <a title="Informar pagamento" onclick="reportPayment(${data.data[i].id}, ${data.data[i].idContract})" class="btn btn-sm btn-success pull-right"><i id="ico${data.data[i].id}" class="fas fa-file-invoice-dollar"></i></a>
+                                    ${cont>1?``:`
+                                        <a onclick="reportPayment(${data.data[i].id}, ${data.data[i].idContract})" title="Informar pagamento" class="btn btn-sm btn-success pull-right"><i id="ico${data.data[i].id}" class="fas fa-file-invoice-dollar"></i></a>
+                                    `}
                                 `:`
                                     <a title="Ver recibo" target="_blank" href="/payment/${data.data[i].tokenPayment}" class="btn btn-sm btn-primary pull-right"><i class="fas fa-file-invoice-dollar"></i></a>
                                 `}
@@ -107,47 +113,74 @@ function openInvoices(id)
     }, goTo500).catch(goTo500);
 }
 
+function checkPass(){
+
+}
+
 //MARCAR A FATURA COMO RECEBIDA
 function reportPayment(idInvoice, idContract)
 {
-
+    userId = $("#idUser").val();
 
     Swal.fire({
-        title: 'Atenção!',
-        text: "Confirma o recebimento?",
-        type: 'warning',
+        title: 'Para confirmar o recebimento, digite sua senha de acesso:',
+        input: 'password',
+        inputAttributes: {
+          autocapitalize: 'off',
+        },
         showCancelButton: false,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Sim'
+        confirmButtonText: 'Autenticar',
+        showLoaderOnConfirm: true,
+        preConfirm: (pass) => {
+          return fetch(window.location.origin + `/api/admin/academy/checkuserpass/${userId}/${pass}`)
+            .then(response => {
+              if (!response.status) {
+                throw new Error(response.statusText)
+              }
+              return response.json()
+            })
+            .catch(error => {
+              Swal.showValidationMessage(
+                `Request failed: ${error}`
+              )
+            })
+        },
+        allowOutsideClick: () => !Swal.isLoading()
       }).then((result) => {
-        if (result.value) {
+        if (result.value.status == 'success') {
+            if (result.value.data == true) {
 
-            $("#ico"+idInvoice).removeClass("fa-file-invoice-dollar");
-            $("#ico"+idInvoice).addClass("fa-sync-alt");
-            $("#ico"+idInvoice).addClass("fa-spin");
+                $("#ico"+idInvoice).removeClass("fa-file-invoice-dollar");
+                $("#ico"+idInvoice).addClass("fa-sync-alt");
+                $("#ico"+idInvoice).addClass("fa-spin");
 
-            $.post(window.location.origin + "/api/admin/invoice/reportPayment/"+idInvoice, {
+                $.post(window.location.origin + "/api/admin/invoice/reportPayment/"+idInvoice, {
 
-            }).then(function(data) {
-                if(data.status == 'success') {
+                }).then(function(data) {
+                    if(data.status == 'success') {
 
-                    $("#ico"+idInvoice).removeClass("fa-sync-alt");
-                    $("#ico"+idInvoice).removeClass("fa-spin");
-                    $("#ico"+idInvoice).addClass("fa-file-invoice-dollar");
+                        $("#ico"+idInvoice).removeClass("fa-sync-alt");
+                        $("#ico"+idInvoice).removeClass("fa-spin");
+                        $("#ico"+idInvoice).addClass("fa-file-invoice-dollar");
 
-                    openInvoices(idContract);
+                        openInvoices(idContract);
 
-                      Swal.fire(
-                        'Pagamento confirmado!',
-                        '',
-                        'success'
-                      )
+                        Swal.fire(
+                            'Pagamento confirmado!',
+                            '',
+                            'success'
+                        )
 
-                } else if (data.status == 'error') {
-                    showError(data.message);
-                }
-            }, goTo500).catch(goTo500);
+                    } else if (data.status == 'error') {
+                        showError(data.message);
+                    }
+                }, goTo500).catch(goTo500);
+
+            }else{
+                Swal.fire({
+                  title: `Senha incorreta!`
+                })
+            }
 
         }
       })
@@ -158,33 +191,56 @@ function reportPayment(idInvoice, idContract)
 function destroy(id)
 {
 
-    Swal.queue([{
-        title: 'Carregando...',
-        allowOutsideClick: false,
-        allowEscapeKey: false,
-        onOpen: () => {
-            Swal.showLoading();
-            $.post(window.location.origin + "/api/admin/registration/destroy/"+id, {
+    const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+          confirmButton: 'btn btn-success',
+          cancelButton: 'btn btn-danger'
+        },
+        buttonsStyling: false
+      })
+      
+      swalWithBootstrapButtons.fire({
+        title: 'Tem certeza?',
+        text: "Deseja realmente deletar a matrícula?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Sim',
+        cancelButtonText: 'Não',
+        reverseButtons: true
+      }).then((result) => {
+        if (result.value) {
 
-            }).then(function(data) {
-                if(data.status == 'success') {
-
-                    list($("#idStudent").val());
-                    Swal.fire({
-                        type: 'success',
-                        text: 'Matricula deletada com sucesso',
-                        showConfirmButton: false,
-                        showCancelButton: true,
-                        cancelButtonText: "OK",
-                        onClose: () => {
+            Swal.queue([{
+                title: 'Carregando...',
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                onOpen: () => {
+                    Swal.showLoading();
+                    $.post(window.location.origin + "/api/admin/registration/destroy/"+id, {
+        
+                    }).then(function(data) {
+                        if(data.status == 'success') {
+        
+                            list($("#idStudent").val());
+                            Swal.fire({
+                                type: 'success',
+                                text: 'Matricula deletada com sucesso',
+                                showConfirmButton: false,
+                                showCancelButton: true,
+                                cancelButtonText: "OK",
+                                onClose: () => {
+                                }
+                            });
+                        } else if (data.status == 'error') {
+                            showError(data.message);
                         }
-                    });
-                } else if (data.status == 'error') {
-                    showError(data.message);
+                    }, goTo500).catch(goTo500);
                 }
-            }, goTo500).catch(goTo500);
+            }]);
+
         }
-    }]);
+      })
+
 };
 
 //LISTAR GRADUAÇÕES POR ESPORTE

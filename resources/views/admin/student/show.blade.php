@@ -59,12 +59,18 @@
                 <p><strong><i class="fas fa-map-marker-alt"></i></strong> &nbsp; {{$student->neighborhood}}</p>
             </div>
             <div class="col-md-3 col-sm-6" title="Endereço">
-                <p><strong><i class="fas fa-map-marker-alt"></i></strong> &nbsp; {{$student->address}} - {{$student->number}}</p>
+                <p><strong><i class="fas fa-map-marker-alt"></i></strong> &nbsp; {{$student->address}}</p>
+            </div>
+            <div class="col-md-3 col-sm-6" title="Número">
+                <p><strong><i class="fas fa-map-marker-alt"></i></strong> &nbsp; {{$student->number}}</p>
             </div>
             <div class="col-md-3 col-sm-6" title="Complemento">
                 <p><strong><i class="fas fa-map-marker-alt"></i></strong> &nbsp; {{$student->complement}}</p>
             </div>
-            <div class="col-md-3 col-sm-6" title="Observação">
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-12 col-sm-12" title="Observação">
                 <p><strong><i class="fas fa-align-justify"></i></strong> &nbsp; {{$student->observation}}</p>
             </div>
         </div>
@@ -142,6 +148,7 @@
     </div>
 </div>
 
+<input type="hidden" id="idUser" value="{{auth()->user()->id}}">
 <input type="hidden" id="idStudent" value="{{$student->id}}">
 
 <div class="box">

@@ -25,7 +25,7 @@ class StartUserGraduationService
 
                 DB::commit();
 
-                $response = ['status' => 'success', 'data' => $start];
+                $response = ['status' => 'success', 'data' => $data['idUserGraduation']];
             }else{
 
                 DB::beginTransaction();
@@ -34,7 +34,7 @@ class StartUserGraduationService
 
                 DB::commit();
 
-                $response = ['status' => 'success', 'data' => $start];
+                $response = ['status' => 'success', 'data' => $data['idUserGraduation']];
             }
 
         }catch(Exception $e){

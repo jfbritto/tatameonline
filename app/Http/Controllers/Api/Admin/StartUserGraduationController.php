@@ -5,14 +5,17 @@ namespace App\Http\Controllers\Api\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Services\StartUserGraduationService;
+use App\Services\UserGraduationService;
 
 class StartUserGraduationController extends Controller
 {
     private $startUserGraduationService;
+    private $userGraduationService;
 
-    public function __construct(StartUserGraduationService $startUserGraduationService)
+    public function __construct(StartUserGraduationService $startUserGraduationService, UserGraduationService $userGraduationService)
     {
         $this->startUserGraduationService = $startUserGraduationService;
+        $this->userGraduationService = $userGraduationService;
     }
 
     public function create()
@@ -33,6 +36,13 @@ class StartUserGraduationController extends Controller
         ];
 
         $response = $this->startUserGraduationService->store($data);
+
+        if($request->startDate != null){
+            if($response['status'] == 'success'){
+                $data2 = ['startDate'=>$request->startDate, 'idUserGraduation'=>$response['data']];
+                $this->userGraduationService->updateStartDate($data2);
+            }
+        }
 
         if($response['status'] == 'success')
         return response()->json(['status'=>'success'], 201);

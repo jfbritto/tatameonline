@@ -254,4 +254,36 @@ class UserGraduationService
 
         return $response;
     }
+
+    public function updateStartDate(array $data)
+    {
+        $response = [];
+
+        try{
+
+            DB::beginTransaction();
+
+            $response = DB::table('user_graduations')
+                            ->where('id', $data['idUserGraduation'])
+                            ->update(['startDate' => $data['startDate']]);
+
+            if($response){
+
+                DB::commit();
+
+                $response = ['status' => 'success'];
+            }else{
+
+                DB::rollBack();
+
+                $response = ['status' => 'error', 'data' => "Graduação antiga não pode ser editada."];
+            }
+
+        }catch(Exception $e){
+            DB::rollBack();
+            $response = ['status' => 'error', 'data' => $e->getMessage()];
+        }
+
+        return $response;
+    }
 }

@@ -20,15 +20,21 @@ class SportsTableSeeder extends Seeder
             'name' => 'Jiu-Jitsu NoGi',
         ],[
             'id' => '3',
-            'name' => 'Muay thai',
+            'name' => 'Jiu Jitsu infantil',
         ],[
             'id' => '4',
-            'name' => 'Caratê',
+            'name' => 'Muay Thai',
         ],[
             'id' => '5',
-            'name' => 'Judô',
+            'name' => 'Muay Thai Kids',
         ],[
             'id' => '6',
+            'name' => 'Caratê',
+        ],[
+            'id' => '7',
+            'name' => 'Judô',
+        ],[
+            'id' => '8',
             'name' => 'Aiquidô',
         ]]);
     }

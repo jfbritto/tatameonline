@@ -83,6 +83,7 @@ $(document).ready(function(){
                 Swal.showLoading();
                 $.post(window.location.origin + "/api/admin/start", {
                     time: $("#time").val(),
+                    startDate: $("#startDate2").val(),
                     idUserGraduationStart: $("#idUserGraduationStart").val()
                 }).then(function(data) {
                     list($("#idUser").val());
