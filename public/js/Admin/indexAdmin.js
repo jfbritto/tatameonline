@@ -242,34 +242,58 @@ $(document).ready(function(){
 //REGISTRAR PRESENÇA DOS ALUNOS
 function givePresence(idReg, idUsGr, idLesson)
 {
-    $.post(window.location.origin + "/api/student/presence", {
-        idRegistration: idReg,
-        idUserGraduation: idUsGr,
-    }).then(function(data) {
-        // $("#modal-presences").modal('hide');
 
-        let totPres = parseInt($("#lesson"+idLesson).html());
-        let res = totPres + 1;
-        $("#lesson"+idLesson).html(res)
+    const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+          confirmButton: 'btn btn-success',
+          cancelButton: 'btn btn-danger'
+        },
+        buttonsStyling: false
+      })
+      
+      swalWithBootstrapButtons.fire({
+        title: 'Tem certeza?',
+        text: "Deseja realmente confirmar a presença do aluno?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Sim',
+        cancelButtonText: 'Não',
+        reverseButtons: true
+      }).then((result) => {
+        if (result.value) {
 
-        $("#situ"+idReg).html('<span class="label label-success">Presente</span>')
-        $("#btn"+idReg).hide()
-
-        if(data.status == 'success') {
-            Swal.fire({
-                type: 'success',
-                text: 'Presença cadastrada com sucesso',
-                showConfirmButton: false,
-                showCancelButton: true,
-                cancelButtonText: "OK",
-                onClose: () => {
-
+            $.post(window.location.origin + "/api/student/presence", {
+                idRegistration: idReg,
+                idUserGraduation: idUsGr,
+            }).then(function(data) {
+                // $("#modal-presences").modal('hide');
+        
+                let totPres = parseInt($("#lesson"+idLesson).html());
+                let res = totPres + 1;
+                $("#lesson"+idLesson).html(res)
+        
+                $("#situ"+idReg).html('<span class="label label-success">Presente</span>')
+                $("#btn"+idReg).hide()
+        
+                if(data.status == 'success') {
+                    Swal.fire({
+                        type: 'success',
+                        text: 'Presença cadastrada com sucesso',
+                        showConfirmButton: false,
+                        showCancelButton: true,
+                        cancelButtonText: "OK",
+                        onClose: () => {
+        
+                        }
+                    });
+                } else if (data.status == 'error') {
+                    showError(data.message);
                 }
-            });
-        } else if (data.status == 'error') {
-            showError(data.message);
+            }, goTo500).catch(goTo500);
+
         }
-    }, goTo500).catch(goTo500);
+      })
+
 }
 
 //LISTAGEM DOS ALUNOS QUE ESTÃO CADASTRADOS NA AULA
