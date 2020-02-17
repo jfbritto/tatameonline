@@ -22,12 +22,14 @@ class CreateInvoicesTable extends Migration
             $table->date('paymentDate')->nullable();
             $table->char('tokenPayment', 32)->nullable();
 
+            $table->integer('idUserReceived')->unsigned()->nullable();
             $table->integer('idUser')->unsigned();
             $table->integer('idContract')->unsigned();
             $table->integer('idAcademy')->nullable()->unsigned();
 
             $table->timestamps();
 
+            $table->foreign('idUserReceived')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('idUser')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('idContract')->references('id')->on('contracts')->onDelete('cascade');
             $table->foreign('idAcademy')->references('id')->on('academies')->onDelete('cascade');

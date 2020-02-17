@@ -154,7 +154,7 @@ function reportPayment(idInvoice, idContract)
                 $("#ico"+idInvoice).addClass("fa-sync-alt");
                 $("#ico"+idInvoice).addClass("fa-spin");
 
-                $.post(window.location.origin + "/api/admin/invoice/reportPayment/"+idInvoice, {
+                $.post(window.location.origin + "/api/admin/invoice/reportPayment/"+idInvoice+"/"+userId, {
 
                 }).then(function(data) {
                     if(data.status == 'success') {

@@ -63,9 +63,9 @@ class InvoiceController extends Controller
         return response()->json(['status'=>'error', 'message'=>$response['data']], 201);
     }
     
-    public function reportPayment($id)
+    public function reportPayment($id, $idUser)
     {       
-        $response = $this->invoiceService->reportPayment($id);
+        $response = $this->invoiceService->reportPayment($id, $idUser);
 
         if($response['status'] == 'success')
             return response()->json(['status'=>'success'], 201);

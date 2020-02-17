@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\Contract;
 use App\Models\Invoice;
 use App\Models\User;
+use App\Models\Historic;
 use DB;
 use Exception;
 use App\Mail\SendMailUser;
@@ -28,9 +29,16 @@ class InvoiceService
         return $response;
     }
 
-    public function reportPayment($id)
+    public function reportPayment($id, $idUser)
     {
         $response = [];
+
+        // $table->integer('reference')->nullable();
+        // $table->datetime('actionDate')->nullable();
+        // $table->text('description')->nullable();
+
+        // $table->integer('idUser')->unsigned();
+        // $table->integer('idHistoricType')->unsigned();
 
         try{
             DB::beginTransaction();
@@ -39,10 +47,14 @@ class InvoiceService
 
             DB::table('invoices')
                             ->where('id', $id)
-                            ->update(['isPaid' => 1, 'paymentDate' => date('Y-m-d'), 'tokenPayment' => $tokenPaiment]);
+                            ->update(['idUserReceived'=>$idUser, 'isPaid' => 1, 'paymentDate' => date('Y-m-d'), 'tokenPayment' => $tokenPaiment]);
 
             $invoice = Invoice::where('id', '=', $id)->first();
             $user = User::where('id', '=', $invoice->idUser)->first();
+
+            $dataHist = ['reference'=>$id, 'actionDate'=>date('Y-m-d H:i:s'), 'description'=>'Recebimento de fatura.', 'idUser'=>$idUser, 'idHistoricType'=>2];
+            Historic::create($dataHist);
+            
             //enviar email
             Mail::to($user->email)->queue(new SendMailUser($user, "2", "", "", $invoice));
 

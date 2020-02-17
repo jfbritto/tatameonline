@@ -75,7 +75,7 @@ class LoginController extends Controller
                 return redirect(route('site').'#login')->with('error', 'Usuário inativo!');
             }
 
-            $this->historicService->store(['idUser'=>auth()->user()->id,'idHistoricType'=>1,'actionDate'=>date("Y-m-d H:i:s")]);
+            $this->historicService->store(['idUser'=>auth()->user()->id,'description'=>'Login de usuário.', 'idHistoricType'=>1,'actionDate'=>date("Y-m-d H:i:s")]);
 
             if(auth()->user()->isRoot){
                 return redirect()->route('root');

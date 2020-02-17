@@ -12,6 +12,7 @@ class Invoice extends Model
         'isPaid',
         'paymentDate',
         'tokenPayment',
+        'idUserReceived',
         'idUser',
         'idContract',
         'idAcademy'
@@ -20,6 +21,11 @@ class Invoice extends Model
     public function academy()
     {
         return $this->hasOne(\App\Models\Academy::class, 'id', 'idAcademy');
+    }
+
+    public function userReceived()
+    {
+        return $this->hasOne(\App\Models\User::class, 'id', 'idUserReceived');
     }
 
     public function user()
