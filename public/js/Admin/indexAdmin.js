@@ -141,15 +141,20 @@ $(document).ready(function(){
 
                 let html = '';
                 let cont = 0;
+                let classtxt = '';
 
                 for (var i in data.data) {
 
                     cont = 1;
+                    if(data.data[i].hrLesson >= data.data[i].hrNow)
+                        classtxt = 'bg-green';
+                    else
+                        classtxt = 'bg-red';
 
                     html += `<div class="col-md-3 col-sm-6 col-xs-12">
                                 <div class="info-box">
                                 <a href="#" onclick="lessonAlunsList(${data.data[i].id})">
-                                        <span class="info-box-icon bg-green"><i class="fas fa-users"></i></span>
+                                        <span class="info-box-icon ${classtxt}"><i class="fas fa-users"></i></span>
                                     </a>
                                 <div class="info-box-content">
                                     <span class="info-box-text">${data.data[i].sport_name}</span>

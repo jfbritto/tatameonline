@@ -291,8 +291,8 @@ class LessonService
                             ->where('les.idAcademy', '=', $id)
                             // ->where('les.hour', '<=', now())
                             ->where('les.weekDay', '=', date("N"))
-                            ->select('les.*', 'sports.name as sport_name',
-                                (DB::raw("(select
+                            ->select(DB::raw("les.*, date_format(les.hour, '%H') as hrLesson, date_format(NOW(), '%H') as hrNow, sports.name as sport_name, 
+                                            (select
                                                 count(*)
                                             from
                                                 presences
@@ -300,9 +300,9 @@ class LessonService
                                                 join lessons ls on registrations.idLesson=ls.id
                                             where
                                                 ls.id = les.id and
-                                                date_format(presences.checkedHour, '%Y-%m-%d') = date_format(now(), '%Y-%m-%d')) AS presences")
-                                )
-                            )->orderBy('les.hour')
+                                                date_format(presences.checkedHour, '%Y-%m-%d') = date_format(now(), '%Y-%m-%d') 
+                                )AS presences
+                            "))->orderBy('les.hour')
                             ->get();
 
             $response = ['status' => 'success', 'data' => $lessons];
