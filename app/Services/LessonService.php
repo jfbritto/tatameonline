@@ -302,7 +302,7 @@ class LessonService
                                                 ls.id = les.id and
                                                 date_format(presences.checkedHour, '%Y-%m-%d') = date_format(now(), '%Y-%m-%d')) AS presences")
                                 )
-                            )
+                            )->orderBy('les.hour')
                             ->get();
 
             $response = ['status' => 'success', 'data' => $lessons];

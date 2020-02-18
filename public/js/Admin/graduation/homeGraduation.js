@@ -1,4 +1,7 @@
+const DataTable = buildDataTable("#graduation-table");
+
 $(document).ready(function(){
+
 
     $("#formAddGraduation").submit(function(e) {
         e.preventDefault();
@@ -50,23 +53,25 @@ function list(id)
     }).then(function(data) {
         if(data.status == 'success') {
 
-            var html = '';
-
+            // var html = '';
+            DataTable.clear();
             for (var i in data.data) {
 
-                html += `<tr>
-                            <td><i style="color:${data.data[i].color}" class="fas fa-ribbon"></i>&nbsp;&nbsp;${data.data[i].name}</td>
-                            <td>${data.data[i].sport_name}</td>
-                            <td>${data.data[i].hours}</td>
-                            <td>${data.data[i].graduations}</td>
-                            <td>
-                                <a class="btn btn-danger btn-sm pull-right destroy" onclick="destroy(${data.data[i].id})" data-id="${data.data[i].id}" title="Deletar esporte"><i class="fas fa-trash-alt"></i></a>
-                            </td>
-                        </tr>`;
+                // html += `<tr>
+                //             <td><i style="color:${data.data[i].color}" class="fas fa-ribbon"></i>&nbsp;&nbsp;${data.data[i].name}</td>
+                //             <td>${data.data[i].sport_name}</td>
+                //             <td>${data.data[i].hours}</td>
+                //             <td>${data.data[i].graduations}</td>
+                //             <td>
+                //                 <a class="btn btn-danger btn-sm pull-right destroy" onclick="destroy(${data.data[i].id})" data-id="${data.data[i].id}" title="Deletar esporte"><i class="fas fa-trash-alt"></i></a>
+                //             </td>
+                //         </tr>`;
+
+                DataTable.row.add([`<i style="color:${data.data[i].color}" class="fas fa-ribbon"></i>&nbsp;&nbsp;${data.data[i].name}`, data.data[i].sport_name, data.data[i].hours || '0', data.data[i].graduation || '0', `<a class="btn btn-danger btn-sm pull-right destroy" onclick="destroy(${data.data[i].id})" data-id="${data.data[i].id}" title="Deletar esporte"><i class="fas fa-trash-alt"></i></a>`]).draw(false);
             }
 
-            $('#lista').html(html);
-            buildDataTable();
+            // $('#lista').html(html);
+            
 
         } else if (data.status == 'error') {
             showError(data.message);

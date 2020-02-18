@@ -58,8 +58,8 @@
 @include('adminlte::plugins', ['type' => 'js'])
 
 <script src="{{asset('/js/common.js')}}"></script>
-@yield('adminlte_js')
 <script src="{{asset('/js/common-after.js')}}"></script>
+@yield('adminlte_js')
 
 </body>
 </html>
