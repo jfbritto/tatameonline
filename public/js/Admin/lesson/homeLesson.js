@@ -1,3 +1,5 @@
+const DataTable = buildDataTable("#lessons-table");
+
 $(document).ready(function(){
 
     $("#formAddLesson").submit(function(e) {
@@ -48,28 +50,31 @@ function list(id)
     }).then(function(data) {
         if(data.status == 'success') {
 
-            let html = '';
-
+            // let html = '';
+            
+            DataTable.clear();
             for (var i in data.data) {
 
-                html += `<tr>
-                            <td>${data.data[i].sport_name}</td>
-                            <td class="hidden-xs">${data.data[i].teacher}</td>
-                            <td>${dia_semana[data.data[i].weekDay]}</td>
-                            <td>${data.data[i].hour}</td>
-                            <td class="hidden-xs">${data.data[i].alunos}</td>
-                            <td>
-                                <div class="input-group-btn">
-                                    <a class="btn btn-primary btn-sm pull-right" href="/admin/lesson/show/${data.data[i].id}" title="Abrir aula"><i class="fas fa-sign-in-alt"></i></a>
-                                    <a class="btn btn-danger btn-sm pull-right destroy" onclick="destroy(${data.data[i].id})" data-id="${data.data[i].id}" title="Deletar aula"><i class="fas fa-trash-alt"></i></a>
-                                </div>
-                            </td>
-                        </tr>`;
+                // html += `<tr>
+                //             <td>${data.data[i].sport_name}</td>
+                //             <td class="hidden-xs">${data.data[i].teacher}</td>
+                //             <td>${dia_semana[data.data[i].weekDay]}</td>
+                //             <td>${data.data[i].hour}</td>
+                //             <td class="hidden-xs">${data.data[i].alunos}</td>
+                //             <td>
+                //                 <div class="input-group-btn">
+                //                     <a class="btn btn-primary btn-sm pull-right" href="/admin/lesson/show/${data.data[i].id}" title="Abrir aula"><i class="fas fa-sign-in-alt"></i></a>
+                //                     <a class="btn btn-danger btn-sm pull-right destroy" onclick="destroy(${data.data[i].id})" data-id="${data.data[i].id}" title="Deletar aula"><i class="fas fa-trash-alt"></i></a>
+                //                 </div>
+                //             </td>
+                //         </tr>`;
+
+                DataTable.row.add([data.data[i].sport_name, data.data[i].teacher, dia_semana[data.data[i].weekDay], data.data[i].hour, data.data[i].alunos || '0', `<div class="input-group-btn"><a class="btn btn-primary btn-sm pull-right" href="/admin/lesson/show/${data.data[i].id}" title="Abrir aula"><i class="fas fa-sign-in-alt"></i></a><a class="btn btn-danger btn-sm pull-right destroy" onclick="destroy(${data.data[i].id})" data-id="${data.data[i].id}" title="Deletar aula"><i class="fas fa-trash-alt"></i></a></div>`]).draw(false);
             }
 
-            $('#lista').html(html);
+            // $('#lista').html(html);
 
-            buildDataTable();
+            // buildDataTable();
 
         } else if (data.status == 'error') {
             showError(data.message);
