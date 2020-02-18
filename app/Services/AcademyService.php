@@ -140,7 +140,7 @@ class AcademyService
                                                 and us.isStudent = 1
                                                 and us.isActive = 1
                                                 and inv.isPaid = 1
-                                                and date_format(inv.dueDate, '%Y-%m') = '".$date."') AS financial")) 
+                                                and date_format(inv.paymentDate, '%Y-%m') = '".$date."') AS financial")) 
                                 )->first();
 
             $response = ['status' => 'success', 'data' => $academy];

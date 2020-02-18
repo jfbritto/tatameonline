@@ -112,7 +112,7 @@ class InvoiceService
                                                     and us.isStudent = 1
                                                     and us.isActive = 1
                                                     and inv.isPaid = 1
-                                                    and date_format(inv.dueDate, '%Y-%m') = '".$date."'"));
+                                                    and date_format(inv.paymentDate, '%Y-%m') = '".$date."'"));
 
             $received_list_obj = DB::select( DB::raw("select
                                                     us.id, us.name, inv.dueDate, inv.value
@@ -124,7 +124,7 @@ class InvoiceService
                                                     and us.isStudent = 1
                                                     and us.isActive = 1
                                                     and inv.isPaid = 1
-                                                    and date_format(inv.dueDate, '%Y-%m') = '".$date."'"));
+                                                    and date_format(inv.paymentDate, '%Y-%m') = '".$date."'"));
 
             $late_obj = DB::select( DB::raw("select
                                                 sum(inv.value) as total
