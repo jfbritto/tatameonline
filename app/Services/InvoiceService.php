@@ -209,7 +209,7 @@ class InvoiceService
                                             WHERE
                                                 idUser = ".$id."
                                                 and dueDate < '".$date."'
-                                                and isPaid = 0"));
+                                                and isPaid = 0 order by dueDate"));
 
             $response = ['status' => 'success', 'data' => $invoice];
         }catch(Exception $e){
