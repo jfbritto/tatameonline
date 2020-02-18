@@ -7,7 +7,8 @@ function buildDataTable(id){
             },
             "bLengthChange": false,
             "paging": true,
-            "bDestroy": true
+            "bDestroy": true,
+            "ordering": false
         });
 
         $("table tr td").css("vertical-align", "middle");
