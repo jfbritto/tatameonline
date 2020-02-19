@@ -86,9 +86,9 @@
                                 </li>
                                 <!-- Menu Footer-->
                                 <li class="user-footer">
-                                    <!-- <div class="pull-left">
-                                    <a href="#" class="btn btn-default btn-flat">Perfil</a>
-                                    </div> -->
+                                    <div class="pull-left">
+                                    <a href="#" id="editPassGeneral" class="btn btn-default btn-flat"><i class="fas fa-lock"></i>&nbsp;&nbsp;Alterar senha</a>
+                                    </div>
                                     <div class="pull-right">
                                         @if(config('adminlte.logout_method') == 'GET' || !config('adminlte.logout_method') && version_compare(\Illuminate\Foundation\Application::VERSION, '5.3.0', '<'))
                                             <a class="btn btn-default btn-flat" href="{{ url(config('adminlte.logout_url', 'auth/logout')) }}">
@@ -204,6 +204,56 @@
             <!-- Add the sidebar's background. This div must be placed immediately after the control sidebar -->
             <div class="control-sidebar-bg"></div>
         @endif
+
+        <div class="modal fade" id="modal-pass-edit-general">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title"><i class="fas fa-lock"></i>&nbsp;&nbsp;Editar senha de {{auth()->user()->name}}</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="formPassGeneral">
+
+                        <input type="hidden" id="param" value="new">
+                        <input type="hidden" id="id_user" value="">
+
+                        <div class="row">
+                            <div class="col-sm-12">
+
+                                <div class="input-group" style="width:100%">
+                                    <label>Nova senha</label>
+                                    <input minlength="8" type="password" class="form-control" name="passGeneral" id="passGeneral" required>
+                                </div>
+
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm-12">
+
+                                <div class="input-group" style="width:100%">
+                                    <label>Confirme a nova senha</label>
+                                    <input minlength="8" type="password" class="form-control" name="passConfirmGeneral" id="passConfirmGeneral" required>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <input type="hidden" id="idAcademyGeneral" name="idAcademyGeneral" value="{{auth()->user()->academy->id}}">
+                        <input type="hidden" id="idUserGeneral" name="idUserGeneral" value="{{auth()->user()->id}}">
+                    </form>
+                </div>
+                <div class="modal-footer">
+
+                    <button form="formPassGeneral" class="btn btn-primary pull-right"><i class="fas fa-save"></i>&nbsp;&nbsp;Salvar</button>
+                </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
 
     </div>
     <!-- ./wrapper -->

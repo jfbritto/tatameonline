@@ -1,3 +1,94 @@
+$(document).ready(function(){
+    $("#formPassGeneral").submit(function(e) {
+        e.preventDefault();
+
+        if($("#passGeneral").val() != $("#passConfirmGeneral").val()){
+            showError("Senhas divergentes!");
+            return false;
+        }
+
+        Swal.queue([{
+            title: 'Carregando...',
+            allowOutsideClick: false,
+            allowEscapeKey: false,
+            onOpen: () => {
+                Swal.showLoading();
+                $.post(window.location.origin + "/api/admin/student/edit/pass", {
+                    pass: $("#passGeneral").val(),
+                    idAcademy: $("#idAcademyGeneral").val(),
+                    id_user: $("#idUserGeneral").val(),
+                }).then(function(data) {
+                    if(data.status == 'success') {
+                        Swal.fire({
+                            type: 'success',
+                            text: 'Senha editada com sucesso!',
+                            showConfirmButton: false,
+                            showCancelButton: true,
+                            cancelButtonText: "OK",
+                            onClose: () => {
+
+                                $("#formPassGeneral").trigger("reset");
+                                $("#modal-pass-edit-general").modal("hide");
+
+                            }
+                        });
+                    } else if (data.status == 'error') {
+                        showError(data.message);
+                    }
+                }, goTo500).catch(goTo500);
+            }
+        }]);
+    });
+
+    $("#editPassGeneral").on("click", function(){
+
+        let userId = $("#idUserGeneral").val();
+        
+        Swal.fire({
+            title: 'Digite sua senha de acesso:',
+            input: 'password',
+            inputAttributes: {
+            autocapitalize: 'off',
+            required: true,
+            },
+            showCancelButton: false,
+            confirmButtonText: 'Autenticar',
+            showLoaderOnConfirm: true,
+            preConfirm: (pass) => {
+            return fetch(window.location.origin + `/api/admin/academy/checkuserpass/${userId}/${pass}`)
+                .then(response => {
+                if (!response.status) {
+                    throw new Error(response.statusText)
+                }
+                return response.json()
+                })
+                .catch(error => {
+                Swal.showValidationMessage(
+                    `Request failed: ${error}`
+                )
+                })
+            },
+            allowOutsideClick: () => !Swal.isLoading()
+        }).then((result) => {
+            if (result.value.status == 'success') {
+                if (result.value.data == true) {
+
+                    $("#modal-pass-edit-general").modal("show");
+
+                }else{
+                    Swal.fire({
+                    title: `Senha incorreta!`
+                    })
+                }
+
+            }
+        })
+    
+    });
+
+});
+
+
 function goTo500(e)
 {
     console.log(e);
