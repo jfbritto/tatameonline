@@ -56,6 +56,7 @@
         //FATURA
         Route::post('/invoice/list/{contract}', 'InvoiceController@index');
         Route::post('/invoice/reportPayment/{invoice}/{user}', 'InvoiceController@reportPayment');
+        Route::post('/invoice/edit', 'InvoiceController@editInvoiceValue');
 
         //GRADUAÇÃO
         Route::post('/graduation', 'GraduationController@store');

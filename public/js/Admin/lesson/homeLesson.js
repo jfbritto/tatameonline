@@ -51,7 +51,7 @@ function list(id)
         if(data.status == 'success') {
 
             // let html = '';
-            console.log(data.data)
+
             DataTable.clear();
             for (var i in data.data) {
 

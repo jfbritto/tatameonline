@@ -30,7 +30,7 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body table-responsive">
-            <table class="table table-hover table-condensed datatable-table">
+            <table class="table table-hover table-condensed datatable-table" id="students-table">
                 <thead>
                     <tr>
                         <th></th>

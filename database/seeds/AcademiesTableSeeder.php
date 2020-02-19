@@ -14,7 +14,7 @@ class AcademiesTableSeeder extends Seeder
         DB::table('academies')->insert([
             'id' => 1,
             'name' => 'Team Atitude',
-            'siteName' => 'time-atitude',
+            'siteName' => 'team-atitude',
             'phone' => '(28)99448-9448',
             'responsible' => 'Júnior',
             'phoneResponsible' => '(28)99448-9448',

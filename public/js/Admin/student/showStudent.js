@@ -96,8 +96,11 @@ function openInvoices(id)
                             <td>
                                 ${data.data[i].isPaid==0?`
                                     ${cont>1?``:`
+                                        <div class="input-group-btn">
                                         <a onclick="reportPayment(${data.data[i].id}, ${data.data[i].idContract})" title="Informar pagamento" class="btn btn-sm btn-success pull-right"><i id="ico${data.data[i].id}" class="fas fa-file-invoice-dollar"></i></a>
-                                    `}
+                                        ${data.data[i].isPaid==0&&i==0?`<a onclick="editInvoice(${data.data[i].id}, ${data.data[i].idContract})" class="btn btn-sm btn-warning pull-right open-modal-edit-invoice" title="Editar 1ª fatura"><i class="fas fa-pen"></i></a>`:``}
+                                        </div>
+                                        `}
                                 `:`
                                     <a title="Ver recibo" target="_blank" href="/payment/${data.data[i].tokenPayment}" class="btn btn-sm btn-primary pull-right"><i class="fas fa-file-invoice-dollar"></i></a>
                                 `}
@@ -184,6 +187,129 @@ function reportPayment(idInvoice, idContract)
 
         }
       })
+
+}
+
+function editInvoice(idInvoice, idContract)
+{
+
+    userId = $("#idUser").val();
+
+    html = `<div class="modal fade" id="modal-edit-invoice">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title"><i class="fas fa-pen"></i>&nbsp;&nbsp;Editar valor da 1ª fatura</h4>
+                    </div>
+                    <div class="modal-body">
+
+                            <input type="hidden" id="idInvoice" value="${idInvoice}">
+                            <input type="hidden" id="idContract" value="${idContract}">
+
+                            <div class="row">
+                                <div class="col-sm-12">
+
+                                    <div class="input-group" style="width:100%">
+                                        <label>Novo valor</label>
+                                        <input type="text" class="form-control money-mask" name="newValue" id="newValue" required>
+                                    </div>
+
+                                </div>
+                            </div>    
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button onclick="saveEditInvoice()" class="btn btn-primary pull-right"><i class="fas fa-save"></i>&nbsp;&nbsp;Salvar</button>
+                    </div>
+                    </div>
+                </div>
+            </div>`;
+
+    $("#box-modal-edit-invoice").append(html);
+
+    $('.money-mask').mask('#.##0,00', {reverse: true});
+
+    Swal.fire({
+        title: 'Para editar a fatura, digite sua senha de acesso:',
+        input: 'password',
+        inputAttributes: {
+          autocapitalize: 'off',
+        },
+        showCancelButton: false,
+        confirmButtonText: 'Autenticar',
+        showLoaderOnConfirm: true,
+        preConfirm: (pass) => {
+          return fetch(window.location.origin + `/api/admin/academy/checkuserpass/${userId}/${pass}`)
+            .then(response => {
+              if (!response.status) {
+                throw new Error(response.statusText)
+              }
+              return response.json()
+            })
+            .catch(error => {
+              Swal.showValidationMessage(
+                `Request failed: ${error}`
+              )
+            })
+        },
+        allowOutsideClick: () => !Swal.isLoading()
+      }).then((result) => {
+        if (result.value.status == 'success') {
+            if (result.value.data == true) {
+
+                $("#modal-edit-invoice").modal("show");
+
+            }else{
+                Swal.fire({
+                  title: `Senha incorreta!`
+                })
+            }
+
+        }
+      })
+
+}
+
+function saveEditInvoice()
+{
+    let newValue = $("#newValue").val();
+            newValue = newValue.replace('.', ' ');
+            newValue = newValue.replace(',', '.');
+            newValue = newValue.replace(' ', '');
+
+    Swal.queue([{
+        title: 'Carregando...',
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+        onOpen: () => {
+            Swal.showLoading();
+            $.post(window.location.origin + "/api/admin/invoice/edit", {
+                newValue: newValue,
+                idInvoice: $("#idInvoice").val(),
+                idContract: $("#idContract").val(),
+                idUser: $("#idUser").val(),
+            }).then(function(data) {
+                if(data.status == 'success') {
+                    Swal.fire({
+                        type: 'success',
+                        text: 'Fatura editada com sucesso',
+                        showConfirmButton: false,
+                        showCancelButton: true,
+                        cancelButtonText: "OK",
+                        onClose: () => {
+                            $("#newValue").val("");
+                            $("#modal-edit-invoice").modal('hide');
+                            $("#modal-invoices").modal('hide');
+                        }
+                    });
+                } else if (data.status == 'error') {
+                    showError(data.message);
+                }
+            }, goTo500).catch(goTo500);
+        }
+    }]);
 
 }
 

@@ -19,6 +19,10 @@ class HistoricTypeTableSeeder extends Seeder
         [
             'id' => '2',
             'name' => 'Pagamento',
+        ],
+        [
+            'id' => '3',
+            'name' => 'Edição fatura',
         ]]);
     }
 }

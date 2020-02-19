@@ -72,4 +72,22 @@ class InvoiceController extends Controller
             
         return response()->json(['status'=>'error', 'message'=>$response['data']], 201);
     }
+    
+    public function editInvoiceValue(Request $request)
+    {       
+
+        $data = [
+            'newValue' => $request->newValue,
+            'idInvoice' => $request->idInvoice,
+            'idContract' => $request->idContract,
+            'idUser' => $request->idUser,
+        ];
+
+        $response = $this->invoiceService->editInvoiceValue($data);
+
+        if($response['status'] == 'success')
+            return response()->json(['status'=>'success'], 201);
+            
+        return response()->json(['status'=>'error', 'message'=>$response['data']], 201);
+    }
 }

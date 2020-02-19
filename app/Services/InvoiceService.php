@@ -218,4 +218,31 @@ class InvoiceService
 
         return $response;
     }
+
+    public function editInvoiceValue(array $data)
+    {
+        $response = [];
+
+        try{
+            DB::beginTransaction();
+
+            DB::table('invoices')
+                            ->where('id', $data['idInvoice'])
+                            ->where('idContract', $data['idContract'])
+                            ->update(['value'=>$data['newValue']]);
+            
+            
+            $dataHist = ['reference'=>$data['idInvoice'], 'actionDate'=>date('Y-m-d H:i:s'), 'description'=>'Edição de fatura.', 'idUser'=>$data['idUser'], 'idHistoricType'=>3];
+            Historic::create($dataHist);
+
+            DB::commit();
+
+            $response = ['status' => 'success'];
+        }catch(Exception $e){
+            DB::rollBack();
+            $response = ['status' => 'error', 'data' => $e->getMessage()];
+        }
+
+        return $response;
+    }
 }

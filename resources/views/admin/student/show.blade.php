@@ -239,6 +239,8 @@
     <!-- /.modal-dialog -->
 </div>
 
+<div id="box-modal-edit-invoice"></div>
+
 @stop
 
 @section('adminlte_js')
