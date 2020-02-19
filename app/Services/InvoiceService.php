@@ -162,7 +162,7 @@ class InvoiceService
                                                     and us.isStudent = 1
                                                     and us.isActive = 1
                                                     and inv.isPaid = 0
-                                                    and inv.dueDate < date_format(now(), '%Y-%m-%d')
+                                                    and date_format(inv.dueDate, '%Y-%m') < date_format(now(), '%Y-%m')
                                                 group by
                                                     us.id
                                                 having
