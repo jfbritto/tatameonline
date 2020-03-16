@@ -72,12 +72,15 @@
                                     <option value="#fdcf00">Amarela</option>
                                     <option value="#0339c0">Azul</option>
                                     <option value="#d4d5e7">Branca</option>
+                                    <option value="#dd4b39">Branca e Vermelha</option>
                                     <option value="#5b585f">Cinza</option>
                                     <option value="#f49d00">Laranja</option>
                                     <option value="#6c3f2b">Marrom</option>
                                     <option value="#0d0e13">Preta</option>
                                     <option value="#963fa8">Roxa</option>
                                     <option value="#06d755">Verde</option>
+                                    <option value="#dd4b39">Vermelha</option>
+                                    <option value="#fff">Sem cor</option>
                                 </select>
                             </div>
 
