@@ -16,7 +16,7 @@
 
 @section('content')
 
-<h1>Ambiente do professor</h1>
+<h1>Ambiente do INSTRUTOR</h1>
 
 <input type="hidden" id="idAcademy" value="{{auth()->user()->academy->id}}">
 

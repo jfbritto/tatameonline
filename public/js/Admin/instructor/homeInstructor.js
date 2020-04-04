@@ -15,7 +15,7 @@ $(document).ready(function(){
 
     });
 
-    $("#formTeacher").submit(function(e) {
+    $("#formInstructor").submit(function(e) {
         e.preventDefault();
 
         Swal.queue([{
@@ -24,7 +24,7 @@ $(document).ready(function(){
             allowEscapeKey: false,
             onOpen: () => {
                 Swal.showLoading();
-                $.post(window.location.origin + "/api/admin/teacher", {
+                $.post(window.location.origin + "/api/admin/instructor", {
                     name: $("#name").val(),
                     email: $("#email").val(),
                     idAcademy: $("#idAcademy").val(),
@@ -48,9 +48,9 @@ $(document).ready(function(){
                     let param = $("#param").val();
 
                     if(param == 'new'){
-                        msg = 'Professor cadastrado com sucesso';
+                        msg = 'Instrutor cadastrado com sucesso';
                     }else{
-                        msg = 'Professor editado com sucesso';
+                        msg = 'Instrutor editado com sucesso';
                     }
 
                     if(data.status == 'success') {
@@ -63,7 +63,7 @@ $(document).ready(function(){
                             cancelButtonText: "OK",
                             onClose: () => {
                                 if(param == 'new'){
-                                    $("#formTeacher").trigger("reset");
+                                    $("#formInstructor").trigger("reset");
                                     setTimeout(function(){ $("#name").focus(); }, 300);
                                 }else{
                                     $("#modal-user").modal("hide");
@@ -92,7 +92,7 @@ $(document).ready(function(){
             allowEscapeKey: false,
             onOpen: () => {
                 Swal.showLoading();
-                $.post(window.location.origin + "/api/admin/teacher/edit/pass", {
+                $.post(window.location.origin + "/api/admin/instructor/edit/pass", {
                     pass: $("#pass").val(),
                     idAcademy: $("#idAcademy").val(),
                     id_user: $("#id_user").val(),
@@ -136,7 +136,7 @@ $(document).ready(function(){
     //             Swal.showLoading();
 
 
-    //             // $.post(window.location.origin + "/api/admin/teacher/edit/avatar", {
+    //             // $.post(window.location.origin + "/api/admin/instructor/edit/avatar", {
     //             //     avatar: $("input[name='avatar']").val(),
     //             //     id_user_avatar: $("#id_user_avatar").val(),
     //             //     idAcademy: $("#idAcademy").val(),
@@ -170,7 +170,7 @@ $(document).ready(function(){
 
     //             $.ajax({
     //                 type: 'POST',
-    //                 url: window.location.origin + "/api/admin/teacher/edit/avatar",
+    //                 url: window.location.origin + "/api/admin/instructor/edit/avatar",
     //                 data: fd,
     //                 processData: false,
     //                 contentType: false
@@ -214,7 +214,7 @@ function openModalPhoto(id){
 
 function list(id)
 {
-    $.post(window.location.origin + "/api/admin/teacher/list/"+id, {
+    $.post(window.location.origin + "/api/admin/instructor/list/"+id, {
 
     }).then(function(data) {
         if(data.status == 'success') {
@@ -234,15 +234,15 @@ function list(id)
                             <td style="width:130px">
                                 <div class="input-group-btn">
 
-                                    <a class="btn btn-primary btn-sm pull-right" href="/admin/teacher/show/${data.data[i].id}" title="Abrir professor"><i class="fas fa-sign-in-alt"></i></a>
+                                    <a class="btn btn-primary btn-sm pull-right" href="/admin/instructor/show/${data.data[i].id}" title="Abrir instrutor"><i class="fas fa-sign-in-alt"></i></a>
 
-                                    <a onclick="fillUser(${data.data[i].id})" class="btn btn-warning btn-sm pull-right" href="#" title="Editar professor"><i class="fas fa-pen"></i></a>
+                                    <a onclick="fillUser(${data.data[i].id})" class="btn btn-warning btn-sm pull-right" href="#" title="Editar instrutor"><i class="fas fa-pen"></i></a>
 
                                     ${data.data[i].isActive==1?`
 
-                                        <a id="power${data.data[i].id}" class="btn btn-danger btn-sm pull-right destroy" onclick="destroy(${data.data[i].id})" data-id="${data.data[i].id}" title="Inativar professor"><i class="fas fa-power-off"></i></a>
+                                        <a id="power${data.data[i].id}" class="btn btn-danger btn-sm pull-right destroy" onclick="destroy(${data.data[i].id})" data-id="${data.data[i].id}" title="Inativar instrutor"><i class="fas fa-power-off"></i></a>
                                     `:`
-                                        <a id="power${data.data[i].id}" class="btn btn-success btn-sm pull-right destroy" onclick="activate(${data.data[i].id})" data-id="${data.data[i].id}" title="Ativar professor"><i class="fas fa-power-off"></i></a>
+                                        <a id="power${data.data[i].id}" class="btn btn-success btn-sm pull-right destroy" onclick="activate(${data.data[i].id})" data-id="${data.data[i].id}" title="Ativar instrutor"><i class="fas fa-power-off"></i></a>
 
                                     `}
 
@@ -264,7 +264,7 @@ function list(id)
 
 function fillUser(id){
 
-    $.post(window.location.origin + "/api/admin/teacher/find/"+id, {
+    $.post(window.location.origin + "/api/admin/instructor/find/"+id, {
 
     }).then(function(data) {
         if(data.status == 'success') {
@@ -313,7 +313,7 @@ function destroy(id)
       
       swalWithBootstrapButtons.fire({
         title: 'Tem certeza?',
-        text: "Deseja realmente inativar o professor?",
+        text: "Deseja realmente inativar o instrutor?",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonText: 'Sim',
@@ -328,7 +328,7 @@ function destroy(id)
                 allowEscapeKey: false,
                 onOpen: () => {
                     Swal.showLoading();
-                    $.post(window.location.origin + "/api/admin/teacher/destroy/"+id, {
+                    $.post(window.location.origin + "/api/admin/instructor/destroy/"+id, {
         
                     }).then(function(data) {
                         if(data.status == 'success') {
@@ -339,12 +339,12 @@ function destroy(id)
                             $("#power"+id).addClass('btn-success');
         
                             $("#power"+id).attr('onclick', 'activate('+id+')');
-                            $("#power"+id).attr('title', 'Ativar professor');
+                            $("#power"+id).attr('title', 'Ativar instrutor');
         
                             // list($("#idAcademy").val());
                             Swal.fire({
                                 type: 'success',
-                                text: 'Professor inativado com sucesso',
+                                text: 'Instrutor inativado com sucesso',
                                 showConfirmButton: false,
                                 showCancelButton: true,
                                 cancelButtonText: "OK",
@@ -373,7 +373,7 @@ function activate(id)
         allowEscapeKey: false,
         onOpen: () => {
             Swal.showLoading();
-            $.post(window.location.origin + "/api/admin/teacher/activate/"+id, {
+            $.post(window.location.origin + "/api/admin/instructor/activate/"+id, {
 
             }).then(function(data) {
                 if(data.status == 'success') {
@@ -384,12 +384,12 @@ function activate(id)
                     $("#power"+id).addClass('btn-danger');
 
                     $("#power"+id).attr('onclick', 'destroy('+id+')');
-                    $("#power"+id).attr('title', 'Inativar professor');
+                    $("#power"+id).attr('title', 'Inativar instrutor');
 
                     // list($("#idAcademy").val());
                     Swal.fire({
                         type: 'success',
-                        text: 'Professor ativado com sucesso',
+                        text: 'Instrutor ativado com sucesso',
                         showConfirmButton: false,
                         showCancelButton: true,
                         cancelButtonText: "OK",

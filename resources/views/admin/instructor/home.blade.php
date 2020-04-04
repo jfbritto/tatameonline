@@ -1,15 +1,15 @@
 @extends('adminlte::page')
 
-@section('title', 'Professores')
+@section('title', 'Instrutores')
 
 @section('content_header')
 
         <h1>
-            <i class="fas fa-user-graduate"></i> &nbsp;&nbsp; Professores
+            <i class="fas fa-user-graduate"></i> &nbsp;&nbsp; Instrutores
         </h1>
         <ol class="breadcrumb">
             <li><a href="/admin"><i class="fas fa-home"></i>&nbsp;&nbsp;Home</a></li>
-            <li><a href="/admin/teacher"><i class="fas fa-user-graduate"></i>&nbsp;&nbsp;Professores</a></li>
+            <li><a href="/admin/instructor"><i class="fas fa-user-graduate"></i>&nbsp;&nbsp;Instrutores</a></li>
         </ol>
 
 @stop
@@ -18,19 +18,19 @@
 
     <div class="box">
         <div class="box-header">
-            <h3 class="box-title"><i class="fas fa-user-graduate"></i> &nbsp;&nbsp; Professores</h3>
+            <h3 class="box-title"><i class="fas fa-user-graduate"></i> &nbsp;&nbsp; Instrutores</h3>
 
             <div class="box-tools">
             <div class="input-group input-group-sm" style="width: 150px; text-align: right">
                 <div class="input-group-btn">
-                    <a href="#" class="btn btn-success open-modal-user" title="Adicionar professor"><i class="fas fa-plus fa-lg"></i></i></a>
+                    <a href="#" class="btn btn-success open-modal-user" title="Adicionar instrutor"><i class="fas fa-plus fa-lg"></i></i></a>
                 </div>
             </div>
             </div>
         </div>
         <!-- /.box-header -->
         <div class="box-body table-responsive">
-            <table class="table table-hover table-condensed datatable-table" id="teachers-table">
+            <table class="table table-hover table-condensed datatable-table" id="instructors-table">
                 <thead>
                     <tr>
                         <th></th>
@@ -53,10 +53,10 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title"><i class="fas fa-user-graduate"></i>&nbsp;&nbsp;<font id="title-modal">Cadastrar</font> professor</h4>
+                <h4 class="modal-title"><i class="fas fa-user-graduate"></i>&nbsp;&nbsp;<font id="title-modal">Cadastrar</font> instrutor</h4>
             </div>
             <div class="modal-body">
-                <form id="formTeacher">
+                <form id="formInstructor">
 
                     <input type="hidden" id="param" value="new">
                     <input type="hidden" id="id_user" value="">
@@ -194,7 +194,7 @@
             <div class="modal-footer">
                 <a href="#" class="btn btn-warning pull-left open-modal-pass"><i class="fas fa-lock"></i>&nbsp;&nbsp;Alterar senha</a>
 
-                <button form="formTeacher" class="btn btn-primary pull-right"><i class="fas fa-save"></i>&nbsp;&nbsp;Salvar</button>
+                <button form="formInstructor" class="btn btn-primary pull-right"><i class="fas fa-save"></i>&nbsp;&nbsp;Salvar</button>
             </div>
             </div>
             <!-- /.modal-content -->
@@ -285,5 +285,5 @@
 @stop
 
 @section('adminlte_js')
-    <script src="{{asset('/js/Admin/teacher/homeTeacher.js')}}"></script>
+    <script src="{{asset('/js/Admin/instructor/homeInstructor.js')}}"></script>
 @stop

@@ -4,25 +4,25 @@ namespace App\Http\Controllers\Api\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Services\TeacherService;
+use App\Services\InstructorService;
 use App\Models\User;
 use App\Models\Academy;
 use Illuminate\Support\Facades\Storage;
 use Arisharyanto\Laracrop\Laracrop;
 use Intervention\Image\Facades\Image;
 
-class TeacherController extends Controller
+class InstructorController extends Controller
 {
-    private $teacherService;
+    private $instructorService;
 
-    public function __construct(TeacherService $teacherService)
+    public function __construct(InstructorService $instructorService)
     {
-        $this->teacherService = $teacherService;
+        $this->instructorService = $instructorService;
     }
 
     public function index(Academy $academy)
     {
-        $response = $this->teacherService->index($academy->id);
+        $response = $this->instructorService->index($academy->id);
 
         if($response['status'] == 'success')
             return response()->json(['status'=>'success', 'data'=>$response['data']], 201);
@@ -32,7 +32,7 @@ class TeacherController extends Controller
 
     public function find($id)
     {
-        $response = $this->teacherService->find($id);
+        $response = $this->instructorService->find($id);
 
         if($response['status'] == 'success')
             return response()->json(['status'=>'success', 'data'=>$response['data']], 201);
@@ -60,7 +60,7 @@ class TeacherController extends Controller
             $data = [
                 'name' => $request->name,
                 'email' => $request->email,
-                'isTeacher' => 1,
+                'isInstructor' => 1,
                 'isStudent' => 0,
                 'idAcademy' => $request->idAcademy,
                 'phone' => $request->phone,
@@ -78,7 +78,7 @@ class TeacherController extends Controller
                 'password' => bcrypt('12345678'),
             ];
 
-            $response = $this->teacherService->store($data);
+            $response = $this->instructorService->store($data);
 
         }else if($request->param == 'edit'){
 
@@ -101,7 +101,7 @@ class TeacherController extends Controller
                 'observation' => $request->observation,
             ];
 
-            $response = $this->teacherService->update($data);
+            $response = $this->instructorService->update($data);
         }
 
         if($response['status'] == 'success')
@@ -135,7 +135,7 @@ class TeacherController extends Controller
             'idAcademy' => $request->idAcademy,
         ];
 
-        $response = $this->teacherService->editPass($data);
+        $response = $this->instructorService->editPass($data);
 
         if($response['status'] == 'success')
             return response()->json(['status'=>'success'], 201);
@@ -165,7 +165,7 @@ class TeacherController extends Controller
     //         Image::make(public_path("filetmp/{$nameFile}"))->resize(200, 200)->save(storage_path("app/public/users/{$nameFile}"));
     //         $data = ['id_user' => $user->id, 'avatar' => $nameFile, 'idAcademy' => $request->idAcademy];
 
-    //         $response = $this->teacherService->editAvatar($data);
+    //         $response = $this->instructorService->editAvatar($data);
     //         Laracrop::cleanCropTemp();
 
     //     // }else{
@@ -180,7 +180,7 @@ class TeacherController extends Controller
 
     public function destroy($id)
     {
-        $response = $this->teacherService->destroy($id);
+        $response = $this->instructorService->destroy($id);
 
         if($response['status'] == 'success')
             return response()->json(['status'=>'success'], 201);
@@ -190,7 +190,7 @@ class TeacherController extends Controller
 
     public function activate($id)
     {
-        $response = $this->teacherService->activate($id);
+        $response = $this->instructorService->activate($id);
 
         if($response['status'] == 'success')
             return response()->json(['status'=>'success'], 201);

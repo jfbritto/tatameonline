@@ -85,8 +85,8 @@ class LoginController extends Controller
                 return redirect()->route('admin');
             }
 
-            if(auth()->user()->isTeacher){
-                return redirect()->route('teacher');
+            if(auth()->user()->isInstructor){
+                return redirect()->route('instructor');
             }
 
             if(auth()->user()->isStudent){

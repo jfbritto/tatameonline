@@ -64,10 +64,10 @@ Route::group(['middleware' => ['auth']], function(){
         Route::get('/student/edit/{user}', 'StudentController@edit')->name('admin.student.edit');
 
         //PROFESSORES
-        Route::get('/teacher', 'TeacherController@index')->name('admin.teacher');
-        Route::get('/teacher/create', 'TeacherController@create')->name('admin.teacher.create');
-        Route::get('/teacher/show/{user}', 'TeacherController@show')->name('admin.teacher.show');
-        Route::get('/teacher/edit/{user}', 'TeacherController@edit')->name('admin.teacher.edit');
+        Route::get('/instructor', 'InstructorController@index')->name('admin.instructor');
+        Route::get('/instructor/create', 'InstructorController@create')->name('admin.instructor.create');
+        Route::get('/instructor/show/{user}', 'InstructorController@show')->name('admin.instructor.show');
+        Route::get('/instructor/edit/{user}', 'InstructorController@edit')->name('admin.instructor.edit');
 
         Route::post('/user/update/avatar', 'StudentController@editAvatar')->name('admin.user.update.avatar');
 
@@ -88,9 +88,9 @@ Route::group(['middleware' => ['auth']], function(){
         Route::get('/bug', 'BugController@index')->name('admin.bug');
     });
 
-    Route::group(['middleware' => 'teacher', 'prefix' => 'teacher', 'namespace' => 'Teacher'], function(){
+    Route::group(['middleware' => 'instructor', 'prefix' => 'instructor', 'namespace' => 'Instructor'], function(){
 
-        Route::get('/', 'HomeController@index')->name('teacher');
+        Route::get('/', 'HomeController@index')->name('instructor');
 
     });
 

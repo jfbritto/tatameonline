@@ -25,8 +25,8 @@ class RedirectIfAuthenticated
             if(auth()->user()->isAdmin)
                 return redirect()->route('admin');
 
-            if(auth()->user()->isTeacher)
-                return redirect()->route('teacher');
+            if(auth()->user()->isInstructor)
+                return redirect()->route('instructor');
 
             if(auth()->user()->isStudent)
                 return redirect()->route('student');

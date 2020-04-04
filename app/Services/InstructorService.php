@@ -9,7 +9,7 @@ use Exception;
 use App\Mail\SendMailUser;
 use Illuminate\Support\Facades\Mail;
 
-class TeacherService
+class InstructorService
 {
     public function index($id)
     {
@@ -19,7 +19,7 @@ class TeacherService
 
             $users = DB::table('users')
                             ->where('idAcademy', '=', $id)
-                            ->where('isTeacher', '=', 1)
+                            ->where('isInstructor', '=', 1)
                             ->select('users.*',
                             (DB::raw("(SELECT count(*) FROM registrations WHERE idUser = users.id and isActive=1) AS aulas")))
                             ->orderBy('users.name')

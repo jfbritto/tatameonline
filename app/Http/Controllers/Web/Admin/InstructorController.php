@@ -11,16 +11,16 @@ use Arisharyanto\Laracrop\Laracrop;
 use Intervention\Image\Facades\Image;
 use App\Services\StudentService;
 
-class TeacherController extends Controller
+class InstructorController extends Controller
 {
     public function index()
     {
-        return view('admin.teacher.home');
+        return view('admin.instructor.home');
     }
 
     public function create()
     {
-        return view('admin.teacher.create');
+        return view('admin.instructor.create');
     }
 
     public function store(Request $request)
@@ -30,12 +30,12 @@ class TeacherController extends Controller
 
     public function show(User $user)
     {
-        return view('admin.teacher.show', ['student' => $user]);
+        return view('admin.instructor.show', ['student' => $user]);
     }
 
     public function edit(User $user)
     {
-        return view('admin.teacher.edit', ['user' => $user]);
+        return view('admin.instructor.edit', ['user' => $user]);
     }
 
     public function update(Request $request, $id)

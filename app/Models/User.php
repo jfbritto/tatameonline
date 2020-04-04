@@ -17,7 +17,7 @@ class User extends Authenticatable
         'isActive',
         'isRoot',
         'isAdmin',
-        'isTeacher',
+        'isInstructor',
         'isStudent',
         'idAcademy',
         'phone',

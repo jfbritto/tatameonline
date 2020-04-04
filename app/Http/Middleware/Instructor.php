@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class Teacher
+class Instructor
 {
     /**
      * Handle an incoming request.
@@ -15,7 +15,7 @@ class Teacher
      */
     public function handle($request, Closure $next)
     {
-        if(auth()->user()->isTeacher)
+        if(auth()->user()->isInstructor)
             return $next($request);
 
         return redirect('/');

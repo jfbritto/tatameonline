@@ -33,14 +33,14 @@
         Route::post('/student/edit/pass', 'StudentController@editPass');
         Route::post('/student/edit/avatar', 'StudentController@editAvatar');
 
-        //PROFESSOR
-        Route::post('/teacher', 'TeacherController@store');
-        Route::post('/teacher/list/{academy}', 'TeacherController@index');
-        Route::post('/teacher/find/{student}', 'TeacherController@find');
-        Route::post('/teacher/destroy/{student}', 'TeacherController@destroy');
-        Route::post('/teacher/activate/{student}', 'TeacherController@activate');
-        Route::post('/teacher/edit/pass', 'TeacherController@editPass');
-        Route::post('/teacher/edit/avatar', 'TeacherController@editAvatar');
+        //INSTRUTOR
+        Route::post('/instructor', 'InstructorController@store');
+        Route::post('/instructor/list/{academy}', 'InstructorController@index');
+        Route::post('/instructor/find/{student}', 'InstructorController@find');
+        Route::post('/instructor/destroy/{student}', 'InstructorController@destroy');
+        Route::post('/instructor/activate/{student}', 'InstructorController@activate');
+        Route::post('/instructor/edit/pass', 'InstructorController@editPass');
+        Route::post('/instructor/edit/avatar', 'InstructorController@editAvatar');
 
         //AULA
         Route::post('/lesson', 'LessonController@store');
