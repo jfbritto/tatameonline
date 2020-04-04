@@ -181,6 +181,12 @@ return [
             'can'  => 'admin',
         ],
         [
+            'text'        => 'Professores',
+            'url'         => 'admin/teacher',
+            'icon' => 'fas fa-user-graduate',
+            'can'  => 'admin',
+        ],
+        [
             'text'        => 'Aulas',
             'url'         => 'admin/lesson',
             'icon' => 'fas fa-users',
@@ -203,6 +209,24 @@ return [
             'url'         => 'admin/bug',
             'icon' => 'fas fa-bug',
             'can'  => 'admin',
+        ],
+
+        //************** */
+        //* PROFESSOR ***/
+        //************* */
+        ['header' => 'PROFESSOR', 'can'  => 'teacher'],
+
+        [
+            'text'        => 'Financeiro',
+            'url'         => 'teacher/financial',
+            'icon' => 'fas fa-dollar-sign',
+            'can'  => 'teacher',
+        ],
+        [
+            'text'        => 'Bugs',
+            'url'         => 'teacher/bug',
+            'icon' => 'fas fa-bug',
+            'can'  => 'teacher',
         ],
 
         //********** */

@@ -63,6 +63,12 @@ Route::group(['middleware' => ['auth']], function(){
         Route::get('/student/show/{user}', 'StudentController@show')->name('admin.student.show');
         Route::get('/student/edit/{user}', 'StudentController@edit')->name('admin.student.edit');
 
+        //PROFESSORES
+        Route::get('/teacher', 'TeacherController@index')->name('admin.teacher');
+        Route::get('/teacher/create', 'TeacherController@create')->name('admin.teacher.create');
+        Route::get('/teacher/show/{user}', 'TeacherController@show')->name('admin.teacher.show');
+        Route::get('/teacher/edit/{user}', 'TeacherController@edit')->name('admin.teacher.edit');
+
         Route::post('/user/update/avatar', 'StudentController@editAvatar')->name('admin.user.update.avatar');
 
         //GRADUAÇÃO
@@ -80,6 +86,12 @@ Route::group(['middleware' => ['auth']], function(){
 
         //BUGS
         Route::get('/bug', 'BugController@index')->name('admin.bug');
+    });
+
+    Route::group(['middleware' => 'teacher', 'prefix' => 'teacher', 'namespace' => 'Teacher'], function(){
+
+        Route::get('/', 'HomeController@index')->name('teacher');
+
     });
 
 

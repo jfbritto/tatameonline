@@ -33,6 +33,15 @@
         Route::post('/student/edit/pass', 'StudentController@editPass');
         Route::post('/student/edit/avatar', 'StudentController@editAvatar');
 
+        //PROFESSOR
+        Route::post('/teacher', 'TeacherController@store');
+        Route::post('/teacher/list/{academy}', 'TeacherController@index');
+        Route::post('/teacher/find/{student}', 'TeacherController@find');
+        Route::post('/teacher/destroy/{student}', 'TeacherController@destroy');
+        Route::post('/teacher/activate/{student}', 'TeacherController@activate');
+        Route::post('/teacher/edit/pass', 'TeacherController@editPass');
+        Route::post('/teacher/edit/avatar', 'TeacherController@editAvatar');
+
         //AULA
         Route::post('/lesson', 'LessonController@store');
         Route::post('/lesson/list/{academy}', 'LessonController@index');
