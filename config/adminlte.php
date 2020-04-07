@@ -217,9 +217,21 @@ return [
         ['header' => 'INSTRUTOR', 'can'  => 'instructor'],
 
         [
-            'text'        => 'Financeiro',
-            'url'         => 'instructor/financial',
-            'icon' => 'fas fa-dollar-sign',
+            'text'        => 'Home',
+            'url'         => 'instructor',
+            'icon' => 'fas fa-home',
+            'can'  => 'instructor',
+        ],
+        [
+            'text'        => 'Alunos',
+            'url'         => 'instructor/student',
+            'icon' => 'fas fa-user-graduate',
+            'can'  => 'instructor',
+        ],
+        [
+            'text'        => 'Aulas',
+            'url'         => 'instructor/lesson',
+            'icon' => 'fas fa-users',
             'can'  => 'instructor',
         ],
         [
