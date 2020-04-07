@@ -46,5 +46,15 @@ class AcademyController extends Controller
             
         return response()->json(['status'=>'error', 'message'=>$response['data']], 500);
     }
+    
+    public function updateAlunSetPresence(Academy $academy, $status)
+    {
+        $response = $this->academyService->updateAlunSetPresence($academy->id, $status);
+
+        if($response['status'] == 'success')
+            return response()->json(['status'=>'success', 'data'=>$response['data']], 201);
+            
+        return response()->json(['status'=>'error', 'message'=>$response['data']], 500);
+    }
 
 }

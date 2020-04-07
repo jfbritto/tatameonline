@@ -242,6 +242,40 @@ $(document).ready(function(){
 
 
 
+    $("#alun-presence").on("change", function(){
+
+        let id = $("#idAcademy").val();
+        let status = $(this).val();
+        let txt = '';
+        
+        if(status == '1')
+            txt = 'os alunos poderão informar suas presenças!';
+        else
+            txt = 'somente o professor poderá marcar as presenças!';
+
+        $.post(window.location.origin + "/api/admin/academy/update-alun-set-presence/"+id+"/"+status, {
+
+        }).then(function(data) {
+            if(data.status == 'success') {
+                Swal.fire({
+                    type: 'success',
+                    text: `Agora ${txt}`,
+                    showConfirmButton: false,
+                    showCancelButton: true,
+                    cancelButtonText: "OK",
+                    onClose: () => {
+    
+                    }
+                });
+        
+            } else if (data.status == 'error') {
+                showError(data.message);
+            }
+        }, goTo500).catch(goTo500);
+
+    });
+
+
 });
 
 //REGISTRAR PRESENÇA DOS ALUNOS

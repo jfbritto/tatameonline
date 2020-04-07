@@ -174,4 +174,26 @@ class AcademyService
         
         return $response;
     }
+
+    public function updateAlunSetPresence($id, $status)
+    {
+        $response = [];
+        
+        try{
+            DB::beginTransaction();
+            
+            DB::table('academies')
+                            ->where('id', $id)
+                            ->update(['alunSetPresence' => $status]);
+            
+            DB::commit();
+            
+            $response = ['status' => 'success', 'data' => ''];
+        }catch(Exception $e){
+            DB::rollBack();
+            $response = ['status' => 'error', 'data' => $e->getMessage()];
+        }
+        
+        return $response;
+    }
 }

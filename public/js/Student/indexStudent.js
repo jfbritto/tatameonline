@@ -103,16 +103,23 @@ function mainFunction(idUser)
 
             if(data.data.checkLesson.data[0] != null){
 
-                $("#sport-modal").html(data.data.checkLesson.data[0].sport_name);
-                $("#teacher-modal").html(data.data.checkLesson.data[0].teacher);
-                $("#weekDay-modal").html(dia_semana[data.data.checkLesson.data[0].weekDay]);
-                $("#hour-modal").html(data.data.checkLesson.data[0].hour);
+                if(data.data.academy.data.alunSetPresence){
 
-                $("#idRegistration").val(data.data.checkLesson.data[0].registration_id);
-                $("#idUserGraduation").val(data.data.checkLesson.data[0].user_graduation_id);
+                    $("#sport-modal").html(data.data.checkLesson.data[0].sport_name);
+                    $("#teacher-modal").html(data.data.checkLesson.data[0].teacher);
+                    $("#weekDay-modal").html(dia_semana[data.data.checkLesson.data[0].weekDay]);
+                    $("#hour-modal").html(data.data.checkLesson.data[0].hour);
 
-                $("#modal-check").modal('show');
-                setTimeout(function(){ $("#token").focus(); }, 500);
+                    $("#idRegistration").val(data.data.checkLesson.data[0].registration_id);
+                    $("#idUserGraduation").val(data.data.checkLesson.data[0].user_graduation_id);
+
+                    $("#modal-check").modal('show');
+                    setTimeout(function(){ $("#token").focus(); }, 500);
+
+                }else{
+                    $("#modal-check").modal('hide');
+                }
+                
             }else{
                 $("#modal-check").modal('hide');
             }

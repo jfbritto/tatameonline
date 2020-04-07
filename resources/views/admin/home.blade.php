@@ -25,6 +25,10 @@
         <div class="info-box-content">
             <span class="info-box-text">TOKEN</span>
             <span class="info-box-number" id="info-box-token"><i class="fas fa-sync-alt fa-spin"></i></span>
+            <select title="Quem poderá marcar as presenças dos alunos." class="form-control" id="alun-presence">
+                <option value="1" @if( auth()->user()->academy->alunSetPresence == 1) selected @endif >Aluno e Professor</option>
+                <option value="0" @if( auth()->user()->academy->alunSetPresence == 0) selected @endif>Somente Professor</option>
+            </select>
         </div>
 
         </div>

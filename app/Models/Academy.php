@@ -14,6 +14,7 @@ class Academy extends Model
         'phoneResponsible',
         'token',
         'isActive',
+        'alunSetPresence',
         'zipCode',
         'city',
         'neighborhood',

@@ -89,6 +89,7 @@
         Route::post('/academy/list/{academy}', 'AcademyController@index');
         Route::get('/academy/checkuserpass/{user}/{pass}', 'AcademyController@checkuserpass');
         Route::post('/academy/update-token/{academy}', 'AcademyController@updateToken');
+        Route::post('/academy/update-alun-set-presence/{academy}/{status}', 'AcademyController@updateAlunSetPresence');
 
         //HORA START
         Route::post('/start', 'StartUserGraduationController@store');
