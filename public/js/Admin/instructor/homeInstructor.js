@@ -230,7 +230,6 @@ function list(id)
                             <td>${data.data[i].name}</td>
                             <td class="hidden-xs">${data.data[i].email}</td>
                             <td id="status${data.data[i].id}" class="hidden-xs">${data.data[i].isActive==1?'<span class="label label-success">Ativo</span>':'<span class="label label-danger">Inativo</span>'}</td>
-                            <td class="hidden-xs">${data.data[i].aulas}</td>
                             <td style="width:130px">
                                 <div class="input-group-btn">
 

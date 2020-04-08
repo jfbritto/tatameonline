@@ -37,7 +37,6 @@
                         <th>Nome</th>
                         <th class="hidden-xs">Email</th>
                         <th class="hidden-xs">Status</th>
-                        <th class="hidden-xs">Aulas</th>
                         <th></th>
                     </tr>
                 </thead>

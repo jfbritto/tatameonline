@@ -30,7 +30,7 @@ class InstructorController extends Controller
 
     public function show(User $user)
     {
-        return view('admin.instructor.show', ['student' => $user]);
+        return view('admin.instructor.show', ['instructor' => $user]);
     }
 
     public function edit(User $user)

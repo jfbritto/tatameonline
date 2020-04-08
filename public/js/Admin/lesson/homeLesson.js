@@ -69,7 +69,7 @@ function list(id)
                 //             </td>
                 //         </tr>`;
 
-                DataTable.row.add([data.data[i].sport_name, data.data[i].teacher, dia_semana[data.data[i].weekDay], data.data[i].hour, data.data[i].alunos || '0', `<div class="input-group-btn"><a class="btn btn-primary btn-sm pull-right" href="/admin/lesson/show/${data.data[i].id}" title="Abrir aula"><i class="fas fa-sign-in-alt"></i></a><a class="btn btn-danger btn-sm pull-right destroy" onclick="destroy(${data.data[i].id})" data-id="${data.data[i].id}" title="Deletar aula"><i class="fas fa-trash-alt"></i></a></div>`]).draw(false);
+                DataTable.row.add([data.data[i].sport_name, data.data[i].instructor_name, dia_semana[data.data[i].weekDay], data.data[i].hour, data.data[i].alunos || '0', `<div class="input-group-btn"><a class="btn btn-primary btn-sm pull-right" href="/admin/lesson/show/${data.data[i].id}" title="Abrir aula"><i class="fas fa-sign-in-alt"></i></a><a class="btn btn-danger btn-sm pull-right destroy" onclick="destroy(${data.data[i].id})" data-id="${data.data[i].id}" title="Deletar aula"><i class="fas fa-trash-alt"></i></a></div>`]).draw(false);
             }
 
             // $('#lista').html(html);

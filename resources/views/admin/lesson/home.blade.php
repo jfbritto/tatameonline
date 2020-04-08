@@ -62,7 +62,13 @@
 
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fas fa-user"></i></span>
-                                <input type="text" class="form-control" required placeholder="Nome do professor" name="teacher" id="teacher" autofocus>
+                                <!-- <input type="text" class="form-control" required placeholder="Nome do professor" name="teacher" id="teacher" autofocus> -->
+                                <select class="form-control" required name="teacher" id="teacher">
+                                    <option value=""> -- Selecione -- </option>
+                                    @foreach($instructors as $instructor)
+                                        <option value="{{$instructor->id}}"> {{$instructor->name}} </option>
+                                    @endforeach
+                                </select>
                             </div>
 
                         </div>

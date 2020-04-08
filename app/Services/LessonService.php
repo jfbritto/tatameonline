@@ -16,9 +16,10 @@ class LessonService
 
             $lessons = DB::table('lessons')
                                 ->join('sports', 'sports.id', '=', 'lessons.idSport')
+                                ->join('users', 'users.id', '=', 'lessons.teacher')
                                 ->where('lessons.idAcademy', '=', $id)
                                 ->where('lessons.isActive', '=', 1)
-                                ->select('lessons.*', 'sports.name as sport_name',
+                                ->select('lessons.*', 'sports.name as sport_name', 'users.name as instructor_name',
                                 (DB::raw("(SELECT count(*) FROM registrations WHERE idLesson = lessons.id and isActive=1) AS alunos")))
                                 ->orderByRaw('lessons.weekDay')
                                 ->orderByRaw('lessons.hour')

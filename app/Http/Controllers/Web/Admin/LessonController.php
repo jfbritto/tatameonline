@@ -6,14 +6,25 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Lesson;
 use App\Models\Sport;
+use App\Services\InstructorService;
 
 class LessonController extends Controller
 {
+    private $instructorService;
+
+    public function __construct(InstructorService $instructorService)
+    {
+        $this->instructorService = $instructorService;
+    }
+
     public function index()
     {
         $sports = Sport::get();
-        
-        return view('admin.lesson.home', ['sports' => $sports]);
+
+        $instructors = $this->instructorService->index(auth()->user()->idAcademy);
+        $instructors = $instructors['data'];
+
+        return view('admin.lesson.home', ['sports' => $sports, 'instructors' => $instructors]);
     }
 
     public function create()
