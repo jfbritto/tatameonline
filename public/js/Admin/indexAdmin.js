@@ -158,7 +158,7 @@ $(document).ready(function(){
                                     </a>
                                 <div class="info-box-content">
                                     <span class="info-box-text">${data.data[i].sport_name}</span>
-                                    <span class="info-box-text">${data.data[i].teacher}</span>
+                                    <span class="info-box-text">${data.data[i].instructor_name}</span>
                                     <span class="info-box-text">${data.data[i].hour}</span>
                                     <span class="info-box-text">Presentes: <strong id="lesson${data.data[i].id}">${data.data[i].presences}</strong></span>
                                     </div>

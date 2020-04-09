@@ -5,14 +5,23 @@ namespace App\Http\Controllers\Web\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Sport;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use Arisharyanto\Laracrop\Laracrop;
 use Intervention\Image\Facades\Image;
 use App\Services\StudentService;
+use App\Services\InstructorService;
 
 class InstructorController extends Controller
 {
+    private $instructorService;
+
+    public function __construct(InstructorService $instructorService)
+    {
+        $this->instructorService = $instructorService;
+    }
+
     public function index()
     {
         return view('admin.instructor.home');
@@ -30,7 +39,25 @@ class InstructorController extends Controller
 
     public function show(User $user)
     {
-        return view('admin.instructor.show', ['instructor' => $user]);
+        $lessons = $this->instructorService->getLessons($user->id)['data'];
+
+        $dias = [
+            0=>"Domingo",
+            1=>"Segunda",
+            2=>"Terça",
+            3=>"Quarta",
+            4=>"Quinta",
+            5=>"Sexta",
+            6=>"Sábado",
+        ];
+
+        $sports_array = Sport::get();
+
+        foreach ($sports_array as $sport) {
+            $sports[$sport->id] = $sport->name;
+        }
+
+        return view('admin.instructor.show', ['instructor' => $user, 'lessons' => $lessons, 'dias'=>$dias, 'sports'=>$sports]);
     }
 
     public function edit(User $user)

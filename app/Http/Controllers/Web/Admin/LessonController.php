@@ -48,8 +48,11 @@ class LessonController extends Controller
             $sport_name[$sport->id] = $sport->name;
         }
 
+        $instructor = $this->instructorService->find($lesson->teacher)['data'];
+        $lessons = $this->instructorService->getLessons($lesson->teacher)['data'];
+
         $academy = auth()->user()->academy;
-        return view('admin.lesson.show', ['lesson' => $lesson, 'academy' => $academy, 'week_day' => $week_day, 'sport_name' => $sport_name]);
+        return view('admin.lesson.show', ['lesson' => $lesson, 'academy' => $academy, 'week_day' => $week_day, 'sport_name' => $sport_name, 'instructor' => $instructor, 'lessons' => $lessons]);
     }
 
     public function edit(Lesson $lesson)

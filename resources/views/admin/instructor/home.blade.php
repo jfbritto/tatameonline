@@ -88,7 +88,7 @@
                     </div>
                     <br>
                     <div class="row">
-                        <div class="col-sm-3">
+                        <div class="col-sm-6">
 
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fas fa-address-card"></i></span>
@@ -96,7 +96,7 @@
                             </div>
 
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-sm-6">
 
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fas fa-birthday-cake"></i></span>
@@ -104,7 +104,7 @@
                             </div>
 
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-sm-3" style="display:none">
 
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fas fa-user-friends"></i></span>
@@ -112,7 +112,7 @@
                             </div>
 
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-sm-3" style="display:none">
 
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fas fa-phone"></i></span>

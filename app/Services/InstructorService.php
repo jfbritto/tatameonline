@@ -32,6 +32,25 @@ class InstructorService
 
         return $response;
     }
+    
+    public function getLessons($id)
+    {
+        $response = [];
+
+        try{
+
+            $lessons = DB::table('lessons')
+                            ->where('teacher', '=', $id)
+                            ->select('lessons.*')
+                            ->get();
+
+            $response = ['status' => 'success', 'data' => $lessons];
+        }catch(Exception $e){
+            $response = ['status' => 'error', 'data' => $e->getMessage()];
+        }
+
+        return $response;
+    }
 
     public function store(array $data)
     {

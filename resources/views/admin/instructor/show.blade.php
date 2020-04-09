@@ -75,7 +75,7 @@
 
 <div class="box">
     <div class="box-header">
-        <h3 class="box-title"><i class="fas fa-users"></i>&nbsp;&nbsp;Turmas</h3>
+        <h3 class="box-title"><i class="fas fa-users"></i>&nbsp;&nbsp;Aulas</h3>
     </div>
     <!-- /.box-header -->
     <div class="box-body table-responsive">
@@ -89,7 +89,17 @@
                     <th></th>
                 </tr>
             </thead>
-            <tbody id="lista"></tbody>
+            <tbody>
+            @foreach($lessons as $lesson)
+                <tr>
+                    <td>{{$sports[$lesson->idSport]}}</td>
+                    <td>{{$instructor->name}}</td>
+                    <td>{{$dias[$lesson->weekDay]}}</td>
+                    <td>{{$lesson->hour}}</td>
+                    <td><a class="btn btn-primary btn-sm pull-right" href="/admin/lesson/show/{{$lesson->id}}" title="Abrir aula"><i class="fas fa-sign-in-alt"></i></a></td>
+                </tr>
+            @endforeach
+            </tbody>
         </table>
     </div>
     <!-- /.box-body -->

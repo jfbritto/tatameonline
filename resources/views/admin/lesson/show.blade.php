@@ -25,7 +25,7 @@
 
         <div class="row">
             <div class="col-md-4">
-                <p><strong>Professor:</strong> {{$lesson->teacher}}</p>
+                <p><strong>Professor:</strong> {{$instructor->name}}</p>
             </div>
             <div class="col-md-4">
                 <p><strong>Dia:</strong> {{$week_day[$lesson->weekDay]}}</p>

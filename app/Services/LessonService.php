@@ -288,11 +288,12 @@ class LessonService
 
             $lessons = DB::table('lessons as les')
                             ->join('sports', 'sports.id', '=', 'les.idSport')
+                            ->join('users', 'users.id', '=', 'les.teacher')
                             ->where('les.isActive', '=', 1)
                             ->where('les.idAcademy', '=', $id)
                             // ->where('les.hour', '<=', now())
                             ->where('les.weekDay', '=', date("N"))
-                            ->select(DB::raw("les.*, date_format(les.hour, '%H') as hrLesson, date_format(NOW(), '%H') as hrNow, sports.name as sport_name, 
+                            ->select(DB::raw("les.*, users.name as instructor_name, date_format(les.hour, '%H') as hrLesson, date_format(NOW(), '%H') as hrNow, sports.name as sport_name, 
                                             (select
                                                 count(*)
                                             from
