@@ -103,10 +103,27 @@ function invoiceDue(idUser)
 
             }else{
 
-                html += `<div class="alert alert-warning alert-dismissible">
-                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                            Sua fatura está perto de vencer! pague até dia ${dateFormat(data.data.invoiceDue.data[0].dueDate)}
-                        </div>`;
+                if( data.data.invoiceDue.data[0].situation == 'ontime' ){
+
+                    html += `<div class="alert alert-warning alert-dismissible">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                Sua fatura está perto de vencer! pague até dia ${dateFormat(data.data.invoiceDue.data[0].dueDate)}.
+                            </div>`;
+                }
+                if( data.data.invoiceDue.data[0].situation == 'late' ){
+
+                    html += `<div class="alert alert-danger alert-dismissible">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                Sua fatura venceu dia ${dateFormat(data.data.invoiceDue.data[0].dueDate)}! procure o responsável e efetue o pagamento.
+                            </div>`;
+                }
+                if( data.data.invoiceDue.data[0].situation == 'today' ){
+
+                    html += `<div class="alert alert-warning alert-dismissible">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                Sua fatura vence hoje! procure o responsável e efetue o pagamento
+                            </div>`;
+                }
             }
 
 

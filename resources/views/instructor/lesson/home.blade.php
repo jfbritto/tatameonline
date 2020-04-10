@@ -1,0 +1,52 @@
+@extends('adminlte::page')
+
+@section('title', 'Aulas')
+
+@section('content_header')
+
+        <h1>
+            <i class="fas fa-users"></i> &nbsp;&nbsp; Aulas
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="/instructor"><i class="fas fa-home"></i>&nbsp;&nbsp;Home</a></li>
+            <li><a href="#"><i class="fas fa-users"></i>&nbsp;&nbsp;Aulas</a></li>
+        </ol>
+
+@stop
+
+@section('content')
+
+    <div class="box">
+        <div class="box-header">
+            <h3 class="box-title"><i class="fas fa-users"></i> &nbsp;&nbsp;Aulas</h3>
+
+            <div class="box-tools">
+            <div class="input-group input-group-sm" style="width: 150px; text-align: right"></div>
+            </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body table-responsive">
+            <table class="table table-hover table-condensed datatable-table" id="lessons-table">
+                <thead>
+                    <tr>
+                        <th>Esporte</th>
+                        <th>Professor</th>
+                        <th>Dia</th>
+                        <th>Hora</th>
+                        <th>Alunos</th>
+                        <th style="width:80px"></th>
+                    </tr>
+                </thead>
+                <tbody id="lista"></tbody>
+            </table>
+        </div>
+        <!-- /.box-body -->
+    </div>
+
+    <input type="hidden" id="idAcademy" name="idAcademy" value="{{auth()->user()->academy->id}}">
+
+@stop
+
+@section('adminlte_js')
+    <script src="{{asset('/js/Instructor/lesson/homeLesson.js')}}"></script>
+@stop

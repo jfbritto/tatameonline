@@ -18,9 +18,10 @@ class PresenceService
                                 ->join('registrations', 'registrations.id', '=', 'presences.idRegistration')
                                 ->join('user_graduations', 'user_graduations.id', '=', 'presences.idUserGraduation')
                                 ->join('lessons', 'lessons.id', '=', 'registrations.idLesson')
+                                ->join('users', 'users.id', '=', 'lessons.teacher')
                                 ->where('registrations.idUser', '=', $idUser)
                                 ->where('user_graduations.id', '=', $idUserGraduation)
-                                ->select('presences.*', 'lessons.teacher', 'lessons.weekDay', 'lessons.hour')
+                                ->select('presences.*', 'lessons.teacher', 'lessons.weekDay', 'lessons.hour', 'users.name as instructor_name')
                                 ->get();
 
             $response = ['status' => 'success', 'data' => $presences];

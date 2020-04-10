@@ -92,9 +92,18 @@ Route::group(['middleware' => ['auth']], function(){
 
         Route::get('/', 'HomeController@index')->name('instructor');
 
+        //ALUNOS
+        Route::get('/student', 'StudentController@index')->name('instructor.student');
+        Route::get('/student/show/{user}', 'StudentController@show')->name('instructor.student.show');
+
+        //AULAS
+        Route::get('/lesson', 'LessonController@index')->name('instructor.lesson');
+        Route::get('/lesson/show/{lesson}', 'LessonController@show')->name('instructor.lesson.show');
+
+        //BUGS
+        Route::get('/bug', 'BugController@index')->name('instructor.bug');
+
     });
-
-
 
 
     Route::group(['middleware' => 'student', 'prefix' => 'student', 'namespace' => 'Student'], function(){

@@ -27,6 +27,8 @@
                                 href="{{ url('/root') }}"
                             @elseif(auth()->user()->isAdmin)
                                 href="{{ url('/admin') }}"
+                            @elseif(auth()->user()->isInstructor)
+                                href="{{ url('/instructor') }}"
                             @elseif(auth()->user()->isStudent)
                                 href="{{ url('/student') }}"
                             @endif

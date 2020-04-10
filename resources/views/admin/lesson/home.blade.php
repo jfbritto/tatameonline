@@ -34,10 +34,10 @@
                 <thead>
                     <tr>
                         <th>Esporte</th>
-                        <th class="hidden-xs">Professor</th>
+                        <th>Professor</th>
                         <th>Dia</th>
                         <th>Hora</th>
-                        <th class="hidden-xs">Alunos</th>
+                        <th>Alunos</th>
                         <th style="width:80px"></th>
                     </tr>
                 </thead>

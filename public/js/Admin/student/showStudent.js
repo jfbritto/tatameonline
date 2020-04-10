@@ -20,7 +20,7 @@ function list(id)
 
                 html += `<tr>
                             <td>${data.data[i].sport_name}</td>
-                            <td class="hidden-xs">${data.data[i].teacher}</td>
+                            <td class="hidden-xs">${data.data[i].instructor_name}</td>
                             <td>${dia_semana[data.data[i].weekDay]}</td>
                             <td>${data.data[i].hour}</td>
                             <td>
@@ -434,7 +434,7 @@ function openPresences(idUser, idUserGraduation)
 
                 html += `<tr">
                             <td>${dia_semana[data.data[i].weekDay]}</td>
-                            <td>${data.data[i].teacher}</td>
+                            <td>${data.data[i].instructor_name}</td>
                             <td>${data.data[i].hour}</td>
                             <td>${dateFullFormat(data.data[i].checkedHour)}</td>
                         </tr>`;

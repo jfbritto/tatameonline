@@ -68,7 +68,7 @@ function openPresences(idUser, idUserGraduation)
 
                 html += `<tr">
                             <td>${dia_semana[data.data[i].weekDay]}</td>
-                            <td>${data.data[i].teacher}</td>
+                            <td>${data.data[i].instructor_name}</td>
                             <td>${data.data[i].hour}</td>
                             <td>${dateFullFormat(data.data[i].checkedHour)}</td>
                         </tr>`;

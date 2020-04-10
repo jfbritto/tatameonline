@@ -94,8 +94,8 @@ class LessonService
         try{
 
             $users = DB::table('registrations')
-            ->join('lessons', 'lessons.id', '=', 'registrations.idLesson')
-            ->join('users', 'users.id', '=', 'registrations.idUser')
+                                ->join('lessons', 'lessons.id', '=', 'registrations.idLesson')
+                                ->join('users', 'users.id', '=', 'registrations.idUser')
                                 ->where('lessons.id', '=', $idLesson)
                                 ->where('registrations.isActive', '=', 1)
                                 ->select('users.*')
@@ -123,13 +123,14 @@ class LessonService
         try{
 
             $lessons = DB::table('lessons')
-            ->join('registrations', 'registrations.idLesson', '=', 'lessons.id')
-            ->join('sports', 'sports.id', '=', 'lessons.idSport')
-            ->where('registrations.idUser', '=', $idUser)
-            ->where('registrations.isActive', '=', 1)
-            ->orderByRaw('lessons.weekDay')
+                                ->join('registrations', 'registrations.idLesson', '=', 'lessons.id')
+                                ->join('sports', 'sports.id', '=', 'lessons.idSport')
+                                ->join('users', 'users.id', '=', 'lessons.teacher')
+                                ->where('registrations.idUser', '=', $idUser)
+                                ->where('registrations.isActive', '=', 1)
+                                ->orderByRaw('lessons.weekDay')
                                 ->orderByRaw('lessons.hour')
-                                ->select('lessons.*', 'sports.name as sport_name', 'registrations.id as id_registration')
+                                ->select('lessons.*', 'sports.name as sport_name', 'registrations.id as id_registration', 'users.name as instructor_name')
                                 ->get();
 
                                 $response = ['status' => 'success', 'data' => $lessons];
