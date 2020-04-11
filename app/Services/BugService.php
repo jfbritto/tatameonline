@@ -14,7 +14,12 @@ class BugService
 
         try{
 
-            $bugs = DB::table('bugs')->get();
+            $bugs = DB::table('bugs')
+                                ->join('users', 'users.id', '=', 'bugs.idUser')
+                                ->join('academies', 'academies.id', '=', 'users.idAcademy')
+                                ->select('bugs.*', 'users.name as user_name', 'academies.name as academy_name')
+                                ->orderBy('bugs.isRead')
+                                ->get();
 
             $response = ['status' => 'success', 'data' => $bugs];
         }catch(Exception $e){

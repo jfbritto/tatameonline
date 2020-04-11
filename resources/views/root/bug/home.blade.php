@@ -18,30 +18,32 @@
 
     <div class="box">
         <div class="box-header">
-            <h3 class="box-title"><i class="fas fa-bug"></i>&nbsp;&nbsp;Bugs</h3>
+            <h3 class="box-title"><i class="fas fa-bug"></i></h3>
+
+            <div class="box-tools"></div>
         </div>
         <!-- /.box-header -->
-        <div class="box-body">
-
-                <div class="list-group">
-                    <a href="#" class="list-group-item">First <span class="badge">5</span></a>
-                    <a href="#" class="list-group-item">Second <span class="badge">5</span></a>
-                    <a href="#" class="list-group-item">Second <span class="badge">5</span></a>
-                    <a href="#" class="list-group-item">Second <span class="badge">5</span></a>
-                    <a href="#" class="list-group-item">Second <span class="badge">5</span></a>
-                    <a href="#" class="list-group-item">Third <span class="badge">5</span></a>
-                    <a href="#" class="list-group-item">Third <span class="badge">5</span></a>
-                    <a href="#" class="list-group-item">Third <span class="badge">5</span></a>
-                    <a href="#" class="list-group-item">Third <span class="badge">5</span></a>
-                </div>
-
+        <div class="box-body table-responsive">
+            <table class="table table-hover table-condensed">
+                <thead>
+                    <tr>
+                        <th>Tipo</th>
+                        <th>Descrição</th>
+                        <th>Data Envio</th>
+                        <th>Academia</th>
+                        <th>Usuário</th>
+                        <th>Lida</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="lista"></tbody>
+            </table>
         </div>
+        <!-- /.box-body -->
     </div>
-
-    <input type="hidden" id="idUser" value="{{auth()->user()->id}}">
 
 @stop
 
 @section('adminlte_js')
-    <script src="{{asset('/js/Admin/bug/homeBug.js')}}"></script>
+    <script src="{{asset('/js/Root/bug/homeBug.js')}}"></script>
 @stop

@@ -18,6 +18,10 @@
         Route::post('/graduation', 'GraduationController@store');
         Route::post('/graduation/list', 'GraduationController@index');
         Route::post('/graduation/destroy/{graduation}', 'GraduationController@destroy');
+
+        //BUGS
+        Route::post('/bug/list', 'BugController@index');
+        Route::post('/bug/set-read/{id}', 'BugController@setRead');
     });
 
 
