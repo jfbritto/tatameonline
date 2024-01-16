@@ -9,9 +9,9 @@ class Graduation extends Model
     protected $fillable = [
         'name',
         'hours',
-        'idSport',
-        'idAcademy',
+        'color',
         'isActive',
-        'color'
+        'idAcademy',
+        'idSport'
     ];
 }

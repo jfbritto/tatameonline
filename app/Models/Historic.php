@@ -7,11 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Historic extends Model
 {
     protected $fillable = [
-        'idHistoricType',
-        'idUser',
         'reference',
         'actionDate',
         'description',
+        'idUser',
+        'idHistoricType',
     ];
 
     public function type()

@@ -9,5 +9,6 @@ class Registration extends Model
     protected $fillable = [
         'idLesson',
         'idUser',
+        'isActive',
     ];
 }

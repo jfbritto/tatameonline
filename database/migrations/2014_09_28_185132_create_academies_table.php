@@ -22,6 +22,7 @@ class CreateAcademiesTable extends Migration
             $table->string('phoneResponsible')->nullable();
             $table->integer('token')->default(123456);
             $table->boolean('isActive')->default(true);
+            $table->boolean('alunSetPresence')->default(false);
 
             $table->string('zipCode')->nullable();
             $table->string('city')->nullable();

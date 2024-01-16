@@ -54,9 +54,9 @@ class InvoiceService
 
             $dataHist = ['reference'=>$id, 'actionDate'=>date('Y-m-d H:i:s'), 'description'=>'Recebimento de fatura.', 'idUser'=>$idUser, 'idHistoricType'=>2];
             Historic::create($dataHist);
-            
+
             //enviar email
-            Mail::to($user->email)->queue(new SendMailUser($user, "2", "", "", $invoice));
+            // Mail::to($user->email)->queue(new SendMailUser($user, "2", "", "", $invoice));
 
             DB::commit();
 
@@ -230,8 +230,8 @@ class InvoiceService
                             ->where('id', $data['idInvoice'])
                             ->where('idContract', $data['idContract'])
                             ->update(['value'=>$data['newValue']]);
-            
-            
+
+
             $dataHist = ['reference'=>$data['idInvoice'], 'actionDate'=>date('Y-m-d H:i:s'), 'description'=>'Edição de fatura.', 'idUser'=>$data['idUser'], 'idHistoricType'=>3];
             Historic::create($dataHist);
 

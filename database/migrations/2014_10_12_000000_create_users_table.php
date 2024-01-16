@@ -36,10 +36,11 @@ class CreateUsersTable extends Migration
             $table->text('observation')->nullable();
 
 
+            $table->boolean('isActive')->default(true);
             $table->boolean('isRoot')->default(false);
             $table->boolean('isAdmin')->default(false);
+            $table->boolean('isInstructor')->default(false);
             $table->boolean('isStudent')->default(false);
-            $table->boolean('isActive')->default(true);
 
             $table->integer('idAcademy')->nullable()->unsigned();
 

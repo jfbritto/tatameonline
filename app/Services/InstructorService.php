@@ -32,7 +32,7 @@ class InstructorService
 
         return $response;
     }
-    
+
     public function getLessons($id)
     {
         $response = [];
@@ -71,7 +71,7 @@ class InstructorService
                 DB::table('users')->where('id', $user->id)->update(['password' => $password]);
                 $academy = Academy::where('id', '=', $user->idAcademy)->first()->name;
                 //enviar email
-                Mail::to($user->email)->queue(new SendMailUser($user, "1", $pass, $academy));
+                // Mail::to($user->email)->queue(new SendMailUser($user, "1", $pass, $academy));
 
                 DB::commit();
 
